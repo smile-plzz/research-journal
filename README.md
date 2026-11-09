@@ -62,6 +62,39 @@ npm start
 
 ---
 
+## Production Deployment & Shipping
+
+### 1. GitHub Remote Setup
+To connect this repository to your GitHub account:
+```bash
+git remote add origin https://github.com/smile-plzz/research-journal.git
+git branch -M main
+git push -u origin main
+```
+
+### 2. Vercel Deployment
+Deploying to Vercel is zero-configuration:
+- **Option A (Recommended - Vercel Web Dashboard):**
+  1. Go to [Vercel Dashboard](https://vercel.com/new).
+  2. Import the `smile-plzz/research-journal` GitHub repository.
+  3. Framework Preset will automatically detect **Next.js**.
+  4. (Optional) Set environment variable `GITHUB_TOKEN` to your personal access token to allow high-volume automated syncs.
+  5. Click **Deploy**.
+- **Option B (Vercel CLI):**
+  ```bash
+  npx vercel
+  # For production release:
+  npx vercel --prod
+  ```
+
+### 3. Automated Daily Sync Pipeline
+- `.github/workflows/sync-github.yml` fires daily at `00:00 UTC` and supports manual triggers via `workflow_dispatch`.
+- It executes `npm run sync:github` in cloud mode, fetching candidate repositories via GitHub API, regenerating the catalog, running tests, and pushing changes back to the repository.
+- Vercel automatically deploys the updated catalog on commit.
+
+
+---
+
 ## Repository Structure
 
 ```

@@ -49,15 +49,50 @@ export class GitHubClient {
     }
   }
 
+  async fetchRepoMetadata(repoName: string): Promise<GitHubRepoMeta | null> {
+    try {
+      const url = `https://api.github.com/repos/${this.owner}/${repoName}`;
+      const res = await fetch(url, { headers: this.getHeaders() });
+      if (!res.ok) return null;
+      return (await res.json()) as GitHubRepoMeta;
+    } catch {
+      return null;
+    }
+  }
+
+  async fetchRepoTree(repoName: string, branch = "main"): Promise<string[]> {
+    try {
+      const url = `https://api.github.com/repos/${this.owner}/${repoName}/git/trees/${branch}?recursive=1`;
+      const res = await fetch(url, { headers: this.getHeaders() });
+      if (!res.ok) {
+        // Fallback to master if main returned 404
+        if (branch === "main") {
+          return this.fetchRepoTree(repoName, "master");
+        }
+        return [];
+      }
+      const data = await res.json();
+      return (data.tree || [])
+        .filter((item: any) => item.type === "blob")
+        .map((item: any) => item.path);
+    } catch {
+      return [];
+    }
+  }
+
   async fetchRawFile(repoName: string, filePath: string, branch = "main"): Promise<string | null> {
     try {
       const url = `https://raw.githubusercontent.com/${this.owner}/${repoName}/${branch}/${filePath}`;
       const res = await fetch(url, { headers: this.getHeaders() });
-      if (!res.ok) return null;
+      if (!res.ok) {
+        if (branch === "main") {
+          return this.fetchRawFile(repoName, filePath, "master");
+        }
+        return null;
+      }
       return await res.text();
     } catch {
       return null;
     }
   }
 }
-

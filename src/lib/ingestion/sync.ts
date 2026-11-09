@@ -21,11 +21,26 @@ import { parseZenodoJson } from "../parsers/zenodo";
 import { parseReadmeMarkdown } from "../parsers/readme-parser";
 import { detectArchetype } from "../classification/detect-archetype";
 import { findLocalPaperRepos, LocalRepoData } from "./local-source";
+import { GitHubClient } from "../github/client";
 
 export interface SyncOptions {
   outputCatalogPath?: string;
   outputWorksDir?: string;
-  forceLocal?: boolean;
+  forceRemote?: boolean;
+}
+
+export interface UnifiedRepoSource {
+  name: string;
+  repoPath?: string;
+  files: string[];
+  readmeContent: string | null;
+  contextContent: string | null;
+  manifestContent: string | null;
+  citationContent: string | null;
+  zenodoContent: string | null;
+  gitRemote: string | null;
+  pushedAt: string;
+  defaultBranch?: string;
 }
 
 export async function runIngestion(options: SyncOptions = {}): Promise<Catalog> {
@@ -42,9 +57,66 @@ export async function runIngestion(options: SyncOptions = {}): Promise<Catalog> 
 
   console.log("🔍 Scanning repositories for academic publication archive...");
 
-  // 1. Fetch local repo sources
-  const localRepos = findLocalPaperRepos();
-  console.log(`Found ${localRepos.length} local repositories in paper_repos.`);
+  const ghClient = new GitHubClient();
+  let reposToProcess: UnifiedRepoSource[] = [];
+
+  // Check local repo sources first (if not forcing remote)
+  const localRepos = !options.forceRemote ? findLocalPaperRepos() : [];
+
+  if (localRepos.length > 0) {
+    console.log(`📂 Local Mode: Found ${localRepos.length} local repositories in paper_repos.`);
+    reposToProcess = localRepos.map((lr) => ({
+      name: lr.name,
+      repoPath: lr.repoPath,
+      files: lr.files,
+      readmeContent: lr.readmeContent,
+      contextContent: lr.contextContent,
+      manifestContent: lr.manifestContent,
+      citationContent: lr.citationContent,
+      zenodoContent: lr.zenodoContent,
+      gitRemote: lr.gitRemote,
+      pushedAt: lr.pushedAt,
+      defaultBranch: "main",
+    }));
+  } else {
+    console.log("🌐 Cloud CI Mode: No local paper_repos folder found. Ingesting from GitHub API...");
+    const remoteRepos = await ghClient.fetchUserRepos();
+    console.log(`Retrieved ${remoteRepos.length} public repositories from GitHub API.`);
+
+    for (const r of remoteRepos) {
+      if (repositoryExclusionList.includes(r.name)) continue;
+
+      const isExplicitlyIncluded = repositoryInclusionList.includes(r.name);
+      const hasPaperInName = r.name.toLowerCase().includes("paper");
+
+      if (!isExplicitlyIncluded && !hasPaperInName) continue;
+
+      console.log(`  Fetching tree and metadata for remote repository: ${r.name}...`);
+      const branch = r.default_branch || "main";
+      const files = await ghClient.fetchRepoTree(r.name, branch);
+
+      const [readme, context, manifest, citation, zenodo] = await Promise.all([
+        ghClient.fetchRawFile(r.name, "README.md", branch),
+        ghClient.fetchRawFile(r.name, "context.md", branch),
+        ghClient.fetchRawFile(r.name, ".publication.json", branch),
+        ghClient.fetchRawFile(r.name, "CITATION.cff", branch),
+        ghClient.fetchRawFile(r.name, ".zenodo.json", branch),
+      ]);
+
+      reposToProcess.push({
+        name: r.name,
+        files,
+        readmeContent: readme,
+        contextContent: context,
+        manifestContent: manifest,
+        citationContent: citation,
+        zenodoContent: zenodo,
+        gitRemote: r.html_url,
+        pushedAt: r.pushed_at,
+        defaultBranch: branch,
+      });
+    }
+  }
 
   // Grouping map: workId -> WorkBuilder
   interface WorkBuilder {
@@ -75,16 +147,8 @@ export async function runIngestion(options: SyncOptions = {}): Promise<Catalog> 
   const workMap = new Map<string, WorkBuilder>();
 
   // Process all discovered repos
-  for (const repo of localRepos) {
+  for (const repo of reposToProcess) {
     if (repositoryExclusionList.includes(repo.name)) {
-      console.log(`Skipping excluded repository: ${repo.name}`);
-      continue;
-    }
-
-    const isExplicitlyIncluded = repositoryInclusionList.includes(repo.name);
-    const hasPaperInName = repo.name.toLowerCase().includes("paper");
-
-    if (!isExplicitlyIncluded && !hasPaperInName) {
       continue;
     }
 
@@ -191,9 +255,9 @@ export async function runIngestion(options: SyncOptions = {}): Promise<Catalog> 
         verified: false,
       };
     } else if (repo.contextContent) {
-      // Extract from context.md if available
-      const ctxLines = repo.contextContent.split("\n");
-      const ctxMatch = repo.contextContent.match(/##\s+(?:Academic Investigation|Project Overview|Mission|Technical Scope)[\s\S]*?\n\n([\s\S]*?)(?=\n##|$)/i);
+      const ctxMatch = repo.contextContent.match(
+        /##\s+(?:Academic Investigation|Project Overview|Mission|Technical Scope)[\s\S]*?\n\n([\s\S]*?)(?=\n##|$)/i
+      );
       if (ctxMatch) {
         abstract = ctxMatch[1].trim();
         abstractSource = {
@@ -284,7 +348,10 @@ export async function runIngestion(options: SyncOptions = {}): Promise<Catalog> 
           description: "Primary research dataset / empirical claims ledger.",
           isPublic: true,
         });
-      } else if (lower.endsWith(".html") && (lower.includes("dashboard") || lower.includes("map") || lower.includes("gap"))) {
+      } else if (
+        lower.endsWith(".html") &&
+        (lower.includes("dashboard") || lower.includes("map") || lower.includes("gap"))
+      ) {
         artifacts.push({
           id: `${repo.name}-${filename}`,
           label: `Interactive Map/Dashboard (${filename})`,
@@ -299,14 +366,21 @@ export async function runIngestion(options: SyncOptions = {}): Promise<Catalog> 
     // Read manuscript content if available
     let manuscriptContent: string | undefined;
     const targetManuscriptFile = registryConfig?.primaryManuscriptFile;
+
     if (targetManuscriptFile) {
-      const fullPath = path.join(repo.repoPath, targetManuscriptFile);
-      if (fs.existsSync(fullPath)) {
-        try {
-          manuscriptContent = fs.readFileSync(fullPath, "utf-8");
-        } catch {
-          // ignore
+      if (repo.repoPath) {
+        const fullPath = path.join(repo.repoPath, targetManuscriptFile);
+        if (fs.existsSync(fullPath)) {
+          try {
+            manuscriptContent = fs.readFileSync(fullPath, "utf-8");
+          } catch {
+            // ignore
+          }
         }
+      } else {
+        manuscriptContent =
+          (await ghClient.fetchRawFile(repo.name, targetManuscriptFile, repo.defaultBranch || "main")) ||
+          undefined;
       }
     }
 
@@ -322,10 +396,24 @@ export async function runIngestion(options: SyncOptions = {}): Promise<Catalog> 
         "README.md",
       ];
       for (const cf of candidateFiles) {
-        const full = path.join(repo.repoPath, cf);
-        if (fs.existsSync(full)) {
-          manuscriptContent = fs.readFileSync(full, "utf-8");
-          break;
+        if (repo.files.includes(cf) || repo.files.some((f) => f.endsWith(cf))) {
+          if (repo.repoPath) {
+            const full = path.join(repo.repoPath, cf);
+            if (fs.existsSync(full)) {
+              manuscriptContent = fs.readFileSync(full, "utf-8");
+              break;
+            }
+          } else {
+            const remoteText = await ghClient.fetchRawFile(
+              repo.name,
+              cf,
+              repo.defaultBranch || "main"
+            );
+            if (remoteText) {
+              manuscriptContent = remoteText;
+              break;
+            }
+          }
         }
       }
     }
@@ -384,7 +472,6 @@ export async function runIngestion(options: SyncOptions = {}): Promise<Catalog> 
           existing.artifacts.push(art);
         }
       }
-      // If this edition is a submission copy or featured, prioritize its title/manuscript
       if (edition.isSubmissionCopy || (manuscriptContent && !existing.manuscriptContent)) {
         existing.manuscriptContent = manuscriptContent;
       }
@@ -405,7 +492,6 @@ export async function runIngestion(options: SyncOptions = {}): Promise<Catalog> 
       manuscriptFile = `${slug}.md`;
       const manuscriptFilePath = path.join(worksDir, manuscriptFile);
       fs.writeFileSync(manuscriptFilePath, wb.manuscriptContent, "utf-8");
-      console.log(`Saved manuscript for [${slug}] to ${manuscriptFilePath}`);
     }
 
     const wordCount = wb.manuscriptContent
@@ -485,7 +571,7 @@ export async function runIngestion(options: SyncOptions = {}): Promise<Catalog> 
     version: "1.0.0",
     generatedAt: new Date().toISOString(),
     totalWorks: works.length,
-    totalRepositories: localRepos.length,
+    totalRepositories: reposToProcess.length,
     works,
   };
 
@@ -500,8 +586,9 @@ export async function runIngestion(options: SyncOptions = {}): Promise<Catalog> 
   }
 
   fs.writeFileSync(catalogPath, JSON.stringify(validated, null, 2), "utf-8");
-  console.log(`✅ Normalized catalog successfully written to: ${catalogPath} (${validated.works.length} works, ${validated.totalRepositories} repos)`);
+  console.log(
+    `✅ Normalized catalog successfully written to: ${catalogPath} (${validated.works.length} works, ${validated.totalRepositories} repos)`
+  );
 
   return validated;
 }
-
