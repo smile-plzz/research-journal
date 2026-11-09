@@ -1,0 +1,1164 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-11-09T09:46:27.307Z",
+  "totalWorks": 12,
+  "totalRepositories": 15,
+  "works": [
+    {
+      "id": "the-last-of-us-part-ii-moral-agency",
+      "slug": "the-last-of-us-part-ii-moral-agency",
+      "title": "The Last of Us Part II — Academic Research Project",
+      "abstract": "This project conducts a comprehensive, interdisciplinary academic investigation of Naughty Dog's *The Last of Us Part II* (2020). Moving beyond conventional reviews and plot summaries, this research examines how the game constructs characters, manipulates perspective and information distribution, structures trauma and grief, de-optionalizes interactive violence, and destabilizes player moral agency.",
+      "abstractProvenance": {
+        "value": "This project conducts a comprehensive, interdisciplinary academic investigation of Naughty Dog's *The Last of Us Part II* (2020). Moving beyond conventional reviews and plot summaries, this research examines how the game constructs characters, manipulates perspective and information distribution, structures trauma and grief, de-optionalizes interactive violence, and destabilizes player moral agency.",
+        "source": "README.md",
+        "method": "extracted",
+        "verified": false
+      },
+      "authors": [
+        {
+          "name": "Md. Ismail Hossain",
+          "affiliation": "Jahangirnagar University, Institute of Information Technology",
+          "github": "smile-plzz"
+        }
+      ],
+      "authorsProvenance": {
+        "value": [
+          {
+            "name": "Md. Ismail Hossain",
+            "affiliation": "Jahangirnagar University, Institute of Information Technology",
+            "github": "smile-plzz"
+          }
+        ],
+        "source": "config/authors.ts",
+        "method": "configured-default",
+        "verified": true
+      },
+      "domainId": "ludology-game-studies",
+      "keywords": [],
+      "type": "research-monograph",
+      "status": "Research Monograph",
+      "publishedAt": null,
+      "publishedAtProvenance": {
+        "value": null,
+        "source": "heuristics",
+        "method": "heuristic-derived",
+        "verified": false
+      },
+      "lastPushedAt": "2026-11-05T20:13:45.215Z",
+      "featured": true,
+      "readingTimeMinutes": 52,
+      "wordCount": 10460,
+      "archetype": "numbered-stage-monograph",
+      "manuscriptFile": "the-last-of-us-part-ii-moral-agency.md",
+      "editions": [
+        {
+          "repoName": "the-last-of-us-part-ii-paper",
+          "fullName": "smile-plzz/the-last-of-us-part-ii-paper",
+          "editionLabel": "Full Research Monograph",
+          "description": "# The Last of Us Part II — Academic Research Project\r\n\r\n**Project Title:** Playing Both Sides of Revenge: Perspective, Trauma, Empathy, and Moral Agen",
+          "htmlUrl": "https://github.com/smile-plzz/the-last-of-us-part-ii-paper",
+          "stars": 0,
+          "forks": 0,
+          "pushedAt": "2026-11-05T20:13:45.215Z",
+          "primaryLanguage": "Python",
+          "archetype": "numbered-stage-monograph",
+          "hasManuscript": true,
+          "isSubmissionCopy": false
+        }
+      ],
+      "artifacts": [
+        {
+          "id": "the-last-of-us-part-ii-paper-repo",
+          "label": "Repository (Full Research Monograph)",
+          "type": "supplementary",
+          "url": "https://github.com/smile-plzz/the-last-of-us-part-ii-paper",
+          "description": "Primary GitHub source repository containing code, docs, and git commit history.",
+          "isPublic": true
+        },
+        {
+          "id": "the-last-of-us-part-ii-paper-references.bib",
+          "label": "BibTeX Citations (references.bib)",
+          "type": "bibtex",
+          "url": "https://github.com/smile-plzz/the-last-of-us-part-ii-paper/blob/main/references.bib",
+          "description": "Complete scholarly citation reference database.",
+          "isPublic": true
+        }
+      ],
+      "bibtexCitation": "@article{the-last-of-us-part-ii-moral-agency_2026,\n  author    = {Hossain, Md. Ismail},\n  title     = {The Last of Us Part II — Academic Research Project},\n  year      = {2026},\n  url       = {https://github.com/smile-plzz/the-last-of-us-part-ii-paper},\n  note      = {Academic Research Archive, Md. Ismail Hossain}\n}",
+      "relatedWorkIds": []
+    },
+    {
+      "id": "spec-ops-narrative-deception",
+      "slug": "spec-ops-narrative-deception",
+      "title": "Spec Ops: The Line — Interdisciplinary Academic Research Project",
+      "abstract": "This repository contains the complete academic research investigation, evidence matrices, review records, and full manuscript for the study:\r\n**\"Do You Feel Like a Hero Yet? Narrative Deception, Moral Complicity, Psychological Deterioration, and the Ethics of Play in Spec Ops: The Line\"**\r\n\r\nPrimary Discipline: Game Studies  \r\nSecondary Disciplines: Media Studies, Narrative Studies, Psychology of Interactive Media, Moral Philosophy, Cultural Studies, Digital Humanities  \r\nCitation Style: APA 7th Edition  \r\nTarget Manuscript Length: 7,000–9,000 words (excluding references & appendices)  \r\nResearch Infrastructure: `academic-research-skills` (v3.24.1 pipeline specification)",
+      "abstractProvenance": {
+        "value": "This repository contains the complete academic research investigation, evidence matrices, review records, and full manuscript for the study:\r\n**\"Do You Feel Like a Hero Yet? Narrative Deception, Moral Complicity, Psychological Deterioration, and the Ethics of Play in Spec Ops: The Line\"**\r\n\r\nPrimary Discipline: Game Studies  \r\nSecondary Disciplines: Media Studies, Narrative Studies, Psychology of Interactive Media, Moral Philosophy, Cultural Studies, Digital Humanities  \r\nCitation Style: APA 7th Edition  \r\nTarget Manuscript Length: 7,000–9,000 words (excluding references & appendices)  \r\nResearch Infrastructure: `academic-research-skills` (v3.24.1 pipeline specification)",
+        "source": "README.md",
+        "method": "extracted",
+        "verified": false
+      },
+      "authors": [
+        {
+          "name": "Md. Ismail Hossain",
+          "affiliation": "Jahangirnagar University, Institute of Information Technology",
+          "github": "smile-plzz"
+        }
+      ],
+      "authorsProvenance": {
+        "value": [
+          {
+            "name": "Md. Ismail Hossain",
+            "affiliation": "Jahangirnagar University, Institute of Information Technology",
+            "github": "smile-plzz"
+          }
+        ],
+        "source": "config/authors.ts",
+        "method": "configured-default",
+        "verified": true
+      },
+      "domainId": "ludology-game-studies",
+      "keywords": [],
+      "type": "research-monograph",
+      "status": "Research Monograph",
+      "publishedAt": null,
+      "publishedAtProvenance": {
+        "value": null,
+        "source": "heuristics",
+        "method": "heuristic-derived",
+        "verified": false
+      },
+      "lastPushedAt": "2026-11-05T20:13:44.221Z",
+      "featured": true,
+      "readingTimeMinutes": 65,
+      "wordCount": 12996,
+      "archetype": "numbered-stage-monograph",
+      "manuscriptFile": "spec-ops-narrative-deception.md",
+      "editions": [
+        {
+          "repoName": "spec-ops-the-line-paper",
+          "fullName": "smile-plzz/spec-ops-the-line-paper",
+          "editionLabel": "Full Research Monograph",
+          "description": "# Spec Ops: The Line — Interdisciplinary Academic Research Project\r\n\r\n## Project Overview\r\nThis repository contains the complete academic research inv",
+          "htmlUrl": "https://github.com/smile-plzz/spec-ops-the-line-paper",
+          "stars": 0,
+          "forks": 0,
+          "pushedAt": "2026-11-05T20:13:44.221Z",
+          "primaryLanguage": "Python",
+          "archetype": "numbered-stage-monograph",
+          "hasManuscript": true,
+          "isSubmissionCopy": false
+        }
+      ],
+      "artifacts": [
+        {
+          "id": "spec-ops-the-line-paper-repo",
+          "label": "Repository (Full Research Monograph)",
+          "type": "supplementary",
+          "url": "https://github.com/smile-plzz/spec-ops-the-line-paper",
+          "description": "Primary GitHub source repository containing code, docs, and git commit history.",
+          "isPublic": true
+        },
+        {
+          "id": "spec-ops-the-line-paper-references.bib",
+          "label": "BibTeX Citations (references.bib)",
+          "type": "bibtex",
+          "url": "https://github.com/smile-plzz/spec-ops-the-line-paper/blob/main/references.bib",
+          "description": "Complete scholarly citation reference database.",
+          "isPublic": true
+        }
+      ],
+      "bibtexCitation": "@article{spec-ops-narrative-deception_2026,\n  author    = {Hossain, Md. Ismail},\n  title     = {Spec Ops: The Line — Interdisciplinary Academic Research Project},\n  year      = {2026},\n  url       = {https://github.com/smile-plzz/spec-ops-the-line-paper},\n  note      = {Academic Research Archive, Md. Ismail Hossain}\n}",
+      "relatedWorkIds": []
+    },
+    {
+      "id": "bd-health-access-gap",
+      "slug": "bd-health-access-gap",
+      "title": "BD Health Access Gap",
+      "abstract": "Academic research investigation and technical project covering BD Health Access Gap. Full research documentation, analytical matrices, and supporting artifacts are available in the repository.",
+      "abstractProvenance": {
+        "value": "Academic research investigation and technical project covering BD Health Access Gap. Full research documentation, analytical matrices, and supporting artifacts are available in the repository.",
+        "source": "heuristics",
+        "method": "heuristic-derived",
+        "verified": false
+      },
+      "authors": [
+        {
+          "name": "Md. Ismail Hossain",
+          "affiliation": "Jahangirnagar University, Institute of Information Technology",
+          "github": "smile-plzz"
+        }
+      ],
+      "authorsProvenance": {
+        "value": [
+          {
+            "name": "Md. Ismail Hossain",
+            "affiliation": "Jahangirnagar University, Institute of Information Technology",
+            "github": "smile-plzz"
+          }
+        ],
+        "source": "config/authors.ts",
+        "method": "configured-default",
+        "verified": true
+      },
+      "domainId": "health-gis-biomedical",
+      "keywords": [],
+      "type": "empirical-study",
+      "status": "Working Paper",
+      "publishedAt": null,
+      "publishedAtProvenance": {
+        "value": null,
+        "source": "heuristics",
+        "method": "heuristic-derived",
+        "verified": false
+      },
+      "lastPushedAt": "2026-11-05T20:13:40.861Z",
+      "featured": true,
+      "readingTimeMinutes": 2,
+      "wordCount": 425,
+      "archetype": "geospatial-empirical-data-science",
+      "manuscriptFile": "bd-health-access-gap.md",
+      "editions": [
+        {
+          "repoName": "bd-health-access-gap-paper",
+          "fullName": "smile-plzz/bd-health-access-gap-paper",
+          "editionLabel": "Empirical Geospatial Study",
+          "description": "# BD Health Access Gap\r\n**Geospatial Analysis of Healthcare Accessibility Inequalities Across Bangladesh**\r\n\r\n[![CI Validation](https://github.com/smi",
+          "htmlUrl": "https://github.com/smile-plzz/bd-health-access-gap-paper",
+          "stars": 0,
+          "forks": 0,
+          "pushedAt": "2026-11-05T20:13:40.861Z",
+          "primaryLanguage": "Python",
+          "archetype": "geospatial-empirical-data-science",
+          "hasManuscript": true,
+          "isSubmissionCopy": false
+        }
+      ],
+      "artifacts": [
+        {
+          "id": "bd-health-access-gap-paper-repo",
+          "label": "Repository (Empirical Geospatial Study)",
+          "type": "supplementary",
+          "url": "https://github.com/smile-plzz/bd-health-access-gap-paper",
+          "description": "Primary GitHub source repository containing code, docs, and git commit history.",
+          "isPublic": true
+        },
+        {
+          "id": "bd-health-access-gap-paper-pilot_access_scores.geojson",
+          "label": "Dataset (pilot_access_scores.geojson)",
+          "type": "dataset",
+          "url": "https://github.com/smile-plzz/bd-health-access-gap-paper/blob/main/data/processed/pilot_access_scores.geojson",
+          "description": "Primary research dataset / empirical claims ledger.",
+          "isPublic": true
+        },
+        {
+          "id": "bd-health-access-gap-paper-kishoreganj_access_gap.html",
+          "label": "Interactive Map/Dashboard (kishoreganj_access_gap.html)",
+          "type": "dashboard",
+          "url": "https://github.com/smile-plzz/bd-health-access-gap-paper/blob/main/maps/kishoreganj_access_gap.html",
+          "description": "Interactive visual analytical tool or spatial choropleth map.",
+          "isPublic": true
+        },
+        {
+          "id": "bd-health-access-gap-paper-kishoreganj_access_gap_tiered.html",
+          "label": "Interactive Map/Dashboard (kishoreganj_access_gap_tiered.html)",
+          "type": "dashboard",
+          "url": "https://github.com/smile-plzz/bd-health-access-gap-paper/blob/main/maps/kishoreganj_access_gap_tiered.html",
+          "description": "Interactive visual analytical tool or spatial choropleth map.",
+          "isPublic": true
+        }
+      ],
+      "bibtexCitation": "@article{bd-health-access-gap_2026,\n  author    = {Hossain, Md. Ismail},\n  title     = {BD Health Access Gap},\n  year      = {2026},\n  url       = {https://github.com/smile-plzz/bd-health-access-gap-paper},\n  note      = {Academic Research Archive, Md. Ismail Hossain}\n}",
+      "relatedWorkIds": []
+    },
+    {
+      "id": "digitally-cancelled-bangladesh-2024",
+      "slug": "digitally-cancelled-bangladesh-2024",
+      "title": "Digitally Cancelled? Social Media, Preference Falsification, and the Failure of the Internet Blackout in Bangladesh's July 2024 Uprising",
+      "abstract": "Theoretical and empirical analysis proposing the construct of digital cancellation and a five-mechanism (CASED) model for platform-mediated legitimacy collapse during Bangladesh's July 2024 uprising. Includes a 31-column Phase 3 empirical rumour corpus (N = 141) and a 76-day day-level telecommunications measurement panel (OONI, IODA).",
+      "abstractProvenance": {
+        "value": "Theoretical and empirical analysis proposing the construct of digital cancellation and a five-mechanism (CASED) model for platform-mediated legitimacy collapse during Bangladesh's July 2024 uprising. Includes a 31-column Phase 3 empirical rumour corpus (N = 141) and a 76-day day-level telecommunications measurement panel (OONI, IODA).",
+        "source": "CITATION.cff",
+        "method": "extracted",
+        "verified": true
+      },
+      "authors": [
+        {
+          "name": "Md. Ismail Hossain",
+          "affiliation": "Institute of Information Technology (IIT), Jahangirnagar University, Dhaka, Bangladesh",
+          "email": "ismailhossain013@gmail.com"
+        }
+      ],
+      "authorsProvenance": {
+        "value": [
+          {
+            "name": "Md. Ismail Hossain",
+            "affiliation": "Institute of Information Technology (IIT), Jahangirnagar University, Dhaka, Bangladesh",
+            "email": "ismailhossain013@gmail.com"
+          }
+        ],
+        "source": "CITATION.cff",
+        "method": "extracted",
+        "verified": true
+      },
+      "domainId": "political-social-forensics",
+      "keywords": [
+        "digital cancellation",
+        "preference falsification",
+        "internet shutdown",
+        "verification vacuum",
+        "connective action",
+        "Bangladesh",
+        "July 2024 uprising",
+        "social media",
+        "disinformation"
+      ],
+      "type": "empirical-study",
+      "status": "Preprint",
+      "publishedAt": "2026-11-05",
+      "publishedAtProvenance": {
+        "value": "2026-11-05",
+        "source": "CITATION.cff",
+        "method": "extracted",
+        "verified": true
+      },
+      "lastPushedAt": "2026-11-05T20:13:37.699Z",
+      "featured": true,
+      "readingTimeMinutes": 47,
+      "wordCount": 9469,
+      "archetype": "open-science-investigative-corpus",
+      "manuscriptFile": "digitally-cancelled-bangladesh-2024.md",
+      "editions": [
+        {
+          "repoName": "DictatorBeingCancelledOverSocialMediaHype-paper",
+          "fullName": "smile-plzz/DictatorBeingCancelledOverSocialMediaHype-paper",
+          "editionLabel": "Empirical Preprint Package & Claims Ledger",
+          "description": "# Digitally Cancelled?\r\n\r\n**Social Media, Preference Falsification, and the Failure of the Internet Blackout in Bangladesh's July 2024 Uprising**\r\n\r\nI",
+          "htmlUrl": "https://github.com/smile-plzz/DictatorBeingCancelledOverSocialMediaHype-paper",
+          "stars": 0,
+          "forks": 0,
+          "pushedAt": "2026-11-05T20:13:37.699Z",
+          "primaryLanguage": "Python",
+          "archetype": "open-science-investigative-corpus",
+          "hasManuscript": true,
+          "isSubmissionCopy": false
+        }
+      ],
+      "artifacts": [
+        {
+          "id": "DictatorBeingCancelledOverSocialMediaHype-paper-repo",
+          "label": "Repository (Empirical Preprint Package & Claims Ledger)",
+          "type": "supplementary",
+          "url": "https://github.com/smile-plzz/DictatorBeingCancelledOverSocialMediaHype-paper",
+          "description": "Primary GitHub source repository containing code, docs, and git commit history.",
+          "isPublic": true
+        },
+        {
+          "id": "DictatorBeingCancelledOverSocialMediaHype-paper-CLAIMS_LEDGER.csv",
+          "label": "Dataset (CLAIMS_LEDGER.csv)",
+          "type": "dataset",
+          "url": "https://github.com/smile-plzz/DictatorBeingCancelledOverSocialMediaHype-paper/blob/main/claims/CLAIMS_LEDGER.csv",
+          "description": "Primary research dataset / empirical claims ledger.",
+          "isPublic": true
+        },
+        {
+          "id": "DictatorBeingCancelledOverSocialMediaHype-paper-index.html",
+          "label": "Interactive Map/Dashboard (index.html)",
+          "type": "dashboard",
+          "url": "https://github.com/smile-plzz/DictatorBeingCancelledOverSocialMediaHype-paper/blob/main/dashboard/index.html",
+          "description": "Interactive visual analytical tool or spatial choropleth map.",
+          "isPublic": true
+        }
+      ],
+      "bibtexCitation": "@article{digitally-cancelled-bangladesh-2024_2026,\n  author    = {Hossain, Md. Ismail},\n  title     = {Digitally Cancelled? Social Media, Preference Falsification, and the Failure of the Internet Blackout in Bangladesh's July 2024 Uprising},\n  year      = {2026},\n  url       = {https://github.com/smile-plzz/DictatorBeingCancelledOverSocialMediaHype-paper},\n  note      = {Academic Research Archive, Md. Ismail Hossain}\n}",
+      "relatedWorkIds": []
+    },
+    {
+      "id": "bangladesh-music-evolution",
+      "slug": "bangladesh-music-evolution",
+      "title": "The Evolution of Contemporary Bangladeshi Music Culture",
+      "abstract": "Academic research investigation and technical project covering The Evolution of Contemporary Bangladeshi Music Culture. Full research documentation, analytical matrices, and supporting artifacts are available in the repository.",
+      "abstractProvenance": {
+        "value": "Academic research investigation and technical project covering The Evolution of Contemporary Bangladeshi Music Culture. Full research documentation, analytical matrices, and supporting artifacts are available in the repository.",
+        "source": "heuristics",
+        "method": "heuristic-derived",
+        "verified": false
+      },
+      "authors": [
+        {
+          "name": "Md. Ismail Hossain",
+          "affiliation": "Jahangirnagar University, Institute of Information Technology",
+          "github": "smile-plzz"
+        }
+      ],
+      "authorsProvenance": {
+        "value": [
+          {
+            "name": "Md. Ismail Hossain",
+            "affiliation": "Jahangirnagar University, Institute of Information Technology",
+            "github": "smile-plzz"
+          }
+        ],
+        "source": "config/authors.ts",
+        "method": "configured-default",
+        "verified": true
+      },
+      "domainId": "computational-musicology",
+      "keywords": [],
+      "type": "computational-study",
+      "status": "Working Paper",
+      "publishedAt": null,
+      "publishedAtProvenance": {
+        "value": null,
+        "source": "heuristics",
+        "method": "heuristic-derived",
+        "verified": false
+      },
+      "lastPushedAt": "2026-11-05T20:12:56.309Z",
+      "featured": true,
+      "readingTimeMinutes": 10,
+      "wordCount": 1974,
+      "archetype": "computational-cultural-ecosystem",
+      "manuscriptFile": "bangladesh-music-evolution.md",
+      "editions": [
+        {
+          "repoName": "bangladesh-music-evolution-paper",
+          "fullName": "smile-plzz/bangladesh-music-evolution-paper",
+          "editionLabel": "Computational Framework & Network Study",
+          "description": "# The Evolution of Contemporary Bangladeshi Music Culture\r\n\r\n**A Computational Analysis of Genre Development, Global Influences, Listener Communities,",
+          "htmlUrl": "https://github.com/smile-plzz/bangladesh-music-evolution-paper",
+          "stars": 0,
+          "forks": 0,
+          "pushedAt": "2026-11-05T20:12:56.309Z",
+          "primaryLanguage": "Python",
+          "archetype": "computational-cultural-ecosystem",
+          "hasManuscript": true,
+          "isSubmissionCopy": false
+        }
+      ],
+      "artifacts": [
+        {
+          "id": "bangladesh-music-evolution-paper-repo",
+          "label": "Repository (Computational Framework & Network Study)",
+          "type": "supplementary",
+          "url": "https://github.com/smile-plzz/bangladesh-music-evolution-paper",
+          "description": "Primary GitHub source repository containing code, docs, and git commit history.",
+          "isPublic": true
+        }
+      ],
+      "bibtexCitation": "@article{bangladesh-music-evolution_2026,\n  author    = {Hossain, Md. Ismail},\n  title     = {The Evolution of Contemporary Bangladeshi Music Culture},\n  year      = {2026},\n  url       = {https://github.com/smile-plzz/bangladesh-music-evolution-paper},\n  note      = {Academic Research Archive, Md. Ismail Hossain}\n}",
+      "relatedWorkIds": []
+    },
+    {
+      "id": "tcra-intelligence-automation-boundary",
+      "slug": "tcra-intelligence-automation-boundary",
+      "title": "TCRA: A Framework for Locating the Intelligence–Automation Boundary in Vibecoded AI-Generated Code",
+      "abstract": "Academic research investigation and technical project covering TCRA: A Framework for Locating the Intelligence–Automation Boundary in Vibecoded AI-Generated Code. Full research documentation, analytical matrices, and supporting artifacts are available in the repository.",
+      "abstractProvenance": {
+        "value": "Academic research investigation and technical project covering TCRA: A Framework for Locating the Intelligence–Automation Boundary in Vibecoded AI-Generated Code. Full research documentation, analytical matrices, and supporting artifacts are available in the repository.",
+        "source": "heuristics",
+        "method": "heuristic-derived",
+        "verified": false
+      },
+      "authors": [
+        {
+          "name": "Md. Ismail Hossain",
+          "affiliation": "Jahangirnagar University, Institute of Information Technology",
+          "github": "smile-plzz"
+        }
+      ],
+      "authorsProvenance": {
+        "value": [
+          {
+            "name": "Md. Ismail Hossain",
+            "affiliation": "Jahangirnagar University, Institute of Information Technology",
+            "github": "smile-plzz"
+          }
+        ],
+        "source": "config/authors.ts",
+        "method": "configured-default",
+        "verified": true
+      },
+      "domainId": "ai-hci-tcra",
+      "keywords": [],
+      "type": "thesis",
+      "status": "Working Paper",
+      "publishedAt": null,
+      "publishedAtProvenance": {
+        "value": null,
+        "source": "heuristics",
+        "method": "heuristic-derived",
+        "verified": false
+      },
+      "lastPushedAt": "2026-11-05T20:13:44.905Z",
+      "featured": false,
+      "readingTimeMinutes": 5,
+      "wordCount": 1023,
+      "archetype": "modular-latex-thesis",
+      "manuscriptFile": "tcra-intelligence-automation-boundary.md",
+      "editions": [
+        {
+          "repoName": "JU-PMIT-TCRA-Research-humanize-paper",
+          "fullName": "smile-plzz/JU-PMIT-TCRA-Research-humanize-paper",
+          "editionLabel": "Humanized & Peer-Review Revision",
+          "description": "# TCRA: A Framework for Locating the Intelligence–Automation Boundary in Vibecoded AI-Generated Code\n\n**Master of Science in Information Technology (P",
+          "htmlUrl": "https://github.com/smile-plzz/JU-PMIT-TCRA-Research-humanize-paper",
+          "stars": 0,
+          "forks": 0,
+          "pushedAt": "2026-11-05T20:13:38.498Z",
+          "primaryLanguage": "TeX",
+          "archetype": "modular-latex-thesis",
+          "hasManuscript": true,
+          "isSubmissionCopy": false
+        },
+        {
+          "repoName": "JU-PMIT-TCRA-Research-SubmissionCopy-paper",
+          "fullName": "smile-plzz/JU-PMIT-TCRA-Research-SubmissionCopy-paper",
+          "editionLabel": "Submission Copy (Official PMIT Thesis)",
+          "description": "# TCRA: A Framework for Locating the Intelligence–Automation Boundary in Vibecoded AI-Generated Code\n\n**Master of Science in Information Technology (P",
+          "htmlUrl": "https://github.com/smile-plzz/JU-PMIT-TCRA-Research-SubmissionCopy-paper",
+          "stars": 0,
+          "forks": 0,
+          "pushedAt": "2026-11-05T20:13:38.204Z",
+          "primaryLanguage": "TeX",
+          "archetype": "modular-latex-thesis",
+          "hasManuscript": true,
+          "isSubmissionCopy": true
+        },
+        {
+          "repoName": "JU-PMIT-TCRA-Research-Tightened-paper",
+          "fullName": "smile-plzz/JU-PMIT-TCRA-Research-Tightened-paper",
+          "editionLabel": "Tightened Conference Revision",
+          "description": "# TCRA: A Framework for Locating the Intelligence–Automation Boundary in Vibecoded AI-Generated Code\n\n**Master of Science in Information Technology (P",
+          "htmlUrl": "https://github.com/smile-plzz/JU-PMIT-TCRA-Research-Tightened-paper",
+          "stars": 0,
+          "forks": 0,
+          "pushedAt": "2026-11-05T20:13:38.372Z",
+          "primaryLanguage": "TeX",
+          "archetype": "modular-latex-thesis",
+          "hasManuscript": true,
+          "isSubmissionCopy": false
+        },
+        {
+          "repoName": "tcra-thesis-draft-01-paper",
+          "fullName": "smile-plzz/tcra-thesis-draft-01-paper",
+          "editionLabel": "Foundational Draft 01",
+          "description": "# TCRA: A Framework for Locating the Intelligence–Automation Boundary in Vibecoded AI-Generated Code\n\n**Master of Science in Information Technology (P",
+          "htmlUrl": "https://github.com/smile-plzz/tcra-thesis-draft-01-paper",
+          "stars": 0,
+          "forks": 0,
+          "pushedAt": "2026-11-05T20:13:44.905Z",
+          "primaryLanguage": "TeX",
+          "archetype": "modular-latex-thesis",
+          "hasManuscript": true,
+          "isSubmissionCopy": false
+        }
+      ],
+      "artifacts": [
+        {
+          "id": "JU-PMIT-TCRA-Research-humanize-paper-repo",
+          "label": "Repository (Humanized & Peer-Review Revision)",
+          "type": "supplementary",
+          "url": "https://github.com/smile-plzz/JU-PMIT-TCRA-Research-humanize-paper",
+          "description": "Primary GitHub source repository containing code, docs, and git commit history.",
+          "isPublic": true
+        },
+        {
+          "id": "JU-PMIT-TCRA-Research-humanize-paper-bibfile.bib",
+          "label": "BibTeX Citations (bibfile.bib)",
+          "type": "bibtex",
+          "url": "https://github.com/smile-plzz/JU-PMIT-TCRA-Research-humanize-paper/blob/main/bibfile.bib",
+          "description": "Complete scholarly citation reference database.",
+          "isPublic": true
+        },
+        {
+          "id": "JU-PMIT-TCRA-Research-humanize-paper-Thesis_Defense (Draft) .pptx",
+          "label": "Defense Presentation - Thesis_Defense (Draft) .pptx",
+          "type": "presentation",
+          "url": "https://github.com/smile-plzz/JU-PMIT-TCRA-Research-humanize-paper/blob/main/Thesis_Defense (Draft) .pptx",
+          "description": "Academic thesis defense presentation slides.",
+          "isPublic": true
+        },
+        {
+          "id": "JU-PMIT-TCRA-Research-SubmissionCopy-paper-repo",
+          "label": "Repository (Submission Copy (Official PMIT Thesis))",
+          "type": "supplementary",
+          "url": "https://github.com/smile-plzz/JU-PMIT-TCRA-Research-SubmissionCopy-paper",
+          "description": "Primary GitHub source repository containing code, docs, and git commit history.",
+          "isPublic": true
+        },
+        {
+          "id": "JU-PMIT-TCRA-Research-SubmissionCopy-paper-bibfile.bib",
+          "label": "BibTeX Citations (bibfile.bib)",
+          "type": "bibtex",
+          "url": "https://github.com/smile-plzz/JU-PMIT-TCRA-Research-SubmissionCopy-paper/blob/main/bibfile.bib",
+          "description": "Complete scholarly citation reference database.",
+          "isPublic": true
+        },
+        {
+          "id": "JU-PMIT-TCRA-Research-SubmissionCopy-paper-Thesis_Defense (Draft) .pptx",
+          "label": "Defense Presentation - Thesis_Defense (Draft) .pptx",
+          "type": "presentation",
+          "url": "https://github.com/smile-plzz/JU-PMIT-TCRA-Research-SubmissionCopy-paper/blob/main/Thesis_Defense (Draft) .pptx",
+          "description": "Academic thesis defense presentation slides.",
+          "isPublic": true
+        },
+        {
+          "id": "JU-PMIT-TCRA-Research-Tightened-paper-repo",
+          "label": "Repository (Tightened Conference Revision)",
+          "type": "supplementary",
+          "url": "https://github.com/smile-plzz/JU-PMIT-TCRA-Research-Tightened-paper",
+          "description": "Primary GitHub source repository containing code, docs, and git commit history.",
+          "isPublic": true
+        },
+        {
+          "id": "JU-PMIT-TCRA-Research-Tightened-paper-bibfile.bib",
+          "label": "BibTeX Citations (bibfile.bib)",
+          "type": "bibtex",
+          "url": "https://github.com/smile-plzz/JU-PMIT-TCRA-Research-Tightened-paper/blob/main/bibfile.bib",
+          "description": "Complete scholarly citation reference database.",
+          "isPublic": true
+        },
+        {
+          "id": "JU-PMIT-TCRA-Research-Tightened-paper-Thesis_Defense (Draft) .pptx",
+          "label": "Defense Presentation - Thesis_Defense (Draft) .pptx",
+          "type": "presentation",
+          "url": "https://github.com/smile-plzz/JU-PMIT-TCRA-Research-Tightened-paper/blob/main/Thesis_Defense (Draft) .pptx",
+          "description": "Academic thesis defense presentation slides.",
+          "isPublic": true
+        },
+        {
+          "id": "tcra-thesis-draft-01-paper-repo",
+          "label": "Repository (Foundational Draft 01)",
+          "type": "supplementary",
+          "url": "https://github.com/smile-plzz/tcra-thesis-draft-01-paper",
+          "description": "Primary GitHub source repository containing code, docs, and git commit history.",
+          "isPublic": true
+        },
+        {
+          "id": "tcra-thesis-draft-01-paper-bibfile.bib",
+          "label": "BibTeX Citations (bibfile.bib)",
+          "type": "bibtex",
+          "url": "https://github.com/smile-plzz/tcra-thesis-draft-01-paper/blob/main/bibfile.bib",
+          "description": "Complete scholarly citation reference database.",
+          "isPublic": true
+        }
+      ],
+      "bibtexCitation": "@article{tcra-intelligence-automation-boundary_2026,\n  author    = {Hossain, Md. Ismail},\n  title     = {TCRA: A Framework for Locating the Intelligence–Automation Boundary in Vibecoded AI-Generated Code},\n  year      = {2026},\n  url       = {https://github.com/smile-plzz/JU-PMIT-TCRA-Research-humanize-paper},\n  note      = {Academic Research Archive, Md. Ismail Hossain}\n}",
+      "relatedWorkIds": []
+    },
+    {
+      "id": "metro-last-light-ethics-of-survival",
+      "slug": "metro-last-light-ethics-of-survival",
+      "title": "Metro: Last Light — Academic Research Project",
+      "abstract": "This repository contains an exhaustive, interdisciplinary academic research study investigating *Metro: Last Light*. Rather than a conventional review or plot retrospective, this project investigates the game as an interactive narrative regarding humanity's survival after nuclear catastrophe and its persistent reproduction of the ideological, political, and moral conflicts that precipitated destruction.",
+      "abstractProvenance": {
+        "value": "This repository contains an exhaustive, interdisciplinary academic research study investigating *Metro: Last Light*. Rather than a conventional review or plot retrospective, this project investigates the game as an interactive narrative regarding humanity's survival after nuclear catastrophe and its persistent reproduction of the ideological, political, and moral conflicts that precipitated destruction.",
+        "source": "README.md",
+        "method": "extracted",
+        "verified": false
+      },
+      "authors": [
+        {
+          "name": "Md. Ismail Hossain",
+          "affiliation": "Jahangirnagar University, Institute of Information Technology",
+          "github": "smile-plzz"
+        }
+      ],
+      "authorsProvenance": {
+        "value": [
+          {
+            "name": "Md. Ismail Hossain",
+            "affiliation": "Jahangirnagar University, Institute of Information Technology",
+            "github": "smile-plzz"
+          }
+        ],
+        "source": "config/authors.ts",
+        "method": "configured-default",
+        "verified": true
+      },
+      "domainId": "ludology-game-studies",
+      "keywords": [],
+      "type": "research-monograph",
+      "status": "Research Monograph",
+      "publishedAt": null,
+      "publishedAtProvenance": {
+        "value": null,
+        "source": "heuristics",
+        "method": "heuristic-derived",
+        "verified": false
+      },
+      "lastPushedAt": "2026-11-05T20:13:43.479Z",
+      "featured": false,
+      "readingTimeMinutes": 44,
+      "wordCount": 8820,
+      "archetype": "numbered-stage-monograph",
+      "manuscriptFile": "metro-last-light-ethics-of-survival.md",
+      "editions": [
+        {
+          "repoName": "metro-last-light-paper",
+          "fullName": "smile-plzz/metro-last-light-paper",
+          "editionLabel": "Full Research Monograph",
+          "description": "# Metro: Last Light — Academic Research Project\r\n\r\n**Project Title:** The Last Light of Humanity: Memory, Ideology, Moral Agency, and the Ethics of Su",
+          "htmlUrl": "https://github.com/smile-plzz/metro-last-light-paper",
+          "stars": 0,
+          "forks": 0,
+          "pushedAt": "2026-11-05T20:13:43.479Z",
+          "primaryLanguage": "Python",
+          "archetype": "numbered-stage-monograph",
+          "hasManuscript": true,
+          "isSubmissionCopy": false
+        }
+      ],
+      "artifacts": [
+        {
+          "id": "metro-last-light-paper-repo",
+          "label": "Repository (Full Research Monograph)",
+          "type": "supplementary",
+          "url": "https://github.com/smile-plzz/metro-last-light-paper",
+          "description": "Primary GitHub source repository containing code, docs, and git commit history.",
+          "isPublic": true
+        },
+        {
+          "id": "metro-last-light-paper-Metro_Last_Light_Research_Paper.docx",
+          "label": "Document (DOCX) - Metro_Last_Light_Research_Paper.docx",
+          "type": "docx",
+          "url": "https://github.com/smile-plzz/metro-last-light-paper/blob/main/Metro_Last_Light_Research_Paper.docx",
+          "description": "Compiled Word manuscript report.",
+          "isPublic": true
+        },
+        {
+          "id": "metro-last-light-paper-references.bib",
+          "label": "BibTeX Citations (references.bib)",
+          "type": "bibtex",
+          "url": "https://github.com/smile-plzz/metro-last-light-paper/blob/main/references.bib",
+          "description": "Complete scholarly citation reference database.",
+          "isPublic": true
+        }
+      ],
+      "bibtexCitation": "@article{metro-last-light-ethics-of-survival_2026,\n  author    = {Hossain, Md. Ismail},\n  title     = {Metro: Last Light — Academic Research Project},\n  year      = {2026},\n  url       = {https://github.com/smile-plzz/metro-last-light-paper},\n  note      = {Academic Research Archive, Md. Ismail Hossain}\n}",
+      "relatedWorkIds": []
+    },
+    {
+      "id": "listener-taste-growth-profile",
+      "slug": "listener-taste-growth-profile",
+      "title": "listener-taste-growth-profile",
+      "abstract": "Academic research investigation and technical project covering listener-taste-growth-profile. Full research documentation, analytical matrices, and supporting artifacts are available in the repository.",
+      "abstractProvenance": {
+        "value": "Academic research investigation and technical project covering listener-taste-growth-profile. Full research documentation, analytical matrices, and supporting artifacts are available in the repository.",
+        "source": "heuristics",
+        "method": "heuristic-derived",
+        "verified": false
+      },
+      "authors": [
+        {
+          "name": "Md. Ismail Hossain",
+          "affiliation": "Jahangirnagar University, Institute of Information Technology",
+          "github": "smile-plzz"
+        }
+      ],
+      "authorsProvenance": {
+        "value": [
+          {
+            "name": "Md. Ismail Hossain",
+            "affiliation": "Jahangirnagar University, Institute of Information Technology",
+            "github": "smile-plzz"
+          }
+        ],
+        "source": "config/authors.ts",
+        "method": "configured-default",
+        "verified": true
+      },
+      "domainId": "computational-musicology",
+      "keywords": [],
+      "type": "computational-study",
+      "status": "Working Paper",
+      "publishedAt": null,
+      "publishedAtProvenance": {
+        "value": null,
+        "source": "heuristics",
+        "method": "heuristic-derived",
+        "verified": false
+      },
+      "lastPushedAt": "2026-11-05T20:13:42.422Z",
+      "featured": false,
+      "readingTimeMinutes": 107,
+      "wordCount": 21412,
+      "archetype": "computational-cultural-ecosystem",
+      "manuscriptFile": "listener-taste-growth-profile.md",
+      "editions": [
+        {
+          "repoName": "listener-taste-growth-profile-paper",
+          "fullName": "smile-plzz/listener-taste-growth-profile-paper",
+          "editionLabel": "Longitudinal Listener Profile Study",
+          "description": "# listener-taste-growth-profile\r\n\r\nResearch on how listeners' music taste grows and changes as they age — the relationship between\r\nage and music pref",
+          "htmlUrl": "https://github.com/smile-plzz/listener-taste-growth-profile-paper",
+          "stars": 0,
+          "forks": 0,
+          "pushedAt": "2026-11-05T20:13:42.422Z",
+          "primaryLanguage": "Python",
+          "archetype": "computational-cultural-ecosystem",
+          "hasManuscript": true,
+          "isSubmissionCopy": false
+        }
+      ],
+      "artifacts": [
+        {
+          "id": "listener-taste-growth-profile-paper-repo",
+          "label": "Repository (Longitudinal Listener Profile Study)",
+          "type": "supplementary",
+          "url": "https://github.com/smile-plzz/listener-taste-growth-profile-paper",
+          "description": "Primary GitHub source repository containing code, docs, and git commit history.",
+          "isPublic": true
+        }
+      ],
+      "bibtexCitation": "@article{listener-taste-growth-profile_2026,\n  author    = {Hossain, Md. Ismail},\n  title     = {listener-taste-growth-profile},\n  year      = {2026},\n  url       = {https://github.com/smile-plzz/listener-taste-growth-profile-paper},\n  note      = {Academic Research Archive, Md. Ismail Hossain}\n}",
+      "relatedWorkIds": []
+    },
+    {
+      "id": "driver-psychology-traffic-behavior",
+      "slug": "driver-psychology-traffic-behavior",
+      "title": "Driver Psychology & Traffic Behavior Analysis",
+      "abstract": "Academic research investigation and technical project covering Driver Psychology & Traffic Behavior Analysis. Full research documentation, analytical matrices, and supporting artifacts are available in the repository.",
+      "abstractProvenance": {
+        "value": "Academic research investigation and technical project covering Driver Psychology & Traffic Behavior Analysis. Full research documentation, analytical matrices, and supporting artifacts are available in the repository.",
+        "source": "heuristics",
+        "method": "heuristic-derived",
+        "verified": false
+      },
+      "authors": [
+        {
+          "name": "Md. Ismail Hossain",
+          "affiliation": "Jahangirnagar University, Institute of Information Technology",
+          "github": "smile-plzz"
+        }
+      ],
+      "authorsProvenance": {
+        "value": [
+          {
+            "name": "Md. Ismail Hossain",
+            "affiliation": "Jahangirnagar University, Institute of Information Technology",
+            "github": "smile-plzz"
+          }
+        ],
+        "source": "config/authors.ts",
+        "method": "configured-default",
+        "verified": true
+      },
+      "domainId": "health-gis-biomedical",
+      "keywords": [],
+      "type": "computational-study",
+      "status": "Working Paper",
+      "publishedAt": null,
+      "publishedAtProvenance": {
+        "value": null,
+        "source": "heuristics",
+        "method": "heuristic-derived",
+        "verified": false
+      },
+      "lastPushedAt": "2026-11-05T20:13:41.706Z",
+      "featured": false,
+      "readingTimeMinutes": 4,
+      "wordCount": 711,
+      "archetype": "geospatial-empirical-data-science",
+      "manuscriptFile": "driver-psychology-traffic-behavior.md",
+      "editions": [
+        {
+          "repoName": "driver-psychology-analysis-paper",
+          "fullName": "smile-plzz/driver-psychology-analysis-paper",
+          "editionLabel": "Behavioral Analytics Study",
+          "description": "# 🚗 Driver Psychology & Traffic Behavior Analysis\r\n\r\nAn open computer vision + behavioral telemetry pipeline to analyze urban road driving psychology",
+          "htmlUrl": "https://github.com/smile-plzz/driver-psychology-analysis-paper",
+          "stars": 0,
+          "forks": 0,
+          "pushedAt": "2026-11-05T20:13:41.706Z",
+          "primaryLanguage": "Python",
+          "archetype": "geospatial-empirical-data-science",
+          "hasManuscript": true,
+          "isSubmissionCopy": false
+        }
+      ],
+      "artifacts": [
+        {
+          "id": "driver-psychology-analysis-paper-repo",
+          "label": "Repository (Behavioral Analytics Study)",
+          "type": "supplementary",
+          "url": "https://github.com/smile-plzz/driver-psychology-analysis-paper",
+          "description": "Primary GitHub source repository containing code, docs, and git commit history.",
+          "isPublic": true
+        }
+      ],
+      "bibtexCitation": "@article{driver-psychology-traffic-behavior_2026,\n  author    = {Hossain, Md. Ismail},\n  title     = {Driver Psychology & Traffic Behavior Analysis},\n  year      = {2026},\n  url       = {https://github.com/smile-plzz/driver-psychology-analysis-paper},\n  note      = {Academic Research Archive, Md. Ismail Hossain}\n}",
+      "relatedWorkIds": []
+    },
+    {
+      "id": "brain-tumor-classification-efficientnet-gradcam",
+      "slug": "brain-tumor-classification-efficientnet-gradcam",
+      "title": "Brain Tumor Classification using EfficientNet and Grad-CAM",
+      "abstract": "Academic research investigation and technical project covering Brain Tumor Classification using EfficientNet and Grad-CAM. Full research documentation, analytical matrices, and supporting artifacts are available in the repository.",
+      "abstractProvenance": {
+        "value": "Academic research investigation and technical project covering Brain Tumor Classification using EfficientNet and Grad-CAM. Full research documentation, analytical matrices, and supporting artifacts are available in the repository.",
+        "source": "heuristics",
+        "method": "heuristic-derived",
+        "verified": false
+      },
+      "authors": [
+        {
+          "name": "Md. Ismail Hossain",
+          "affiliation": "Jahangirnagar University, Institute of Information Technology",
+          "github": "smile-plzz"
+        }
+      ],
+      "authorsProvenance": {
+        "value": [
+          {
+            "name": "Md. Ismail Hossain",
+            "affiliation": "Jahangirnagar University, Institute of Information Technology",
+            "github": "smile-plzz"
+          }
+        ],
+        "source": "config/authors.ts",
+        "method": "configured-default",
+        "verified": true
+      },
+      "domainId": "health-gis-biomedical",
+      "keywords": [],
+      "type": "empirical-study",
+      "status": "Working Paper",
+      "publishedAt": null,
+      "publishedAtProvenance": {
+        "value": null,
+        "source": "heuristics",
+        "method": "heuristic-derived",
+        "verified": false
+      },
+      "lastPushedAt": "2026-11-05T20:13:41.526Z",
+      "featured": false,
+      "readingTimeMinutes": 24,
+      "wordCount": 4886,
+      "archetype": "geospatial-empirical-data-science",
+      "manuscriptFile": "brain-tumor-classification-efficientnet-gradcam.md",
+      "editions": [
+        {
+          "repoName": "brain-tumor-classification-efficientnet-gradcam-paper",
+          "fullName": "smile-plzz/brain-tumor-classification-efficientnet-gradcam-paper",
+          "editionLabel": "Dense EfficientNet + Grad-CAM Study",
+          "description": "# Brain Tumor Classification using EfficientNet and Grad-CAM\r\n\r\nReimplementation/continuation of the undergraduate thesis *\"Brain Tumor Classification",
+          "htmlUrl": "https://github.com/smile-plzz/brain-tumor-classification-efficientnet-gradcam-paper",
+          "stars": 0,
+          "forks": 0,
+          "pushedAt": "2026-11-05T20:13:41.526Z",
+          "primaryLanguage": "Python",
+          "archetype": "geospatial-empirical-data-science",
+          "hasManuscript": true,
+          "isSubmissionCopy": false
+        }
+      ],
+      "artifacts": [
+        {
+          "id": "brain-tumor-classification-efficientnet-gradcam-paper-repo",
+          "label": "Repository (Dense EfficientNet + Grad-CAM Study)",
+          "type": "supplementary",
+          "url": "https://github.com/smile-plzz/brain-tumor-classification-efficientnet-gradcam-paper",
+          "description": "Primary GitHub source repository containing code, docs, and git commit history.",
+          "isPublic": true
+        },
+        {
+          "id": "brain-tumor-classification-efficientnet-gradcam-paper-paper.docx",
+          "label": "Document (DOCX) - paper.docx",
+          "type": "docx",
+          "url": "https://github.com/smile-plzz/brain-tumor-classification-efficientnet-gradcam-paper/blob/main/docs/paper_revision_2026/paper.docx",
+          "description": "Compiled Word manuscript report.",
+          "isPublic": true
+        },
+        {
+          "id": "brain-tumor-classification-efficientnet-gradcam-paper-thesis-report.docx",
+          "label": "Document (DOCX) - thesis-report.docx",
+          "type": "docx",
+          "url": "https://github.com/smile-plzz/brain-tumor-classification-efficientnet-gradcam-paper/blob/main/docs/thesis-report.docx",
+          "description": "Compiled Word manuscript report.",
+          "isPublic": true
+        },
+        {
+          "id": "brain-tumor-classification-efficientnet-gradcam-paper-thesis-report.pdf",
+          "label": "Manuscript (PDF) - thesis-report.pdf",
+          "type": "pdf",
+          "url": "https://github.com/smile-plzz/brain-tumor-classification-efficientnet-gradcam-paper/blob/main/docs/thesis-report.pdf",
+          "description": "Compiled academic manuscript in PDF format.",
+          "isPublic": true
+        }
+      ],
+      "bibtexCitation": "@article{brain-tumor-classification-efficientnet-gradcam_2026,\n  author    = {Hossain, Md. Ismail},\n  title     = {Brain Tumor Classification using EfficientNet and Grad-CAM},\n  year      = {2026},\n  url       = {https://github.com/smile-plzz/brain-tumor-classification-efficientnet-gradcam-paper},\n  note      = {Academic Research Archive, Md. Ismail Hossain}\n}",
+      "relatedWorkIds": []
+    },
+    {
+      "id": "battlefield-bad-company-2-satire",
+      "slug": "battlefield-bad-company-2-satire",
+      "title": "Battlefield: Bad Company 2 — Interdisciplinary Academic Research Project",
+      "abstract": "This repository hosts the interdisciplinary academic investigation, analytical matrices, peer-review artifacts, and complete research manuscript for the study:\r\n\r\n**\"War as Entertainment: Military Satire, Squad Identity, Destructive Gameplay, and the Spectacle of Violence in Battlefield: Bad Company 2\"**\r\n\r\n- **Primary Discipline:** Game Studies\r\n- **Secondary Disciplines:** Media Studies, Military Studies, Political Communication, Narrative Studies, Psychology of Interactive Media, Cultural Studies, Digital Humanities\r\n- **Citation Style:** APA 7th Edition\r\n- **Target Manuscript Length:** 7,000–9,000 words (excluding references and appendices)\r\n- **Primary Game Object:** *Battlefield: Bad Company 2* (DICE / Electronic Arts, 2010)\r\n- **Pipeline Framework:** Academic Research Skills (ARS v3.24.1 / commit `2e02041a3b821a160d98c9398f173c484ac759a8`)\r\n\r\n---",
+      "abstractProvenance": {
+        "value": "This repository hosts the interdisciplinary academic investigation, analytical matrices, peer-review artifacts, and complete research manuscript for the study:\r\n\r\n**\"War as Entertainment: Military Satire, Squad Identity, Destructive Gameplay, and the Spectacle of Violence in Battlefield: Bad Company 2\"**\r\n\r\n- **Primary Discipline:** Game Studies\r\n- **Secondary Disciplines:** Media Studies, Military Studies, Political Communication, Narrative Studies, Psychology of Interactive Media, Cultural Studies, Digital Humanities\r\n- **Citation Style:** APA 7th Edition\r\n- **Target Manuscript Length:** 7,000–9,000 words (excluding references and appendices)\r\n- **Primary Game Object:** *Battlefield: Bad Company 2* (DICE / Electronic Arts, 2010)\r\n- **Pipeline Framework:** Academic Research Skills (ARS v3.24.1 / commit `2e02041a3b821a160d98c9398f173c484ac759a8`)\r\n\r\n---",
+        "source": "README.md",
+        "method": "extracted",
+        "verified": false
+      },
+      "authors": [
+        {
+          "name": "Md. Ismail Hossain",
+          "affiliation": "Jahangirnagar University, Institute of Information Technology",
+          "github": "smile-plzz"
+        }
+      ],
+      "authorsProvenance": {
+        "value": [
+          {
+            "name": "Md. Ismail Hossain",
+            "affiliation": "Jahangirnagar University, Institute of Information Technology",
+            "github": "smile-plzz"
+          }
+        ],
+        "source": "config/authors.ts",
+        "method": "configured-default",
+        "verified": true
+      },
+      "domainId": "ludology-game-studies",
+      "keywords": [],
+      "type": "research-monograph",
+      "status": "Research Monograph",
+      "publishedAt": null,
+      "publishedAtProvenance": {
+        "value": null,
+        "source": "heuristics",
+        "method": "heuristic-derived",
+        "verified": false
+      },
+      "lastPushedAt": "2026-11-05T20:13:40.306Z",
+      "featured": false,
+      "readingTimeMinutes": 41,
+      "wordCount": 8251,
+      "archetype": "numbered-stage-monograph",
+      "manuscriptFile": "battlefield-bad-company-2-satire.md",
+      "editions": [
+        {
+          "repoName": "battlefield-bad-company-2-paper",
+          "fullName": "smile-plzz/battlefield-bad-company-2-paper",
+          "editionLabel": "Full Research Monograph",
+          "description": "# Battlefield: Bad Company 2 — Interdisciplinary Academic Research Project\r\n\r\n## Project Overview\r\nThis repository hosts the interdisciplinary academi",
+          "htmlUrl": "https://github.com/smile-plzz/battlefield-bad-company-2-paper",
+          "stars": 0,
+          "forks": 0,
+          "pushedAt": "2026-11-05T20:13:40.306Z",
+          "primaryLanguage": "Python",
+          "archetype": "numbered-stage-monograph",
+          "hasManuscript": true,
+          "isSubmissionCopy": false
+        }
+      ],
+      "artifacts": [
+        {
+          "id": "battlefield-bad-company-2-paper-repo",
+          "label": "Repository (Full Research Monograph)",
+          "type": "supplementary",
+          "url": "https://github.com/smile-plzz/battlefield-bad-company-2-paper",
+          "description": "Primary GitHub source repository containing code, docs, and git commit history.",
+          "isPublic": true
+        },
+        {
+          "id": "battlefield-bad-company-2-paper-manuscript_build.docx",
+          "label": "Document (DOCX) - manuscript_build.docx",
+          "type": "docx",
+          "url": "https://github.com/smile-plzz/battlefield-bad-company-2-paper/blob/main/manuscript_build.docx",
+          "description": "Compiled Word manuscript report.",
+          "isPublic": true
+        },
+        {
+          "id": "battlefield-bad-company-2-paper-references.bib",
+          "label": "BibTeX Citations (references.bib)",
+          "type": "bibtex",
+          "url": "https://github.com/smile-plzz/battlefield-bad-company-2-paper/blob/main/references.bib",
+          "description": "Complete scholarly citation reference database.",
+          "isPublic": true
+        }
+      ],
+      "bibtexCitation": "@article{battlefield-bad-company-2-satire_2026,\n  author    = {Hossain, Md. Ismail},\n  title     = {Battlefield: Bad Company 2 — Interdisciplinary Academic Research Project},\n  year      = {2026},\n  url       = {https://github.com/smile-plzz/battlefield-bad-company-2-paper},\n  note      = {Academic Research Archive, Md. Ismail Hossain}\n}",
+      "relatedWorkIds": []
+    },
+    {
+      "id": "the-sound-of-identity",
+      "slug": "the-sound-of-identity",
+      "title": "The Sound of Identity",
+      "abstract": "Academic research investigation and technical project covering The Sound of Identity. Full research documentation, analytical matrices, and supporting artifacts are available in the repository.",
+      "abstractProvenance": {
+        "value": "Academic research investigation and technical project covering The Sound of Identity. Full research documentation, analytical matrices, and supporting artifacts are available in the repository.",
+        "source": "heuristics",
+        "method": "heuristic-derived",
+        "verified": false
+      },
+      "authors": [
+        {
+          "name": "Md. Ismail Hossain",
+          "affiliation": "Jahangirnagar University, Institute of Information Technology",
+          "github": "smile-plzz"
+        }
+      ],
+      "authorsProvenance": {
+        "value": [
+          {
+            "name": "Md. Ismail Hossain",
+            "affiliation": "Jahangirnagar University, Institute of Information Technology",
+            "github": "smile-plzz"
+          }
+        ],
+        "source": "config/authors.ts",
+        "method": "configured-default",
+        "verified": true
+      },
+      "domainId": "computational-musicology",
+      "keywords": [],
+      "type": "computational-study",
+      "status": "Working Paper",
+      "publishedAt": null,
+      "publishedAtProvenance": {
+        "value": null,
+        "source": "heuristics",
+        "method": "heuristic-derived",
+        "verified": false
+      },
+      "lastPushedAt": "2026-11-05T20:13:38.755Z",
+      "featured": false,
+      "readingTimeMinutes": 46,
+      "wordCount": 9240,
+      "archetype": "computational-cultural-ecosystem",
+      "manuscriptFile": "the-sound-of-identity.md",
+      "editions": [
+        {
+          "repoName": "The-Sound-of-Identity-paper",
+          "fullName": "smile-plzz/The-Sound-of-Identity-paper",
+          "editionLabel": "Cultural Identity & Sonic Analysis",
+          "description": "# The Sound of Identity\r\n\r\n**Music, geography, generations, and social behavior in global comparison with Bangladesh**\r\n\r\nThis repository contains a f",
+          "htmlUrl": "https://github.com/smile-plzz/The-Sound-of-Identity-paper",
+          "stars": 0,
+          "forks": 0,
+          "pushedAt": "2026-11-05T20:13:38.755Z",
+          "primaryLanguage": "Python",
+          "archetype": "computational-cultural-ecosystem",
+          "hasManuscript": true,
+          "isSubmissionCopy": false
+        }
+      ],
+      "artifacts": [
+        {
+          "id": "The-Sound-of-Identity-paper-repo",
+          "label": "Repository (Cultural Identity & Sonic Analysis)",
+          "type": "supplementary",
+          "url": "https://github.com/smile-plzz/The-Sound-of-Identity-paper",
+          "description": "Primary GitHub source repository containing code, docs, and git commit history.",
+          "isPublic": true
+        }
+      ],
+      "bibtexCitation": "@article{the-sound-of-identity_2026,\n  author    = {Hossain, Md. Ismail},\n  title     = {The Sound of Identity},\n  year      = {2026},\n  url       = {https://github.com/smile-plzz/The-Sound-of-Identity-paper},\n  note      = {Academic Research Archive, Md. Ismail Hossain}\n}",
+      "relatedWorkIds": []
+    }
+  ]
+}

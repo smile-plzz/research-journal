@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #FBF9F5;
+    --bg-secondary: #F4EFE6;
+    --text-primary: #1C1C1A;
+    --text-secondary: #575651;
+    --border-color: #E6E0D4;
+    --accent-academic: #8B3A2B;
+  }
+
+  .dark {
+    --bg-primary: #131312;
+    --bg-secondary: #1C1C1A;
+    --text-primary: #EDECE8;
+    --text-secondary: #A3A29B;
+    --border-color: #2D2C28;
+    --accent-academic: #E07A5F;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Academic Serif Headings */
+  h1, h2, h3, .font-serif-title {
+    font-family: "Charter", "Source Serif 4", "Newsreader", "Georgia", serif;
+    letter-spacing: -0.015em;
+  }
+}
+
+/* Scholarly Prose Reader Styling */
+.prose-academic {
+  font-family: "Charter", "Georgia", "Source Serif 4", serif;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--text-primary);
+}
+
+.prose-academic p {
+  margin-top: 1.4em;
+  margin-bottom: 1.4em;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.prose-academic h1,
+.prose-academic h2,
+.prose-academic h3,
+.prose-academic h4 {
+  font-family: "Charter", "Georgia", serif;
+  color: var(--text-primary);
+  font-weight: 600;
+  scroll-margin-top: 5rem;
+}
+
+.prose-academic h1 {
+  font-size: 2rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.prose-academic h2 {
+  font-size: 1.5rem;
+  margin-top: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.prose-academic h3 {
+  font-size: 1.25rem;
+  margin-top: 1.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.prose-academic blockquote {
+  border-left: 3px solid var(--accent-academic);
+  padding-left: 1.25rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin: 1.8rem 0;
+}
+
+.prose-academic ul,
+.prose-academic ol {
+  margin: 1.2rem 0;
+  padding-left: 1.6rem;
+}
+
+.prose-academic li {
+  margin-bottom: 0.5rem;
+}
+
+.prose-academic table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 0.95rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.prose-academic th,
+.prose-academic td {
+  border: 1px solid var(--border-color);
+  padding: 0.65rem 0.9rem;
+  text-align: left;
+}
+
+.prose-academic th {
+  background-color: var(--bg-secondary);
+  font-weight: 600;
+}
+
+.prose-academic code {
+  font-family: "JetBrains Mono", "Consolas", monospace;
+  font-size: 0.875em;
+  background-color: var(--bg-secondary);
+  padding: 0.15em 0.4em;
+  border-radius: 0.25em;
+  border: 1px solid var(--border-color);
+}
+
+.prose-academic pre {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: 1rem 1.25rem;
+  border-radius: 0.375rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.prose-academic pre code {
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+/* Subtle separator utility */
+.border-subtle {
+  border-color: var(--border-color);
+}
+
