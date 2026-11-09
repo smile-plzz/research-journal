@@ -8,11 +8,11 @@ import { CitationBox } from "@/components/publication/CitationBox";
 import { ArtifactList } from "@/components/publication/ArtifactList";
 import { TableOfContents } from "@/components/publication/TableOfContents";
 import { MarkdownRenderer } from "@/components/markdown/MarkdownRenderer";
+import { ReadingToolbar } from "@/components/publication/ReadingToolbar";
 import Link from "next/link";
 import {
   Calendar,
   Clock,
-  ExternalLink,
   Layers,
   ArrowLeft,
   BookOpen,
@@ -37,6 +37,26 @@ export async function generateMetadata({ params }: WorkPageProps): Promise<Metad
   const work = getWorkBySlug(slug);
   if (!work) return { title: "Publication Not Found" };
 
+  const pdfArtifact = work.artifacts.find((a) => a.type === "pdf");
+  const scholarTags: Record<string, string> = {
+    citation_title: work.title,
+    citation_publication_date: work.publishedAt || "2026",
+    citation_technical_report_institution: "Jahangirnagar University",
+    citation_keywords: work.keywords.join(", "),
+  };
+
+  if (pdfArtifact) {
+    scholarTags.citation_pdf_url = pdfArtifact.url;
+  }
+
+  // Add individual author meta tags
+  work.authors.forEach((a, index) => {
+    scholarTags[`citation_author_${index}`] = a.name;
+    if (a.affiliation) {
+      scholarTags[`citation_author_institution_${index}`] = a.affiliation;
+    }
+  });
+
   return {
     title: `${work.title} | Md. Ismail Hossain Research`,
     description: work.abstract.slice(0, 160),
@@ -49,6 +69,7 @@ export async function generateMetadata({ params }: WorkPageProps): Promise<Metad
       authors: work.authors.map((a) => a.name),
       publishedTime: work.publishedAt || undefined,
     },
+    other: scholarTags,
   };
 }
 
@@ -64,7 +85,6 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
   const manuscriptContent = getManuscriptContent(work.slug);
   const archetypeDesc = getArchetypeDescription(work.archetype);
 
-  // Format date
   const displayDate = work.publishedAt
     ? new Date(work.publishedAt).toLocaleDateString("en-US", {
         year: "numeric",
@@ -73,7 +93,6 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
       })
     : "Academic Research Archive (2026)";
 
-  // JSON-LD Scholarly Article Structured Data
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ScholarlyArticle",
@@ -244,10 +263,10 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
           </p>
         </section>
 
-        {/* Long-form Manuscript Reader & Sticky TOC */}
+        {/* Long-form Manuscript Reader, Reading Toolbar & Sticky TOC */}
         {manuscriptContent && (
           <section className="pt-6 border-t border-stone-200 dark:border-stone-800">
-            <div className="flex items-center justify-between pb-4 mb-6 border-b border-stone-200/80 dark:border-stone-800/80">
+            <div className="flex items-center justify-between pb-2 mb-2 border-b border-stone-200/80 dark:border-stone-800/80">
               <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 dark:text-stone-100 flex items-center gap-2">
                 <BookOpen className="w-5 h-5 text-academic" />
                 <span>Primary Research Manuscript</span>
@@ -257,7 +276,13 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
               </span>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            {/* Reading Toolbar with Progress & Font Controls */}
+            <ReadingToolbar
+              readingTimeMinutes={work.readingTimeMinutes}
+              wordCount={work.wordCount}
+            />
+
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mt-6">
               {/* Main Reading Column */}
               <div className="lg:col-span-3 min-w-0">
                 <MarkdownRenderer content={manuscriptContent} />
@@ -271,13 +296,12 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
           </section>
         )}
 
-        {/* Research Artifacts, Datasets & Supplementary Files */}
+        {/* Research Artifacts, Datasets & Supplementary Files with Interactive Modal */}
         <ArtifactList artifacts={work.artifacts} />
 
-        {/* Citation Box (BibTeX & APA) */}
+        {/* Citation Box (BibTeX, APA, IEEE, Chicago & Download) */}
         <CitationBox work={work} />
       </article>
     </>
   );
 }
-

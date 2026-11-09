@@ -5,6 +5,16 @@ All notable changes to the GitHub-Powered Research Journal & Publication Archive
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-11-10
+
+### Added
+- **Google Scholar & Academic Indexing**: Added Highwire Press citation meta tags (`citation_title`, `citation_author`, `citation_publication_date`, `citation_pdf_url`, `citation_technical_report_institution`, `citation_keywords`) to all publication detail routes for automatic Google Scholar, Zotero, and Mendeley indexing.
+- **Interactive Artifact Viewer Modal**: Built `ArtifactViewerModal.tsx` allowing readers to preview PDFs and interactive HTML maps/dashboards directly within an accessible modal without leaving the site.
+- **Monograph Reading Experience Toolbar**: Built `ReadingToolbar.tsx` with dynamic scroll-reading percentage, font size toggle (Standard 18px / Large 21px), typeface switcher (Serif / Sans), and instant URL share.
+- **Expanded Citation Suite**: Enhanced `CitationBox.tsx` with one-click toggles across 4 academic citation formats (BibTeX, APA 7th, IEEE, Chicago Author-Date) plus direct `.bib` file download.
+- **Academic RSS 2.0 Feed**: Implemented automated XML syndication route at `/feed.xml` including item-level categories, authors, abstracts, and direct publication links.
+- **Expanded Test Suite**: Added `tests/features/enhanced-features.test.ts` bringing total automated Vitest test coverage to 17/17 passing tests.
+
 ## [1.1.0] - 2026-11-10
 
 ### Added
@@ -19,26 +29,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2026-11-09
 
 ### Added
-- **Full Next.js App Router Application**: Complete production application with TypeScript, Tailwind CSS, and `next-themes`.
-- **Automated Ingestion Engine**:
-  - `src/lib/ingestion/sync.ts` & `src/lib/ingestion/local-source.ts`: Scans GitHub and local `paper_repos` to ingest candidate research projects.
-  - Parsers for `.publication.json`, `CITATION.cff`, `.zenodo.json`, and structured Markdown READMEs.
-  - Architecture detection heuristics for all 5 archetypes: `numbered-stage-monograph`, `modular-latex-thesis`, `geospatial-empirical-data-science`, `computational-cultural-ecosystem`, and `open-science-investigative-corpus`.
-  - Ingestion CLI runner: `npm run sync:github` (`scripts/sync-github.ts`).
-- **Data Model & Decoupling**:
-  - Zod schemas for Work, RepositoryEdition, Artifact, Author, and Catalog.
-  - Multi-repository edition grouping: Unified 4 TCRA repositories into 1 canonical Master's thesis publication.
-  - Metadata provenance tracking with auditable verification flags.
-  - Dual-tier storage: Lightweight `src/data/generated/catalog.json` and isolated `src/content/generated/works/[slug].md`.
-- **Editorial UI & Scholarly Reading Pages**:
-  - Editorial homepage (`/`) with live search, domain filters, status chips, and publication cards.
-  - Publication detail page (`/works/[slug]`) with sticky Table of Contents, responsive manuscript reading column, citation export (BibTeX & APA), artifact downloads, and JSON-LD structured data.
-  - Research area taxonomy pages (`/research-areas` and `/research-areas/[slug]`).
-  - Researcher profile page (`/about`).
-  - Open-science workflow documentation (`/methodology`).
-  - Dark mode and light mode toggle with theme persistence.
-  - Dynamic sitemap (`/sitemap.xml`) and robots configuration (`/robots.txt`).
-- **Testing & CI/CD**:
-  - Vitest test suite with 14 unit tests covering classification, parsers, and catalog schemas (`npm test`).
-  - Production build verification (`npm run build` with 26 static routes).
-  - GitHub Actions automated daily sync workflow (`.github/workflows/sync-github.yml`).
+- Full Next.js App Router Application with TypeScript, Tailwind CSS, and `next-themes`.
+- Automated Ingestion Engine for 15 repositories across 5 archetypes.
+- Zod Schemas for Work, RepositoryEdition, Artifact, and Catalog.
+- Multi-repository edition grouping (TCRA Master's Thesis series).
+- Fast lightweight `catalog.json` and cached isolated manuscripts (`slug.md`).
+- Editorial UI: homepage, publication reader, sticky TOC, search, domain taxonomies, methodology, and about.

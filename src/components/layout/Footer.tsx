@@ -61,6 +61,16 @@ export function Footer() {
                   Author Profile & Credentials
                 </Link>
               </li>
+              <li>
+                <a
+                  href="/feed.xml"
+                  target="_blank"
+                  className="text-academic hover:underline transition-colors flex items-center gap-1"
+                >
+                  <span>Academic RSS Feed</span>
+                  <span className="text-[10px] font-mono">XML</span>
+                </a>
+              </li>
             </ul>
           </div>
 

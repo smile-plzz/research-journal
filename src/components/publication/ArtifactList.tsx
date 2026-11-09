@@ -1,4 +1,8 @@
+"use client";
+
+import { useState } from "react";
 import { Artifact } from "@/lib/catalog/schema";
+import { ArtifactViewerModal } from "../artifacts/ArtifactViewerModal";
 import {
   FileText,
   FileCode,
@@ -8,6 +12,7 @@ import {
   MapPin,
   Database,
   Archive,
+  Eye,
 } from "lucide-react";
 
 interface ArtifactListProps {
@@ -15,6 +20,8 @@ interface ArtifactListProps {
 }
 
 export function ArtifactList({ artifacts }: ArtifactListProps) {
+  const [selectedArtifact, setSelectedArtifact] = useState<Artifact | null>(null);
+
   if (!artifacts || artifacts.length === 0) return null;
 
   const getArtifactIcon = (type: string) => {
@@ -36,45 +43,71 @@ export function ArtifactList({ artifacts }: ArtifactListProps) {
     }
   };
 
-  return (
-    <div className="my-8">
-      <h3 className="font-serif text-lg font-semibold text-stone-900 dark:text-stone-100 mb-4 pb-2 border-b border-stone-200 dark:border-stone-800">
-        Research Artifacts & Supplementary Materials ({artifacts.length})
-      </h3>
+  const isPreviewable = (type: string) => type === "pdf" || type === "dashboard";
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {artifacts.map((art) => (
-          <a
-            key={art.id}
-            href={art.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group p-3.5 rounded-lg border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900/40 hover:border-academic dark:hover:border-academic-dark transition-all flex items-start gap-3"
-          >
-            <div className="p-2 rounded bg-stone-100 dark:bg-stone-800 flex-shrink-0 group-hover:scale-105 transition-transform">
-              {getArtifactIcon(art.type)}
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center justify-between gap-1">
-                <span className="font-sans font-medium text-xs text-stone-900 dark:text-stone-100 truncate group-hover:text-academic transition-colors">
-                  {art.label}
-                </span>
-                <ExternalLink className="w-3.5 h-3.5 text-stone-400 group-hover:text-academic flex-shrink-0 transition-colors" />
+  return (
+    <>
+      <div className="my-8">
+        <h3 className="font-serif text-lg font-semibold text-stone-900 dark:text-stone-100 mb-4 pb-2 border-b border-stone-200 dark:border-stone-800">
+          Research Artifacts & Supplementary Materials ({artifacts.length})
+        </h3>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {artifacts.map((art) => (
+            <div
+              key={art.id}
+              className="group p-3.5 rounded-lg border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900/40 hover:border-academic dark:hover:border-academic-dark transition-all flex items-start gap-3"
+            >
+              <div className="p-2 rounded bg-stone-100 dark:bg-stone-800 flex-shrink-0 group-hover:scale-105 transition-transform">
+                {getArtifactIcon(art.type)}
               </div>
-              {art.description && (
-                <p className="text-[11px] text-stone-500 dark:text-stone-400 line-clamp-2 mt-0.5">
-                  {art.description}
-                </p>
-              )}
-              <div className="flex items-center gap-2 mt-1.5 text-[10px] font-mono text-stone-400">
-                <span className="uppercase">{art.type}</span>
-                {art.fileSize && <span>· {art.fileSize}</span>}
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between gap-1">
+                  <span className="font-sans font-medium text-xs text-stone-900 dark:text-stone-100 truncate">
+                    {art.label}
+                  </span>
+                </div>
+                {art.description && (
+                  <p className="text-[11px] text-stone-500 dark:text-stone-400 line-clamp-2 mt-0.5">
+                    {art.description}
+                  </p>
+                )}
+                <div className="flex items-center justify-between mt-2 pt-1 border-t border-stone-100 dark:border-stone-800 text-[11px] font-mono">
+                  <span className="text-stone-400 uppercase text-[10px]">{art.type}</span>
+                  <div className="flex items-center gap-2">
+                    {isPreviewable(art.type) && (
+                      <button
+                        onClick={() => setSelectedArtifact(art)}
+                        className="inline-flex items-center gap-1 text-academic hover:underline text-[11px] font-sans font-medium cursor-pointer"
+                        title="Preview artifact inline"
+                      >
+                        <Eye className="w-3 h-3" />
+                        <span>Preview</span>
+                      </button>
+                    )}
+                    <a
+                      href={art.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 text-[11px] font-sans"
+                      title="Open source link in new tab"
+                    >
+                      <span>Source</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
-          </a>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+
+      {/* Artifact Viewer Modal */}
+      <ArtifactViewerModal
+        artifact={selectedArtifact}
+        onClose={() => setSelectedArtifact(null)}
+      />
+    </>
   );
 }
-

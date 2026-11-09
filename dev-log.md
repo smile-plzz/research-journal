@@ -39,3 +39,14 @@
   4. Configured `vercel.json` with production security headers (`X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`, `X-XSS-Protection`, `Referrer-Policy`) and immutable asset caching for `_next/static`.
   5. Updated `README.md` with explicit remote setup commands (`git remote add origin https://github.com/smile-plzz/research-journal.git`) and Vercel deployment options.
   6. Ran automated Vitest test suite (14/14 tests passing).
+
+### Session 04: Advanced Scholarly Refinements & Syndication
+- **Timestamp:** 2026-11-10T01:21:00+06:00
+- **Action:** Implemented Google Scholar indexing metadata, inline Artifact Viewer Modal, Reading Progress Toolbar, multi-format Citation generator, and Academic RSS 2.0 Feed.
+- **Milestones Completed:**
+  1. Added Google Scholar / Highwire Press citation meta tags (`citation_title`, `citation_author`, `citation_publication_date`, `citation_pdf_url`, `citation_technical_report_institution`) to all publication detail routes.
+  2. Built `ArtifactViewerModal.tsx` for inline interactive viewing of PDFs and HTML maps/dashboards (such as Kishoreganj spatial access gap analysis).
+  3. Built `ReadingToolbar.tsx` with dynamic scroll-reading percentage, font size toggle (Standard/Large), typeface switcher (Serif/Sans), and instant URL share.
+  4. Enhanced `CitationBox.tsx` to support 4 academic citation formats (BibTeX, APA 7th, IEEE, Chicago Author-Date) plus direct `.bib` file download.
+  5. Built automated XML syndication feed at `/feed.xml` for research aggregators, Zotero, and Mendeley.
+  6. Expanded test suite with `tests/features/enhanced-features.test.ts` (17/17 tests passing).
