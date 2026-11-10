@@ -73,17 +73,18 @@ git push -u origin main
 ```
 
 ### 2. Vercel Deployment
-Deploying to Vercel is zero-configuration:
-- **Option A (Recommended - Vercel Web Dashboard):**
-  1. Go to [Vercel Dashboard](https://vercel.com/new).
-  2. Import the `smile-plzz/research-journal` GitHub repository.
-  3. Framework Preset will automatically detect **Next.js**.
-  4. (Optional) Set environment variable `GITHUB_TOKEN` to your personal access token to allow high-volume automated syncs.
-  5. Click **Deploy**.
-- **Option B (Vercel CLI):**
+The platform is fully configured and live on Vercel:
+- **Live Production URL:** [https://research-journal-kappa.vercel.app](https://research-journal-kappa.vercel.app)
+- **Project Alias:** [https://research-journal-smile-plzzs-projects.vercel.app](https://research-journal-smile-plzzs-projects.vercel.app)
+
+Deploying or promoting future updates is zero-configuration:
+- **Automatic GitHub Integration (Active):**
+  Every push to the `main` branch automatically triggers a production build and deployment on Vercel.
+- **Manual CLI Deployments:**
   ```bash
+  # Preview deployment:
   npx vercel
-  # For production release:
+  # Production promotion:
   npx vercel --prod
   ```
 

@@ -59,3 +59,16 @@
   2. Executed full static production build (`npm run build`), compiling all 27 static and SSG routes including `/feed.xml`, `/sitemap.xml`, `/robots.txt`, domain taxonomies, and publication manuscripts.
   3. Finalized documentation and pushed repository changes to GitHub `origin/main`.
 
+### Session 06: Production Deployment to Vercel
+- **Timestamp:** 2026-11-10T21:44:00+06:00
+- **Action:** Connected repository to Vercel and executed production deployment using the Vercel CLI.
+- **Milestones Completed:**
+  1. Authenticated and linked repository `smile-plzz/research-journal` to Vercel project `research-journal` under scope `smile-plzzs-projects`.
+  2. Executed `npx vercel --prod --yes` triggering remote cloud build on Vercel build infrastructure.
+  3. All 27 static routes, Edge functions, and Next.js assets compiled cleanly into production output.
+  4. Verified deployment readiness (`status: Ready`) and live production aliases:
+     - Primary: `https://research-journal-kappa.vercel.app`
+     - Project alias: `https://research-journal-smile-plzzs-projects.vercel.app`
+  5. Updated `.gitignore` to exclude `.vercel` local deployment state and updated documentation.
+
+
