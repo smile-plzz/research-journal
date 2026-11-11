@@ -9,6 +9,8 @@ import {
 } from "@/lib/showcase/schema";
 import { ShowcaseBrowser } from "@/components/showcase/ShowcaseBrowser";
 import { CategoryIcon } from "@/components/showcase/CategoryVisuals";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { Tooltip } from "@/components/ui/Tooltip";
 import { siteConfig } from "@/config/site";
 import { ArrowLeft } from "lucide-react";
 
@@ -57,15 +59,25 @@ export default async function ShowcaseCategoryPage({
 
   return (
     <div className="space-y-10">
-      <div className="flex items-center justify-between text-xs font-sans text-stone-500 pb-4 border-b border-stone-200 dark:border-stone-800">
-        <Link
-          href="/showcase"
-          className="inline-flex items-center gap-1.5 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
-        >
-          <ArrowLeft className="w-3.5 h-3.5" />
-          <span>All Showcase Projects</span>
-        </Link>
-        <span className="font-mono">{categoryProjects.length} Projects</span>
+      <div className="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-stone-200 dark:border-stone-800">
+        <Breadcrumbs
+          items={[
+            { label: "Project Showcase", href: "/showcase" },
+            { label: meta.label },
+          ]}
+        />
+        <div className="flex items-center gap-3 text-xs">
+          <span className="font-mono text-stone-500">{categoryProjects.length} Projects</span>
+          <Tooltip content="Return to all showcase categories">
+            <Link
+              href="/showcase"
+              className="inline-flex items-center gap-1.5 text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>All Categories</span>
+            </Link>
+          </Tooltip>
+        </div>
       </div>
 
       <header className="space-y-3">

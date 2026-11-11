@@ -2,7 +2,8 @@
 
 import { useEffect } from "react";
 import { Artifact } from "@/lib/catalog/schema";
-import { X, ExternalLink, Download, Maximize2, ShieldAlert } from "lucide-react";
+import { Tooltip } from "@/components/ui/Tooltip";
+import { X, ExternalLink, Download, ShieldAlert } from "lucide-react";
 
 interface ArtifactViewerModalProps {
   artifact: Artifact | null;
@@ -54,24 +55,28 @@ export function ArtifactViewerModal({
           </div>
 
           <div className="flex items-center gap-2 flex-shrink-0">
-            <a
-              href={artifact.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-1.5 text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100 rounded-md hover:bg-stone-200 dark:hover:bg-stone-800 transition-colors"
-              title="Open raw source in new tab"
-            >
-              <ExternalLink className="w-4 h-4" />
-            </a>
+            <Tooltip position="bottom" content="Open raw file source in a new tab">
+              <a
+                href={artifact.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-1.5 text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100 rounded-md hover:bg-stone-200 dark:hover:bg-stone-800 transition-colors"
+                aria-label="Open raw source in new tab"
+              >
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </Tooltip>
 
-            <button
-              onClick={onClose}
-              className="p-1.5 text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100 rounded-md hover:bg-stone-200 dark:hover:bg-stone-800 transition-colors"
-              aria-label="Close modal"
-              title="Close (Esc)"
-            >
-              <X className="w-5 h-5" />
-            </button>
+            <Tooltip position="bottom" shortcut="Esc" content="Close artifact preview">
+              <button
+                type="button"
+                onClick={onClose}
+                className="p-1.5 text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100 rounded-md hover:bg-stone-200 dark:hover:bg-stone-800 transition-colors"
+                aria-label="Close modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </Tooltip>
           </div>
         </div>
 

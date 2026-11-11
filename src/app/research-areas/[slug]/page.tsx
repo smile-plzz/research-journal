@@ -2,8 +2,10 @@ import { notFound } from "next/navigation";
 import { researchDomains, getDomainById } from "@/config/domains";
 import { getWorksByDomain } from "@/lib/catalog/queries";
 import { PublicationCard } from "@/components/publication/PublicationCard";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { Tooltip } from "@/components/ui/Tooltip";
 import Link from "next/link";
-import { ArrowLeft, Layers } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 
 interface DomainPageProps {
@@ -39,16 +41,26 @@ export default async function DomainDetailPage({ params }: DomainPageProps) {
 
   return (
     <div className="space-y-10">
-      {/* Navigation Breadcrumb */}
-      <div className="flex items-center justify-between text-xs font-sans text-stone-500 pb-4 border-b border-stone-200 dark:border-stone-800">
-        <Link
-          href="/research-areas"
-          className="inline-flex items-center gap-1.5 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
-        >
-          <ArrowLeft className="w-3.5 h-3.5" />
-          <span>All Research Areas</span>
-        </Link>
-        <span className="font-mono">{works.length} Works</span>
+      {/* Guided Breadcrumbs */}
+      <div className="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-stone-200 dark:border-stone-800">
+        <Breadcrumbs
+          items={[
+            { label: "Research Areas", href: "/research-areas" },
+            { label: domain.name },
+          ]}
+        />
+        <div className="flex items-center gap-3 text-xs">
+          <span className="font-mono text-stone-500">{works.length} Works</span>
+          <Tooltip content="Return to all five research areas">
+            <Link
+              href="/research-areas"
+              className="inline-flex items-center gap-1.5 text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>All Areas</span>
+            </Link>
+          </Tooltip>
+        </div>
       </div>
 
       {/* Domain Header */}

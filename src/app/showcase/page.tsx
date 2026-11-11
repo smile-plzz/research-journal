@@ -10,6 +10,8 @@ import { PROJECT_CATEGORIES } from "@/lib/showcase/schema";
 import { ShowcaseBrowser } from "@/components/showcase/ShowcaseBrowser";
 import { ProjectCard } from "@/components/showcase/ProjectCard";
 import { CategoryIcon } from "@/components/showcase/CategoryVisuals";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { InfoHint, Tooltip } from "@/components/ui/Tooltip";
 import { siteConfig } from "@/config/site";
 import { Layers, Sparkles, ArrowRight, Globe, Download } from "lucide-react";
 
@@ -61,9 +63,13 @@ export default function ShowcasePage() {
   }
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-10">
+      <div className="pb-3 border-b border-stone-200/80 dark:border-stone-800/80">
+        <Breadcrumbs items={[{ label: "Project Showcase" }]} />
+      </div>
+
       {/* Friendly Non-Technical Hero */}
-      <section className="pt-4 pb-8 border-b border-stone-200/80 dark:border-stone-800/80">
+      <section className="pb-8 border-b border-stone-200/80 dark:border-stone-800/80">
         <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded text-xs font-mono bg-academic/10 text-academic dark:text-academic-dark mb-4">
           <Sparkles className="w-3.5 h-3.5" />
           <span>Software & Projects Library</span>
@@ -84,33 +90,39 @@ export default function ShowcasePage() {
 
         {/* Plain-language stats */}
         <div className="flex flex-wrap items-center gap-6 text-xs font-mono text-stone-500 dark:text-stone-400">
-          <div className="flex items-center gap-1.5">
-            <Layers className="w-4 h-4 text-academic" />
-            <span>
-              <strong className="text-stone-800 dark:text-stone-200">
-                {curatedProjects.length}
-              </strong>{" "}
-              Curated Projects ({allProjects.length} total indexed)
-            </span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <Globe className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-            <span>
-              <strong className="text-stone-800 dark:text-stone-200">
-                {liveCount}
-              </strong>{" "}
-              Live in Browser
-            </span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <Download className="w-4 h-4 text-sky-600 dark:text-sky-400" />
-            <span>
-              <strong className="text-stone-800 dark:text-stone-200">
-                {downloadableCount}
-              </strong>{" "}
-              Direct Downloads
-            </span>
-          </div>
+          <Tooltip content="Hand-curated software entries with plain-language descriptions alongside automatically indexed tools">
+            <div className="flex items-center gap-1.5 cursor-default">
+              <Layers className="w-4 h-4 text-academic" />
+              <span>
+                <strong className="text-stone-800 dark:text-stone-200">
+                  {curatedProjects.length}
+                </strong>{" "}
+                Curated Projects ({allProjects.length} total indexed)
+              </span>
+            </div>
+          </Tooltip>
+          <Tooltip content="Hosted online so you can test or use them directly without installing">
+            <div className="flex items-center gap-1.5 cursor-default">
+              <Globe className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              <span>
+                <strong className="text-stone-800 dark:text-stone-200">
+                  {liveCount}
+                </strong>{" "}
+                Live in Browser
+              </span>
+            </div>
+          </Tooltip>
+          <Tooltip content="Projects with direct Windows ZIP installers, Android APKs, or packaged releases">
+            <div className="flex items-center gap-1.5 cursor-default">
+              <Download className="w-4 h-4 text-sky-600 dark:text-sky-400" />
+              <span>
+                <strong className="text-stone-800 dark:text-stone-200">
+                  {downloadableCount}
+                </strong>{" "}
+                Direct Downloads
+              </span>
+            </div>
+          </Tooltip>
           {latestUpdateLabel && (
             <span className="text-stone-400 dark:text-stone-500">
               Latest project updated {latestUpdateLabel}
@@ -122,16 +134,19 @@ export default function ShowcasePage() {
       {/* Quick Category Browse Pills */}
       <section className="space-y-3" aria-label="Browse by category">
         <div className="flex items-center justify-between">
-          <h2 className="text-xs uppercase tracking-wider font-mono font-medium text-stone-500 dark:text-stone-400">
-            Browse by Category
+          <h2 className="text-xs uppercase tracking-wider font-mono font-medium text-stone-500 dark:text-stone-400 flex items-center gap-2">
+            <span>Browse by Category</span>
+            <InfoHint text="Click any category pill to open a dedicated filtered gallery page." />
           </h2>
-          <Link
-            href="/"
-            className="text-xs text-academic hover:underline inline-flex items-center gap-1"
-          >
-            <span>Switch to Research Wing</span>
-            <ArrowRight className="w-3 h-3" />
-          </Link>
+          <Tooltip content="Return to academic papers and research monographs">
+            <Link
+              href="/"
+              className="text-xs text-academic hover:underline inline-flex items-center gap-1"
+            >
+              <span>Switch to Research Wing</span>
+              <ArrowRight className="w-3 h-3" />
+            </Link>
+          </Tooltip>
         </div>
 
         <div className="flex flex-wrap gap-2">
@@ -139,15 +154,16 @@ export default function ShowcasePage() {
             const count = allProjects.filter((p) => p.category === cat.id).length;
             if (count === 0) return null;
             return (
-              <Link
-                key={cat.id}
-                href={`/showcase/categories/${cat.id}`}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-stone-200 dark:border-stone-800 bg-white/70 dark:bg-stone-900/50 hover:border-academic text-xs text-stone-700 dark:text-stone-300 transition-colors"
-              >
-                <CategoryIcon category={cat.id} className="w-3.5 h-3.5 text-academic" />
-                <span>{cat.label}</span>
-                <span className="font-mono text-[11px] text-stone-400">({count})</span>
-              </Link>
+              <Tooltip key={cat.id} content={cat.description}>
+                <Link
+                  href={`/showcase/categories/${cat.id}`}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-stone-200 dark:border-stone-800 bg-white/70 dark:bg-stone-900/50 hover:border-academic text-xs text-stone-700 dark:text-stone-300 transition-colors"
+                >
+                  <CategoryIcon category={cat.id} className="w-3.5 h-3.5 text-academic" />
+                  <span>{cat.label}</span>
+                  <span className="font-mono text-[11px] text-stone-400">({count})</span>
+                </Link>
+              </Tooltip>
             );
           })}
         </div>

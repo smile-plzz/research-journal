@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Work } from "@/lib/catalog/schema";
 import { getDomainById } from "@/config/domains";
-import { formatDistanceToNow, parseISO } from "date-fns";
+import { Tooltip } from "@/components/ui/Tooltip";
 import { BookOpen, FileCode, Layers, ArrowUpRight } from "lucide-react";
 
 interface PublicationCardProps {
@@ -40,33 +40,41 @@ export function PublicationCard({ work }: PublicationCardProps) {
         {/* Domain & Status meta */}
         <div className="flex flex-wrap items-center gap-2 text-xs">
           {domain && (
-            <Link
-              href={`/research-areas/${domain.slug}`}
-              className={`px-2 py-0.5 rounded border text-[11px] font-medium transition-colors ${domain.color.bg} ${domain.color.text} ${domain.color.border} hover:opacity-80`}
-            >
-              {domain.shortName}
-            </Link>
+            <Tooltip content={`Explore all research in ${domain.name}`}>
+              <Link
+                href={`/research-areas/${domain.slug}`}
+                className={`px-2 py-0.5 rounded border text-[11px] font-medium transition-colors ${domain.color.bg} ${domain.color.text} ${domain.color.border} hover:opacity-80`}
+              >
+                {domain.shortName}
+              </Link>
+            </Tooltip>
           )}
 
-          <span
-            className={`px-2 py-0.5 rounded border text-[11px] font-medium ${getStatusBadge(
-              work.status
-            )}`}
-          >
-            {work.status}
-          </span>
+          <Tooltip content="Publication editorial status">
+            <span
+              className={`px-2 py-0.5 rounded border text-[11px] font-medium cursor-default ${getStatusBadge(
+                work.status
+              )}`}
+            >
+              {work.status}
+            </span>
+          </Tooltip>
 
           {work.editions.length > 1 && (
-            <span className="inline-flex items-center gap-1 text-[11px] font-mono text-stone-500 dark:text-stone-400">
-              <Layers className="w-3 h-3" />
-              {work.editions.length} editions
-            </span>
+            <Tooltip content="Number of related repositories grouped under this work">
+              <span className="inline-flex items-center gap-1 text-[11px] font-mono text-stone-500 dark:text-stone-400 cursor-default">
+                <Layers className="w-3 h-3" />
+                {work.editions.length} editions
+              </span>
+            </Tooltip>
           )}
 
           {work.readingTimeMinutes && (
-            <span className="text-stone-400 dark:text-stone-500 text-[11px]">
-              · {work.readingTimeMinutes} min read
-            </span>
+            <Tooltip content="Estimated manuscript reading duration">
+              <span className="text-stone-400 dark:text-stone-500 text-[11px] cursor-default">
+                · {work.readingTimeMinutes} min read
+              </span>
+            </Tooltip>
           )}
         </div>
 
@@ -130,23 +138,29 @@ export function PublicationCard({ work }: PublicationCardProps) {
 
         <div className="flex items-center gap-3 text-xs font-medium">
           {work.artifacts.some((a) => a.type === "pdf") && (
-            <span className="text-rose-700 dark:text-rose-400 flex items-center gap-1 text-[11px]">
-              <BookOpen className="w-3 h-3" />
-              PDF Available
-            </span>
+            <Tooltip content="Includes downloadable or previewable PDF manuscript">
+              <span className="text-rose-700 dark:text-rose-400 flex items-center gap-1 text-[11px] cursor-default">
+                <BookOpen className="w-3 h-3" />
+                PDF Available
+              </span>
+            </Tooltip>
           )}
           {work.artifacts.some((a) => a.type === "dataset") && (
-            <span className="text-emerald-700 dark:text-emerald-400 flex items-center gap-1 text-[11px]">
-              <FileCode className="w-3 h-3" />
-              Dataset
-            </span>
+            <Tooltip content="Includes open datasets or empirical materials">
+              <span className="text-emerald-700 dark:text-emerald-400 flex items-center gap-1 text-[11px] cursor-default">
+                <FileCode className="w-3 h-3" />
+                Dataset
+              </span>
+            </Tooltip>
           )}
-          <Link
-            href={`/works/${work.slug}`}
-            className="text-stone-900 dark:text-stone-100 font-serif hover:underline text-xs"
-          >
-            Read Publication →
-          </Link>
+          <Tooltip content="Read full manuscript, artifacts, and citations">
+            <Link
+              href={`/works/${work.slug}`}
+              className="text-stone-900 dark:text-stone-100 font-serif hover:underline text-xs"
+            >
+              Read Publication →
+            </Link>
+          </Tooltip>
         </div>
       </div>
     </article>

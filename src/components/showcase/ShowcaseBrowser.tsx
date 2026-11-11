@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   Project,
   PROJECT_CATEGORIES,
@@ -11,11 +12,51 @@ import {
   ProjectStatus,
 } from "@/lib/showcase/schema";
 import { ProjectCard } from "./ProjectCard";
-import { Search, X, SlidersHorizontal, ArrowUpDown, ChevronDown, ChevronUp } from "lucide-react";
+import { InfoHint, Tooltip } from "@/components/ui/Tooltip";
+import {
+  ArrowUpDown,
+  ChevronDown,
+  ChevronUp,
+  Search,
+  SlidersHorizontal,
+  Sparkles,
+  X,
+} from "lucide-react";
 
 interface ShowcaseBrowserProps {
   initialProjects: Project[];
   defaultCategory?: ProjectCategory | "all";
+}
+
+function SearchParamsSync({
+  onParamsChange,
+}: {
+  onParamsChange: (params: {
+    status: string | null;
+    platform: string | null;
+    q: string | null;
+  }) => void;
+}) {
+  const searchParams = useSearchParams();
+  const prevRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    const serialized = searchParams.toString();
+    if (prevRef.current === null && serialized === "") {
+      prevRef.current = serialized;
+      return;
+    }
+    if (prevRef.current !== serialized) {
+      prevRef.current = serialized;
+      onParamsChange({
+        status: searchParams.get("status"),
+        platform: searchParams.get("platform"),
+        q: searchParams.get("q"),
+      });
+    }
+  }, [searchParams, onParamsChange]);
+
+  return null;
 }
 
 export function ShowcaseBrowser({
@@ -29,6 +70,35 @@ export function ShowcaseBrowser({
   const [selectedTech, setSelectedTech] = useState<string>("all");
   const [sortBy, setSortBy] = useState<"featured" | "date" | "name">("featured");
   const [showUncurated, setShowUncurated] = useState(false);
+
+  const handleParamsChange = useCallback(
+    ({
+      status,
+      platform,
+      q,
+    }: {
+      status: string | null;
+      platform: string | null;
+      q: string | null;
+    }) => {
+      if (status && status in PROJECT_STATUS_META) {
+        setSelectedStatus(status);
+      } else if (status === null) {
+        setSelectedStatus("all");
+      }
+
+      if (platform) {
+        setSelectedPlatform(platform);
+      } else {
+        setSelectedPlatform("all");
+      }
+
+      if (q !== null) {
+        setSearchQuery(q);
+      }
+    },
+    []
+  );
 
   const availableTechTags = useMemo(() => {
     const counts = new Map<string, number>();
@@ -145,8 +215,22 @@ export function ShowcaseBrowser({
   const shouldShowUncuratedGrid =
     showUncurated || hasActiveFilters || curatedMatches.length === 0;
 
+  const applyQuickPreset = (preset: {
+    status?: string;
+    platform?: string;
+  }) => {
+    setSelectedCategory(defaultCategory);
+    setSelectedStatus(preset.status || "all");
+    setSelectedPlatform(preset.platform || "all");
+    setSelectedTech("all");
+  };
+
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
+      <Suspense fallback={null}>
+        <SearchParamsSync onParamsChange={handleParamsChange} />
+      </Suspense>
+
       {/* Search Bar */}
       <div className="relative">
         <label htmlFor="showcase-search-input" className="sr-only">
@@ -164,14 +248,100 @@ export function ShowcaseBrowser({
           className="w-full pl-10 pr-10 py-3 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900/60 text-stone-900 dark:text-stone-100 placeholder-stone-400 dark:placeholder-stone-500 text-sm focus:outline-none focus:ring-2 focus:ring-academic/50 focus:border-academic transition-colors"
         />
         {searchQuery && (
+          <Tooltip content="Clear search text">
+            <button
+              type="button"
+              onClick={() => setSearchQuery("")}
+              className="absolute inset-y-0 right-0 pr-3 flex items-center text-stone-400 hover:text-stone-600 dark:hover:text-stone-200"
+              aria-label="Clear search"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </Tooltip>
+        )}
+      </div>
+
+      {/* Guided One-Click Quick Filter Presets */}
+      <div className="flex flex-wrap items-center gap-2 text-xs">
+        <span className="inline-flex items-center gap-1 text-stone-500 dark:text-stone-400 font-medium mr-1">
+          <Sparkles className="w-3.5 h-3.5 text-academic" />
+          <span>Quick views:</span>
+        </span>
+
+        <Tooltip content="Show all projects with default ordering">
           <button
             type="button"
-            onClick={() => setSearchQuery("")}
-            className="absolute inset-y-0 right-0 pr-3 flex items-center text-stone-400 hover:text-stone-600 dark:hover:text-stone-200"
-            aria-label="Clear search"
+            onClick={clearFilters}
+            className={`px-2.5 py-1 rounded-full border transition-colors ${
+              !hasActiveFilters
+                ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 border-transparent font-medium"
+                : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-300 hover:border-academic"
+            }`}
           >
-            <X className="w-4 h-4" />
+            All Projects
           </button>
+        </Tooltip>
+
+        <Tooltip content="Web apps you can try right away in your browser">
+          <button
+            type="button"
+            onClick={() => applyQuickPreset({ status: "live" })}
+            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border transition-colors ${
+              selectedStatus === "live" && selectedPlatform === "all"
+                ? "bg-emerald-700 text-white border-transparent font-medium"
+                : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-300 hover:border-emerald-600"
+            }`}
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+            <span>Ready in Browser</span>
+          </button>
+        </Tooltip>
+
+        <Tooltip content="Projects with direct Windows or Android installer downloads">
+          <button
+            type="button"
+            onClick={() => applyQuickPreset({ status: "downloadable" })}
+            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border transition-colors ${
+              selectedStatus === "downloadable" && selectedPlatform === "all"
+                ? "bg-sky-700 text-white border-transparent font-medium"
+                : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-300 hover:border-sky-600"
+            }`}
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-sky-500" />
+            <span>Direct Downloads</span>
+          </button>
+        </Tooltip>
+
+        {availablePlatforms.includes("windows") && (
+          <Tooltip content="Desktop utilities and apps for Windows">
+            <button
+              type="button"
+              onClick={() => applyQuickPreset({ platform: "windows" })}
+              className={`px-2.5 py-1 rounded-full border transition-colors ${
+                selectedPlatform === "windows" && selectedStatus === "all"
+                  ? "bg-academic text-white border-transparent font-medium"
+                  : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-300 hover:border-academic"
+              }`}
+            >
+              Windows
+            </button>
+          </Tooltip>
+        )}
+
+        {availablePlatforms.includes("android") && (
+          <Tooltip content="Mobile & Android TV apps ready to install on Android devices">
+            <button
+              type="button"
+              onClick={() => applyQuickPreset({ platform: "android" })}
+              className={`px-2.5 py-1 rounded-full border transition-colors ${
+                selectedPlatform === "android" && selectedStatus === "all"
+                  ? "bg-academic text-white border-transparent font-medium"
+                  : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-300 hover:border-academic"
+              }`}
+            >
+              Android / TV
+            </button>
+          </Tooltip>
         )}
       </div>
 
@@ -183,77 +353,87 @@ export function ShowcaseBrowser({
             <span>Filter:</span>
           </span>
 
-          <select
-            aria-label="Filter by category"
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            className="px-2.5 py-1.5 rounded border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200 text-xs focus:outline-none focus:ring-1 focus:ring-academic"
-          >
-            <option value="all">All Categories</option>
-            {PROJECT_CATEGORIES.map((cat) => (
-              <option key={cat.id} value={cat.id}>
-                {cat.label}
-              </option>
-            ))}
-          </select>
-
-          <select
-            aria-label="Filter by status"
-            value={selectedStatus}
-            onChange={(e) => setSelectedStatus(e.target.value)}
-            className="px-2.5 py-1.5 rounded border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200 text-xs focus:outline-none focus:ring-1 focus:ring-academic"
-          >
-            <option value="all">All Statuses</option>
-            {(Object.keys(PROJECT_STATUS_META) as ProjectStatus[]).map((status) => (
-              <option key={status} value={status}>
-                {PROJECT_STATUS_META[status].label}
-              </option>
-            ))}
-          </select>
-
-          <select
-            aria-label="Filter by platform"
-            value={selectedPlatform}
-            onChange={(e) => setSelectedPlatform(e.target.value)}
-            className="px-2.5 py-1.5 rounded border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200 text-xs focus:outline-none focus:ring-1 focus:ring-academic"
-          >
-            <option value="all">All Platforms</option>
-            {availablePlatforms.map((pl) => (
-              <option key={pl} value={pl}>
-                {PROJECT_PLATFORM_LABELS[pl] || pl}
-              </option>
-            ))}
-          </select>
-
-          <select
-            aria-label="Filter by technology"
-            value={selectedTech}
-            onChange={(e) => setSelectedTech(e.target.value)}
-            className="px-2.5 py-1.5 rounded border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200 text-xs focus:outline-none focus:ring-1 focus:ring-academic"
-          >
-            <option value="all">All Technologies</option>
-            {availableTechTags.map((tag) => (
-              <option key={tag} value={tag}>
-                {tag}
-              </option>
-            ))}
-          </select>
-
-          <div className="flex items-center gap-1 ml-1 text-stone-500">
-            <ArrowUpDown className="w-3.5 h-3.5" />
+          <Tooltip content="Filter projects by software type">
             <select
-              aria-label="Sort projects"
-              value={sortBy}
-              onChange={(e) =>
-                setSortBy(e.target.value as "featured" | "date" | "name")
-              }
+              aria-label="Filter by category"
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
               className="px-2.5 py-1.5 rounded border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200 text-xs focus:outline-none focus:ring-1 focus:ring-academic"
             >
-              <option value="featured">Featured First</option>
-              <option value="date">Recently Updated</option>
-              <option value="name">Alphabetical (A-Z)</option>
+              <option value="all">All Categories</option>
+              {PROJECT_CATEGORIES.map((cat) => (
+                <option key={cat.id} value={cat.id}>
+                  {cat.label}
+                </option>
+              ))}
             </select>
-          </div>
+          </Tooltip>
+
+          <Tooltip content="Filter by availability (Live web demo, Downloadable build, Prototype, etc.)">
+            <select
+              aria-label="Filter by status"
+              value={selectedStatus}
+              onChange={(e) => setSelectedStatus(e.target.value)}
+              className="px-2.5 py-1.5 rounded border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200 text-xs focus:outline-none focus:ring-1 focus:ring-academic"
+            >
+              <option value="all">All Statuses</option>
+              {(Object.keys(PROJECT_STATUS_META) as ProjectStatus[]).map((status) => (
+                <option key={status} value={status}>
+                  {PROJECT_STATUS_META[status].label}
+                </option>
+              ))}
+            </select>
+          </Tooltip>
+
+          <Tooltip content="Filter by target operating system or browser">
+            <select
+              aria-label="Filter by platform"
+              value={selectedPlatform}
+              onChange={(e) => setSelectedPlatform(e.target.value)}
+              className="px-2.5 py-1.5 rounded border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200 text-xs focus:outline-none focus:ring-1 focus:ring-academic"
+            >
+              <option value="all">All Platforms</option>
+              {availablePlatforms.map((pl) => (
+                <option key={pl} value={pl}>
+                  {PROJECT_PLATFORM_LABELS[pl] || pl}
+                </option>
+              ))}
+            </select>
+          </Tooltip>
+
+          <Tooltip content="Filter by core language, framework, or runtime">
+            <select
+              aria-label="Filter by technology"
+              value={selectedTech}
+              onChange={(e) => setSelectedTech(e.target.value)}
+              className="px-2.5 py-1.5 rounded border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200 text-xs focus:outline-none focus:ring-1 focus:ring-academic"
+            >
+              <option value="all">All Technologies</option>
+              {availableTechTags.map((tag) => (
+                <option key={tag} value={tag}>
+                  {tag}
+                </option>
+              ))}
+            </select>
+          </Tooltip>
+
+          <Tooltip content="Change display ordering of matching projects">
+            <div className="flex items-center gap-1 ml-1 text-stone-500">
+              <ArrowUpDown className="w-3.5 h-3.5" />
+              <select
+                aria-label="Sort projects"
+                value={sortBy}
+                onChange={(e) =>
+                  setSortBy(e.target.value as "featured" | "date" | "name")
+                }
+                className="px-2.5 py-1.5 rounded border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200 text-xs focus:outline-none focus:ring-1 focus:ring-academic"
+              >
+                <option value="featured">Featured First</option>
+                <option value="date">Recently Updated</option>
+                <option value="name">Alphabetical (A-Z)</option>
+              </select>
+            </div>
+          </Tooltip>
         </div>
 
         <div className="flex items-center gap-3">
@@ -265,13 +445,15 @@ export function ShowcaseBrowser({
             of {initialProjects.length} projects
           </span>
           {hasActiveFilters && (
-            <button
-              type="button"
-              onClick={clearFilters}
-              className="text-academic dark:text-academic-dark hover:underline font-medium text-xs"
-            >
-              Clear filters
-            </button>
+            <Tooltip content="Reset search text, filters, and sorting">
+              <button
+                type="button"
+                onClick={clearFilters}
+                className="text-academic dark:text-academic-dark hover:underline font-medium text-xs"
+              >
+                Clear filters
+              </button>
+            </Tooltip>
           )}
         </div>
       </div>
@@ -298,9 +480,10 @@ export function ShowcaseBrowser({
           {/* Curated Projects Grid */}
           {curatedMatches.length > 0 && (
             <section className="space-y-4">
-              <div className="flex items-baseline justify-between">
-                <h2 className="font-serif text-2xl font-bold text-stone-900 dark:text-stone-100">
-                  Curated Projects ({curatedMatches.length})
+              <div className="flex items-baseline justify-between gap-2">
+                <h2 className="font-serif text-2xl font-bold text-stone-900 dark:text-stone-100 flex items-center gap-2">
+                  <span>Curated Projects ({curatedMatches.length})</span>
+                  <InfoHint text="Hand-reviewed entries with plain-language descriptions, feature lists, and direct downloads or live web links." />
                 </h2>
                 <span className="text-xs text-stone-500 dark:text-stone-400">
                   Ready to explore, try, or download
@@ -320,8 +503,9 @@ export function ShowcaseBrowser({
             <section className="pt-8 border-t border-stone-200/80 dark:border-stone-800/80 space-y-5">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div>
-                  <h2 className="font-serif text-xl font-semibold text-stone-800 dark:text-stone-200">
-                    More Projects ({uncuratedMatches.length})
+                  <h2 className="font-serif text-xl font-semibold text-stone-800 dark:text-stone-200 flex items-center gap-2">
+                    <span>More Projects ({uncuratedMatches.length})</span>
+                    <InfoHint text="Smaller prototypes, utilities, and experiments indexed directly from repository metadata." />
                   </h2>
                   <p className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
                     Additional public experiments and utilities indexed automatically from source code.
@@ -329,23 +513,25 @@ export function ShowcaseBrowser({
                 </div>
 
                 {!hasActiveFilters && curatedMatches.length > 0 && (
-                  <button
-                    type="button"
-                    onClick={() => setShowUncurated((prev) => !prev)}
-                    aria-expanded={shouldShowUncuratedGrid}
-                    className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-md border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-xs font-medium text-stone-700 dark:text-stone-300 hover:border-academic transition-colors self-start sm:self-auto"
-                  >
-                    <span>
-                      {shouldShowUncuratedGrid
-                        ? "Hide additional projects"
-                        : `Browse ${uncuratedMatches.length} more projects`}
-                    </span>
-                    {shouldShowUncuratedGrid ? (
-                      <ChevronUp className="w-3.5 h-3.5" />
-                    ) : (
-                      <ChevronDown className="w-3.5 h-3.5" />
-                    )}
-                  </button>
+                  <Tooltip content={shouldShowUncuratedGrid ? "Collapse uncurated repository list" : "Expand all auto-indexed experiments and helper tools"}>
+                    <button
+                      type="button"
+                      onClick={() => setShowUncurated((prev) => !prev)}
+                      aria-expanded={shouldShowUncuratedGrid}
+                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-md border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-xs font-medium text-stone-700 dark:text-stone-300 hover:border-academic transition-colors self-start sm:self-auto"
+                    >
+                      <span>
+                        {shouldShowUncuratedGrid
+                          ? "Hide additional projects"
+                          : `Browse ${uncuratedMatches.length} more projects`}
+                      </span>
+                      {shouldShowUncuratedGrid ? (
+                        <ChevronUp className="w-3.5 h-3.5" />
+                      ) : (
+                        <ChevronDown className="w-3.5 h-3.5" />
+                      )}
+                    </button>
+                  </Tooltip>
                 )}
               </div>
 

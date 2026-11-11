@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Artifact } from "@/lib/catalog/schema";
 import { ArtifactViewerModal } from "../artifacts/ArtifactViewerModal";
+import { InfoHint, Tooltip } from "@/components/ui/Tooltip";
 import {
   FileText,
   FileCode,
@@ -48,8 +49,9 @@ export function ArtifactList({ artifacts }: ArtifactListProps) {
   return (
     <>
       <div className="my-8">
-        <h3 className="font-serif text-lg font-semibold text-stone-900 dark:text-stone-100 mb-4 pb-2 border-b border-stone-200 dark:border-stone-800">
-          Research Artifacts & Supplementary Materials ({artifacts.length})
+        <h3 className="font-serif text-lg font-semibold text-stone-900 dark:text-stone-100 mb-4 pb-2 border-b border-stone-200 dark:border-stone-800 flex items-center gap-2">
+          <span>Research Artifacts & Supplementary Materials ({artifacts.length})</span>
+          <InfoHint text="PDFs, datasets, interactive dashboards, or slides extracted from the publication repository. Click Preview when available to inspect without leaving this site." />
         </h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -76,25 +78,28 @@ export function ArtifactList({ artifacts }: ArtifactListProps) {
                   <span className="text-stone-400 uppercase text-[10px]">{art.type}</span>
                   <div className="flex items-center gap-2">
                     {isPreviewable(art.type) && (
-                      <button
-                        onClick={() => setSelectedArtifact(art)}
-                        className="inline-flex items-center gap-1 text-academic hover:underline text-[11px] font-sans font-medium cursor-pointer"
-                        title="Preview artifact inline"
-                      >
-                        <Eye className="w-3 h-3" />
-                        <span>Preview</span>
-                      </button>
+                      <Tooltip content="Open inline viewer modal">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedArtifact(art)}
+                          className="inline-flex items-center gap-1 text-academic hover:underline text-[11px] font-sans font-medium cursor-pointer"
+                        >
+                          <Eye className="w-3 h-3" />
+                          <span>Preview</span>
+                        </button>
+                      </Tooltip>
                     )}
-                    <a
-                      href={art.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 text-[11px] font-sans"
-                      title="Open source link in new tab"
-                    >
-                      <span>Source</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
+                    <Tooltip content="Open direct source file in a new tab">
+                      <a
+                        href={art.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 text-[11px] font-sans"
+                      >
+                        <span>Source</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </Tooltip>
                   </div>
                 </div>
               </div>

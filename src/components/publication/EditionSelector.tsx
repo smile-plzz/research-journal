@@ -1,4 +1,5 @@
 import { RepositoryEdition } from "@/lib/catalog/schema";
+import { InfoHint, Tooltip } from "@/components/ui/Tooltip";
 import { Layers, ExternalLink, GitCommit, CheckCircle2 } from "lucide-react";
 
 interface EditionSelectorProps {
@@ -15,6 +16,7 @@ export function EditionSelector({ editions }: EditionSelectorProps) {
         <h4 className="font-serif text-sm font-semibold text-stone-900 dark:text-stone-100">
           Associated Research Editions & Revision History ({editions.length})
         </h4>
+        <InfoHint text="Closely related repositories (such as full thesis vs. conference edition) are grouped here so visitors see one unified study." />
       </div>
       <p className="text-xs text-stone-500 dark:text-stone-400 mb-3">
         This scholarly work spans multiple repository revisions reflecting thesis drafts,
@@ -29,9 +31,13 @@ export function EditionSelector({ editions }: EditionSelectorProps) {
           >
             <div className="flex items-center gap-2">
               {ed.isSubmissionCopy ? (
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+                <Tooltip content="Official submission copy">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+                </Tooltip>
               ) : (
-                <GitCommit className="w-3.5 h-3.5 text-stone-400 flex-shrink-0" />
+                <Tooltip content="Research edition snapshot">
+                  <GitCommit className="w-3.5 h-3.5 text-stone-400 flex-shrink-0" />
+                </Tooltip>
               )}
               <div>
                 <span className="font-medium text-stone-800 dark:text-stone-200">
@@ -44,18 +50,22 @@ export function EditionSelector({ editions }: EditionSelectorProps) {
             </div>
 
             <div className="flex items-center gap-3 self-end sm:self-auto font-mono text-[11px]">
-              <span className="text-stone-400">
-                Pushed: {new Date(ed.pushedAt).toLocaleDateString()}
-              </span>
-              <a
-                href={ed.htmlUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-academic hover:underline"
-              >
-                <span>GitHub</span>
-                <ExternalLink className="w-3 h-3" />
-              </a>
+              <Tooltip content="Last commit timestamp for this edition">
+                <span className="text-stone-400 cursor-default">
+                  Pushed: {new Date(ed.pushedAt).toLocaleDateString()}
+                </span>
+              </Tooltip>
+              <Tooltip content={`Open ${ed.repoName} source files on GitHub`}>
+                <a
+                  href={ed.htmlUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-academic hover:underline"
+                >
+                  <span>Source</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </Tooltip>
             </div>
           </div>
         ))}

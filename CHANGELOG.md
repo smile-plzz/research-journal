@@ -5,6 +5,21 @@ All notable changes to the GitHub-Powered Research Journal & Publication Archive
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2026-11-12
+
+### Added & Changed
+- **GitHub Markdown & LaTeX Content Refinement (`src/lib/markdown/`)**:
+  - Added `src/lib/markdown/refine.ts` to preprocess ingested GitHub Markdown and raw `.tex` manuscripts (`isLatexDocument`, `convertLatexToReadableMarkdown`, `preprocessGithubMarkdown`, `resolveGitHubAssetUrl`, `resolveGitHubBlobUrl`): strips LaTeX preambles/comments, converts `\titlepage`, section headers, and `\begin{tabular}` environments into Markdown tables, lists modular `\input{...}` chapters, strips AI Studio `GHBanner` wrappers, converts HTML `<p align="center"><img><sub>` blocks, and resolves relative image and documentation paths against the source repository.
+  - Added `src/lib/markdown/table-utils.ts` and `src/components/markdown/SortableMarkdownTable.tsx` replacing static Markdown tables with interactive controls for unit-aware column sorting (asc/desc/reset), live row filtering, compact/comfortable row density, wrap/horizontal-scroll toggles, and one-click CSV / Markdown copy.
+  - Added `src/components/markdown/CodeBlock.tsx` with language header, line-wrap toggle, and one-click code copy.
+- **Customizable Document Reader Workspace (`DocumentReader.tsx`, `TableOfContents.tsx`, `globals.css`)**:
+  - Replaced basic reading controls with unified `DocumentReader.tsx` featuring persisted preferences (`localStorage`), `Reader` / `Outline` / `Raw` view modes, typeface switcher (`Serif`, `Sans`, `Mono`), text size (`sm` / `base` / `lg` / `xl`), line spacing (`Compact` / `Relaxed` / `Spacious`), column width (`Narrow` / `Standard` / `Wide`), text alignment (`Left` / `Justify`), Focus mode, in-document text Find highlighter, shareable anchor links, and mobile-collapsible / searchable `TableOfContents.tsx`.
+- **Guided Navigation & Site-Wide Accessible Tooltips**:
+  - Added reusable accessible `Tooltip` and touch-friendly `InfoHint` (`src/components/ui/Tooltip.tsx`), `Breadcrumbs` (`src/components/ui/Breadcrumbs.tsx`), `BackToTopButton` (`src/components/ui/BackToTopButton.tsx`), context-aware `GuidedSubnav` (`src/components/layout/GuidedSubnav.tsx`), and global `Ctrl+K` / `Cmd+K` `QuickJumpTrigger` modal (`src/components/layout/QuickJumpModal.tsx`).
+  - Integrated breadcrumbs, quick-jump section bars, previous/next navigation, one-click quick filter presets (`Ready in Browser`, `Direct Downloads`, Windows, Android/TV, Thesis/Monograph status chips), URL query parameter sync in `ShowcaseBrowser`, and contextual tooltips across all Research and Showcase pages and components.
+- **Tests**:
+  - Added `tests/markdown/refine.test.ts` covering LaTeX conversion, HTML wrapper normalization, repo link resolution, unit-aware table sorting/export, and heading extraction (36/36 total Vitest tests passing).
+
 ## [2.0.0] - 2026-11-12
 
 ### Added

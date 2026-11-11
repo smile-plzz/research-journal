@@ -4,7 +4,8 @@ import { useState, useMemo } from "react";
 import { Work } from "@/lib/catalog/schema";
 import { researchDomains } from "@/config/domains";
 import { PublicationCard } from "../publication/PublicationCard";
-import { Search, X, SlidersHorizontal, ArrowUpDown } from "lucide-react";
+import { Tooltip } from "@/components/ui/Tooltip";
+import { Search, X, SlidersHorizontal, ArrowUpDown, Sparkles } from "lucide-react";
 
 interface JournalSearchProps {
   initialWorks: Work[];
@@ -87,7 +88,11 @@ export function JournalSearch({ initialWorks }: JournalSearchProps) {
         <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-stone-400">
           <Search className="w-4 h-4" />
         </div>
+        <label htmlFor="research-search-input" className="sr-only">
+          Search publications
+        </label>
         <input
+          id="research-search-input"
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
@@ -95,14 +100,52 @@ export function JournalSearch({ initialWorks }: JournalSearchProps) {
           className="w-full pl-10 pr-10 py-3 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900/60 text-stone-900 dark:text-stone-100 placeholder-stone-400 dark:placeholder-stone-500 text-sm focus:outline-none focus:ring-2 focus:ring-academic/50 focus:border-academic transition-colors"
         />
         {searchQuery && (
-          <button
-            onClick={() => setSearchQuery("")}
-            className="absolute inset-y-0 right-0 pr-3 flex items-center text-stone-400 hover:text-stone-600 dark:hover:text-stone-200"
-            title="Clear search"
-          >
-            <X className="w-4 h-4" />
-          </button>
+          <Tooltip content="Clear search text">
+            <button
+              type="button"
+              onClick={() => setSearchQuery("")}
+              className="absolute inset-y-0 right-0 pr-3 flex items-center text-stone-400 hover:text-stone-600 dark:hover:text-stone-200"
+              aria-label="Clear search"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </Tooltip>
         )}
+      </div>
+
+      {/* Quick Status Preset Chips */}
+      <div className="flex flex-wrap items-center gap-2 text-xs">
+        <span className="inline-flex items-center gap-1 text-stone-500 dark:text-stone-400 font-medium mr-1">
+          <Sparkles className="w-3.5 h-3.5 text-academic" />
+          <span>Quick filters:</span>
+        </span>
+        {[
+          { label: "All Works", status: "all", hint: "Show every research work" },
+          { label: "Theses", status: "Thesis", hint: "Full academic thesis monographs" },
+          { label: "Monographs", status: "Research Monograph", hint: "Extended research monographs" },
+          { label: "Preprints", status: "Preprint", hint: "Preprint manuscripts" },
+          { label: "Working Papers", status: "Working Paper", hint: "Ongoing working papers" },
+        ].map((chip) => {
+          const active = selectedStatus === chip.status && selectedDomain === "all";
+          return (
+            <Tooltip key={chip.status} content={chip.hint}>
+              <button
+                type="button"
+                onClick={() => {
+                  setSelectedDomain("all");
+                  setSelectedStatus(chip.status);
+                }}
+                className={`px-2.5 py-1 rounded-full border transition-colors ${
+                  active
+                    ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 border-transparent font-medium"
+                    : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-300 hover:border-academic"
+                }`}
+              >
+                {chip.label}
+              </button>
+            </Tooltip>
+          );
+        })}
       </div>
 
       {/* Filter Chips and Controls */}
@@ -113,45 +156,54 @@ export function JournalSearch({ initialWorks }: JournalSearchProps) {
             <SlidersHorizontal className="w-3.5 h-3.5" />
             Domain:
           </span>
-          <select
-            value={selectedDomain}
-            onChange={(e) => setSelectedDomain(e.target.value)}
-            className="px-2.5 py-1 rounded border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200 text-xs focus:outline-none focus:ring-1 focus:ring-academic"
-          >
-            <option value="all">All Research Domains ({initialWorks.length})</option>
-            {researchDomains.map((d) => (
-              <option key={d.id} value={d.id}>
-                {d.name}
-              </option>
-            ))}
-          </select>
-
-          {/* Status Select */}
-          <select
-            value={selectedStatus}
-            onChange={(e) => setSelectedStatus(e.target.value)}
-            className="px-2.5 py-1 rounded border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200 text-xs focus:outline-none focus:ring-1 focus:ring-academic"
-          >
-            <option value="all">All Publication Statuses</option>
-            <option value="Thesis">Master's Thesis</option>
-            <option value="Research Monograph">Research Monograph</option>
-            <option value="Preprint">Preprint</option>
-            <option value="Working Paper">Working Paper</option>
-          </select>
-
-          {/* Sort Select */}
-          <div className="flex items-center gap-1 ml-1 text-stone-500">
-            <ArrowUpDown className="w-3.5 h-3.5" />
+          <Tooltip content="Filter publications by academic discipline">
             <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as any)}
+              aria-label="Filter by research domain"
+              value={selectedDomain}
+              onChange={(e) => setSelectedDomain(e.target.value)}
               className="px-2.5 py-1 rounded border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200 text-xs focus:outline-none focus:ring-1 focus:ring-academic"
             >
-              <option value="featured">Featured First</option>
-              <option value="date">Newest First</option>
-              <option value="title">Alphabetical (A-Z)</option>
+              <option value="all">All Research Domains ({initialWorks.length})</option>
+              {researchDomains.map((d) => (
+                <option key={d.id} value={d.id}>
+                  {d.name}
+                </option>
+              ))}
             </select>
-          </div>
+          </Tooltip>
+
+          {/* Status Select */}
+          <Tooltip content="Filter by publication status stage">
+            <select
+              aria-label="Filter by status"
+              value={selectedStatus}
+              onChange={(e) => setSelectedStatus(e.target.value)}
+              className="px-2.5 py-1 rounded border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200 text-xs focus:outline-none focus:ring-1 focus:ring-academic"
+            >
+              <option value="all">All Publication Statuses</option>
+              <option value="Thesis">Master&apos;s Thesis</option>
+              <option value="Research Monograph">Research Monograph</option>
+              <option value="Preprint">Preprint</option>
+              <option value="Working Paper">Working Paper</option>
+            </select>
+          </Tooltip>
+
+          {/* Sort Select */}
+          <Tooltip content="Change display ordering of matching publications">
+            <div className="flex items-center gap-1 ml-1 text-stone-500">
+              <ArrowUpDown className="w-3.5 h-3.5" />
+              <select
+                aria-label="Sort publications"
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as "featured" | "date" | "title")}
+                className="px-2.5 py-1 rounded border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200 text-xs focus:outline-none focus:ring-1 focus:ring-academic"
+              >
+                <option value="featured">Featured First</option>
+                <option value="date">Newest First</option>
+                <option value="title">Alphabetical (A-Z)</option>
+              </select>
+            </div>
+          </Tooltip>
         </div>
 
         {/* Results Count & Clear */}
@@ -160,12 +212,15 @@ export function JournalSearch({ initialWorks }: JournalSearchProps) {
             Showing <strong className="text-stone-800 dark:text-stone-200">{filteredWorks.length}</strong> of {initialWorks.length} publications
           </span>
           {hasActiveFilters && (
-            <button
-              onClick={clearFilters}
-              className="text-academic dark:text-academic-dark hover:underline font-medium text-xs"
-            >
-              Reset filters
-            </button>
+            <Tooltip content="Reset all search terms and filters">
+              <button
+                type="button"
+                onClick={clearFilters}
+                className="text-academic dark:text-academic-dark hover:underline font-medium text-xs"
+              >
+                Reset filters
+              </button>
+            </Tooltip>
           )}
         </div>
       </div>

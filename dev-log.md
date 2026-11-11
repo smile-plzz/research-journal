@@ -94,6 +94,14 @@
   4. Added direct email CTA ("Want to buy a build, collaborate, or contribute?") on `/showcase/[slug]` and `/about`, skip-to-content accessibility link in `layout.tsx`, and OG/Twitter metadata across showcase routes.
   5. Updated `README.md`, `context.md`, `CHANGELOG.md`, and `dev-log.md` with zero em-dashes in new copy and documentation.
 
+### Session 09: GitHub Content Refinement, Customizable Document Reader, Tooltips & Guided Navigation
+- **Timestamp:** 2026-11-12T03:10:00+06:00
+- **Action:** Upgraded ingested GitHub Markdown/LaTeX rendering, added customizable document reading and interactive sortable tables, and added guided navigation and accessible tooltips across both wings.
+- **Milestones Completed:**
+  1. Implemented `src/lib/markdown/refine.ts`, `src/lib/markdown/table-utils.ts`, and `src/lib/markdown/reader-prefs.ts` to clean LaTeX `.tex` manuscripts, strip AI Studio banner HTML, convert `<p align="center"><img><sub>` captions, resolve relative repository assets/links, and power heading extraction and numeric/unit-aware table sorting.
+  2. Built `SortableMarkdownTable.tsx`, `CodeBlock.tsx`, `DocumentReader.tsx`, and updated `MarkdownRenderer.tsx`, `TableOfContents.tsx`, and `globals.css` with persisted typography/layout controls, `Reader`/`Outline`/`Raw` views, focus mode, in-document find, mobile-collapsible searchable TOC, and CSV/Markdown table exports.
+  3. Added `Tooltip.tsx` (`Tooltip` + `InfoHint`), `Breadcrumbs.tsx`, `BackToTopButton.tsx`, `GuidedSubnav.tsx`, and global `Ctrl+K` `QuickJumpModal.tsx`, integrating them across `Navbar.tsx`, `ThemeToggle.tsx`, `layout.tsx`, `page.tsx`, `works/[slug]/page.tsx`, `showcase/page.tsx`, `showcase/[slug]/page.tsx`, `showcase/categories/[category]/page.tsx`, `research-areas/page.tsx`, `research-areas/[slug]/page.tsx`, `methodology/page.tsx`, `about/page.tsx`, and all publication/showcase cards and filter components.
+  4. Added `tests/markdown/refine.test.ts`, scanned source code and docs for zero em-dashes, verified `npx tsc --noEmit`, `npm test` (6 files / 36 tests passing), and `npm run build` (117 static/SSG routes built cleanly).
 
 
 

@@ -1,4 +1,6 @@
 import { ShieldCheck, GitBranch, Database, FileText, Lock, RefreshCw, CheckCircle2 } from "lucide-react";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { InfoHint } from "@/components/ui/Tooltip";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,14 +12,19 @@ export const metadata: Metadata = {
 export default function MethodologyPage() {
   return (
     <div className="max-w-3xl mx-auto space-y-12">
+      <div className="pb-3 border-b border-stone-200/80 dark:border-stone-800/80">
+        <Breadcrumbs items={[{ label: "Publishing Methodology" }]} />
+      </div>
+
       {/* Header */}
       <header className="pb-8 border-b border-stone-200/80 dark:border-stone-800/80">
         <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded text-xs font-mono bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/50 mb-3">
           <ShieldCheck className="w-3.5 h-3.5" />
           <span>Open Science & Academic Reproducibility</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-serif font-bold text-stone-900 dark:text-stone-100 mb-2">
-          Publishing Methodology & Open Science Architecture
+        <h1 className="text-3xl sm:text-4xl font-serif font-bold text-stone-900 dark:text-stone-100 mb-2 flex items-center gap-2">
+          <span>Publishing Methodology & Open Science Architecture</span>
+          <InfoHint text="How source code, metadata provenance, and daily automated synchronization remain auditable." />
         </h1>
         <p className="font-serif italic text-base text-stone-600 dark:text-stone-400">
           How GitHub repositories serve as the immutable single source of truth for scholarly publications.

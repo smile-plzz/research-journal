@@ -7,9 +7,9 @@ import { MetadataProvenancePill } from "@/components/publication/MetadataProvena
 import { EditionSelector } from "@/components/publication/EditionSelector";
 import { CitationBox } from "@/components/publication/CitationBox";
 import { ArtifactList } from "@/components/publication/ArtifactList";
-import { TableOfContents } from "@/components/publication/TableOfContents";
-import { MarkdownRenderer } from "@/components/markdown/MarkdownRenderer";
-import { ReadingToolbar } from "@/components/publication/ReadingToolbar";
+import { DocumentReader } from "@/components/markdown/DocumentReader";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { InfoHint, Tooltip } from "@/components/ui/Tooltip";
 import Link from "next/link";
 import {
   Calendar,
@@ -84,10 +84,27 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
     notFound();
   }
 
+  const allWorks = getAllWorks();
+  const currentIndex = allWorks.findIndex((w) => w.slug === work.slug);
+  const prevWork = currentIndex > 0 ? allWorks[currentIndex - 1] : null;
+  const nextWork =
+    currentIndex >= 0 && currentIndex < allWorks.length - 1
+      ? allWorks[currentIndex + 1]
+      : null;
+
   const domain = getDomainById(work.domainId);
   const manuscriptContent = getManuscriptContent(work.slug);
   const archetypeDesc = getArchetypeDescription(work.archetype);
   const relatedProjects = getRelatedProjectsForWork(work.slug);
+  const primaryEdition = work.editions[0];
+  const [repoOwner, repoName] = (
+    primaryEdition?.fullName || `smile-plzz/${primaryEdition?.repoName || work.slug}`
+  ).split("/");
+  const primaryRepoContext = {
+    owner: repoOwner || "smile-plzz",
+    name: repoName || work.slug,
+    defaultBranch: "main",
+  };
 
   const displayDate = work.publishedAt
     ? new Date(work.publishedAt).toLocaleDateString("en-US", {
@@ -123,41 +140,50 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <article className="space-y-10">
-        {/* Navigation Breadcrumb */}
-        <div className="flex items-center justify-between text-xs font-sans text-stone-500 dark:text-stone-400 pb-4 border-b border-stone-200/80 dark:border-stone-800/80">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-1.5 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Back to Publications Index</span>
-          </Link>
+      <article className="space-y-9">
+        {/* Guided Breadcrumbs */}
+        <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-stone-200/80 dark:border-stone-800/80">
+          <Breadcrumbs
+            items={[
+              { label: "Research Publications", href: "/#research-archive" },
+              ...(domain
+                ? [{ label: domain.name, href: `/research-areas/${domain.slug}` }]
+                : []),
+              { label: work.title },
+            ]}
+          />
 
-          {domain && (
+          <Tooltip content="Return to searchable publication list">
             <Link
-              href={`/research-areas/${domain.slug}`}
-              className="hover:text-academic transition-colors font-medium"
+              href="/#research-archive"
+              className="inline-flex items-center gap-1.5 text-xs text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
             >
-              {domain.name}
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>All Publications</span>
             </Link>
-          )}
+          </Tooltip>
         </div>
 
         {/* Publication Header */}
         <header className="space-y-4">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="px-2.5 py-0.5 rounded text-xs font-mono font-medium bg-academic/10 text-academic dark:text-academic-dark">
-              {work.status}
-            </span>
-            <span className="px-2.5 py-0.5 rounded text-xs font-mono text-stone-600 dark:text-stone-400 bg-stone-100 dark:bg-stone-800">
-              {work.type.replace("-", " ").toUpperCase()}
-            </span>
-            {work.editions.length > 1 && (
-              <span className="inline-flex items-center gap-1 text-xs font-mono text-stone-500 px-2 py-0.5 rounded bg-stone-100 dark:bg-stone-800">
-                <Layers className="w-3 h-3" />
-                {work.editions.length} Editions Grouped
+            <Tooltip content="Editorial publication stage derived from manuscript status or manifest">
+              <span className="px-2.5 py-0.5 rounded text-xs font-mono font-medium bg-academic/10 text-academic dark:text-academic-dark cursor-default">
+                {work.status}
               </span>
+            </Tooltip>
+            <Tooltip content="Format classification for this research record">
+              <span className="px-2.5 py-0.5 rounded text-xs font-mono text-stone-600 dark:text-stone-400 bg-stone-100 dark:bg-stone-800 cursor-default">
+                {work.type.replace("-", " ").toUpperCase()}
+              </span>
+            </Tooltip>
+            {work.editions.length > 1 && (
+              <Tooltip content="Multiple related source editions or versions are grouped under this single study">
+                <span className="inline-flex items-center gap-1 text-xs font-mono text-stone-500 px-2 py-0.5 rounded bg-stone-100 dark:bg-stone-800 cursor-default">
+                  <Layers className="w-3 h-3" />
+                  {work.editions.length} Editions Grouped
+                </span>
+              </Tooltip>
             )}
           </div>
 
@@ -181,7 +207,7 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
                   </span>
                   {author.affiliation && (
                     <span className="text-xs text-stone-500 dark:text-stone-400">
-                      — {author.affiliation}
+                      ({author.affiliation})
                     </span>
                   )}
                 </div>
@@ -200,30 +226,92 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
 
           {/* Chronological & Reading Metrics */}
           <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-stone-500 dark:text-stone-400 pt-3 border-t border-stone-200/60 dark:border-stone-800/60">
-            <div className="flex items-center gap-1.5">
-              <Calendar className="w-3.5 h-3.5" />
-              <span>{displayDate}</span>
-            </div>
+            <Tooltip content="Publication date or archive year">
+              <div className="flex items-center gap-1.5 cursor-default">
+                <Calendar className="w-3.5 h-3.5" />
+                <span>{displayDate}</span>
+              </div>
+            </Tooltip>
 
             {work.readingTimeMinutes && (
-              <div className="flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5" />
-                <span>~{work.readingTimeMinutes} min reading time ({work.wordCount?.toLocaleString()} words)</span>
-              </div>
+              <Tooltip content="Estimated full-text reading duration at ~220 words per minute">
+                <div className="flex items-center gap-1.5 cursor-default">
+                  <Clock className="w-3.5 h-3.5" />
+                  <span>~{work.readingTimeMinutes} min reading time ({work.wordCount?.toLocaleString()} words)</span>
+                </div>
+              </Tooltip>
             )}
 
-            <div className="flex items-center gap-1.5">
-              <Cpu className="w-3.5 h-3.5" />
-              <span className="capitalize">{work.archetype.replace(/-/g, " ")}</span>
-            </div>
+            <Tooltip content="Detected repository structural pattern used during automated ingestion">
+              <div className="flex items-center gap-1.5 cursor-default">
+                <Cpu className="w-3.5 h-3.5" />
+                <span className="capitalize">{work.archetype.replace(/-/g, " ")}</span>
+              </div>
+            </Tooltip>
           </div>
         </header>
 
+        {/* Guided Quick-Jump Section Bar */}
+        <nav
+          aria-label="Jump to publication section"
+          className="flex flex-wrap items-center gap-2 p-2.5 rounded-xl border border-stone-200/90 dark:border-stone-800/90 bg-white/80 dark:bg-stone-900/50 text-xs"
+        >
+          <span className="text-[11px] font-mono uppercase tracking-wider text-stone-400 px-1.5">
+            On this page:
+          </span>
+          <a
+            href="#abstract"
+            className="px-2.5 py-1 rounded-md bg-stone-100 dark:bg-stone-800/80 text-stone-700 dark:text-stone-300 hover:text-academic dark:hover:text-academic-dark transition-colors"
+          >
+            Abstract
+          </a>
+          <a
+            href="#editions"
+            className="px-2.5 py-1 rounded-md bg-stone-100 dark:bg-stone-800/80 text-stone-700 dark:text-stone-300 hover:text-academic dark:hover:text-academic-dark transition-colors"
+          >
+            Source Editions
+          </a>
+          {manuscriptContent && (
+            <a
+              href="#manuscript"
+              className="px-2.5 py-1 rounded-md bg-academic/10 text-academic dark:text-academic-dark font-medium hover:bg-academic/20 transition-colors"
+            >
+              Read Manuscript
+            </a>
+          )}
+          {work.artifacts.length > 0 && (
+            <a
+              href="#artifacts"
+              className="px-2.5 py-1 rounded-md bg-stone-100 dark:bg-stone-800/80 text-stone-700 dark:text-stone-300 hover:text-academic dark:hover:text-academic-dark transition-colors"
+            >
+              Files & Datasets ({work.artifacts.length})
+            </a>
+          )}
+          <a
+            href="#citation"
+            className="px-2.5 py-1 rounded-md bg-stone-100 dark:bg-stone-800/80 text-stone-700 dark:text-stone-300 hover:text-academic dark:hover:text-academic-dark transition-colors"
+          >
+            Cite
+          </a>
+          {relatedProjects.length > 0 && (
+            <a
+              href="#related-projects"
+              className="px-2.5 py-1 rounded-md bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 hover:underline transition-colors"
+            >
+              Companion Software ({relatedProjects.length})
+            </a>
+          )}
+        </nav>
+
         {/* Abstract Box */}
-        <section className="p-6 rounded-lg bg-stone-100/60 dark:bg-stone-900/40 border border-stone-200 dark:border-stone-800 space-y-3">
+        <section
+          id="abstract"
+          className="p-6 rounded-lg bg-stone-100/60 dark:bg-stone-900/40 border border-stone-200 dark:border-stone-800 space-y-3 scroll-mt-28"
+        >
           <div className="flex items-center justify-between pb-2 border-b border-stone-200/60 dark:border-stone-800/60">
-            <h2 className="font-serif text-sm font-semibold uppercase tracking-wider text-stone-900 dark:text-stone-100">
-              Abstract
+            <h2 className="font-serif text-sm font-semibold uppercase tracking-wider text-stone-900 dark:text-stone-100 flex items-center gap-1.5">
+              <span>Abstract</span>
+              <InfoHint text="Summary extracted or normalized from the primary publication record." />
             </h2>
             <MetadataProvenancePill
               label="Summary"
@@ -254,64 +342,73 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
         </section>
 
         {/* Associated Editions (TCRA Series, etc.) */}
-        <EditionSelector editions={work.editions} />
+        <div id="editions" className="scroll-mt-28">
+          <EditionSelector editions={work.editions} />
+        </div>
 
         {/* Architecture & Pipeline Summary */}
         <section className="p-4 rounded-lg border border-stone-200/80 dark:border-stone-800/80 bg-white dark:bg-stone-900/20 text-xs space-y-2">
           <div className="flex items-center gap-2 font-serif font-semibold text-stone-900 dark:text-stone-100">
             <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
             <span>Repository Architecture & Research Pipeline</span>
+            <InfoHint text="Explains how source files, figures, and metadata were normalized into this publication view." />
           </div>
           <p className="text-stone-600 dark:text-stone-400 leading-relaxed">
             {archetypeDesc}
           </p>
         </section>
 
-        {/* Long-form Manuscript Reader, Reading Toolbar & Sticky TOC */}
+        {/* Customizable Long-form Manuscript Reader */}
         {manuscriptContent && (
-          <section className="pt-6 border-t border-stone-200 dark:border-stone-800">
-            <div className="flex items-center justify-between pb-2 mb-2 border-b border-stone-200/80 dark:border-stone-800/80">
+          <section
+            id="manuscript"
+            className="pt-6 border-t border-stone-200 dark:border-stone-800 scroll-mt-28 space-y-4"
+          >
+            <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-stone-200/80 dark:border-stone-800/80">
               <h2 className="font-serif text-xl sm:text-2xl font-bold text-stone-900 dark:text-stone-100 flex items-center gap-2">
                 <BookOpen className="w-5 h-5 text-academic" />
                 <span>Primary Research Manuscript</span>
+                <InfoHint text="Customize font family, size, spacing, alignment, view mode, search text, or sort any table below." />
               </h2>
-              <span className="text-xs font-mono text-stone-400">
-                Extracted Markdown Source
-              </span>
+              <Tooltip content="LaTeX preambles, comments, and relative GitHub asset links are automatically refined for web reading">
+                <span className="text-xs font-mono text-stone-500 dark:text-stone-400 cursor-default">
+                  Interactive Reader View
+                </span>
+              </Tooltip>
             </div>
 
-            {/* Reading Toolbar with Progress & Font Controls */}
-            <ReadingToolbar
+            <DocumentReader
+              content={manuscriptContent}
+              repoContext={primaryRepoContext}
               readingTimeMinutes={work.readingTimeMinutes}
               wordCount={work.wordCount}
+              showToc
+              showReadingProgress
+              documentLabel="Research Manuscript"
             />
-
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mt-6">
-              {/* Main Reading Column */}
-              <div className="lg:col-span-3 min-w-0">
-                <MarkdownRenderer content={manuscriptContent} />
-              </div>
-
-              {/* Sticky TOC Sidebar */}
-              <aside className="hidden lg:block lg:col-span-1">
-                <TableOfContents content={manuscriptContent} />
-              </aside>
-            </div>
           </section>
         )}
 
         {/* Research Artifacts, Datasets & Supplementary Files with Interactive Modal */}
-        <ArtifactList artifacts={work.artifacts} />
+        <div id="artifacts" className="scroll-mt-28">
+          <ArtifactList artifacts={work.artifacts} />
+        </div>
 
         {/* Citation Box (BibTeX, APA, IEEE, Chicago & Download) */}
-        <CitationBox work={work} />
+        <div id="citation" className="scroll-mt-28">
+          <CitationBox work={work} />
+        </div>
 
         {/* Cross-link to Companion Software in Showcase Wing */}
         {relatedProjects.length > 0 && (
-          <section className="pt-6 border-t border-stone-200 dark:border-stone-800 space-y-3">
+          <section
+            id="related-projects"
+            className="pt-6 border-t border-stone-200 dark:border-stone-800 space-y-3 scroll-mt-28"
+          >
             <h2 className="font-serif text-lg font-semibold text-stone-900 dark:text-stone-100 flex items-center gap-2">
               <Compass className="w-4 h-4 text-academic" />
               <span>Companion Software in Project Showcase</span>
+              <InfoHint text="Interactive apps or downloadable tools related to this publication." />
             </h2>
             <div className="grid grid-cols-1 gap-3">
               {relatedProjects.map((proj) => (
@@ -335,6 +432,46 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
               ))}
             </div>
           </section>
+        )}
+
+        {/* Previous / Next Publication Navigation */}
+        {(prevWork || nextWork) && (
+          <nav
+            aria-label="Browse neighboring publications"
+            className="pt-6 border-t border-stone-200 dark:border-stone-800 grid grid-cols-1 sm:grid-cols-2 gap-3"
+          >
+            {prevWork ? (
+              <Link
+                href={`/works/${prevWork.slug}`}
+                className="group p-4 rounded-xl border border-stone-200 dark:border-stone-800 bg-white/70 dark:bg-stone-900/40 hover:border-academic transition-colors text-left"
+              >
+                <span className="inline-flex items-center gap-1 text-[11px] font-mono text-stone-500">
+                  <ArrowLeft className="w-3 h-3" />
+                  Previous publication
+                </span>
+                <p className="mt-1 font-serif text-sm font-semibold text-stone-900 dark:text-stone-100 group-hover:text-academic line-clamp-2">
+                  {prevWork.title}
+                </p>
+              </Link>
+            ) : (
+              <div />
+            )}
+
+            {nextWork && (
+              <Link
+                href={`/works/${nextWork.slug}`}
+                className="group p-4 rounded-xl border border-stone-200 dark:border-stone-800 bg-white/70 dark:bg-stone-900/40 hover:border-academic transition-colors text-left sm:text-right"
+              >
+                <span className="inline-flex items-center gap-1 text-[11px] font-mono text-stone-500">
+                  Next publication
+                  <ArrowRight className="w-3 h-3" />
+                </span>
+                <p className="mt-1 font-serif text-sm font-semibold text-stone-900 dark:text-stone-100 group-hover:text-academic line-clamp-2">
+                  {nextWork.title}
+                </p>
+              </Link>
+            )}
+          </nav>
         )}
       </article>
     </>

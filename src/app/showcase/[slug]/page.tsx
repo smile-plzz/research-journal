@@ -19,7 +19,9 @@ import { siteConfig } from "@/config/site";
 import { CategoryCoverFallback, CategoryIcon } from "@/components/showcase/CategoryVisuals";
 import { DownloadPanel } from "@/components/showcase/DownloadPanel";
 import { ProjectCard } from "@/components/showcase/ProjectCard";
-import { MarkdownRenderer } from "@/components/markdown/MarkdownRenderer";
+import { DocumentReader } from "@/components/markdown/DocumentReader";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { InfoHint, Tooltip } from "@/components/ui/Tooltip";
 import {
   ArrowLeft,
   ArrowRight,
@@ -99,12 +101,31 @@ export default async function ProjectDetailPage({
     notFound();
   }
 
+  const allProjects = getAllProjects();
+  const navPool = project.curated
+    ? allProjects.filter((p) => p.curated)
+    : allProjects;
+  const currentIndex = navPool.findIndex((p) => p.slug === project.slug);
+  const prevProject = currentIndex > 0 ? navPool[currentIndex - 1] : null;
+  const nextProject =
+    currentIndex >= 0 && currentIndex < navPool.length - 1
+      ? navPool[currentIndex + 1]
+      : null;
+
   const categoryMeta = getCategoryMeta(project.category);
   const statusMeta = PROJECT_STATUS_META[project.status];
   const readmeContent = getProjectReadme(project.slug);
   const relatedProjects = getRelatedProjects(project, 3);
   const relatedWorks = getRelatedWorksForProject(project);
   const primaryDownload = project.downloads[0];
+
+  const statusTooltip: Record<string, string> = {
+    live: "Deployed online and ready to use directly in your browser",
+    downloadable: "Installer or package available for direct download without a GitHub account",
+    "in-development": "Actively being built and improved",
+    prototype: "Working proof-of-concept exploring a specific idea or workflow",
+    archived: "Completed or preserved reference snapshot",
+  };
 
   let updatedLabel = "";
   try {
@@ -142,49 +163,66 @@ export default async function ProjectDetailPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <article className="max-w-4xl mx-auto space-y-12">
-        {/* Top Breadcrumb */}
-        <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-sans text-stone-500 dark:text-stone-400 pb-4 border-b border-stone-200/80 dark:border-stone-800/80">
-          <Link
-            href="/showcase"
-            className="inline-flex items-center gap-1.5 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Back to Project Showcase</span>
-          </Link>
+      <article className="max-w-4xl mx-auto space-y-10">
+        {/* Guided Top Breadcrumb */}
+        <div className="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-stone-200/80 dark:border-stone-800/80">
+          <Breadcrumbs
+            items={[
+              { label: "Project Showcase", href: "/showcase" },
+              {
+                label: categoryMeta.label,
+                href: `/showcase/categories/${project.category}`,
+              },
+              { label: project.name },
+            ]}
+          />
 
-          <Link
-            href={`/showcase/categories/${project.category}`}
-            className="inline-flex items-center gap-1 hover:text-academic transition-colors font-medium"
-          >
-            <CategoryIcon category={project.category} className="w-3.5 h-3.5" />
-            <span>{categoryMeta.label}</span>
-          </Link>
+          <Tooltip content="Browse all apps and downloads">
+            <Link
+              href="/showcase"
+              className="inline-flex items-center gap-1.5 text-xs text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>All Projects</span>
+            </Link>
+          </Tooltip>
         </div>
 
         {/* 1. Hero: Name, One-Liner, Cover Image, Primary CTAs */}
         <header className="space-y-6">
           <div className="flex flex-wrap items-center gap-2 text-xs">
-            <span
-              className={`px-2.5 py-0.5 rounded-full border font-medium ${statusMeta.badgeClass}`}
-            >
-              {statusMeta.label}
-            </span>
-            <span className="px-2.5 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 font-medium">
-              {categoryMeta.shortLabel}
-            </span>
-            {project.platforms.map((platform) => (
+            <Tooltip content={statusTooltip[project.status] || statusMeta.label}>
               <span
-                key={platform}
-                className="px-2 py-0.5 rounded bg-stone-100/80 dark:bg-stone-800/70 text-stone-600 dark:text-stone-400 text-[11px]"
+                className={`px-2.5 py-0.5 rounded-full border font-medium cursor-default ${statusMeta.badgeClass}`}
               >
-                {PROJECT_PLATFORM_LABELS[platform] || platform}
+                {statusMeta.label}
               </span>
+            </Tooltip>
+            <Tooltip content={categoryMeta.description}>
+              <Link
+                href={`/showcase/categories/${project.category}`}
+                className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 font-medium hover:text-academic transition-colors"
+              >
+                <CategoryIcon category={project.category} className="w-3 h-3" />
+                <span>{categoryMeta.shortLabel}</span>
+              </Link>
+            </Tooltip>
+            {project.platforms.map((platform) => (
+              <Tooltip
+                key={platform}
+                content={`Runs on ${PROJECT_PLATFORM_LABELS[platform] || platform}`}
+              >
+                <span className="px-2 py-0.5 rounded bg-stone-100/80 dark:bg-stone-800/70 text-stone-600 dark:text-stone-400 text-[11px] cursor-default">
+                  {PROJECT_PLATFORM_LABELS[platform] || platform}
+                </span>
+              </Tooltip>
             ))}
             {updatedLabel && (
-              <span className="text-stone-400 dark:text-stone-500 ml-auto font-mono text-[11px]">
-                {updatedLabel}
-              </span>
+              <Tooltip content="Most recent code or documentation push">
+                <span className="text-stone-400 dark:text-stone-500 ml-auto font-mono text-[11px] cursor-default">
+                  {updatedLabel}
+                </span>
+              </Tooltip>
             )}
           </div>
 
@@ -202,42 +240,98 @@ export default async function ProjectDetailPage({
           {/* Primary CTAs */}
           <div className="flex flex-wrap items-center gap-3 pt-1">
             {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-academic hover:bg-academic-hover text-white text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-academic"
-              >
-                <span>Try it live</span>
-                <ExternalLink className="w-4 h-4" />
-              </a>
+              <Tooltip content="Opens the hosted app in a new browser tab, no signup needed">
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-academic hover:bg-academic-hover text-white text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-academic"
+                >
+                  <span>Try it live</span>
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </Tooltip>
             )}
 
             {primaryDownload && (
-              <a
-                href="#how-to-use"
-                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-academic ${
-                  project.liveUrl
-                    ? "border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-100 hover:border-academic"
-                    : "bg-academic hover:bg-academic-hover text-white"
-                }`}
-              >
-                <Download className="w-4 h-4" />
-                <span>
-                  {primaryDownload.label}
-                  {primaryDownload.size ? ` (${primaryDownload.size})` : ""}
-                </span>
-              </a>
+              <Tooltip content="Jump to direct installer downloads and safety guidance">
+                <a
+                  href="#how-to-use"
+                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-academic ${
+                    project.liveUrl
+                      ? "border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-100 hover:border-academic"
+                      : "bg-academic hover:bg-academic-hover text-white"
+                  }`}
+                >
+                  <Download className="w-4 h-4" />
+                  <span>
+                    {primaryDownload.label}
+                    {primaryDownload.size ? ` (${primaryDownload.size})` : ""}
+                  </span>
+                </a>
+              </Tooltip>
             )}
 
+            <Tooltip content="Expand tech stack, license, source code link, and customizable README documentation">
+              <a
+                href="#for-developers"
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg border border-stone-200 dark:border-stone-800 text-xs font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
+              >
+                <Code2 className="w-3.5 h-3.5" />
+                <span>Technical details</span>
+              </a>
+            </Tooltip>
+          </div>
+
+          {/* Guided Quick-Jump Bar */}
+          <nav
+            aria-label="Project sections"
+            className="flex flex-wrap items-center gap-2 p-2.5 rounded-xl border border-stone-200/80 dark:border-stone-800/80 bg-white/75 dark:bg-stone-900/40 text-xs"
+          >
+            <span className="text-[11px] font-mono uppercase tracking-wider text-stone-400 px-1.5">
+              Sections:
+            </span>
+            <a
+              href="#what-is-this"
+              className="px-2.5 py-1 rounded-md bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-academic transition-colors"
+            >
+              Overview
+            </a>
+            {project.screenshots.length > 0 && (
+              <a
+                href="#screenshots"
+                className="px-2.5 py-1 rounded-md bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-academic transition-colors"
+              >
+                Screenshots
+              </a>
+            )}
+            <a
+              href="#how-to-use"
+              className="px-2.5 py-1 rounded-md bg-academic/10 text-academic dark:text-academic-dark font-medium hover:bg-academic/20 transition-colors"
+            >
+              How to use it
+            </a>
+            <a
+              href="#status-progress"
+              className="px-2.5 py-1 rounded-md bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-academic transition-colors"
+            >
+              Status
+            </a>
             <a
               href="#for-developers"
-              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg border border-stone-200 dark:border-stone-800 text-xs font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
+              className="px-2.5 py-1 rounded-md bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-academic transition-colors"
             >
-              <Code2 className="w-3.5 h-3.5" />
-              <span>Technical details</span>
+              Docs & Specs
             </a>
-          </div>
+            {(relatedWorks.length > 0 || relatedProjects.length > 0) && (
+              <a
+                href="#related-section"
+                className="px-2.5 py-1 rounded-md bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-academic transition-colors"
+              >
+                Related
+              </a>
+            )}
+          </nav>
 
           {/* Cover Image */}
           <div className="rounded-xl overflow-hidden border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900">
@@ -259,7 +353,7 @@ export default async function ProjectDetailPage({
         </header>
 
         {/* 2. What is this? */}
-        <section className="space-y-3 pt-2">
+        <section id="what-is-this" className="space-y-3 pt-2 scroll-mt-28">
           <h2 className="font-serif text-2xl font-bold text-stone-900 dark:text-stone-100">
             What is this?
           </h2>
@@ -314,7 +408,10 @@ export default async function ProjectDetailPage({
 
         {/* 4. Screenshots or Demo Gallery (only when available) */}
         {project.screenshots.length > 0 && (
-          <section className="space-y-4 pt-4 border-t border-stone-200/80 dark:border-stone-800/80">
+          <section
+            id="screenshots"
+            className="space-y-4 pt-4 border-t border-stone-200/80 dark:border-stone-800/80 scroll-mt-28"
+          >
             <h2 className="font-serif text-2xl font-bold text-stone-900 dark:text-stone-100">
               Screenshots
             </h2>
@@ -404,10 +501,14 @@ export default async function ProjectDetailPage({
         </section>
 
         {/* 6. Status and roadmap snippet */}
-        <section className="space-y-3 pt-4 border-t border-stone-200/80 dark:border-stone-800/80">
+        <section
+          id="status-progress"
+          className="space-y-3 pt-4 border-t border-stone-200/80 dark:border-stone-800/80 scroll-mt-28"
+        >
           <h2 className="font-serif text-xl font-semibold text-stone-900 dark:text-stone-100 flex items-center gap-2">
             <Info className="w-4 h-4 text-academic" />
             <span>Status & Progress</span>
+            <InfoHint text="Shows whether this project is live online, downloadable, actively changing, or archived." />
           </h2>
           <div className="p-4 rounded-xl border border-stone-200 dark:border-stone-800 bg-white/70 dark:bg-stone-900/40 text-sm text-stone-700 dark:text-stone-300 space-y-2">
             <div className="flex flex-wrap items-center gap-2">
@@ -501,12 +602,25 @@ export default async function ProjectDetailPage({
 
               {readmeContent && (
                 <div className="pt-4 border-t border-stone-200/60 dark:border-stone-800/60">
-                  <h3 className="text-xs font-mono uppercase tracking-wider text-stone-400 mb-4">
-                    Repository Documentation
-                  </h3>
-                  <div className="rounded-lg border border-stone-200/70 dark:border-stone-800/70 bg-cream-50/70 dark:bg-stone-950/60 p-5 overflow-x-auto">
-                    <MarkdownRenderer content={readmeContent} />
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                    <h3 className="text-xs font-mono uppercase tracking-wider text-stone-500 flex items-center gap-1.5">
+                      <span>Repository Documentation</span>
+                      <InfoHint text="Relative GitHub links and images are automatically resolved. Switch to Outline/Raw view, customize text layout, or sort tables." />
+                    </h3>
                   </div>
+                  <DocumentReader
+                    content={readmeContent}
+                    repoContext={{
+                      owner: project.repo.owner,
+                      name: project.repo.name,
+                      defaultBranch: project.repo.defaultBranch,
+                    }}
+                    stripLeadingHeading
+                    stripAiStudioBanner
+                    showToc={false}
+                    showReadingProgress={false}
+                    documentLabel="Project Documentation"
+                  />
                 </div>
               )}
             </div>
@@ -515,7 +629,10 @@ export default async function ProjectDetailPage({
 
         {/* 8. Related research & related projects */}
         {(relatedWorks.length > 0 || relatedProjects.length > 0) && (
-          <section className="space-y-8 pt-6 border-t border-stone-200/80 dark:border-stone-800/80">
+          <section
+            id="related-section"
+            className="space-y-8 pt-6 border-t border-stone-200/80 dark:border-stone-800/80 scroll-mt-28"
+          >
             {relatedWorks.length > 0 && (
               <div className="space-y-3">
                 <h2 className="font-serif text-xl font-semibold text-stone-900 dark:text-stone-100 flex items-center gap-2">
@@ -575,24 +692,68 @@ export default async function ProjectDetailPage({
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2.5 flex-shrink-0">
-            <a
-              href={`mailto:${siteConfig.author.email}?subject=${encodeURIComponent(
-                `Project inquiry: ${project.name}`
-              )}`}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-academic hover:bg-academic-hover text-white text-xs font-medium transition-colors"
-            >
-              <Mail className="w-3.5 h-3.5" />
-              <span>Email Ismail</span>
-            </a>
-            <Link
-              href="/about"
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200 text-xs font-medium hover:border-academic transition-colors"
-            >
-              <span>About & Contact</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
+            <Tooltip content="Opens your default email client pre-addressed to Ismail">
+              <a
+                href={`mailto:${siteConfig.author.email}?subject=${encodeURIComponent(
+                  `Project inquiry: ${project.name}`
+                )}`}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-academic hover:bg-academic-hover text-white text-xs font-medium transition-colors"
+              >
+                <Mail className="w-3.5 h-3.5" />
+                <span>Email Ismail</span>
+              </a>
+            </Tooltip>
+            <Tooltip content="Learn more about the author and collaboration options">
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200 text-xs font-medium hover:border-academic transition-colors"
+              >
+                <span>About & Contact</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </Tooltip>
           </div>
         </section>
+
+        {/* Previous / Next Project Navigation */}
+        {(prevProject || nextProject) && (
+          <nav
+            aria-label="Browse neighboring projects"
+            className="pt-4 border-t border-stone-200/80 dark:border-stone-800/80 grid grid-cols-1 sm:grid-cols-2 gap-3"
+          >
+            {prevProject ? (
+              <Link
+                href={`/showcase/${prevProject.slug}`}
+                className="group p-4 rounded-xl border border-stone-200 dark:border-stone-800 bg-white/70 dark:bg-stone-900/40 hover:border-academic transition-colors text-left"
+              >
+                <span className="inline-flex items-center gap-1 text-[11px] font-mono text-stone-500">
+                  <ArrowLeft className="w-3 h-3" />
+                  Previous project
+                </span>
+                <p className="mt-1 font-serif text-sm font-semibold text-stone-900 dark:text-stone-100 group-hover:text-academic truncate">
+                  {prevProject.name}
+                </p>
+              </Link>
+            ) : (
+              <div />
+            )}
+
+            {nextProject && (
+              <Link
+                href={`/showcase/${nextProject.slug}`}
+                className="group p-4 rounded-xl border border-stone-200 dark:border-stone-800 bg-white/70 dark:bg-stone-900/40 hover:border-academic transition-colors text-left sm:text-right"
+              >
+                <span className="inline-flex items-center gap-1 text-[11px] font-mono text-stone-500">
+                  Next project
+                  <ArrowRight className="w-3 h-3" />
+                </span>
+                <p className="mt-1 font-serif text-sm font-semibold text-stone-900 dark:text-stone-100 group-hover:text-academic truncate">
+                  {nextProject.name}
+                </p>
+              </Link>
+            )}
+          </nav>
+        )}
       </article>
     </>
   );

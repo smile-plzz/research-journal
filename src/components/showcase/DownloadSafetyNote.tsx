@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ShieldAlert, ChevronDown, ChevronUp } from "lucide-react";
+import { Tooltip } from "@/components/ui/Tooltip";
 
 interface DownloadSafetyNoteProps {
   platforms?: string[];
@@ -27,19 +28,21 @@ export function DownloadSafetyNote({ platforms = [] }: DownloadSafetyNoteProps) 
             <p className="font-medium text-stone-900 dark:text-stone-100">
               Unsigned app: your device may show a security warning before opening.
             </p>
-            <button
-              type="button"
-              onClick={() => setExpanded((prev) => !prev)}
-              aria-expanded={expanded}
-              className="inline-flex items-center gap-1 font-medium text-amber-800 dark:text-amber-300 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-academic rounded"
-            >
-              <span>{expanded ? "Hide steps" : "How to proceed"}</span>
-              {expanded ? (
-                <ChevronUp className="w-3.5 h-3.5" />
-              ) : (
-                <ChevronDown className="w-3.5 h-3.5" />
-              )}
-            </button>
+            <Tooltip content={expanded ? "Collapse operating system instructions" : "Show step-by-step instructions for Windows, Android, or macOS"}>
+              <button
+                type="button"
+                onClick={() => setExpanded((prev) => !prev)}
+                aria-expanded={expanded}
+                className="inline-flex items-center gap-1 font-medium text-amber-800 dark:text-amber-300 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-academic rounded"
+              >
+                <span>{expanded ? "Hide steps" : "How to proceed"}</span>
+                {expanded ? (
+                  <ChevronUp className="w-3.5 h-3.5" />
+                ) : (
+                  <ChevronDown className="w-3.5 h-3.5" />
+                )}
+              </button>
+            </Tooltip>
           </div>
 
           <p className="text-stone-600 dark:text-stone-400 leading-relaxed">

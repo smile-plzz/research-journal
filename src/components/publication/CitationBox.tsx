@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Work } from "@/lib/catalog/schema";
+import { InfoHint, Tooltip } from "@/components/ui/Tooltip";
 import { Copy, Check, Quote, Download } from "lucide-react";
 
 interface CitationBoxProps {
@@ -81,6 +82,7 @@ export function CitationBox({ work }: CitationBoxProps) {
           <h4 className="font-serif text-sm font-semibold text-stone-900 dark:text-stone-100">
             Cite This Research
           </h4>
+          <InfoHint text="Switch citation styles below or download a ready-to-import .bib file for Zotero, Mendeley, or LaTeX." />
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
@@ -88,48 +90,54 @@ export function CitationBox({ work }: CitationBoxProps) {
           <div className="flex items-center rounded border border-stone-300 dark:border-stone-700 p-0.5 text-xs bg-white dark:bg-stone-800">
             {(["bibtex", "apa", "ieee", "chicago"] as CitationFormat[]).map(
               (fmt) => (
-                <button
-                  key={fmt}
-                  onClick={() => setFormat(fmt)}
-                  className={`px-2 py-0.5 rounded uppercase text-[11px] font-mono transition-colors ${
-                    format === fmt
-                      ? "bg-academic text-white font-medium shadow-xs"
-                      : "text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100"
-                  }`}
-                >
-                  {fmt}
-                </button>
+                <Tooltip key={fmt} content={`Switch citation format to ${fmt.toUpperCase()}`}>
+                  <button
+                    type="button"
+                    onClick={() => setFormat(fmt)}
+                    className={`px-2 py-0.5 rounded uppercase text-[11px] font-mono transition-colors ${
+                      format === fmt
+                        ? "bg-academic text-white font-medium shadow-xs"
+                        : "text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100"
+                    }`}
+                  >
+                    {fmt}
+                  </button>
+                </Tooltip>
               )
             )}
           </div>
 
           <div className="flex items-center gap-1.5">
-            <button
-              onClick={handleCopy}
-              className="flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-medium bg-stone-200 dark:bg-stone-800 hover:bg-stone-300 dark:hover:bg-stone-700 text-stone-800 dark:text-stone-200 transition-colors"
-              title="Copy formatted citation"
-            >
-              {copied ? (
-                <>
-                  <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                  <span>Copied</span>
-                </>
-              ) : (
-                <>
-                  <Copy className="w-3.5 h-3.5" />
-                  <span>Copy</span>
-                </>
-              )}
-            </button>
+            <Tooltip content={`Copy ${format.toUpperCase()} citation to clipboard`}>
+              <button
+                type="button"
+                onClick={handleCopy}
+                className="flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-medium bg-stone-200 dark:bg-stone-800 hover:bg-stone-300 dark:hover:bg-stone-700 text-stone-800 dark:text-stone-200 transition-colors"
+              >
+                {copied ? (
+                  <>
+                    <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                    <span>Copied</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-3.5 h-3.5" />
+                    <span>Copy</span>
+                  </>
+                )}
+              </button>
+            </Tooltip>
 
-            <button
-              onClick={handleDownloadBibtex}
-              className="flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-medium bg-stone-200 dark:bg-stone-800 hover:bg-stone-300 dark:hover:bg-stone-700 text-stone-800 dark:text-stone-200 transition-colors"
-              title="Download citation as .bib file"
-            >
-              <Download className="w-3.5 h-3.5" />
-              <span>.bib</span>
-            </button>
+            <Tooltip content="Download BibTeX citation as a .bib file">
+              <button
+                type="button"
+                onClick={handleDownloadBibtex}
+                className="flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-medium bg-stone-200 dark:bg-stone-800 hover:bg-stone-300 dark:hover:bg-stone-700 text-stone-800 dark:text-stone-200 transition-colors"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>.bib</span>
+              </button>
+            </Tooltip>
           </div>
         </div>
       </div>

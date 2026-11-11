@@ -1,5 +1,6 @@
 import { DownloadAsset, ProjectReleaseInfo } from "@/lib/showcase/schema";
 import { DownloadSafetyNote } from "./DownloadSafetyNote";
+import { InfoHint, Tooltip } from "@/components/ui/Tooltip";
 import { Download, CheckCircle2, FileCheck2, ExternalLink } from "lucide-react";
 
 interface DownloadPanelProps {
@@ -24,16 +25,21 @@ export function DownloadPanel({
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex flex-wrap items-center gap-2 text-xs">
           {releaseInfo?.tag && (
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 font-mono">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-              <span>Version {releaseInfo.tag}</span>
-            </span>
+            <Tooltip content="Latest tagged software release published by the author">
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 font-mono cursor-default">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                <span>Version {releaseInfo.tag}</span>
+              </span>
+            </Tooltip>
           )}
           {releaseInfo?.isPrerelease && (
-            <span className="px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 dark:bg-amber-950/50 dark:text-amber-300 text-[11px] font-medium">
-              Preview build
-            </span>
+            <Tooltip content="Early preview release that may still be undergoing testing">
+              <span className="px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 dark:bg-amber-950/50 dark:text-amber-300 text-[11px] font-medium cursor-default">
+                Preview build
+              </span>
+            </Tooltip>
           )}
+          <InfoHint text="All downloads link directly to packaged release files without needing any account." />
         </div>
       </div>
 
@@ -58,34 +64,40 @@ export function DownloadPanel({
                 {asset.fileName && (
                   <>
                     <span>·</span>
-                    <span className="truncate max-w-[180px]" title={asset.fileName}>
-                      {asset.fileName}
-                    </span>
+                    <Tooltip content={`Original file name: ${asset.fileName}`}>
+                      <span className="truncate max-w-[180px] cursor-default">
+                        {asset.fileName}
+                      </span>
+                    </Tooltip>
                   </>
                 )}
               </div>
             </div>
 
             <div className="flex flex-wrap items-center justify-between gap-2 pt-1">
-              <a
-                href={asset.url}
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-md bg-academic hover:bg-academic-hover text-white text-xs font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-academic"
-              >
-                <Download className="w-3.5 h-3.5" />
-                <span>Download directly</span>
-              </a>
+              <Tooltip content="Starts direct file download immediately">
+                <a
+                  href={asset.url}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-md bg-academic hover:bg-academic-hover text-white text-xs font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-academic"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>Download directly</span>
+                </a>
+              </Tooltip>
 
               {asset.sha256Url && (
-                <a
-                  href={asset.sha256Url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-[11px] text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 underline"
-                >
-                  <FileCheck2 className="w-3 h-3" />
-                  <span>SHA-256</span>
-                  <ExternalLink className="w-2.5 h-2.5" />
-                </a>
+                <Tooltip content="Cryptographic SHA-256 hash to verify file integrity after downloading">
+                  <a
+                    href={asset.sha256Url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-[11px] text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 underline"
+                  >
+                    <FileCheck2 className="w-3 h-3" />
+                    <span>SHA-256</span>
+                    <ExternalLink className="w-2.5 h-2.5" />
+                  </a>
+                </Tooltip>
               )}
             </div>
           </div>

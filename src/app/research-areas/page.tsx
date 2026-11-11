@@ -1,7 +1,9 @@
 import { researchDomains } from "@/config/domains";
 import { getAllWorks, getWorksByDomain } from "@/lib/catalog/queries";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Layers } from "lucide-react";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { InfoHint, Tooltip } from "@/components/ui/Tooltip";
+import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -15,13 +17,18 @@ export default function ResearchAreasPage() {
 
   return (
     <div className="space-y-10">
+      <div className="pb-3 border-b border-stone-200/80 dark:border-stone-800/80">
+        <Breadcrumbs items={[{ label: "Research Areas" }]} />
+      </div>
+
       {/* Page Header */}
       <header className="pb-6 border-b border-stone-200/80 dark:border-stone-800/80">
-        <h1 className="text-3xl sm:text-4xl font-serif font-bold text-stone-900 dark:text-stone-100 mb-3">
-          Research Areas & Academic Taxonomies
+        <h1 className="text-3xl sm:text-4xl font-serif font-bold text-stone-900 dark:text-stone-100 mb-3 flex items-center gap-2">
+          <span>Research Areas & Academic Taxonomies</span>
+          <InfoHint text="Five thematic domains mapping each repository to a scholarly discipline." />
         </h1>
         <p className="text-base text-stone-600 dark:text-stone-400 font-sans max-w-3xl leading-relaxed">
-          The publication archive is organized into five foundational academic domains.
+          The publication archive ({allWorks.length} indexed works) is organized into five foundational academic domains.
           Each domain encapsulates distinct theoretical frameworks, computational pipelines,
           and empirical datasets.
         </p>

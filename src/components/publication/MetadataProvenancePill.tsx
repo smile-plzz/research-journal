@@ -1,4 +1,5 @@
 import { ProvenanceMethod, ProvenanceSource } from "@/lib/catalog/schema";
+import { Tooltip } from "@/components/ui/Tooltip";
 import { CheckCircle2, HelpCircle, FileText, Settings, Cpu } from "lucide-react";
 
 interface MetadataProvenancePillProps {
@@ -48,17 +49,27 @@ export function MetadataProvenancePill({
     }
   };
 
+  const methodDescriptions: Record<ProvenanceMethod, string> = {
+    "manifest-explicit": "Explicitly declared inside a publication manifest file",
+    extracted: "Automatically parsed from repository citation or documentation",
+    "configured-default": "Provided from verified author registry defaults",
+    "heuristic-derived": "Inferred from repository structure and commit history",
+  };
+
   return (
-    <div
-      className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-mono bg-stone-100 dark:bg-stone-800/80 text-stone-600 dark:text-stone-400 border border-stone-200 dark:border-stone-700/60"
-      title={`${label}: ${getSourceDisplay()} (${method}, verified: ${verified})`}
+    <Tooltip
+      content={`${label} source: ${getSourceDisplay()}. ${
+        methodDescriptions[method] || ""
+      } (${verified ? "verified" : "unverified"})`}
     >
-      {getIcon()}
-      <span className="font-sans font-medium text-stone-700 dark:text-stone-300">
-        {label}:
-      </span>
-      <span>{getSourceDisplay()}</span>
-    </div>
+      <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-mono bg-stone-100 dark:bg-stone-800/80 text-stone-600 dark:text-stone-400 border border-stone-200 dark:border-stone-700/60 cursor-default">
+        {getIcon()}
+        <span className="font-sans font-medium text-stone-700 dark:text-stone-300">
+          {label}:
+        </span>
+        <span>{getSourceDisplay()}</span>
+      </div>
+    </Tooltip>
   );
 }
 

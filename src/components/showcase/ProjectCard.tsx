@@ -7,7 +7,16 @@ import {
   getCategoryMeta,
 } from "@/lib/showcase/schema";
 import { CategoryCoverFallback, CategoryIcon } from "./CategoryVisuals";
+import { Tooltip } from "@/components/ui/Tooltip";
 import { ArrowRight, Download, ExternalLink } from "lucide-react";
+
+const STATUS_HINTS: Record<string, string> = {
+  live: "Open and use online right now in your browser",
+  downloadable: "Direct installer or package ready to download",
+  "in-development": "Actively updated project in progress",
+  prototype: "Working early proof of concept",
+  archived: "Preserved snapshot of an earlier project",
+};
 
 interface ProjectCardProps {
   project: Project;
@@ -68,24 +77,30 @@ export function ProjectCard({ project, compact = false }: ProjectCardProps) {
           {/* Status + Category Row */}
           <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
             <div className="flex flex-wrap items-center gap-1.5">
-              <span
-                className={`px-2 py-0.5 rounded-full border text-[11px] font-medium ${statusMeta.badgeClass}`}
-              >
-                {statusMeta.label}
-              </span>
-              <Link
-                href={`/showcase/categories/${project.category}`}
-                className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:text-academic dark:hover:text-academic-dark text-[11px] transition-colors"
-              >
-                <CategoryIcon category={project.category} className="w-3 h-3" />
-                <span>{categoryMeta.shortLabel}</span>
-              </Link>
+              <Tooltip content={STATUS_HINTS[project.status] || statusMeta.label}>
+                <span
+                  className={`px-2 py-0.5 rounded-full border text-[11px] font-medium cursor-default ${statusMeta.badgeClass}`}
+                >
+                  {statusMeta.label}
+                </span>
+              </Tooltip>
+              <Tooltip content={`View all ${categoryMeta.label}`}>
+                <Link
+                  href={`/showcase/categories/${project.category}`}
+                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:text-academic dark:hover:text-academic-dark text-[11px] transition-colors"
+                >
+                  <CategoryIcon category={project.category} className="w-3 h-3" />
+                  <span>{categoryMeta.shortLabel}</span>
+                </Link>
+              </Tooltip>
             </div>
 
             {updatedLabel && (
-              <span className="text-[11px] text-stone-400 dark:text-stone-500">
-                {updatedLabel}
-              </span>
+              <Tooltip content="Last updated in source repository">
+                <span className="text-[11px] text-stone-400 dark:text-stone-500 cursor-default">
+                  {updatedLabel}
+                </span>
+              </Tooltip>
             )}
           </div>
 
@@ -127,48 +142,58 @@ export function ProjectCard({ project, compact = false }: ProjectCardProps) {
       <div className="px-5 py-3.5 border-t border-stone-100 dark:border-stone-800/80 bg-cream-100/40 dark:bg-stone-900/30 flex items-center justify-between gap-3 text-xs">
         {project.liveUrl ? (
           <>
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-academic hover:bg-academic-hover text-white font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-academic"
-            >
-              <span>Try it live</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-            <Link
-              href={`/showcase/${project.slug}`}
-              className="inline-flex items-center gap-1 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 font-medium transition-colors"
-            >
-              <span>Details</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
+            <Tooltip content="Launch hosted web app in a new tab">
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-academic hover:bg-academic-hover text-white font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-academic"
+              >
+                <span>Try it live</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </Tooltip>
+            <Tooltip content="Open overview, features, and documentation">
+              <Link
+                href={`/showcase/${project.slug}`}
+                className="inline-flex items-center gap-1 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 font-medium transition-colors"
+              >
+                <span>Details</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </Tooltip>
           </>
         ) : primaryDownload ? (
           <>
-            <a
-              href={primaryDownload.url}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-academic hover:bg-academic-hover text-white font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-academic"
-            >
-              <Download className="w-3.5 h-3.5" />
-              <span>Download</span>
-            </a>
-            <Link
-              href={`/showcase/${project.slug}`}
-              className="inline-flex items-center gap-1 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 font-medium transition-colors"
-            >
-              <span>How to use</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
+            <Tooltip content={`Download ${primaryDownload.label}${primaryDownload.size ? ` (${primaryDownload.size})` : ""}`}>
+              <a
+                href={primaryDownload.url}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-academic hover:bg-academic-hover text-white font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-academic"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>Download</span>
+              </a>
+            </Tooltip>
+            <Tooltip content="See installation steps and all files">
+              <Link
+                href={`/showcase/${project.slug}`}
+                className="inline-flex items-center gap-1 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 font-medium transition-colors"
+              >
+                <span>How to use</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </Tooltip>
           </>
         ) : (
-          <Link
-            href={`/showcase/${project.slug}`}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-stone-300 dark:border-stone-700 hover:border-academic text-stone-800 dark:text-stone-200 font-medium transition-colors"
-          >
-            <span>Learn more</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
+          <Tooltip content="Open full plain-language overview and documentation">
+            <Link
+              href={`/showcase/${project.slug}`}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-stone-300 dark:border-stone-700 hover:border-academic text-stone-800 dark:text-stone-200 font-medium transition-colors"
+            >
+              <span>Learn more</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </Tooltip>
         )}
       </div>
     </article>

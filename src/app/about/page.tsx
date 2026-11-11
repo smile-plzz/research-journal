@@ -1,4 +1,7 @@
 import { siteConfig } from "@/config/site";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { Tooltip } from "@/components/ui/Tooltip";
+import Link from "next/link";
 import {
   ExternalLink,
   Github,
@@ -8,6 +11,7 @@ import {
   BookOpen,
   Mail,
   Wrench,
+  Compass,
 } from "lucide-react";
 import type { Metadata } from "next";
 
@@ -20,6 +24,10 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="max-w-3xl mx-auto space-y-12">
+      <div className="pb-3 border-b border-stone-200/80 dark:border-stone-800/80">
+        <Breadcrumbs items={[{ label: "About & Contact" }]} />
+      </div>
+
       {/* Header */}
       <header className="pb-8 border-b border-stone-200/80 dark:border-stone-800/80">
         <h1 className="text-3xl sm:text-4xl font-serif font-bold text-stone-900 dark:text-stone-100 mb-2">
@@ -63,14 +71,25 @@ export default function AboutPage() {
           research collaboration, hire me for a project, or contribute improvements, please email me
           directly.
         </p>
-        <div className="pt-1">
-          <a
-            href={`mailto:${siteConfig.author.email}?subject=Inquiry%20from%20Research%20and%20Projects`}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-academic hover:bg-academic-hover text-white text-xs font-medium transition-colors"
-          >
-            <Mail className="w-4 h-4" />
-            <span>Email {siteConfig.author.email}</span>
-          </a>
+        <div className="pt-1 flex flex-wrap items-center gap-3">
+          <Tooltip content="Compose an email to Ismail in your default mail app">
+            <a
+              href={`mailto:${siteConfig.author.email}?subject=Inquiry%20from%20Research%20and%20Projects`}
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-academic hover:bg-academic-hover text-white text-xs font-medium transition-colors"
+            >
+              <Mail className="w-4 h-4" />
+              <span>Email {siteConfig.author.email}</span>
+            </a>
+          </Tooltip>
+          <Tooltip content="Browse live apps and downloadable builds">
+            <Link
+              href="/showcase"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200 text-xs font-medium hover:border-academic transition-colors"
+            >
+              <Compass className="w-3.5 h-3.5" />
+              <span>Browse Project Showcase</span>
+            </Link>
+          </Tooltip>
         </div>
       </section>
 

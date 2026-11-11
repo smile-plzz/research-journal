@@ -3,6 +3,9 @@ import { siteConfig } from "@/config/site";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
+import { BackToTopButton } from "@/components/ui/BackToTopButton";
+import { getAllWorks } from "@/lib/catalog/queries";
+import { getAllProjects } from "@/lib/showcase/queries";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -46,6 +49,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const quickJumpWorks = getAllWorks().map((w) => ({
+    slug: w.slug,
+    title: w.title,
+    status: w.status,
+    domainId: w.domainId,
+  }));
+
+  const quickJumpProjects = getAllProjects().map((p) => ({
+    slug: p.slug,
+    name: p.name,
+    tagline: p.tagline,
+    category: p.category,
+    status: p.status,
+    hasLive: Boolean(p.liveUrl),
+    hasDownload: p.downloads.length > 0,
+  }));
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="min-h-screen flex flex-col bg-cream-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100 transition-colors">
@@ -55,7 +75,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
+          <Navbar
+            quickJumpWorks={quickJumpWorks}
+            quickJumpProjects={quickJumpProjects}
+          />
           <a
             href="#main-content"
             className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-3 focus:py-2 focus:rounded-md focus:bg-academic focus:text-white focus:text-xs"
@@ -66,6 +89,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
+          <BackToTopButton />
         </ThemeProvider>
       </body>
     </html>
