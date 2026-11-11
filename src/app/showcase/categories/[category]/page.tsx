@@ -9,6 +9,7 @@ import {
 } from "@/lib/showcase/schema";
 import { ShowcaseBrowser } from "@/components/showcase/ShowcaseBrowser";
 import { CategoryIcon } from "@/components/showcase/CategoryVisuals";
+import { siteConfig } from "@/config/site";
 import { ArrowLeft } from "lucide-react";
 
 interface CategoryPageProps {
@@ -32,6 +33,12 @@ export async function generateMetadata({
   return {
     title: `${meta.label} | Project Showcase`,
     description: meta.description,
+    openGraph: {
+      title: `${meta.label} | ${siteConfig.name}`,
+      description: meta.description,
+      url: `${siteConfig.url}/showcase/categories/${parsed.data}`,
+      type: "website",
+    },
   };
 }
 

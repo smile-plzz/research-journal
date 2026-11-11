@@ -30,6 +30,7 @@ import {
   Download,
   ExternalLink,
   Info,
+  Mail,
   MessageSquare,
   Users,
 } from "lucide-react";
@@ -62,11 +63,12 @@ export async function generateMetadata({
     : siteConfig.ogImage;
 
   return {
-    title: `${project.name} | Project Showcase`,
+    title: `${project.name} | Showcase`,
     description,
     openGraph: {
-      title: project.name,
+      title: `${project.name} | ${siteConfig.name}`,
       description,
+      siteName: siteConfig.name,
       type: "website",
       url: `${siteConfig.url}/showcase/${project.slug}`,
       images: [
@@ -80,7 +82,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: project.name,
+      title: `${project.name} | ${siteConfig.name}`,
       description,
       images: [ogImageUrl],
     },
@@ -565,19 +567,31 @@ export default async function ProjectDetailPage({
           <div className="space-y-1">
             <h2 className="font-serif text-lg font-semibold text-stone-900 dark:text-stone-100 flex items-center gap-2">
               <MessageSquare className="w-4 h-4 text-academic" />
-              <span>Want to talk about this project?</span>
+              <span>Want to buy a build, collaborate, or contribute?</span>
             </h2>
-            <p className="text-xs text-stone-600 dark:text-stone-400">
-              Questions, collaboration inquiries, or feedback for Md. Ismail Hossain are welcome.
+            <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed">
+              Email Md. Ismail Hossain directly if you would like to purchase a packaged or custom
+              build, report feedback, or contribute to this project.
             </p>
           </div>
-          <Link
-            href="/about"
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-stone-900 dark:bg-stone-100 text-stone-50 dark:text-stone-900 text-xs font-medium hover:opacity-90 transition-opacity flex-shrink-0"
-          >
-            <span>Contact & About</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
+          <div className="flex flex-wrap items-center gap-2.5 flex-shrink-0">
+            <a
+              href={`mailto:${siteConfig.author.email}?subject=${encodeURIComponent(
+                `Project inquiry: ${project.name}`
+              )}`}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-academic hover:bg-academic-hover text-white text-xs font-medium transition-colors"
+            >
+              <Mail className="w-3.5 h-3.5" />
+              <span>Email Ismail</span>
+            </a>
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200 text-xs font-medium hover:border-academic transition-colors"
+            >
+              <span>About & Contact</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
         </section>
       </article>
     </>

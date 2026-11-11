@@ -5,17 +5,20 @@ All notable changes to the GitHub-Powered Research Journal & Publication Archive
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2026-11-12
+## [2.0.0] - 2026-11-12
 
 ### Added
-- **Repo Showcase Wing (`/showcase`, `/showcase/[slug]`, `/showcase/categories/[category]`)**:
-  - Separate static catalog (`src/data/generated/showcase.json`) and cached README layer (`src/content/generated/showcase/`) alongside the untouched Research catalog.
-  - Hand-curated editorial layer (`src/config/showcase.ts`) with provenance tracking, non-fabrication defaults, and `needsReview` flags.
-  - GitHub Showcase ingestion (`src/lib/showcase/`) with wing routing, GitHub Release binary asset parsing (Windows `.zip`, Android `.apk`, macOS/Linux `.tar.gz`, Chrome/Firefox extensions), and rate-limit-aware discovery.
-  - Extended `scripts/sync-github.ts` with `--target research|showcase|all` and updated `.github/workflows/sync-github.yml` for dual-catalog daily sync.
-  - Build-time catalog validation (`scripts/validate-showcase.ts`) checking slug uniqueness, featured completeness, release asset links, and cross-wing work slugs.
-  - Non-technical UI with plain-language cards, faceted client-side search, direct release downloads, reusable `DownloadSafetyNote` component, collapsed "For developers" accordion, and two-wing homepage + navigation switch (`Research | Showcase | About`).
-  - Added `tests/showcase/showcase.test.ts` covering normalizer, merge precedence, release asset parsing, routing rules, slug uniqueness, and schema validation.
+- **Two-Wing Platform ("Research and Projects")**:
+  - Rebranded site identity to **Research and Projects** with a top-level **Research | Showcase | About** wing switch and dual-entry homepage.
+  - **Repo Showcase Wing (`/showcase`, `/showcase/[slug]`, `/showcase/categories/[category]`)**:
+    - Separate static catalog (`src/data/generated/showcase.json`, 81 indexed projects: 30 curated drafts, 6 featured) and cached README layer (`src/content/generated/showcase/`) alongside the untouched Research catalog (`catalog.json`).
+    - Hand-curated editorial layer (`src/config/showcase.ts`) with provenance tracking, non-fabrication defaults, `needsReview` flags, and exclusion rules for superseded/meta/broken-link repositories.
+    - Dual-wing routing override (`bangladesh-music-evolution-paper` in both wings) plus bidirectional cross-links between Showcase tools (`TCRA Code Auditor V4`, `VibeBench Forensic Viewer`) and the TCRA thesis.
+    - GitHub Showcase ingestion (`src/lib/showcase/`) with GitHub Release binary asset parsing (Windows `.zip`, Android `.apk`, macOS/Linux `.tar.gz`, Chrome/Firefox extensions) and rate-limit fallback preservation.
+    - Extended `scripts/sync-github.ts` with `--target research|showcase|all`, added build-time strict validator (`scripts/validate-showcase.ts`), and updated `.github/workflows/sync-github.yml` for dual-catalog daily sync.
+    - Non-technical UI with plain-language cards, faceted client-side search, direct release downloads, reusable `DownloadSafetyNote` component, collapsed "For developers" accordion, and direct email contact CTA (`ismailhossain013@gmail.com`) for purchasing builds, collaborating, or contributing.
+    - Accessibility & SEO updates: skip-to-content link, OG/Twitter metadata across showcase and category pages, `SoftwareApplication` JSON-LD, and full `sitemap.ts` coverage.
+    - Added `tests/showcase/showcase.test.ts` (29/29 total Vitest tests passing).
 
 ## [1.2.0] - 2026-11-10
 

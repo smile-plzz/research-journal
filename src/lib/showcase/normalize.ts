@@ -120,7 +120,7 @@ export function extractReadmeDetails(readmeContent?: string | null): ReadmeExtra
     current = [];
     if (
       joined.length >= 35 &&
-      !/^(version|release candidate|build|license|download|http|this contains everything you need to run your app locally)/i.test(
+      !/^(version|release candidate|build|license|download|http|this contains everything you need to run your app locally|view your app in ai studio)/i.test(
         joined
       )
     ) {

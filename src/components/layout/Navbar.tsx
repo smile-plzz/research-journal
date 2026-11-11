@@ -23,7 +23,7 @@ export function Navbar() {
 
   return (
     <header className="border-b border-stone-200/80 dark:border-stone-800/80 bg-cream-50/90 dark:bg-stone-950/90 backdrop-blur-sm sticky top-0 z-40 transition-colors">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
         {/* Brand Identity */}
         <Link
           href="/"
@@ -34,7 +34,7 @@ export function Navbar() {
           </div>
           <div className="truncate">
             <span className="font-serif text-base sm:text-lg font-semibold tracking-tight text-stone-900 dark:text-stone-100 group-hover:text-academic transition-colors">
-              Research Journal
+              {siteConfig.name}
             </span>
             <span className="hidden md:inline-block text-xs font-sans text-stone-500 dark:text-stone-400 ml-2 pl-2 border-l border-stone-300 dark:border-stone-700">
               {siteConfig.subtitle}
@@ -43,7 +43,7 @@ export function Navbar() {
         </Link>
 
         {/* Wing Switch & Primary Navigation */}
-        <nav aria-label="Main navigation" className="flex items-center gap-1.5 sm:gap-4 text-sm font-sans">
+        <nav aria-label="Main navigation" className="flex items-center gap-1.5 sm:gap-4 text-sm font-sans flex-shrink-0">
           <div className="flex items-center rounded-lg border border-stone-200/80 dark:border-stone-800 bg-stone-100/60 dark:bg-stone-900/60 p-0.5">
             {siteConfig.nav.slice(0, 2).map((item) => {
               const active = isNavItemActive(item.href);
@@ -51,7 +51,7 @@ export function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`px-3 py-1 rounded-md text-xs sm:text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-academic ${
+                  className={`px-2.5 sm:px-3 py-1 rounded-md text-xs sm:text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-academic ${
                     active
                       ? "font-medium text-stone-900 dark:text-stone-100 bg-white dark:bg-stone-800 shadow-sm"
                       : "text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100"
@@ -69,7 +69,7 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-2.5 py-1.5 rounded-md text-xs sm:text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-academic ${
+                className={`px-2 sm:px-2.5 py-1.5 rounded-md text-xs sm:text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-academic ${
                   active
                     ? "font-medium text-stone-900 dark:text-stone-100 bg-stone-200/50 dark:bg-stone-800/50"
                     : "text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100"
@@ -80,7 +80,7 @@ export function Navbar() {
             );
           })}
 
-          <div className="flex items-center gap-1.5 pl-2 border-l border-stone-200 dark:border-stone-800">
+          <div className="flex items-center gap-1 pl-1.5 sm:pl-2 border-l border-stone-200 dark:border-stone-800">
             <a
               href={siteConfig.links.github}
               target="_blank"

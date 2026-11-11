@@ -10,6 +10,7 @@ import { PROJECT_CATEGORIES } from "@/lib/showcase/schema";
 import { ShowcaseBrowser } from "@/components/showcase/ShowcaseBrowser";
 import { ProjectCard } from "@/components/showcase/ProjectCard";
 import { CategoryIcon } from "@/components/showcase/CategoryVisuals";
+import { siteConfig } from "@/config/site";
 import { Layers, Sparkles, ArrowRight, Globe, Download } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -17,10 +18,20 @@ export const metadata: Metadata = {
   description:
     "Browse web apps, desktop software, Android TV apps, and everyday utilities built by Md. Ismail Hossain. Try live in your browser or download directly with no GitHub account needed.",
   openGraph: {
-    title: "Project Showcase | Md. Ismail Hossain",
+    title: `Project Showcase | ${siteConfig.name}`,
     description:
       "Web apps, Windows software, Android TV apps, and everyday tools you can try live or download directly.",
+    siteName: siteConfig.name,
+    url: `${siteConfig.url}/showcase`,
     type: "website",
+    images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: "Project Showcase" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Project Showcase | ${siteConfig.name}`,
+    description:
+      "Web apps, Windows software, Android TV apps, and everyday tools you can try live or download directly.",
+    images: [siteConfig.ogImage],
   },
 };
 

@@ -56,7 +56,13 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-3 focus:py-2 focus:rounded-md focus:bg-academic focus:text-white focus:text-xs"
+          >
+            Skip to main content
+          </a>
+          <main id="main-content" className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-8">
             {children}
           </main>
           <Footer />

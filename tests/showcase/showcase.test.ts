@@ -185,7 +185,7 @@ describe("Showcase Pipeline & Catalog Suite", () => {
         description: "A streaming platform for live international TV channels.",
         homepage: "https://omni-stream-tv.vercel.app",
       });
-      const readme = `# Run and deploy your AI Studio app\n\nThis contains everything you need to run your app locally.\n`;
+      const readme = `# Run and deploy your AI Studio app\n\nThis contains everything you need to run your app locally.\n\nView your app in AI Studio: https://ai.studio/apps/drive/example\n`;
 
       const { project } = normalizeGitHubRepoToProject(repo, [], readme);
       expect(project.name).toBe("OmniStream TV");
@@ -219,7 +219,7 @@ describe("Showcase Pipeline & Catalog Suite", () => {
   });
 
   describe("Routing Rules & Exclusions", () => {
-    it("routes -paper repos to Research only and software repos to Showcase only", () => {
+    it("routes -paper repos to Research only, software repos to Showcase only, and dual-wing overrides to both", () => {
       expect(getRepoWingRouting("hollow-knight-lore-paper")).toMatchObject({
         research: true,
         showcase: false,
@@ -228,7 +228,15 @@ describe("Showcase Pipeline & Catalog Suite", () => {
         research: false,
         showcase: true,
       });
+      expect(getRepoWingRouting("bangladesh-music-evolution-paper")).toMatchObject({
+        research: true,
+        showcase: true,
+      });
       expect(getRepoWingRouting("github-slideshow")).toMatchObject({
+        research: false,
+        showcase: false,
+      });
+      expect(getRepoWingRouting("TCRA-Code-Auditor-V3-web-app")).toMatchObject({
         research: false,
         showcase: false,
       });

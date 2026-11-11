@@ -153,12 +153,21 @@ export async function runShowcaseIngestion(
     return JSON.parse(fs.readFileSync(catalogPath, "utf-8")) as ShowcaseCatalog;
   }
 
+  const activeReadmeFiles = new Set<string>();
   for (const project of projects) {
     const readme = readmeByRepoName.get(project.repo.name);
     if (readme) {
       const fileName = `${project.slug}.md`;
       project.readmeFile = fileName;
+      activeReadmeFiles.add(fileName);
       fs.writeFileSync(path.join(readmeDir, fileName), readme, "utf-8");
+    }
+  }
+
+  // Prune stale cached README files for excluded or renamed projects
+  for (const existingFile of fs.readdirSync(readmeDir)) {
+    if (existingFile.endsWith(".md") && !activeReadmeFiles.has(existingFile)) {
+      fs.rmSync(path.join(readmeDir, existingFile), { force: true });
     }
   }
 

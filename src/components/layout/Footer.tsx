@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { GitBranch, ShieldCheck } from "lucide-react";
+import { GitBranch, Mail, ShieldCheck } from "lucide-react";
 
 export function Footer() {
   return (
@@ -10,7 +10,7 @@ export function Footer() {
           {/* Identity & Scope */}
           <div>
             <h3 className="font-serif font-semibold text-stone-900 dark:text-stone-100 mb-2">
-              Research Journal: Research and Projects
+              {siteConfig.name}
             </h3>
             <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed mb-3">
               A two-wing publication archive and software showcase by Md. Ismail Hossain:
@@ -82,27 +82,24 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Provenance & Synchronization */}
+          {/* Contact & Sync */}
           <div>
             <h4 className="font-medium text-stone-900 dark:text-stone-100 text-xs uppercase tracking-wider mb-3">
-              Provenance & Sync
+              Contact & Sync
             </h4>
             <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed mb-3">
-              Source of truth: GitHub (
+              Want to buy a custom build, collaborate, or contribute? Email{" "}
               <a
-                href={siteConfig.links.github}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={`mailto:${siteConfig.author.email}`}
                 className="underline hover:text-stone-900 dark:hover:text-stone-100"
               >
-                @{siteConfig.author.githubUsername}
+                {siteConfig.author.email}
               </a>
-              ). Synchronized via scheduled GitHub Actions workflow with static-first delivery and
-              direct software releases.
+              .
             </p>
             <div className="flex items-center gap-2 text-xs font-mono text-stone-500 dark:text-stone-400">
               <GitBranch className="w-3.5 h-3.5" />
-              <span>Catalogs v1.0.0 · Static-First</span>
+              <span>Static-First · Daily Synced</span>
             </div>
           </div>
         </div>
@@ -112,14 +109,22 @@ export function Footer() {
           <div>
             © {new Date().getFullYear()} Md. Ismail Hossain. Open research and open software.
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-4">
+            <a
+              href={`mailto:${siteConfig.author.email}`}
+              className="inline-flex items-center gap-1 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
+            >
+              <Mail className="w-3 h-3" />
+              <span>Email</span>
+            </a>
+            <span>·</span>
             <a
               href={siteConfig.links.portfolio}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
             >
-              Academic Portfolio
+              Portfolio
             </a>
             <span>·</span>
             <a

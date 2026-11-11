@@ -84,5 +84,16 @@
   6. Generated `src/data/generated/showcase.json` (97 projects, 12 starter curated drafts marked `needsReview: true`, 6 featured) and cached READMEs under `src/content/generated/showcase/`.
   7. Added Vitest coverage in `tests/showcase/showcase.test.ts` (28/28 total tests passing) while keeping `catalog.json` and the Research wing untouched.
 
+### Session 08: Content Curation, Rebrand, Polish & Production Ship (Phases 5-7)
+- **Timestamp:** 2026-11-12T02:26:00+06:00
+- **Action:** Rebranded site to **Research and Projects**, expanded curated Showcase entries, filtered superseded/meta/broken repositories, added email buy/contribute CTAs, completed accessibility/SEO polish, updated docs, and verified full sync, tests, and production build.
+- **Milestones Completed:**
+  1. Rebranded `siteConfig`, `Navbar`, `Footer`, and `AboutPage` to **Research and Projects** with public contact email `ismailhossain013@gmail.com`.
+  2. Expanded `src/config/showcase.ts` to 30 curated projects (6 featured) derived from verified READMEs (flagged `needsReview: true`), excluded 21 superseded/meta/broken-link/abandoned repos, enabled dual-wing routing on `bangladesh-music-evolution-paper`, and cross-linked TCRA tools to the TCRA thesis.
+  3. Hardened `src/lib/showcase/normalize.ts` (filtering AI Studio template boilerplate) and `src/lib/showcase/discover.ts` (rate-limit download preservation + stale README pruning).
+  4. Added direct email CTA ("Want to buy a build, collaborate, or contribute?") on `/showcase/[slug]` and `/about`, skip-to-content accessibility link in `layout.tsx`, and OG/Twitter metadata across showcase routes.
+  5. Updated `README.md`, `context.md`, `CHANGELOG.md`, and `dev-log.md` with zero em-dashes in new copy and documentation.
+
+
 
 

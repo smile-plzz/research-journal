@@ -1,8 +1,8 @@
 export const siteConfig = {
-  name: "Md. Ismail Hossain | Research Journal",
-  subtitle: "Research and Projects",
-  shortName: "Research Journal",
-  title: "Md. Ismail Hossain | Research Journal: Research and Projects",
+  name: "Research and Projects",
+  subtitle: "Md. Ismail Hossain",
+  shortName: "Research and Projects",
+  title: "Research and Projects | Md. Ismail Hossain",
   description:
     "Academic research archive and software project showcase by Md. Ismail Hossain: scholarly monographs, empirical data science studies, web apps, and desktop tools.",
   url: "https://research-journal-kappa.vercel.app",
@@ -17,7 +17,7 @@ export const siteConfig = {
     institution: "Jahangirnagar University",
     department: "Institute of Information Technology (IIT)",
     location: "Dhaka, Bangladesh",
-    email: "contact@ismailhossain.dev",
+    email: "ismailhossain013@gmail.com",
   },
   nav: [
     { label: "Research", href: "/" },
@@ -28,5 +28,6 @@ export const siteConfig = {
     github: "https://github.com/smile-plzz",
     portfolio: "https://smile-plzz.github.io/Ismail_Hossain/",
     linkedin: "https://www.linkedin.com/in/md-ismail-hossain-2938541b1/",
+    email: "mailto:ismailhossain013@gmail.com",
   },
 };

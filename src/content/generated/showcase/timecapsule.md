@@ -31,22 +31,25 @@ Demo data is pre-loaded so you can experience the core “any day across years�
 
 | Surface | Status |
 |---------|--------|
-| **Any-Day Explorer** + Timeline Stack | ✅ Working with demo data |
+| **Interactive Geo-Map** | ✅ Vector map with proximity pin clustering, year/type filters & location index |
+| **Any-Day & Month Timeline Explorer** | ✅ Working with day vs month scope switcher |
+| **Archive Analytics Dashboard** | ✅ Interactive Year/Month filters, annual/day/time charts, top check-ins, keywords |
 | **Calendar Heatmap** (clickable) | ✅ |
 | **Search** (captions, locations, people, tags) | ✅ |
 | **Anniversary Collections** | ✅ |
 | **Compare Years** | ✅ |
-| **Import UI** | ✅ UI + privacy messaging; real Facebook ZIP/JSON parser is the next milestone |
-| Photo viewer for real media | Not yet (needs archive media resolution) |
-| On-device AI summaries | Not yet |
+| **Import UI & Facebook JSON ZIP Parser** | ✅ In-browser JSZip parser + multi-domain extraction (posts, comments, reactions, messages, events, groups, marketplace, stories) |
+| **Comment & Post Reactions** | ✅ Authentic comment-level reaction counts & actor attribution |
+| **Media Viewer** | ✅ In-browser lightbox with keyboard nav (⚠ missing-media placeholder pending) |
+| **On-device AI summaries** | 🔧 Infrastructure in place (AI-off path, prompt grounding); local LLM integration pending |
 
 ## Golden-path demo (under 60 seconds)
 
-1. Open the app → you land on **Any-Day Explorer** for August 5.
-2. Scroll the vertical stack — memories from 2009 through 2025 appear for the same calendar day.
-3. Switch to **Heatmap**, click a dense square → jumps back to Explorer for that day.
-4. Try **Search** for “Japan” or “birthday”.
-5. Open **Collections** → “My Birthdays”.
+1. Open the app → you land on **Timeline Explorer** for August 5.
+2. Toggle scope between **On Specific Day** or **Entire Month** (e.g. all of August).
+3. Switch to **Explorer** → browse the multi-year timeline stack for that day.
+4. Click a memory card → open the post detail with comments, reactions, and media viewer.
+5. Import a real Facebook ZIP export file in the **Import Archive** tab for local client-side processing.
 
 ## Product truth
 
@@ -62,10 +65,11 @@ Demo data is pre-loaded so you can experience the core “any day across years�
 
 ## Next engineering priorities
 
-1. Real Facebook ZIP + JSON parser (domain 03)
-2. Media path resolution + in-flow photo viewer
-3. Local AI summaries that degrade gracefully (domain 05)
-4. Stronger first-run → first multi-year “wow” path (domain 07)
+1. Stabilize import pipeline — edge-case parser fixes, fixture matrix, error categorization (domain 03)
+2. UI/UX hardening — media lightbox placeholder, duplicate render fix, accessibility, contrast (domain 04)
+3. Privacy audit pass — offline-first verification, exfil checks, regression fixtures (domain 01)
+4. MVP scope discipline — route import to explorer, gate non-MVP views (domain 02)
+5. Local AI summaries — grounding, AI-off path, on-device inference (domain 05)
 
 See [`STATUS.md`](STATUS.md) for the live ordered list.
 
