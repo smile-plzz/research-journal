@@ -320,11 +320,16 @@ describe("Showcase Pipeline & Catalog Suite", () => {
     });
 
     it("keeps existing Research wing catalog.json intact", () => {
-      expect(researchCatalog.totalWorks).toBe(12);
-      expect(researchCatalog.totalRepositories).toBe(15);
+      expect(researchCatalog.totalWorks).toBeGreaterThanOrEqual(12);
+      expect(researchCatalog.totalRepositories).toBeGreaterThanOrEqual(15);
       expect(
         researchCatalog.works.some(
           (w) => w.slug === "tcra-intelligence-automation-boundary"
+        )
+      ).toBe(true);
+      expect(
+        researchCatalog.works.some(
+          (w) => w.slug === "digitally-cancelled-bangladesh-2024"
         )
       ).toBe(true);
     });

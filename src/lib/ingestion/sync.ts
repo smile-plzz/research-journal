@@ -81,7 +81,7 @@ export async function runIngestion(options: SyncOptions = {}): Promise<Catalog> 
     }));
   } else {
     console.log("🌐 Cloud CI Mode: No local paper_repos folder found. Ingesting from GitHub API...");
-    const remoteRepos = await ghClient.fetchUserRepos();
+    const remoteRepos = await ghClient.fetchAllUserRepos();
     console.log(`Retrieved ${remoteRepos.length} public repositories from GitHub API.`);
 
     for (const r of remoteRepos) {
@@ -565,6 +565,20 @@ export async function runIngestion(options: SyncOptions = {}): Promise<Catalog> 
     works.push(work);
   }
 
+  // In Cloud CI mode, preserve existing works whose source repos are private or unreachable
+  if (localRepos.length === 0 && fs.existsSync(catalogPath)) {
+    try {
+      const existing = JSON.parse(fs.readFileSync(catalogPath, "utf-8")) as Catalog;
+      for (const prevWork of existing.works || []) {
+        if (!works.some((w) => w.id === prevWork.id || w.slug === prevWork.slug)) {
+          works.push(prevWork);
+        }
+      }
+    } catch {
+      // Ignore corrupt prior catalog
+    }
+  }
+
   // Sort works: featured first, then newest lastPushedAt
   works.sort((a, b) => {
     if (a.featured && !b.featured) return -1;
@@ -572,11 +586,13 @@ export async function runIngestion(options: SyncOptions = {}): Promise<Catalog> 
     return new Date(b.lastPushedAt).getTime() - new Date(a.lastPushedAt).getTime();
   });
 
+  const totalEditionCount = works.reduce((acc, w) => acc + w.editions.length, 0);
+
   const catalog: Catalog = {
     version: "1.0.0",
     generatedAt: new Date().toISOString(),
     totalWorks: works.length,
-    totalRepositories: reposToProcess.length,
+    totalRepositories: Math.max(reposToProcess.length, totalEditionCount),
     works,
   };
 
