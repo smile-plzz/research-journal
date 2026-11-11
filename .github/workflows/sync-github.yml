@@ -38,13 +38,13 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Only commit if catalog or cached manuscripts changed
+          # Only commit if catalog, showcase, or cached content changed
           if [[ -n $(git status --porcelain src/data/generated src/content/generated) ]]; then
-            git add src/data/generated/catalog.json src/content/generated/works/
-            git commit -m "chore(catalog): automated daily publication sync [skip ci]"
+            git add src/data/generated/catalog.json src/data/generated/showcase.json src/content/generated/works/ src/content/generated/showcase/
+            git commit -m "chore(catalog): automated daily research and showcase sync [skip ci]"
             git push
             echo "Changes committed and pushed successfully."
           else
-            echo "Catalog and manuscripts are up to date. No commit necessary."
+            echo "Catalogs and content are up to date. No commit necessary."
           fi
 

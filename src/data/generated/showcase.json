@@ -1,0 +1,4770 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-11-11T20:06:41.316Z",
+  "totalProjects": 97,
+  "curatedCount": 12,
+  "featuredCount": 6,
+  "projects": [
+    {
+      "slug": "luma",
+      "name": "Luma",
+      "tagline": "A native Windows media library for organizing photos and videos across your folders and drives.",
+      "description": "Luma turns your existing folders and external drives into a fast, searchable media gallery on Windows. Browse photos and videos by month, organize favorites and tags, exclude folders you want hidden, and open any original file in your default desktop app without uploading anything to the cloud.",
+      "audience": "Windows users with large local photo and video collections across folders or external hard drives.",
+      "features": [
+        "Browse photos and videos directly from existing folders and removable drives",
+        "Organize memories with favorites, tags, month navigation, and On This Day views",
+        "Hide specific sources, folders, or file types with reversible exclusions",
+        "Open original files directly in your default Windows apps with no cloud sync required"
+      ],
+      "category": "desktop-app",
+      "status": "downloadable",
+      "platforms": [
+        "windows"
+      ],
+      "tech": [
+        "C#",
+        ".NET",
+        "Windows"
+      ],
+      "screenshots": [],
+      "downloads": [
+        {
+          "label": "Download for Windows (.zip)",
+          "platform": "windows",
+          "url": "https://github.com/smile-plzz/Luma-windows-software/releases/download/v0.6.0/Luma-v0.6.0-win-x64.zip",
+          "fileName": "Luma-v0.6.0-win-x64.zip",
+          "size": "84.6 MB",
+          "sizeBytes": 88751639,
+          "version": "v0.6.0",
+          "isPrerelease": false,
+          "sha256Url": "https://github.com/smile-plzz/Luma-windows-software/releases/download/v0.6.0/SHA256SUMS.txt"
+        }
+      ],
+      "releaseInfo": {
+        "tag": "v0.6.0",
+        "name": "Luma v0.6.0 — Windows portable",
+        "publishedAt": "2026-10-13T06:28:07Z",
+        "isPrerelease": false,
+        "releaseUrl": "https://github.com/smile-plzz/Luma-windows-software/releases/tag/v0.6.0"
+      },
+      "safetyNote": true,
+      "statusNote": "Portable gallery milestone is complete (v0.6.0) and in everyday testing with resumable indexing and drive reconnect support.",
+      "readmeFile": "luma.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "Luma-windows-software",
+        "url": "https://github.com/smile-plzz/Luma-windows-software",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": true,
+      "needsReview": true,
+      "featured": true,
+      "order": 1,
+      "updatedAt": "2026-11-11T19:37:23Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "manual-override",
+        "tagline": "manual-override",
+        "description": "manual-override",
+        "category": "manual-override",
+        "platforms": "manual-override",
+        "status": "manual-override",
+        "downloads": "release",
+        "tech": "manual-override",
+        "slug": "manual-override",
+        "audience": "manual-override",
+        "features": "manual-override",
+        "statusNote": "manual-override"
+      }
+    },
+    {
+      "slug": "nowshowing-tv",
+      "name": "NowShowing TV",
+      "tagline": "A standalone movie and series discovery app built for Android TV and Google TV.",
+      "description": "NowShowing TV brings movie and series discovery to your television screen with full hardware remote control support. It includes voice search, one-click source switching, crash recovery, and built-in update checking.",
+      "audience": "Android TV and Google TV users who want a dedicated, remote-friendly movie and show browser.",
+      "features": [
+        "Designed for Android TV and Google TV with scrollable remote navigation",
+        "Supports hardware remote media keys, voice search, and quick source switching",
+        "Includes in-app update checks and automatic renderer crash recovery",
+        "Organized settings for playback, metadata, privacy, and app health diagnostics"
+      ],
+      "category": "mobile-app",
+      "status": "downloadable",
+      "platforms": [
+        "android"
+      ],
+      "tech": [
+        "Kotlin",
+        "Android TV"
+      ],
+      "screenshots": [],
+      "downloads": [
+        {
+          "label": "Download for Android (.apk)",
+          "platform": "android",
+          "url": "https://github.com/smile-plzz/NowShowing-Stream-android-app-TV/releases/download/v1.6.0-rc.2/NowShowing-TV-1.6.0-rc.2-release.apk",
+          "fileName": "NowShowing-TV-1.6.0-rc.2-release.apk",
+          "size": "10.0 MB",
+          "sizeBytes": 10502528,
+          "version": "v1.6.0-rc.2",
+          "isPrerelease": true,
+          "sha256Url": "https://github.com/smile-plzz/NowShowing-Stream-android-app-TV/releases/download/v1.6.0-rc.2/SHA256SUMS.txt"
+        }
+      ],
+      "releaseInfo": {
+        "tag": "v1.6.0-rc.2",
+        "name": "NowShowing TV 1.6.0-rc.2",
+        "publishedAt": "2026-10-20T00:24:00Z",
+        "isPrerelease": true,
+        "releaseUrl": "https://github.com/smile-plzz/NowShowing-Stream-android-app-TV/releases/tag/v1.6.0-rc.2"
+      },
+      "safetyNote": true,
+      "statusNote": "Active release candidate (1.6.0-rc series) alongside stable v1.4.0 builds with 158 unit tests.",
+      "readmeFile": "nowshowing-tv.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "NowShowing-Stream-android-app-TV",
+        "url": "https://github.com/smile-plzz/NowShowing-Stream-android-app-TV",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": true,
+      "needsReview": true,
+      "featured": true,
+      "order": 2,
+      "updatedAt": "2026-11-07T13:33:38Z",
+      "relatedWorks": [],
+      "relatedProjects": [
+        "nowshowing"
+      ],
+      "provenance": {
+        "name": "manual-override",
+        "tagline": "manual-override",
+        "description": "manual-override",
+        "category": "manual-override",
+        "platforms": "manual-override",
+        "status": "manual-override",
+        "downloads": "release",
+        "tech": "manual-override",
+        "slug": "manual-override",
+        "audience": "manual-override",
+        "features": "manual-override",
+        "statusNote": "manual-override"
+      }
+    },
+    {
+      "slug": "neardrop",
+      "name": "NearDrop",
+      "tagline": "Send files, text, and links between your Windows laptop and phone browser over local Wi-Fi.",
+      "description": "NearDrop lets you move original files, notes, and links between a Windows computer and any phone browser on the same Wi-Fi network. There is no phone app to install, no account to create, and no cloud server involved.",
+      "audience": "Anyone who wants quick, private file and link transfers between Windows and iPhone or Android.",
+      "features": [
+        "Works with your phone's built-in browser by scanning a QR code",
+        "Transfers original files without compression, accounts, or cloud relays",
+        "Supports drag-and-drop multi-file queues and shared text notes",
+        "Runs as a portable Windows app with no Python or Node installation needed"
+      ],
+      "category": "tool",
+      "status": "downloadable",
+      "platforms": [
+        "windows"
+      ],
+      "tech": [
+        "Python",
+        "Local Wi-Fi",
+        "Windows"
+      ],
+      "screenshots": [],
+      "downloads": [
+        {
+          "label": "Download for Windows (.zip)",
+          "platform": "windows",
+          "url": "https://github.com/smile-plzz/NearDrop-windows-software/releases/download/v1.0.0/NearDrop-1.0.0-Windows-x64.zip",
+          "fileName": "NearDrop-1.0.0-Windows-x64.zip",
+          "size": "12.2 MB",
+          "sizeBytes": 12832593,
+          "version": "v1.0.0",
+          "isPrerelease": false,
+          "sha256Url": "https://github.com/smile-plzz/NearDrop-windows-software/releases/download/v1.0.0/SHA256SUMS.txt"
+        }
+      ],
+      "releaseInfo": {
+        "tag": "v1.0.0",
+        "name": "NearDrop v1.0.0",
+        "publishedAt": "2026-10-21T18:54:12Z",
+        "isPrerelease": false,
+        "releaseUrl": "https://github.com/smile-plzz/NearDrop-windows-software/releases/tag/v1.0.0"
+      },
+      "safetyNote": true,
+      "statusNote": "v1.0.0 portable Windows x64 release available for direct download.",
+      "readmeFile": "neardrop.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "NearDrop-windows-software",
+        "url": "https://github.com/smile-plzz/NearDrop-windows-software",
+        "license": "MIT",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": true,
+      "needsReview": true,
+      "featured": true,
+      "order": 3,
+      "updatedAt": "2026-11-03T08:39:45Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "manual-override",
+        "tagline": "manual-override",
+        "description": "manual-override",
+        "category": "manual-override",
+        "platforms": "manual-override",
+        "status": "manual-override",
+        "downloads": "release",
+        "tech": "manual-override",
+        "license": "github-api",
+        "slug": "manual-override",
+        "audience": "manual-override",
+        "features": "manual-override",
+        "statusNote": "manual-override"
+      }
+    },
+    {
+      "slug": "dedupe-light",
+      "name": "DedupeLight",
+      "tagline": "A lightweight Windows app that safely finds exact duplicate files using SHA-256 verification.",
+      "description": "DedupeLight scans folders and drives for exact duplicate files, verifies every match with SHA-256 hashes, and groups copies side-by-side so you can decide what to keep. Nothing is ever deleted automatically.",
+      "audience": "Windows users looking to reclaim disk space without risking accidental file loss.",
+      "features": [
+        "Verifies exact duplicates using SHA-256 cryptographic hashes and cached lookups",
+        "Filters scan results by images, videos, audio, documents, code, or archives",
+        "Side-by-side preview inspector and smart selection helpers (keep oldest, newest, or shortest path)",
+        "Portable Windows app with no installer or separate .NET runtime required"
+      ],
+      "category": "desktop-app",
+      "status": "downloadable",
+      "platforms": [
+        "windows"
+      ],
+      "tech": [
+        "C#",
+        ".NET",
+        "Windows"
+      ],
+      "screenshots": [],
+      "downloads": [
+        {
+          "label": "Download for Windows (.zip)",
+          "platform": "windows",
+          "url": "https://github.com/smile-plzz/dedupe-light-windows-software/releases/download/v1.1.0/DedupeLight-1.1.0-win-x64.zip",
+          "fileName": "DedupeLight-1.1.0-win-x64.zip",
+          "size": "44.0 MB",
+          "sizeBytes": 46157660,
+          "version": "v1.1.0",
+          "isPrerelease": false,
+          "sha256Url": "https://github.com/smile-plzz/dedupe-light-windows-software/releases/download/v1.1.0/DedupeLight-1.1.0-win-x64.zip.sha256"
+        }
+      ],
+      "releaseInfo": {
+        "tag": "v1.1.0",
+        "name": "DedupeLight 1.1.0",
+        "publishedAt": "2026-11-03T08:25:31Z",
+        "isPrerelease": false,
+        "releaseUrl": "https://github.com/smile-plzz/dedupe-light-windows-software/releases/tag/v1.1.0"
+      },
+      "safetyNote": true,
+      "statusNote": "Stable v1.1.0 Windows x64 portable build available with SHA-256 checksum.",
+      "readmeFile": "dedupe-light.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "dedupe-light-windows-software",
+        "url": "https://github.com/smile-plzz/dedupe-light-windows-software",
+        "license": "MIT",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": true,
+      "needsReview": true,
+      "featured": true,
+      "order": 4,
+      "updatedAt": "2026-11-03T08:25:31Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "manual-override",
+        "tagline": "manual-override",
+        "description": "manual-override",
+        "features": "manual-override",
+        "category": "manual-override",
+        "platforms": "manual-override",
+        "status": "manual-override",
+        "downloads": "release",
+        "tech": "manual-override",
+        "license": "github-api",
+        "slug": "manual-override",
+        "audience": "manual-override",
+        "statusNote": "manual-override"
+      }
+    },
+    {
+      "slug": "trek-route-visualizer",
+      "name": "Trek Route Visualizer",
+      "tagline": "Turn geotagged photos or GPX files into an animated 3D map of your trek right in your browser.",
+      "description": "Trek Route Visualizer transforms your geotagged hiking photos or GPX tracks into an animated 3D terrain map. Everything runs locally inside your web browser with zero backend and full privacy for your location data.",
+      "audience": "Hikers, travelers, and photographers who want to visualize and animate their routes privately.",
+      "features": [
+        "Renders trails on 3D mountain elevation terrain in the browser",
+        "Supports four map themes and four atmospheric lighting modes",
+        "Interactive drawer to inspect, search, or toggle individual photos and waypoints",
+        "100% client-side processing so photos and GPS tracks never leave your device"
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript",
+        "MapLibre GL",
+        "3D Terrain"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://trek-route-visualizer.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "statusNote": "Live in the browser with zero account or upload requirements.",
+      "readmeFile": "trek-route-visualizer.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "trek-route-visualizer-web-app",
+        "url": "https://github.com/smile-plzz/trek-route-visualizer-web-app",
+        "defaultBranch": "master",
+        "isArchived": false
+      },
+      "curated": true,
+      "needsReview": true,
+      "featured": true,
+      "order": 5,
+      "updatedAt": "2026-11-03T21:29:01Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "manual-override",
+        "tagline": "manual-override",
+        "description": "manual-override",
+        "features": "manual-override",
+        "category": "manual-override",
+        "platforms": "manual-override",
+        "status": "manual-override",
+        "liveUrl": "github-api",
+        "tech": "manual-override",
+        "slug": "manual-override",
+        "audience": "manual-override",
+        "statusNote": "manual-override"
+      }
+    },
+    {
+      "slug": "tracklist",
+      "name": "Tracklist",
+      "tagline": "A minimalist browser player that turns YouTube links or JSON playlists into a clean audio-visual queue.",
+      "description": "Tracklist is a fast static web player that turns any list of YouTube links or JSON playlist into a continuous, auto-advancing playlist. It runs entirely in your browser with local storage and shareable link encoding.",
+      "audience": "Listeners who want a calm, distraction-free YouTube playlist player without accounts.",
+      "features": [
+        "Plays JSON playlists or pasted YouTube link lists with automatic track advance",
+        "Automatically skips unplayable videos without interrupting playback",
+        "Includes drag-to-reorder queues, stable shuffle, mini-player, and Focus Mode",
+        "Stores playlists locally and shares playlists via compact URL links"
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript",
+        "Static Web"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://tracklist-lovat.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "statusNote": "Live and ready to use directly in any desktop or mobile browser.",
+      "readmeFile": "tracklist.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "tracklist-web-app",
+        "url": "https://github.com/smile-plzz/tracklist-web-app",
+        "defaultBranch": "master",
+        "isArchived": false
+      },
+      "curated": true,
+      "needsReview": true,
+      "featured": true,
+      "order": 6,
+      "updatedAt": "2026-11-04T11:46:57Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "manual-override",
+        "tagline": "manual-override",
+        "description": "manual-override",
+        "features": "manual-override",
+        "category": "manual-override",
+        "platforms": "manual-override",
+        "status": "manual-override",
+        "liveUrl": "github-api",
+        "tech": "manual-override",
+        "slug": "manual-override",
+        "audience": "manual-override",
+        "statusNote": "manual-override"
+      }
+    },
+    {
+      "slug": "tcra-code-auditor-v4",
+      "name": "TCRA Code Auditor V4",
+      "tagline": "Audit AI-generated code for transparency, controllability, reliability, and auditability.",
+      "description": "TCRA Code Auditor V4 evaluates AI-generated code against the four-dimensional TCRA academic framework: Transparency, Controllability, Reliability, and Auditability. It features a guided three-step audit flow and a multi-provider compare mode.",
+      "audience": "Developers, researchers, and engineering teams reviewing AI-assisted code quality.",
+      "features": [
+        "Guided three-step code audit workflow with inline validation",
+        "Scores code across Transparency, Controllability, Reliability, and Auditability",
+        "Compare and benchmark mode to evaluate the same prompt and code across providers",
+        "Light and dark reading modes built as a companion tool to the TCRA thesis"
+      ],
+      "category": "data",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript",
+        "AI Evaluation",
+        "TCRA"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://tcra-code-auditor-v4.onrender.com/",
+      "downloads": [],
+      "safetyNote": false,
+      "statusNote": "Live web application accompanying the Jahangirnagar University PMIT TCRA thesis.",
+      "readmeFile": "tcra-code-auditor-v4.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "TCRA-Code-Auditor-V4-web-app",
+        "url": "https://github.com/smile-plzz/TCRA-Code-Auditor-V4-web-app",
+        "license": "Apache-2.0",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": true,
+      "needsReview": true,
+      "featured": false,
+      "order": 7,
+      "updatedAt": "2026-09-08T13:03:22Z",
+      "relatedWorks": [
+        "tcra-intelligence-automation-boundary"
+      ],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "manual-override",
+        "tagline": "manual-override",
+        "description": "manual-override",
+        "category": "manual-override",
+        "platforms": "manual-override",
+        "status": "manual-override",
+        "liveUrl": "github-api",
+        "tech": "manual-override",
+        "license": "github-api",
+        "slug": "manual-override",
+        "audience": "manual-override",
+        "features": "manual-override",
+        "statusNote": "manual-override"
+      }
+    },
+    {
+      "slug": "ibackup",
+      "name": "iBackup",
+      "tagline": "Copy iPhone and iPad photos and videos to your Windows PC over USB or local Wi-Fi.",
+      "description": "iBackup is a native Windows app that saves your iPhone and iPad photos and videos directly to ordinary folders on your own drive. It tracks what has already been copied so repeat backups stay fast and avoid duplicates.",
+      "audience": "iPhone and iPad users on Windows who prefer local folder backups over cloud subscriptions.",
+      "features": [
+        "Supports both USB cable transfers and local Wi-Fi wireless backups",
+        "Incremental backup tracking skips previously saved files automatically",
+        "Organizes backups by year/month, year/month/day, or flat folders with optional SHA-256 checks",
+        "Operates completely offline with zero cloud uploads or telemetry"
+      ],
+      "category": "desktop-app",
+      "status": "downloadable",
+      "platforms": [
+        "windows"
+      ],
+      "tech": [
+        "C#",
+        ".NET",
+        "Windows"
+      ],
+      "screenshots": [],
+      "downloads": [
+        {
+          "label": "Download for Windows (.zip)",
+          "platform": "windows",
+          "url": "https://github.com/smile-plzz/iBackup-windows-software/releases/download/v0.1.3/iBackup-win-x64.zip",
+          "fileName": "iBackup-win-x64.zip",
+          "size": "86.9 MB",
+          "sizeBytes": 91082769,
+          "version": "v0.1.3",
+          "isPrerelease": false
+        }
+      ],
+      "releaseInfo": {
+        "tag": "v0.1.3",
+        "name": "v0.1.3",
+        "publishedAt": "2026-10-13T19:47:58Z",
+        "isPrerelease": false,
+        "releaseUrl": "https://github.com/smile-plzz/iBackup-windows-software/releases/tag/v0.1.3"
+      },
+      "safetyNote": true,
+      "statusNote": "Stable v0.1.3 Windows build available alongside v0.1.4 preview.",
+      "readmeFile": "ibackup.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "iBackup-windows-software",
+        "url": "https://github.com/smile-plzz/iBackup-windows-software",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": true,
+      "needsReview": true,
+      "featured": false,
+      "order": 8,
+      "updatedAt": "2026-11-03T08:37:54Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "manual-override",
+        "tagline": "manual-override",
+        "description": "manual-override",
+        "features": "manual-override",
+        "category": "manual-override",
+        "platforms": "manual-override",
+        "status": "manual-override",
+        "downloads": "release",
+        "tech": "manual-override",
+        "slug": "manual-override",
+        "audience": "manual-override",
+        "statusNote": "manual-override"
+      }
+    },
+    {
+      "slug": "elementshot",
+      "name": "ElementShot",
+      "tagline": "Click any element on a web page to capture and copy a clean PNG screenshot locally.",
+      "description": "ElementShot is a local-only browser extension for Chrome, Edge, and Firefox that captures exact pixels of any page component or custom region, copies it to your clipboard, and saves it to Downloads.",
+      "audience": "Designers, writers, and developers who regularly capture clean screenshots of specific UI parts.",
+      "features": [
+        "Hover and click any element or hold Shift to capture a custom region",
+        "Scroll wheel expands or narrows selection between parent and child containers",
+        "Copies PNG directly to clipboard and saves organized files to Downloads/ElementShots",
+        "Available as ready-to-load packages for Chrome/Edge and Firefox"
+      ],
+      "category": "tool",
+      "status": "downloadable",
+      "platforms": [
+        "browser-extension"
+      ],
+      "tech": [
+        "TypeScript",
+        "Chrome Extension",
+        "Firefox Add-on"
+      ],
+      "screenshots": [],
+      "downloads": [
+        {
+          "label": "Download for Chrome & Edge (.zip)",
+          "platform": "browser-extension",
+          "url": "https://github.com/smile-plzz/Element-Screenshot-Extension/releases/download/v1.1.0/elementshot-chrome-v1.1.0.zip",
+          "fileName": "elementshot-chrome-v1.1.0.zip",
+          "size": "23.7 KB",
+          "sizeBytes": 24284,
+          "version": "v1.1.0",
+          "isPrerelease": false
+        },
+        {
+          "label": "Download for Firefox (.zip)",
+          "platform": "browser-extension",
+          "url": "https://github.com/smile-plzz/Element-Screenshot-Extension/releases/download/v1.1.0/elementshot-firefox-v1.1.0.zip",
+          "fileName": "elementshot-firefox-v1.1.0.zip",
+          "size": "23.8 KB",
+          "sizeBytes": 24346,
+          "version": "v1.1.0",
+          "isPrerelease": false
+        }
+      ],
+      "releaseInfo": {
+        "tag": "v1.1.0",
+        "name": "ElementShot v1.1.0",
+        "publishedAt": "2026-10-14T20:51:52Z",
+        "isPrerelease": false,
+        "releaseUrl": "https://github.com/smile-plzz/Element-Screenshot-Extension/releases/tag/v1.1.0"
+      },
+      "safetyNote": false,
+      "statusNote": "v1.1.0 packages available for manual unpacked loading in Chrome, Edge, and Firefox.",
+      "readmeFile": "elementshot.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "Element-Screenshot-Extension",
+        "url": "https://github.com/smile-plzz/Element-Screenshot-Extension",
+        "license": "MIT",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": true,
+      "needsReview": true,
+      "featured": false,
+      "order": 9,
+      "updatedAt": "2026-10-14T20:52:36Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "manual-override",
+        "tagline": "manual-override",
+        "description": "manual-override",
+        "category": "manual-override",
+        "platforms": "manual-override",
+        "status": "manual-override",
+        "downloads": "release",
+        "tech": "manual-override",
+        "license": "github-api",
+        "slug": "manual-override",
+        "audience": "manual-override",
+        "features": "manual-override",
+        "statusNote": "manual-override"
+      }
+    },
+    {
+      "slug": "khoroch",
+      "name": "Khoroch",
+      "tagline": "An offline-first Android expense tracker that reads bKash, Nagad, Rocket, and bank SMS automatically.",
+      "description": "Khoroch is an offline-first Android app built for Bangladesh that turns mobile wallet and bank SMS alerts into categorized expense and income records with zero manual typing and zero internet permission.",
+      "audience": "Android users in Bangladesh who want automatic, completely private expense tracking.",
+      "features": [
+        "Automatically parses transaction SMS from bKash, Nagad, Rocket, Upay, and major banks",
+        "Strictly offline with zero internet permission and an on-device SQLite database",
+        "Bilingual Bangla and English interface with optional Bangla numerals and lakh/crore formatting",
+        "Monthly spending dashboard, category charts, and budget warnings"
+      ],
+      "category": "mobile-app",
+      "status": "in-development",
+      "platforms": [
+        "android"
+      ],
+      "tech": [
+        "Kotlin",
+        "Android",
+        "SQLite"
+      ],
+      "screenshots": [],
+      "downloads": [],
+      "safetyNote": false,
+      "statusNote": "MVP source available; prebuilt APK release pending.",
+      "readmeFile": "khoroch.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "Khoroch-android-app",
+        "url": "https://github.com/smile-plzz/Khoroch-android-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": true,
+      "needsReview": true,
+      "featured": false,
+      "order": 10,
+      "updatedAt": "2026-10-25T10:44:13Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "manual-override",
+        "tagline": "manual-override",
+        "description": "manual-override",
+        "features": "manual-override",
+        "category": "manual-override",
+        "platforms": "manual-override",
+        "status": "manual-override",
+        "tech": "manual-override",
+        "slug": "manual-override",
+        "audience": "manual-override",
+        "statusNote": "manual-override"
+      }
+    },
+    {
+      "slug": "photo-library",
+      "name": "Photo Library",
+      "tagline": "An offline desktop photo manager that indexes your existing folders without moving or uploading files.",
+      "description": "Photo Library points at the folders where your photos already live and builds a searchable, date-organized gallery on Windows, macOS, and Linux without moving, renaming, or uploading a single file.",
+      "audience": "Desktop users who want a fast Picasa-style offline photo browser across Windows, macOS, or Linux.",
+      "features": [
+        "Builds a searchable, date-organized library directly over existing folders",
+        "Never moves, renames, or uploads original photo files",
+        "Cross-platform builds available for Windows, macOS (Intel and Apple Silicon), and Linux"
+      ],
+      "category": "desktop-app",
+      "status": "downloadable",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "tech": [
+        "C#",
+        ".NET 9",
+        "Avalonia UI"
+      ],
+      "screenshots": [],
+      "downloads": [
+        {
+          "label": "Download for Linux (.tar.gz)",
+          "platform": "linux",
+          "url": "https://github.com/smile-plzz/PhotoManagementApp-windows-software/releases/download/v1.0.0/PhotoManagementApp-v1.0.0-linux-x64.tar.gz",
+          "fileName": "PhotoManagementApp-v1.0.0-linux-x64.tar.gz",
+          "size": "39.8 MB",
+          "sizeBytes": 41698785,
+          "version": "v1.0.0",
+          "isPrerelease": false
+        },
+        {
+          "label": "Download for macOS Apple Silicon (.tar.gz)",
+          "platform": "macos",
+          "url": "https://github.com/smile-plzz/PhotoManagementApp-windows-software/releases/download/v1.0.0/PhotoManagementApp-v1.0.0-osx-arm64.tar.gz",
+          "fileName": "PhotoManagementApp-v1.0.0-osx-arm64.tar.gz",
+          "size": "41.4 MB",
+          "sizeBytes": 43367701,
+          "version": "v1.0.0",
+          "isPrerelease": false
+        },
+        {
+          "label": "Download for macOS Intel (.tar.gz)",
+          "platform": "macos",
+          "url": "https://github.com/smile-plzz/PhotoManagementApp-windows-software/releases/download/v1.0.0/PhotoManagementApp-v1.0.0-osx-x64.tar.gz",
+          "fileName": "PhotoManagementApp-v1.0.0-osx-x64.tar.gz",
+          "size": "43.0 MB",
+          "sizeBytes": 45042811,
+          "version": "v1.0.0",
+          "isPrerelease": false
+        },
+        {
+          "label": "Download for Windows (.zip)",
+          "platform": "windows",
+          "url": "https://github.com/smile-plzz/PhotoManagementApp-windows-software/releases/download/v1.0.0/PhotoManagementApp-v1.0.0-win-x64.zip",
+          "fileName": "PhotoManagementApp-v1.0.0-win-x64.zip",
+          "size": "41.8 MB",
+          "sizeBytes": 43853700,
+          "version": "v1.0.0",
+          "isPrerelease": false
+        }
+      ],
+      "releaseInfo": {
+        "tag": "v1.0.0",
+        "name": "v1.0.0 - Photo Management App",
+        "publishedAt": "2026-10-15T08:05:35Z",
+        "isPrerelease": false,
+        "releaseUrl": "https://github.com/smile-plzz/PhotoManagementApp-windows-software/releases/tag/v1.0.0"
+      },
+      "safetyNote": true,
+      "statusNote": "v1.0.0 cross-platform builds available for Windows, macOS, and Linux.",
+      "readmeFile": "photo-library.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "PhotoManagementApp-windows-software",
+        "url": "https://github.com/smile-plzz/PhotoManagementApp-windows-software",
+        "defaultBranch": "master",
+        "isArchived": false
+      },
+      "curated": true,
+      "needsReview": true,
+      "featured": false,
+      "order": 11,
+      "updatedAt": "2026-10-15T09:33:23Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "manual-override",
+        "tagline": "manual-override",
+        "description": "manual-override",
+        "features": "manual-override",
+        "category": "manual-override",
+        "platforms": "manual-override",
+        "status": "manual-override",
+        "downloads": "release",
+        "tech": "manual-override",
+        "slug": "manual-override",
+        "audience": "manual-override",
+        "statusNote": "manual-override"
+      }
+    },
+    {
+      "slug": "tv-bridge",
+      "name": "TV Bridge",
+      "tagline": "Share files, text, and links between your phone browser and Android TV over local Wi-Fi.",
+      "description": "TV Bridge connects any phone browser to your Android TV or Google TV using a QR code and six-digit pairing code over your home Wi-Fi, with no phone app, ads, or cloud upload needed.",
+      "audience": "Android TV users who need an easy way to send APKs, photos, or links from a phone.",
+      "features": [
+        "Pair a phone browser to Android TV via QR code and six-digit approval",
+        "Send multiple files, text, or links and download TV files back to your phone",
+        "Works completely offline on home Wi-Fi with zero ads or cloud storage"
+      ],
+      "category": "mobile-app",
+      "status": "prototype",
+      "platforms": [
+        "android"
+      ],
+      "tech": [
+        "Java",
+        "Android TV",
+        "Local Wi-Fi"
+      ],
+      "screenshots": [],
+      "downloads": [
+        {
+          "label": "Download for Android (.apk)",
+          "platform": "android",
+          "url": "https://github.com/smile-plzz/TV-Bridge-android-app-TV/releases/download/v1.0.0-preview.5/TV-Bridge-1.0.0-preview.apk",
+          "fileName": "TV-Bridge-1.0.0-preview.apk",
+          "size": "47.4 KB",
+          "sizeBytes": 48507,
+          "version": "v1.0.0-preview.5",
+          "isPrerelease": true,
+          "sha256Url": "https://github.com/smile-plzz/TV-Bridge-android-app-TV/releases/download/v1.0.0-preview.5/SHA256SUMS.txt"
+        }
+      ],
+      "releaseInfo": {
+        "tag": "v1.0.0-preview.5",
+        "name": "TV Bridge 1.0.0 — Preview 5",
+        "publishedAt": "2026-10-19T09:04:19Z",
+        "isPrerelease": true,
+        "releaseUrl": "https://github.com/smile-plzz/TV-Bridge-android-app-TV/releases/tag/v1.0.0-preview.5"
+      },
+      "safetyNote": true,
+      "statusNote": "Preview APK build (v1.0.0-preview.5) available for sideload testing.",
+      "readmeFile": "tv-bridge.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "TV-Bridge-android-app-TV",
+        "url": "https://github.com/smile-plzz/TV-Bridge-android-app-TV",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": true,
+      "needsReview": true,
+      "featured": false,
+      "order": 12,
+      "updatedAt": "2026-10-20T10:59:57Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "manual-override",
+        "tagline": "manual-override",
+        "description": "manual-override",
+        "category": "manual-override",
+        "platforms": "manual-override",
+        "status": "manual-override",
+        "downloads": "release",
+        "tech": "manual-override",
+        "slug": "manual-override",
+        "audience": "manual-override",
+        "features": "manual-override",
+        "statusNote": "manual-override"
+      }
+    },
+    {
+      "slug": "traillink",
+      "name": "TrailLink",
+      "tagline": "Turn a Samsung Galaxy S7 into a dedicated travel hotspot appliance.",
+      "description": "Turn a Samsung Galaxy S7 into a dedicated travel hotspot appliance.",
+      "features": [
+        "Zero Root / Zero Cloud: 100% offline; uses only documented, public Android SDK APIs.",
+        "Independent Hotspot: Operates alongside Android's built-in tethering without interfering with routing or client traffic.",
+        "Screen-Off Monitoring: Background foreground service collects telemetry at 60-second intervals and surfaces a persistent status notification.",
+        "4-Tier Thermal Alert Engine: Strict alerts ( 45°C Critical) to safeguard aging batteries.",
+        "Network & Diagnostics Suite: HTTP 204 reachability, DNS latency, and round-trip socket ping testing."
+      ],
+      "category": "mobile-app",
+      "status": "prototype",
+      "platforms": [
+        "android"
+      ],
+      "tech": [
+        "Kotlin"
+      ],
+      "screenshots": [],
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "traillink.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "traillink-android-app",
+        "url": "https://github.com/smile-plzz/traillink-android-app",
+        "defaultBranch": "master",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-11-03T16:53:38Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "readme",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "the-knight-3d-character",
+      "name": "The Knight 3D Character",
+      "tagline": "The Knight — 3D Character",
+      "description": "The Knight — 3D Character",
+      "features": [],
+      "category": "game",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "JavaScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://the-knight-3-d-character.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "The-Knight-3D-Character-web-app",
+        "url": "https://github.com/smile-plzz/The-Knight-3D-Character-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-11-02T21:36:54Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "github-api",
+        "tagline": "github-api",
+        "description": "github-api",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "autopoweroff",
+      "name": "AutoPowerOff for Android",
+      "tagline": "AutoPowerOff is a modern Android application designed to monitor device idle/unused time and automatically trigger a...",
+      "description": "AutoPowerOff is a modern Android application designed to monitor device idle/unused time and automatically trigger a power-off or screen-lock action to conserve battery and protect privacy.",
+      "features": [
+        "Inactivity Detection: Tracks when the screen is off or the phone is left untouched/stationary.",
+        "Configurable Idle Timer: Set auto-off delays (e.g., 5m, 10m, 15m, 30m, 1h, 2h).",
+        "Multiple Turn-Off Modes:",
+        "Accessibility Lock & Sleep: Instant lock & screen shutoff using Android Accessibility Service (Recommended, non-root).",
+        "Native Power Menu Trigger: Brings up the system power dialog automatically."
+      ],
+      "category": "mobile-app",
+      "status": "prototype",
+      "platforms": [
+        "android"
+      ],
+      "tech": [
+        "Kotlin"
+      ],
+      "screenshots": [],
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "autopoweroff.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "AutoPowerOff-andorid-app",
+        "url": "https://github.com/smile-plzz/AutoPowerOff-andorid-app",
+        "defaultBranch": "master",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-11-02T09:48:26Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "readme",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "the-hustle-dhaka-crime-game",
+      "name": "The Hustle (Untitled Dhaka Crime Game)",
+      "tagline": "Playable Web Simulation: https://smile-plzz.github.io/-The-Hustle-Untitled-Dhaka-Crime-Game-/",
+      "description": "Playable Web Simulation: https://smile-plzz.github.io/-The-Hustle-Untitled-Dhaka-Crime-Game-/",
+      "features": [
+        "Deterministic Choice Engine: Full 5-stage story with mathematically exact stat calculations, branching paths, and inter-stage ledgers.",
+        "Real-World Historical Anchor:",
+        "Era Banners: Period title cards displaying year, Rafiq's age, and geographic location.",
+        "News Tickers: Verified real historical news wire above each scene.",
+        "Fact Tags: Clear labels distinguishing \"Based on real events\" from \"Fictional\" scenes."
+      ],
+      "category": "game",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://smile-plzz.github.io/The-Hustle-Dhaka-Crime-Game-web-app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "the-hustle-dhaka-crime-game.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "The-Hustle-Dhaka-Crime-Game-web-app",
+        "url": "https://github.com/smile-plzz/The-Hustle-Dhaka-Crime-Game-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-10-25T10:23:53Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "readme",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "dealscope",
+      "name": "DealScope",
+      "tagline": "A mobile-first shopping comparison workspace for Bangladesh.",
+      "description": "A mobile-first shopping comparison workspace for Bangladesh. Bring a product description, seller link or screenshot; confirm the product; collect offers; compare prices, delivery and evidence.",
+      "features": [],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://dealscope-ex3w.onrender.com/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "dealscope.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "DealScope-web-app",
+        "url": "https://github.com/smile-plzz/DealScope-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-10-20T13:04:29Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "readme",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "nook-tv",
+      "name": "Nook TV",
+      "tagline": "A personal Android TV Home screen with direct app access, selected YouTube/RSS cards, and videos deliberately sent...",
+      "description": "A personal Android TV Home screen with direct app access, selected YouTube/RSS cards, and videos deliberately sent from an iPhone browser.",
+      "features": [],
+      "category": "mobile-app",
+      "status": "prototype",
+      "platforms": [
+        "android"
+      ],
+      "tech": [
+        "Java"
+      ],
+      "screenshots": [],
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "nook-tv.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "nook-tv-android-app-TV",
+        "url": "https://github.com/smile-plzz/nook-tv-android-app-TV",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-10-17T17:01:08Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "readme",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "nowshowing-stream",
+      "name": "NowShowing",
+      "tagline": "NowShowing-Stream — streaming-focused variant of the NowShowing discovery platform, emphasizing live and on-demand...",
+      "description": "A minimalist movie & TV discovery app. Search titles via OMDb, browse trending/genre rows, and stream from multiple free third-party embed sources with one-click switching if a source is blank or blocked.",
+      "features": [
+        "Discovery — home page with Continue Watching, Trending, genre rows (Action, Sci-Fi, Drama, Comedy, Thriller), Popular Movies/TV",
+        "Search — hero + nav search (submit on Enter or click), movie/TV type filter, paginated results",
+        "Watchlist & Continue Watching — stored locally in localStorage, never leaves the device",
+        "Light/dark theme toggle (persisted, respects system preference by default)",
+        "Keyboard shortcuts — / focuses search, Esc closes modals"
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "JavaScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://smile-plzz.github.io/NowShowing-Stream-web-app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "nowshowing-stream.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "NowShowing-Stream-web-app",
+        "url": "https://github.com/smile-plzz/NowShowing-Stream-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-10-17T16:20:39Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "indie-app-marketplace",
+      "name": "Indie App Marketplace (working title): Project Plan",
+      "tagline": "A personal portfolio and storefront where I showcase my open-source Windows apps and sell the convenient,...",
+      "description": "A personal portfolio and storefront where I showcase my open-source Windows apps and sell the convenient, ready-to-install version for a small fee, with the free \"build it from GitHub\" route always remaining available.",
+      "features": [],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://indieappmarketplace.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "indie-app-marketplace.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "Indie-App-Marketplace-web-app",
+        "url": "https://github.com/smile-plzz/Indie-App-Marketplace-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-10-17T06:08:53Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "readme",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "localflix",
+      "name": "LocalFlix (working title): Project Plan",
+      "tagline": "Implementation status (2026-10-14): offline stabilization in progress.",
+      "description": "Implementation status (2026-10-14): offline stabilization in progress. See release readiness for fixes, verification steps and remaining requirements. Historical milestone claims below do not certify the real-drive or two-week acceptance gates.",
+      "features": [],
+      "category": "desktop-app",
+      "status": "prototype",
+      "platforms": [
+        "windows"
+      ],
+      "tech": [
+        "C#"
+      ],
+      "screenshots": [],
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "localflix.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "LocalFlix-windows-software",
+        "url": "https://github.com/smile-plzz/LocalFlix-windows-software",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-10-14T12:49:51Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "readme",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "safe-gaming-optimizer",
+      "name": "Safe Gaming Optimizer",
+      "tagline": "Safe Gaming Optimizer is a conservative Windows desktop app for preparing a PC for a gaming session and returning it...",
+      "description": "Safe Gaming Optimizer is a conservative Windows desktop app for preparing a PC for a gaming session and returning it to its previous state afterward.",
+      "features": [
+        "Analyzes known optional desktop apps currently using memory and CPU time.",
+        "Labels each result Recommended, Review, or Protected, with a plain-language reason.",
+        "Gracefully closes selected apps first, then ends only the selected process if it does not respond.",
+        "Temporarily switches to an already-installed Windows High performance power plan when available.",
+        "Records every session change before applying it."
+      ],
+      "category": "desktop-app",
+      "status": "prototype",
+      "platforms": [
+        "windows"
+      ],
+      "tech": [
+        "C#"
+      ],
+      "screenshots": [],
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "safe-gaming-optimizer.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "Safe-Gaming-Optimizer-windows-script",
+        "url": "https://github.com/smile-plzz/Safe-Gaming-Optimizer-windows-script",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-10-13T05:36:38Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "readme",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "betweenus",
+      "name": "BetweenUs",
+      "tagline": "Status: Product definition frozen for the first development cycle.",
+      "description": "Status: Product definition frozen for the first development cycle. Validation remains evidence-gated.",
+      "features": [],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://between-us-three-beta.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "betweenus.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "BetweenUs-web-app",
+        "url": "https://github.com/smile-plzz/BetweenUs-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-10-07T17:14:12Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "readme",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "dttti-instructor-evaluation",
+      "name": "DTTTI Instructor Evaluation",
+      "tagline": "dttti-instructor-evaluation",
+      "description": "Formal English-only instructor evaluation portal for Dhaka Technical Teachers’ Training Institute.",
+      "features": [],
+      "category": "data",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "JavaScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://dttti-instructor-evaluation.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "dttti-instructor-evaluation.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "dttti-instructor-evaluation-web-app",
+        "url": "https://github.com/smile-plzz/dttti-instructor-evaluation-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-10-07T08:42:23Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "mise-guided-cooking",
+      "name": "Mise — Guided Cooking",
+      "tagline": "guided-cooking-app",
+      "description": "Find a recipe, scale it to the table you are actually feeding, then hand the steps over to guided mode: one instruction at a time, with the timers already parsed out of the text.",
+      "features": [
+        "Discover — search a bundled catalog of 700+ real recipes (hand-curated",
+        "Scale and convert — change the serving count and every quantity follows.",
+        "Guided cooking — full-screen step-by-step mode. Durations mentioned in a",
+        "Pantry — list what you have and recipes are ranked by how little you would",
+        "Shopping list — add a whole recipe or a single ingredient. Items group by"
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "JavaScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://guided-cooking-app.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "mise-guided-cooking.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "mise-guided-cooking-web-app",
+        "url": "https://github.com/smile-plzz/mise-guided-cooking-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-10-01T17:08:57Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "wayfare",
+      "name": "Wayfare",
+      "tagline": "Wayfare is a private, zero-cost place-capture and trip-decision tool for two people.",
+      "description": "Wayfare is a private, zero-cost place-capture and trip-decision tool for two people.",
+      "features": [],
+      "category": "web-app",
+      "status": "prototype",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "wayfare.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "wayfare-web-app",
+        "url": "https://github.com/smile-plzz/wayfare-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-09-30T07:38:41Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "readme",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "nautilus",
+      "name": "Nautilus Houseboat",
+      "tagline": "A standalone, Nautilus-only website and booking concept for the houseboat journey on Tanguar Haor.",
+      "description": "A standalone, Nautilus-only website and booking concept for the houseboat journey on Tanguar Haor. HaorBoard remains the marketplace for discovering multiple boats; this project gives one operator a dedicated digital home for its story, trip details, guest trust and direct booking.",
+      "features": [],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "JavaScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://nautilus-cyan-eight.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "nautilus.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "Nautilus-web-app",
+        "url": "https://github.com/smile-plzz/Nautilus-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-09-30T06:41:07Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "readme",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "belajourneys",
+      "name": "Bela Journeys",
+      "tagline": "A Bangladesh parent travel concept and pilot website.",
+      "description": "A Bangladesh parent travel concept and pilot website. Adult children can request a trip for their parents. The parents' interest, suitability, itinerary, supplier availability, price and lawful operator arrangement must be confirmed before any reservation.",
+      "features": [],
+      "category": "web-app",
+      "status": "prototype",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "belajourneys.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "BelaJourneys-web-app",
+        "url": "https://github.com/smile-plzz/BelaJourneys-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-09-25T14:47:14Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "readme",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "haorboard",
+      "name": "HaorBoard",
+      "tagline": "Find your place on the water.",
+      "description": "Find your place on the water. HaorBoard is a mobile-first prototype for discovering and reserving private rooms on Sunamganj houseboats.",
+      "features": [],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "JavaScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://haorboard.onrender.com/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "haorboard.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "HaorBoard-web-app",
+        "url": "https://github.com/smile-plzz/HaorBoard-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-09-24T05:53:20Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "readme",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "lyricfloat",
+      "name": "LyricFloat",
+      "tagline": "A lightweight, open-source Windows desktop widget that shows time-synced lyrics for whatever is currently playing.",
+      "description": "A lightweight, open-source Windows desktop widget that shows time-synced lyrics for whatever is currently playing.",
+      "features": [
+        "🎵 Detects the current Windows media session — Spotify, YouTube Music/browser players, and other SMTC-compatible apps",
+        "🕒 Uses the playback timeline to keep lyrics synchronized",
+        "📝 Fetches timestamped LRC lyrics from LRCLIB",
+        "🪟 Frameless, transparent, always-on-top Windows widget",
+        "🖱️ Drag anywhere and resize"
+      ],
+      "category": "desktop-app",
+      "status": "prototype",
+      "platforms": [
+        "windows"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "lyricfloat.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "lyricFloat-windows-software",
+        "url": "https://github.com/smile-plzz/lyricFloat-windows-software",
+        "license": "MIT",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-09-23T11:06:55Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "readme",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "tech": "github-api",
+        "license": "github-api"
+      }
+    },
+    {
+      "slug": "hermes-journal",
+      "name": "Hermes Journal",
+      "tagline": "The public journal of Hermes — an autonomous software system documenting its work, failures, discoveries, and...",
+      "description": "A machine learning to become better at being useful.",
+      "features": [],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "JavaScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://hermes-journal-gamma.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "hermes-journal.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "hermes-journal-web-app",
+        "url": "https://github.com/smile-plzz/hermes-journal-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-09-09T12:16:13Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "real-time-job-aggregator",
+      "name": "TechHub BD Intelligence & Career Aggregator",
+      "tagline": "Real-Time Job Aggregator Dashboard (BD)",
+      "description": "An elegant, real-time full-stack job board and career aggregator specializing in Bangladesh Technology & Software Engineering Companies. It live-scrapes job directories, sanitizes metadata, parses structured inputs, normalizes roles, provides instant email digest distribution with attached CSV reports, and generates deep market analytics with predictive AI forecasting, wrapped in a clean, high-contrast visual design.",
+      "features": [
+        "Real-Time Job Aggregation: Live scraping of 150+ Bangladesh tech companies with native support for the BDTechJobs pipeline."
+      ],
+      "category": "data",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://real-time-job-aggregator-dashboard-bd.onrender.com/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "real-time-job-aggregator.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "Real-Time-Job-Aggregator-web-app",
+        "url": "https://github.com/smile-plzz/Real-Time-Job-Aggregator-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-09-06T11:52:18Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "specmatch",
+      "name": "SPECMATCH — PC Game Recommender",
+      "tagline": "SpecMatch — a specification matching tool that helps align product requirements with implementation options, useful...",
+      "description": "Find games that run perfectly on your PC. Hardware-aware game recommendations powered by a real hardware scan, RAWG's game database, and Mistral AI.",
+      "features": [
+        "Desktop hardware scan (Windows) — real GPU/CPU model, VRAM, DirectX",
+        "Manual spec editing — override any detected/scanned value",
+        "3-tier recommendations — Runs Smoothly / Playable / Not Recommended",
+        "Mood filters — Chill, Intense, Social, Story-Rich, Explore, Quick Play",
+        "AI insights — one Mistral call for profile summary, per-game"
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "JavaScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://spec-match-ten.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "specmatch.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "SpecMatch-web-app",
+        "url": "https://github.com/smile-plzz/SpecMatch-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-09-04T12:45:41Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "spotify-intelligence",
+      "name": "Spotify Intelligence",
+      "tagline": "Your personal Spotify listening intelligence platform — a complete picture of you as a music listener.",
+      "description": "Your personal Spotify listening intelligence platform — a complete picture of you as a music listener.",
+      "features": [],
+      "category": "web-app",
+      "status": "prototype",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "HTML"
+      ],
+      "screenshots": [],
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "spotify-intelligence.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "spotify-intelligence-web-app",
+        "url": "https://github.com/smile-plzz/spotify-intelligence-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-08-25T06:59:30Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "readme",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "portfolio-cms-ismail",
+      "name": "Portfolio 2.0 — Md. Ismail Hossain",
+      "tagline": "Next.js App Router + Sanity + Vercel.",
+      "description": "Next.js App Router + Sanity + Vercel. Replaces the single-file index.html that used to be this repo.",
+      "features": [],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://portfolio-cms-ismail.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "portfolio-cms-ismail.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "portfolio-cms-ismail-web-app",
+        "url": "https://github.com/smile-plzz/portfolio-cms-ismail-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-08-22T11:10:28Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "readme",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "ismail-hossain",
+      "name": "Ismail Hossain",
+      "tagline": "Personal portfolio and information repository for Ismail Hossain. See the README for current content; this repo may...",
+      "description": "Personal portfolio and information repository for Ismail Hossain. See the README for current content; this repo may be outdated — check active projects for recent work.",
+      "features": [],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "HTML"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://smile-plzz.github.io/Ismail_Hossain/",
+      "downloads": [],
+      "safetyNote": false,
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "Ismail_Hossain",
+        "url": "https://github.com/smile-plzz/Ismail_Hossain",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-08-19T07:38:44Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "github-api",
+        "tagline": "github-api",
+        "description": "github-api",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "med-tech",
+      "name": "Med-Tech: Online Doctor Consultation with OCR",
+      "tagline": "Online doctor consultation platform with OCR for prescription digitization",
+      "description": "An online doctor consultation platform with built-in Optical Character Recognition (OCR) for digitizing handwritten prescriptions and medical documents. Originally developed as a Senior Design Project (CSE499, North South University, Fall 2022/2023).",
+      "features": [],
+      "category": "web-app",
+      "status": "prototype",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "med-tech.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "Med-Tech-web-app",
+        "url": "https://github.com/smile-plzz/Med-Tech-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-08-19T07:06:59Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "blurt",
+      "name": "Blurt",
+      "tagline": "Blurt — a lightweight social media application for fast, ephemeral sharing. Built as a full-stack project exploring...",
+      "description": "You think \"I should reply to that email\" — and it's gone. Not forgotten because you didn't care. Gone because the thought had about four seconds of life in it and nothing caught it.",
+      "features": [],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "HTML"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://blurt-phi.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "blurt.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "Blurt-web-app",
+        "url": "https://github.com/smile-plzz/Blurt-web-app",
+        "defaultBranch": "master",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-08-18T09:56:38Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "hermes-model-router",
+      "name": "Hermes Model Router",
+      "tagline": "Automatic free-tier model routing for Hermes Agent — classifies tasks by context and picks the best free model...",
+      "description": "Automatic free-tier model routing for Hermes Agent — classifies incoming tasks by context and picks the best available free model across Groq, Gemini, Mistral, Nous, and OpenRouter.",
+      "features": [],
+      "category": "automation",
+      "status": "prototype",
+      "platforms": [],
+      "tech": [
+        "Python"
+      ],
+      "screenshots": [],
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "hermes-model-router.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "hermes-model-router-agent-workflow",
+        "url": "https://github.com/smile-plzz/hermes-model-router-agent-workflow",
+        "defaultBranch": "master",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-08-13T09:30:57Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "cinegemini-stream",
+      "name": "CineVault",
+      "tagline": "CineGemini-Stream — a streaming discovery concept combining cinematic content with Gemini-powered recommendations...",
+      "description": "CineVault is a premium cinematic discovery and streaming platform. Powered by OMDb and GNews APIs, it provides a high-fidelity interface for exploring the global database of film and television.",
+      "features": [
+        "OMDb Integration: Comprehensive metadata retrieval including high-resolution posters, Metascores, and IMDB ratings.",
+        "Rich Metadata: Every title features full plot synopses, director details, and cast lists.",
+        "Genre Discovery: Intelligent genre-based suggestions for exploring similar content."
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://cine-gemini.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "cinegemini-stream.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "CineGemini-Stream-web-app",
+        "url": "https://github.com/smile-plzz/CineGemini-Stream-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-08-13T06:20:28Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "watchmatch",
+      "name": "WatchMatch",
+      "tagline": "Chat-based assistant that recommends specific, real movies and TV shows to watch",
+      "description": "A chat-first movie and TV recommendation assistant. No mood grid, no genre browsing — just describe what you're in the mood for and WatchMatch asks at most one clarifying question before recommending specific, real titles that actually fit. React to what it suggests — 👍, 👎, or just tell it in plain text — and it adapts immediately, without ever repeating a pick you've already seen or rejected. Click any title for a full detail view with a Watch Now button that jumps straight into a search on streamv2.",
+      "features": [],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "HTML"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://watch-match-mu.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "watchmatch.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "WatchMatch-web-app",
+        "url": "https://github.com/smile-plzz/WatchMatch-web-app",
+        "license": "MIT",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-08-06T18:14:03Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api",
+        "license": "github-api"
+      }
+    },
+    {
+      "slug": "time-capsule-v2",
+      "name": "TimeCapsule",
+      "tagline": "Time Capsule V2",
+      "description": "Every day has a story. Rediscover yours.",
+      "features": [],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://time-capsule-google-ai-studio.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "time-capsule-v2.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "Time-Capsule-V2-web-app",
+        "url": "https://github.com/smile-plzz/Time-Capsule-V2-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-08-06T17:32:14Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "timecapsule",
+      "name": "TimeCapsule",
+      "tagline": "Personal memory explorer that transforms Facebook archives into a searchable, interactive timeline. Every day has a...",
+      "description": "Every day has a story. Rediscover yours.",
+      "features": [],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://time-capsule-peach.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "timecapsule.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "TimeCapsule-web-app",
+        "url": "https://github.com/smile-plzz/TimeCapsule-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-08-05T07:26:49Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "l2-writing-ai-sandbox",
+      "name": "L2 Writing AI Sandbox 📚🔬",
+      "tagline": "L2 Writing AI Sandbox",
+      "description": "An advanced, full-stack Conversational AI research sandbox designed to investigate how second language (L2) and bilingual academic writers interact with Large Language Models (LLMs) under different scaffolding, formatting, and prompt-controlled conditions.",
+      "features": [],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://l2-writing-ai-sandbox.onrender.com/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "l2-writing-ai-sandbox.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "L2-Writing-AI-Sandbox-web-app",
+        "url": "https://github.com/smile-plzz/L2-Writing-AI-Sandbox-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-08-01T19:27:07Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "entertainment-suite-stream",
+      "name": "Entertainment Suite",
+      "tagline": "Entertainment Suite Stream — a unified streaming dashboard aggregating live TV, on-demand content, and personal...",
+      "description": "Entertainment Suite is a comprehensive, responsive web application that combines movie streaming and mood-based recommendation features into a single, unified experience. Users can search for movies and TV shows, get personalized recommendations based on their mood, view detailed information, and stream content from various third-party sources.",
+      "features": [
+        "Unified Movie & TV Show Search: Search for content using the OMDb API, with results displayed seamlessly within the main interface.",
+        "Comprehensive Movie/TV Show Details: Access detailed information for movies and TV shows, including season and episode selection for TV series.",
+        "Multiple Streaming Sources: Enjoy reliable content streaming with integrated support for various third-party video sources.",
+        "Responsive Design: Optimized for a consistent and adaptive viewing experience across desktops, tablets, and mobile devices.",
+        "Integrated News Widget: Stay updated with the latest movie and TV show news, powered by the GNews API, directly within the application."
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "HTML"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://smile-plzz.github.io/entertainment-suite-stream-web-app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "entertainment-suite-stream.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "entertainment-suite-stream-web-app",
+        "url": "https://github.com/smile-plzz/entertainment-suite-stream-web-app",
+        "defaultBranch": "master",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-08-01T11:28:31Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "medicine-tracker",
+      "name": "Medicine Tracker - Smart Medication Management",
+      "tagline": "A comprehensive, user-friendly web application designed to help individuals manage their daily medication schedules...",
+      "description": "A comprehensive, user-friendly web application designed to help individuals manage their daily medication schedules with advanced features like reminders, tracking, and intelligent notifications.",
+      "features": [
+        "Smart Input: Autocomplete-enabled medicine name input with RxNav API integration",
+        "Multiple Times: Add multiple daily times for each medicine",
+        "Detailed Information: Dosage, instructions, duration, and custom notes",
+        "Edit & Delete: Full CRUD operations for medicine management",
+        "Medicine Information: Automatic fetching of drug details from RxNav API"
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "JavaScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://medicine-tracker-gilt.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "medicine-tracker.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "medicine-tracker-web-app",
+        "url": "https://github.com/smile-plzz/medicine-tracker-web-app",
+        "defaultBranch": "master",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-07-31T05:10:40Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "readme",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "physiotrace",
+      "name": "PhysioTrace Pro — Pharmacokinetic Digital Twin",
+      "tagline": "A predictive pharmacokinetic simulation engine that visualizes the metabolic impact of medications on a personalized...",
+      "description": "PhysioTrace is a client-side pharmacokinetic (PK) simulator. It builds a \"digital twin\" from your bio-metrics and plots how a compound is absorbed, distributed, and cleared over a 24-hour window — plasma concentration, organ load, and the effect of metabolic rate.",
+      "features": [
+        "Digital twin calibration — age, gender, height, weight, and activity level (1–5), stored",
+        "Pharmacokinetic engine — plasma concentration via the Bateman function (first-order",
+        "Compound library — 24 curated drugs and supplements with half-life, Tmax, bioavailability,",
+        "Peak summary — Cmax, Tmax, and the time the curve falls to a negligible fraction of peak.",
+        "Body map — an SVG twin whose organ regions shade with the metabolic load at the selected"
+      ],
+      "category": "data",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://physio-trace.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "physiotrace.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "PhysioTrace-web-app",
+        "url": "https://github.com/smile-plzz/PhysioTrace-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-07-30T20:16:05Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "astronomydashboard",
+      "name": "Celestial Explorer: Command Terminal",
+      "tagline": "AstronomyDashboard — an interactive dashboard for exploring astronomy and space data, including celestial events,...",
+      "description": "A high-fidelity space exploration dashboard powered by NASA Open APIs, live ISS telemetry, and an optional Gemini-powered AI advisor. Brutalist, command-center aesthetic — real-time telemetry from across the cosmos, statically hosted.",
+      "features": [],
+      "category": "data",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://smile-plzz.github.io/AstronomyDashboard-web-app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "astronomydashboard.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "AstronomyDashboard-web-app",
+        "url": "https://github.com/smile-plzz/AstronomyDashboard-web-app",
+        "defaultBranch": "master",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-07-30T15:27:14Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "nowshowing-stream-v2",
+      "name": "StreamVault",
+      "tagline": "NowShowing-Stream-V2 — iteration on the NowShowing streaming app with an updated UI and improved content discovery....",
+      "description": "A sleek, feature-rich streaming platform front-end with watchlist, history, ratings, and continue-watching functionality — all powered by vanilla JavaScript and the OMDB API.",
+      "features": [
+        "🎥 Hero Carousel — Auto-playing spotlight with manual swipe/dot navigation",
+        "🔍 Real-time Search — Instant results with movie/series/episode filters",
+        "📱 Fully Responsive — Optimized for mobile, tablet, and desktop with bottom navigation bar"
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "HTML"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://smile-plzz.github.io/NowShowing-Stream-V2-web-app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "nowshowing-stream-v2.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "NowShowing-Stream-V2-web-app",
+        "url": "https://github.com/smile-plzz/NowShowing-Stream-V2-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-07-30T12:53:23Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "voxel-modeling",
+      "name": "Voxel Toy Box 🎲",
+      "tagline": "Voxel Modeling",
+      "description": "An interactive 3D voxel physics engine, sculpture playground, and morphing sandbox built with Three.js, React, and TypeScript.",
+      "features": [
+        "Multi-Sized Hammer Arsenal:",
+        "🔨 Precision Mini-Hammer: Surgical strikes requiring multiple hits to break individual blocks.",
+        "🛠️ Sledgehammer: Balanced medium blast radius for chipping away sections.",
+        "💥 Mega War Hammer: Massive impact clearing large chunks in a single swing.",
+        "Radial Explosion Dynamics: Voxels blast outward in proportion to their distance from the impact point."
+      ],
+      "category": "game",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://voxel-modeling.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "voxel-modeling.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "Voxel-Modeling-web-app",
+        "url": "https://github.com/smile-plzz/Voxel-Modeling-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-07-30T11:47:11Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "swipetrack",
+      "name": "SwipeTrack – Personal Entertainment Journal",
+      "tagline": "A fun, addictive, dating-app-style way to log your movies, series & games. Swipe right to track, up to prioritize.",
+      "description": "SwipeTrack is a high-energy, \"dating-app-style\" entertainment tracker designed to help you organize your movies, series, and games with a single swipe. Built with a premium Notion-style aesthetic, it combines addictive interactivity with deep analytics.",
+      "features": [
+        "The Deck: Swipe right to log as \"Watched\", left to \"Skip\", up to \"Prioritize\", and down for \"Backlog\".",
+        "Cinematic Journal: A beautiful workspace for your tracked media, featuring powerful filters and a \"Surprise Me\" decision-maker.",
+        "Deep Analytics: Visualize your entertainment habits with time-logged summaries, quality averages, and a detailed \"Medium Split\" donut chart.",
+        "Global Search: Instantly find any movie, show, or game using integrated OMDb and RAWG data.",
+        "Cinematic Details: Full-bleed posters, synopsis, cast lists, and direct \"Watch Here\" links to external streamers."
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://swipe-track.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "swipetrack.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "SwipeTrack-web-app",
+        "url": "https://github.com/smile-plzz/SwipeTrack-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-07-30T11:15:31Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "movierecommendationbasedonmood",
+      "name": "MoodReel — Movie Recommendation Based on Mood",
+      "tagline": "MovieRecommendationBasedOnMood — a mood-driven movie recommendation tool that suggests films based on the viewer's...",
+      "description": "A web-based application that recommends movies and TV shows based on your current mood — pick a mood, chat with an AI about what you're after, browse the library by genre and year, or search directly. It uses the OMDB API for movie/show data and is a static site at its core: deployable to GitHub Pages, Netlify, or Vercel with no build step. Two AI features (Chat with AI, and the most-accurate tier of free-text mood detection) use small serverless functions powered by Mistral on deployments that support it (e.g. Vercel); the mood-detection tier gracefully degrades to an in-browser model, then keyword matching, everywhere else — Chat with AI requires the serverless setup since a conversation has no non-AI equivalent.",
+      "features": [
+        "Choose from 29 moods, each mapped to genres and keywords in config.json."
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "HTML"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://movie-recommendation-based-on-mood.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "movierecommendationbasedonmood.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "MovieRecommendationBasedOnMood-web-app",
+        "url": "https://github.com/smile-plzz/MovieRecommendationBasedOnMood-web-app",
+        "defaultBranch": "master",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-07-30T07:44:40Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "medicine-impact",
+      "name": "Medicine Impact Simulator",
+      "tagline": "Medicine Impact",
+      "description": "A futuristic, AI-powered medical intelligence platform that analyzes medications, visualizes their impact on the human body, and synthesizes clinical data from multiple sources (FDA, RxNav, DailyMed, PubChem) into accessible insights.",
+      "features": [
+        "Futuristic Bio-Metric Interface: A sleek, dark-mode terminal-inspired UI designed for clarity and deep focus.",
+        "Dynamic Body Impact Map: Interactive SVG mapping of the human body highlighting affected organ systems with pulsing risk indicators.",
+        "Risk Profile Matrix: Visual breakdown of toxicity risks (Liver, Kidney, Heart, Pregnancy, Addiction) with AI confidence scores and reasoning traces.",
+        "AI Explanation Modes: Switch seamlessly between explanations tailored for different personas: Patient, Medical Student, Doctor, and Clinical Researcher.",
+        "Cross-Reaction & Interaction Checker: Input multiple medications to simulate and identify severe interactions, mechanisms, and risks."
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://medicine-impact.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "medicine-impact.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "Medicine-Impact-web-app",
+        "url": "https://github.com/smile-plzz/Medicine-Impact-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-07-29T18:28:03Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "musicianforhire",
+      "name": "MusicianHire",
+      "tagline": "MusicianForHire — a platform connecting musicians with gig opportunities, collaborations, and booking requests. A...",
+      "description": "A booking marketplace for musicians: clients discover, filter, and book verified artists directly; artists manage bookings, earnings, and their public profile from a dashboard.",
+      "features": [
+        "Search by name, genre, or instrument, with AI-generated search suggestions",
+        "Filter by genre, instrument, max rate, and minimum rating; sort by rating or price",
+        "Favorite/save artists and filter down to just your favorites",
+        "Artist profile with bio, instruments, offered services, weekly availability,",
+        "One-click booking requests, tracked in the artist's dashboard"
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://musician-for-hire.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "musicianforhire.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "MusicianForHire-web-app",
+        "url": "https://github.com/smile-plzz/MusicianForHire-web-app",
+        "defaultBranch": "master",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-07-29T18:06:26Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "yet-another-ai-generated-portfolio",
+      "name": "yet another ai generated portfolio",
+      "tagline": "",
+      "description": "",
+      "features": [],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "HTML"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://smile-plzz.github.io/yet-another-ai-generated-portfolio-web-app/",
+      "downloads": [],
+      "safetyNote": false,
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "yet-another-ai-generated-portfolio-web-app",
+        "url": "https://github.com/smile-plzz/yet-another-ai-generated-portfolio-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-07-29T17:08:04Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "github-api",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "tcra-code-auditor-v3",
+      "name": "TCRA Code Auditor",
+      "tagline": "TCRA Code Auditor V3",
+      "description": "An AI-powered web application that audits AI-generated (\"vibecoded\") code against TCRA — a four-dimensional academic framework for evaluating the intelligence-automation boundary in conversational AI code generation: Transparency, Controllability, Reliability, Auditability.",
+      "features": [
+        "Comprehensive Evaluation — scores code against all four TCRA dimensions with per-dimension explanations.",
+        "AI-Powered Analysis — an LLM performs semantic analysis, structural auditing, and intelligence-automation classification.",
+        "Visual Analytics — radar chart, per-dimension score bars, composite gauge, and risk/failure-vector callouts.",
+        "Multi-Provider Support — Google Gemini, OpenAI, Anthropic, and GroqCloud, with a custom-model-ID override for any of them.",
+        "Secure Architecture — an Express backend proxies all provider calls so API keys are never persisted or exposed to the client."
+      ],
+      "category": "data",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://tcra-code-auditor-v3.onrender.com/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "tcra-code-auditor-v3.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "TCRA-Code-Auditor-V3-web-app",
+        "url": "https://github.com/smile-plzz/TCRA-Code-Auditor-V3-web-app",
+        "license": "Apache-2.0",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-07-29T11:15:28Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api",
+        "license": "github-api"
+      }
+    },
+    {
+      "slug": "hddcachewarmer",
+      "name": "HDD Cache Warmer",
+      "tagline": "HDD Cache Warmer — a utility for pre-warming or optimizing hard disk drive cache performance, a C# system utility...",
+      "description": "A Windows utility that warms the OS file cache for a folder or drive by reading every file sequentially, so repeated access to the same files is served from RAM instead of the disk.",
+      "features": [],
+      "category": "desktop-app",
+      "status": "prototype",
+      "platforms": [
+        "windows"
+      ],
+      "tech": [
+        "C#"
+      ],
+      "screenshots": [],
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "hddcachewarmer.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "HDDCacheWarmer-windows-software",
+        "url": "https://github.com/smile-plzz/HDDCacheWarmer-windows-software",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-07-26T09:13:17Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "brainstorm-ai-v1",
+      "name": "Brainstorm Studio",
+      "tagline": "An advanced full-stack web app for collaborative multi-agent AI discussions and brainstorming. Users chat with...",
+      "description": "An advanced, highly interactive full-stack web application designed for simulating collaborative multi-agent discussion and brainstorming sessions. Users can converse with a customized roster of AI specialist personas, adjust interaction dynamics in real-time, toggle background automation, and stream collaborative responses instantly.",
+      "features": [
+        "Custom Personas: Create and store custom personas with unique system prompts, names, model preferences, and visual representations."
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://brainstorm-ai-v1.onrender.com/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "brainstorm-ai-v1.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "Brainstorm.AI-V1-web-app",
+        "url": "https://github.com/smile-plzz/Brainstorm.AI-V1-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-07-22T06:04:49Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "brainstorm-ai-v2",
+      "name": "AI Ideation Studio 🚀",
+      "tagline": "AI Ideation Studio 🚀 lets you build custom AI expert panels to brainstorm, debate, and refine ideas. Launch preset...",
+      "description": "Welcome to the AI Ideation Studio, an advanced collaborative think-tank where you assemble bespoke panels of elite AI experts to pitch, debate, roast, and refine your next big ideas.",
+      "features": [
+        "Generative Expert Inception: Describe any scenario, and the AI will dynamically spawn the perfect roster of customized experts matching that niche.",
+        "Interactive Multi-Agent Debates: Control the synergy level using the Debate Intensity Parameters (Structured Debate, Dynamic Panel, Synergy Chaos).",
+        "Collapsible Sidebar Workspace: Maximise your workspace. Toggle the active panelists panel out of view to focus purely on the discussion stream.",
+        "Export & Transcripts: Cleanly export complete markdown transcripts of your brainstorming session directly with a single click."
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://brainstorm-ai-v2.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "brainstorm-ai-v2.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "Brainstorm.AI-V2-web-app",
+        "url": "https://github.com/smile-plzz/Brainstorm.AI-V2-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-07-17T19:30:09Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "hivemind-v4",
+      "name": "HIVEMIND: Cybernetic Multi-Agent Swarm Orchestration",
+      "tagline": "HiveMind_V4",
+      "description": "Hivemind is an advanced, high-tech cognitive orchestration platform that coordinates a collective intelligence of specialized sub-agents. It breaks down complex user objectives, facilitates deep collaborative board discussions, dynamically assigns specialized AI models based on task efficiency, and executes multi-stage development workflows with real-time visual telemetry.",
+      "features": [],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://hivemind-v4-1.onrender.com/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "hivemind-v4.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "HiveMind_V4-web-app",
+        "url": "https://github.com/smile-plzz/HiveMind_V4-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-07-17T16:37:37Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "hivemind-v3",
+      "name": "HIVEMIND: Cybernetic Multi-Agent Swarm Orchestration",
+      "tagline": "HiveMind V3 — a collaborative multi-agent discussion platform for group AI brainstorming and ideation. Predecessor...",
+      "description": "Hivemind is an advanced, high-tech cognitive orchestration platform that coordinates a collective intelligence of specialized sub-agents. It breaks down complex user objectives, facilitates deep collaborative board discussions, dynamically assigns specialized AI models based on task efficiency, and executes multi-stage development workflows with real-time visual telemetry.",
+      "features": [],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://hivemind-v3.onrender.com/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "hivemind-v3.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "HiveMind_V3-web-app",
+        "url": "https://github.com/smile-plzz/HiveMind_V3-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-07-17T14:58:00Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "word-counter",
+      "name": "Word Counter",
+      "tagline": "View your app in AI Studio: https://ai.studio/apps/75da276e-fbc0-40ca-ad79-946cbf3995d6",
+      "description": "View your app in AI Studio: https://ai.studio/apps/75da276e-fbc0-40ca-ad79-946cbf3995d6",
+      "features": [],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://word-counter-seven-silk.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "word-counter.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "Word-Counter-web-app",
+        "url": "https://github.com/smile-plzz/Word-Counter-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-07-14T11:35:24Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "github-api",
+        "tagline": "readme",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "obsidex",
+      "name": "Cosmic Live IPTV 📺",
+      "tagline": "A streaming platform for IP TV",
+      "description": "Cosmic Live IPTV is a high-performance, responsive web application designed for browsing and streaming IPTV channels globally. Built with a focus on visual elegance and platform reliability, it features a modern \"Cosmic\" dark interface, intelligent stream management, and robust channel categorization.",
+      "features": [
+        "Virtualized Discovery: High-performance sidebar utilizing custom virtualization to render thousands of channels smoothly with zero lag.",
+        "Advanced Global Filtering: Extensive filtering by search query, region (country flags), multi-category genres, and resolution (HD/4K) badges.",
+        "Priority-Driven Sorting: Intelligent channel organization that boosts HD/4K quality, favorites, and official sources to the top.",
+        "Picture-in-Picture & Mobile Ready: Integrated PiP support and a responsive design that adapts flawlessly from desktop to mobile screens.",
+        "Recent & Favorite Channels: Securely tracks your most recently watched channels and favorites using browser local storage."
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://cosmic-ip-tv.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "obsidex.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "Obsidex-web-app",
+        "url": "https://github.com/smile-plzz/Obsidex-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-07-07T12:25:16Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "market-weather-analytics",
+      "name": "Market Weather Analytics",
+      "tagline": "Real-Time Market-Weather Analytics Dashboard",
+      "description": "Macro Pulse is a professional-grade full-stack alternative data telemetry engine and analytical terminal. It synchronizes decentralized financial indices (Cryptocurrency asset prices) with high-fidelity, localized environmental observations (Weather statistics) from cities across the globe. By tracking correlations, volatility, and trend patterns in real-time, the platform provides quants and macroeconomists with a playground to study alternative data vectors.",
+      "features": [],
+      "category": "data",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://real-time-market-weather-analytics.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "market-weather-analytics.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "Market-Weather-Analytics--web-app",
+        "url": "https://github.com/smile-plzz/Market-Weather-Analytics--web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-07-07T11:31:55Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "github-api",
+        "tagline": "github-api",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "hf-wrap",
+      "name": "HF_WRAP.",
+      "tagline": "hugging face wrapper",
+      "description": "A high-performance, polished neural interface for interacting with the Hugging Face Inference API. This application provides a secure bridge to thousands of open-source models with integrated support for text generation, summarization, translation, and sentiment analysis.",
+      "features": [
+        "Neural Bridge Architecture: Secure Express-mediated proxy to bypass standard network restrictions and handle authentication seamlessly.",
+        "Persistent Context: Integrated local-first inference history with session-persistent storage and one-click recall.",
+        "Multimodal Support: Full rendering support for text-to-image models (FLUX, Stable Diffusion) with download capabilities.",
+        "Deep Recall: Integrated one-click copy functionality and history management for streamlined prompt engineering.",
+        "Provider Optimization: Automatically routes requests through optimized endpoints (router.huggingface.co) to ensure maximum uptime and connectivity."
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://hf-wrap.onrender.com/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "hf-wrap.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "HF_WRAP.-web-app",
+        "url": "https://github.com/smile-plzz/HF_WRAP.-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-06-22T12:07:10Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "trektrack-photo-route",
+      "name": "Expedition Director",
+      "tagline": "TrekTrack Photo Route — a photo-centric travel and route tracking application, allowing users to document journeys...",
+      "description": "A professional-grade expedition analysis platform that transforms photo metadata into a comprehensive tactical mission report.",
+      "features": [
+        "Telemetry HUD: Extracts high-precision GPS, altitude, and timestamp data from photo EXIF metadata to reconstruct your route.",
+        "AI Tactical Log (Gemini): Generates a world-class Expedition Narrative, Tactical Advisories, and key technical milestones using the Gemini 1.5 Flash model.",
+        "Physiological Monitoring: Estimates oxygen saturation (SpO2) and caloric expenditure based on altitude and terrain metrics.",
+        "Interactive Cartography: Dynamic Leaflet maps with real-time photo-to-location mapping and an interactive elevation scrubber.",
+        "Anomaly Detection: Automatically flags GPS \"teleportation\" or timestamp inconsistencies that suggest data corruption or high-speed displacement."
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://trektrack-photo-route.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "trektrack-photo-route.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "trektrack-photo-route-web-app",
+        "url": "https://github.com/smile-plzz/trektrack-photo-route-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-06-22T06:59:10Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "tcra-code-evaluation-interface",
+      "name": "TCRA Code Evaluation Interface",
+      "tagline": "This is a dedicated, reviewer-facing research tool developed for an academic study on AI-generated code evaluation.",
+      "description": "This is a dedicated, reviewer-facing research tool developed for an academic study on AI-generated code evaluation. The interface is designed to facilitate the systematic review of code artifacts generated by five different AI models (Gemini, ChatGPT, Claude Sonnet, Claude Haiku, and DeepSeek) across four distinct task domains (T1–T4).",
+      "features": [
+        "Centralized Artifact Explorer: Sidebar navigation organized by Task and Tool for rapid context switching.",
+        "Dual-Pane View: Parallel display of raw source code (with syntax highlighting) and live rendered previews for web artifacts.",
+        "Contextual Metadata: Persistent display of the original input prompt, domain information, and study rationale for each specific artifact.",
+        "On-Demand Rubric Reference: A persistent toggle to view the full TCRA scoring rubric and classification bands without losing the current review position.",
+        "Academic Aesthetic: A clean, light-mode dashboard designed for high readability and professional technical review."
+      ],
+      "category": "data",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://tcra-code-evaluation-interface-n6uy.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "tcra-code-evaluation-interface.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "TCRA-Code-Evaluation-Interface-web-app",
+        "url": "https://github.com/smile-plzz/TCRA-Code-Evaluation-Interface-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-06-17T10:49:24Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "readme",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "tcra-code-auditor-v2",
+      "name": "TCRA Code Auditor V2",
+      "tagline": "A framework-driven web application for evaluating AI-generated (\"vibecoded\") code against the TCRA framework — a...",
+      "description": "A framework-driven web application for evaluating AI-generated (\"vibecoded\") code against the TCRA framework — a structured methodology derived from academic research on the intelligence-automation boundary in conversational AI systems.",
+      "features": [
+        "Multi-provider support — runs audits via Google Gemini, OpenAI, Anthropic Claude, or Groq",
+        "Vibe-code detection — identifies whether submitted code exhibits patterns typical of AI generation",
+        "Risk analysis — surfaces up to 3 specific risks or silent failure points in the submitted code",
+        "Optional prompt context — paste the original prompt used to generate the code for richer analysis",
+        "Structured JSON output — all audit results are validated and sanitized before display"
+      ],
+      "category": "data",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://tcra-code-auditor-v2.onrender.com/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "tcra-code-auditor-v2.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "TCRA-Code-Auditor-V2-web-app",
+        "url": "https://github.com/smile-plzz/TCRA-Code-Auditor-V2-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-06-14T18:17:07Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "readme",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "tcra-code-auditor",
+      "name": "TCRA Code Auditor",
+      "tagline": "View your app in AI Studio: https://ai.studio/apps/27c55f67-bb47-4513-ae1c-e5c8db9af762",
+      "description": "View your app in AI Studio: https://ai.studio/apps/27c55f67-bb47-4513-ae1c-e5c8db9af762",
+      "features": [],
+      "category": "data",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://tcra-code-auditor.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "tcra-code-auditor.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "TCRA-Code-Auditor-web-app",
+        "url": "https://github.com/smile-plzz/TCRA-Code-Auditor-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-06-14T12:46:49Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "github-api",
+        "tagline": "readme",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "livetvstream",
+      "name": "IPTV.STREAM",
+      "tagline": "LiveTVStream — a live television streaming application providing access to live channels and real-time broadcast...",
+      "description": "A lightweight IPTV web player built with pure HTML, CSS, and JavaScript. It fetches live IPTV channel data from the IPTV-Org project, provides fast searching and filtering, virtualized channel lists for high performance, HLS playback support, country/category filtering, recently watched channels, and automatic playlist refresh.",
+      "features": [
+        "📺 Live IPTV channel streaming",
+        "🌍 Country-based channel filtering with flag support",
+        "🏷️ Category filtering",
+        "🔍 Debounced search (920ms delay)",
+        "⚡ Virtual scrolling for handling thousands of channels efficiently"
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "HTML"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://smile-plzz.github.io/LiveTVStream-web-app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "livetvstream.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "LiveTVStream-web-app",
+        "url": "https://github.com/smile-plzz/LiveTVStream-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-06-03T10:05:56Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "real-time-event-finder",
+      "name": "Real-Time Event Finder",
+      "tagline": "Real-Time Event Finder — a concert and live event discovery platform that surfaces real-time event listings, with...",
+      "description": "This is a single-page web application that allows users to search for real-time events using the Ticketmaster API. It provides a user-friendly interface to discover events, view them on a map, and save them for later.",
+      "features": [
+        "Advanced Filtering: Filter events by date range (Today, This Weekend, Next 7 Days) and price range (min/max).",
+        "List View: A clean, card-based list view of events.",
+        "In-Page Event Details: View comprehensive details for each event in a modal overlay, including additional information like price ranges and notes.",
+        "Share Event: Easily share event details via native sharing options (Web Share API) or by copying to clipboard.",
+        "Save Events: Save events you're interested in to a separate list."
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "HTML",
+        "concert",
+        "event",
+        "music",
+        "ticket"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://smile-plzz.github.io/real-time-event-finder-web-app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "real-time-event-finder.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "real-time-event-finder-web-app",
+        "url": "https://github.com/smile-plzz/real-time-event-finder-web-app",
+        "defaultBranch": "master",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-06-01T12:17:47Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "westeros-chronicles",
+      "name": "Westeros Chronicles - Interactive Timeline",
+      "tagline": "An ultra-detailed, animated interactive timeline map of the Game of Thrones universe allowing users to track...",
+      "description": "*The ultimate interactive timeline of Game of Thrones and House of the Dragon***",
+      "features": [
+        "🗺️ Interactive SVG Map with animated character tokens",
+        "⏱️ Scrubbable Timeline with playback controls",
+        "👥 Character Filtering by house or allegiance",
+        "🚫 Spoiler Control — watch safely",
+        "📍 Real-time Path Tracing"
+      ],
+      "category": "game",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://westeros-chronicles-interactive-tim.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "westeros-chronicles.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "Westeros-Chronicles-web-app",
+        "url": "https://github.com/smile-plzz/Westeros-Chronicles-web-app",
+        "license": "MIT",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-05-11T11:27:43Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api",
+        "license": "github-api"
+      }
+    },
+    {
+      "slug": "news",
+      "name": "DailyDigest - Enhanced News Application",
+      "tagline": "News — a news aggregation and browsing application. See the README for source integrations and feature details.",
+      "description": "A modern, feature-rich news application built with React that provides real-time news from multiple sources with an intuitive and beautiful user interface.",
+      "features": [
+        "Modern Design: Clean, minimalist interface with smooth animations",
+        "Responsive Layout: Optimized for all device sizes (mobile, tablet, desktop)",
+        "Dark Mode: Beautiful dark theme with system preference detection",
+        "Smooth Animations: Hover effects, transitions, and micro-interactions",
+        "Typography: Modern Inter font with proper hierarchy"
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "JavaScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://news-iota-lilac.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "news.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "News-web-app",
+        "url": "https://github.com/smile-plzz/News-web-app",
+        "defaultBranch": "master",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-05-06T10:26:07Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "instant-vibe-booster",
+      "name": "Instant Vibe Booster",
+      "tagline": "View your app in AI Studio: https://ai.studio/apps/f9d3f123-cf38-49b4-8916-c8440df8663c",
+      "description": "View your app in AI Studio: https://ai.studio/apps/f9d3f123-cf38-49b4-8916-c8440df8663c",
+      "features": [],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://smile-plzz.github.io/Instant-Vibe-Booster-web-app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "instant-vibe-booster.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "Instant-Vibe-Booster-web-app",
+        "url": "https://github.com/smile-plzz/Instant-Vibe-Booster-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-05-05T12:03:31Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "github-api",
+        "tagline": "readme",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "nowshowing",
+      "name": "NowShowing - Movie & TV Show Streaming Platform",
+      "tagline": "NowShowing — a movie and TV show discovery platform that surfaces what's currently available to stream across...",
+      "description": "A modern, responsive web application for streaming movies and TV shows with a beautiful UI and comprehensive features.",
+      "features": [
+        "Multi-Source Streaming: Access content from multiple video sources",
+        "Search & Discovery: Search movies and TV shows with real-time results",
+        "Watchlist Management: Save and organize your favorite content",
+        "Continue Watching: Resume where you left off",
+        "News Integration: Latest entertainment news and updates"
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "JavaScript",
+        "moviestreaming",
+        "nowshowing",
+        "streamingplatform",
+        "tvshowsonline"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://nowshowing-dusky.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "nowshowing.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "NowShowing",
+        "url": "https://github.com/smile-plzz/NowShowing",
+        "license": "MIT",
+        "defaultBranch": "master",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-04-20T21:05:56Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api",
+        "license": "github-api"
+      }
+    },
+    {
+      "slug": "balanceflow",
+      "name": "BalanceFlow",
+      "tagline": "BalanceFlow — a wellness or productivity application focused on balance, flow, and healthy habit tracking. See the...",
+      "description": "A focused work-break timer built for balance, not burnout.",
+      "features": [
+        "Work / Break tabs — Switch modes with dedicated durations and colour themes",
+        "Custom durations — Set any minute value (1–120) via input or ±5 buttons",
+        "Pause & Resume — Interrupt and continue any session without losing time",
+        "Keyboard shortcuts — Space to start/pause, R to reset",
+        "Stopwatch — Independent stopwatch with start/stop/reset; runs alongside the main timer"
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "HTML"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://smile-plzz.github.io/BalanceFlow-web-app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "balanceflow.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "BalanceFlow-web-app",
+        "url": "https://github.com/smile-plzz/BalanceFlow-web-app",
+        "defaultBranch": "master",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-04-05T08:48:48Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "forge",
+      "name": "FORGE-",
+      "tagline": "FORGE — a project workspace. See the repository for current state. (Note: repo name has a trailing hyphen — may be a...",
+      "description": "FORGE — a project workspace. See the repository for current state. (Note: repo name has a trailing hyphen — may be a rename in progress or an abandoned experiment.)",
+      "features": [],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "HTML"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://smile-plzz.github.io/FORGE-web-app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "forge.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "FORGE-web-app",
+        "url": "https://github.com/smile-plzz/FORGE-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-03-27T20:31:34Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "github-api",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "delayed",
+      "name": "DELAYED.",
+      "tagline": "Delayed — an experimental or in-progress project. See the repository for details; the name suggests a...",
+      "description": "\"The quieter you become, the more you can hear.\"",
+      "features": [],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://delayed-wine.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "delayed.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "Delayed.-web-app",
+        "url": "https://github.com/smile-plzz/Delayed.-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-01-15T13:23:10Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "astronomy",
+      "name": "Cosmic Voyager 🚀",
+      "tagline": "Full-stack astronomy dashboard — a complete application for tracking celestial events, satellite passes, and...",
+      "description": "Cosmic Voyager is a progressive web application designed for space enthusiasts, aspiring astronauts, and mission commanders. It serves as a personal \"Mission Control\" dashboard, aggregating real-time data from NASA, simulating orbital mechanics, and providing interactive tools for mission planning.",
+      "features": [
+        "Live Telemetry: Simulated orbital velocity, altitude, and geocoordinates.",
+        "NEO Sensors: Tracks Near-Earth Objects (asteroids) making close approaches today (powered by NASA NeoWs API).",
+        "Deep Space Network: Displays the Astronomy Picture of the Day (APOD) with high-res visuals.",
+        "Space Weather: Monitors Solar Wind speed and Geomagnetic Storm (K-Index) activity."
+      ],
+      "category": "data",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://smile-plzz.github.io/Astronomy-web-app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "astronomy.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "Astronomy-web-app",
+        "url": "https://github.com/smile-plzz/Astronomy-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-01-14T11:53:11Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "omnistream-tv",
+      "name": "OmniStream TV",
+      "tagline": "A premium international TV streaming platform featuring global channels and a cinematic viewing experience.",
+      "description": "View your app in AI Studio: https://ai.studio/apps/drive/1D7dC0OMD8nHgmsV4KdiaB-XncdkjIJD9",
+      "features": [],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://omni-stream-tv.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "omnistream-tv.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "OmniStream-TV-web-app",
+        "url": "https://github.com/smile-plzz/OmniStream-TV-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-01-13T13:29:42Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "github-api",
+        "tagline": "github-api",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "dynacare-console",
+      "name": "DynaCare Console",
+      "tagline": "A unified support platform for Dynamatic merchants and agents, featuring structured ticketing, automated...",
+      "description": "View your app in AI Studio: https://ai.studio/apps/drive/1EB7SnDoriGZovnhBqizuSobU6Uo6YKQq",
+      "features": [],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://dyna-care-console.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "dynacare-console.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "DynaCare-Console-web-app",
+        "url": "https://github.com/smile-plzz/DynaCare-Console-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-01-13T13:00:45Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "github-api",
+        "tagline": "github-api",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "astronode",
+      "name": "AstroNode: Live Orbital Dashboard",
+      "tagline": "A high-fidelity mission control dashboard for tracking space stations, commercial modules, and upcoming launches in...",
+      "description": "AstroNode is a high-fidelity mission control interface designed for the \"New Space\" era of 2026. As low Earth orbit (LEO) becomes increasingly crowded with government stations like the ISS and Tiangong, alongside emerging commercial modules, AstroNode provides a unified tactical grid for tracking, diagnostics, and logistics.",
+      "features": [],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://astro-node-live-orbital-dashboard.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "astronode.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "AstroNode-web-app",
+        "url": "https://github.com/smile-plzz/AstroNode-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-01-05T10:14:27Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "datasourceruleextractor",
+      "name": "DataSourceRuleExtractor",
+      "tagline": "DataSource Rule Extractor — a utility for extracting, analyzing, and documenting data source rules, schema patterns,...",
+      "description": "DataSource Rule Extractor — a utility for extracting, analyzing, and documenting data source rules, schema patterns, and transformation logic from existing data pipelines and storage systems.",
+      "features": [],
+      "category": "tool",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "HTML"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://smile-plzz.github.io/DataSourceRuleExtractor-web-app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "datasourceruleextractor.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "DataSourceRuleExtractor-web-app",
+        "url": "https://github.com/smile-plzz/DataSourceRuleExtractor-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2025-12-09T10:48:39Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "github-api",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "vibebench-forensic-analysis-viewer",
+      "name": "VibeBench-Forensic-Analysis-Viewer",
+      "tagline": "VibeBench Forensic Analysis Viewer — a forensic analysis and visualization tool for examining VibeBench data, with...",
+      "description": "VibeBench Forensic Analysis Viewer — a forensic analysis and visualization tool for examining VibeBench data, with deep inspection, pattern analysis, and evidence review capabilities.",
+      "features": [],
+      "category": "data",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "HTML"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://smile-plzz.github.io/VibeBench-Forensic-Analysis-Viewer-web-app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "vibebench-forensic-analysis-viewer.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "VibeBench-Forensic-Analysis-Viewer-web-app",
+        "url": "https://github.com/smile-plzz/VibeBench-Forensic-Analysis-Viewer-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2025-12-04T13:49:51Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "github-api",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "pillpal",
+      "name": "PillPal - Smart Medication Management",
+      "tagline": "PillPal — a medication management and tracking application to help users stay on top of prescriptions, dosages, and...",
+      "description": "A comprehensive, intelligent medication tracking and management application designed to help users maintain medication adherence, track symptoms, and manage their health effectively.",
+      "features": [
+        "Smart Medicine Tracking: Add, edit, and delete medications with detailed information",
+        "Flexible Scheduling: Set multiple daily doses with custom times",
+        "Dose Tracking: Mark doses as taken with timestamp tracking",
+        "Duration Management: Set medication duration or mark as indefinite"
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://pill-pal-k7oa.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "pillpal.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "PillPal-web-app",
+        "url": "https://github.com/smile-plzz/PillPal-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2025-11-22T08:07:34Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "daily-doggo-dusky",
+      "name": "TheDailyDoggomaster",
+      "tagline": "Daily-Doggo-Dusky — a companion project to The-Daily-Doggo, exploring an alternative theme or feature set for the...",
+      "description": "Automatically synced with your v0.app deployments",
+      "features": [],
+      "category": "web-app",
+      "status": "prototype",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "daily-doggo-dusky.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "Daily-Doggo-Dusky-web-app",
+        "url": "https://github.com/smile-plzz/Daily-Doggo-Dusky-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2025-11-11T11:03:45Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "real-time-event-finder-full-stack",
+      "name": "Code enhancement",
+      "tagline": "Real-Time Event Finder (Full Stack) — the full-stack implementation of the Real-Time Event Finder, with backend...",
+      "description": "Automatically synced with your v0.app deployments",
+      "features": [],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://real-time-event-finder-full-stack.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "real-time-event-finder-full-stack.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "real-time-event-finder-full-stack-web-app",
+        "url": "https://github.com/smile-plzz/real-time-event-finder-full-stack-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2025-11-11T10:29:55Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "triggetsetformatter",
+      "name": "TriggetSetFormatter",
+      "tagline": "TriggerSet Formatter — a data formatting and transformation tool for trigger sets, used in event-driven systems,...",
+      "description": "TriggerSet Formatter — a data formatting and transformation tool for trigger sets, used in event-driven systems, workflow automation, or sensor/data pipeline configuration.",
+      "features": [],
+      "category": "tool",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "HTML"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://smile-plzz.github.io/TriggetSetFormatter-web-app/",
+      "downloads": [],
+      "safetyNote": false,
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "TriggetSetFormatter-web-app",
+        "url": "https://github.com/smile-plzz/TriggetSetFormatter-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2025-10-30T12:29:55Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "github-api",
+        "tagline": "github-api",
+        "description": "github-api",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "trellojsonfilterbymonth",
+      "name": "Trello JSON Date Filter",
+      "tagline": "Trello JSON Filter by Month — a utility for filtering and extracting Trello board data from JSON exports by month,...",
+      "description": "A standalone, browser-based Trello JSON analyzer that helps you filter cards, actions, and comments by a single month or a custom date range — no server required. Upload your Trello board export, choose a month or date window, and instantly get:",
+      "features": [
+        "Cards – Filter by creation date, due date, or last activity.",
+        "Actions – Filter all activity, including comments, by month or custom range.",
+        "Comment Extraction – Include comment text (commentCard) for qualitative analysis.",
+        "Time Range Modes – Toggle between quick month/year selection and precise start/end dates."
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "HTML"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://trello-jso-nfilterby-month.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "trellojsonfilterbymonth.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "TrelloJSONfilterbyMonth-web-app",
+        "url": "https://github.com/smile-plzz/TrelloJSONfilterbyMonth-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2025-10-23T09:14:10Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "reportforge",
+      "name": "Comments Report Starter",
+      "tagline": "ReportForge — a report generation and document assembly tool, enabling structured report creation from data sources,...",
+      "description": "A small, reproducible pipeline to generate an operational report from a CSV of interactions/comments.",
+      "features": [],
+      "category": "web-app",
+      "status": "prototype",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "Python"
+      ],
+      "screenshots": [],
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "reportforge.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "ReportForge-web-app",
+        "url": "https://github.com/smile-plzz/ReportForge-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2025-10-20T11:01:02Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "translate-pdf",
+      "name": "translate pdf",
+      "tagline": "Translate PDF — a utility for extracting and translating text content from PDF documents, supporting multi-language...",
+      "description": "Translate PDF — a utility for extracting and translating text content from PDF documents, supporting multi-language document processing workflows.",
+      "features": [],
+      "category": "other",
+      "status": "prototype",
+      "platforms": [
+        "cli"
+      ],
+      "tech": [
+        "Python"
+      ],
+      "screenshots": [],
+      "downloads": [],
+      "safetyNote": false,
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "translate_pdf-python-software",
+        "url": "https://github.com/smile-plzz/translate_pdf-python-software",
+        "defaultBranch": "master",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2025-10-16T10:32:42Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "github-api",
+        "tagline": "github-api",
+        "description": "github-api",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "the-daily-doggo",
+      "name": "Random Content Viewer",
+      "tagline": "The-Daily-Doggo — a daily dog-focused content and care application, bringing together dog health tips, breed...",
+      "description": "A fun web application to view random pictures and content from various APIs.",
+      "features": [
+        "View Random Content: Get random pictures of dogs, cats, foxes, Pokémon, random meals, and art.",
+        "Text Overlay: Add custom text to cat images.",
+        "Image History: Navigate through your viewing history with \"Previous\" and \"Next\" buttons.",
+        "Favorites: \"Like\" your favorite pictures and view them in a gallery. Favorites are saved in your browser's local storage.",
+        "Social Sharing: Share your favorite content on Twitter."
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "JavaScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://the-daily-doggo.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "the-daily-doggo.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "The-Daily-Doggo-web-app",
+        "url": "https://github.com/smile-plzz/The-Daily-Doggo-web-app",
+        "defaultBranch": "master",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2025-09-24T16:36:43Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "techpath-finder",
+      "name": "Pathfinder Pro",
+      "tagline": "TechPath Finder — a career and technology path exploration tool that maps out skill progressions, learning roadmaps,...",
+      "description": "A comprehensive web application designed to guide individuals in discovering their ideal tech career path through personalized recommendations and detailed insights into various specializations.",
+      "features": [],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://techpath-finder.vercel.app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "techpath-finder.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "techpath-finder-web-app",
+        "url": "https://github.com/smile-plzz/techpath-finder-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2025-08-19T05:51:46Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "bangladesh-constitution-system-rag",
+      "name": "Constitution of Bangladesh - Q&A System",
+      "tagline": "Bangladesh Constitution RAG System — a retrieval-augmented generation system built on the text of the Bangladesh...",
+      "description": "This project aims to build a question-answering system for the Constitution of Bangladesh using a Retrieval-Augmented Generation (RAG) approach.",
+      "features": [],
+      "category": "data",
+      "status": "prototype",
+      "platforms": [],
+      "tech": [
+        "JavaScript"
+      ],
+      "screenshots": [],
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "bangladesh-constitution-system-rag.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "Bangladesh-Constitution-System-RAG",
+        "url": "https://github.com/smile-plzz/Bangladesh-Constitution-System-RAG",
+        "defaultBranch": "master",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2025-08-18T17:45:21Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "agent-development-framework-an-interactive-guide",
+      "name": "Agent Development Framework: An Interactive Guide",
+      "tagline": "Agent Development Framework: An Interactive Guide — an educational, interactive guide to building AI agent systems,...",
+      "description": "Welcome to the Agent Development Framework: An Interactive Guide! This project provides a hands-on introduction to building, testing, and deploying intelligent agents.",
+      "features": [
+        "Step-by-step interactive tutorials",
+        "Modular agent architecture",
+        "Example projects and templates",
+        "Integration guides for popular platforms"
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "HTML"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://smile-plzz.github.io/Agent-Development-Framework-An-Interactive-Guide-web-app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "agent-development-framework-an-interactive-guide.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "Agent-Development-Framework-An-Interactive-Guide-web-app",
+        "url": "https://github.com/smile-plzz/Agent-Development-Framework-An-Interactive-Guide-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2025-08-11T11:22:22Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "interactive-logic-gate-simulator",
+      "name": "Logic Gate Simulator",
+      "tagline": "Interactive Logic Gate Simulator — an educational interactive tool for simulating and visualizing digital logic...",
+      "description": "A modern, interactive web application for learning about and simulating basic logic gates. Built with HTML, Tailwind CSS, and vanilla JavaScript.",
+      "features": [
+        "Interactive Gate Explorer: Visual representations and truth tables for all basic logic gates (AND, OR, NOT, NAND, NOR, XOR)",
+        "Gate Calculator: Simulate gate operations with customizable inputs",
+        "Educational Content: Learn about how logic gates work and their applications",
+        "Responsive Design: Works on desktop and mobile devices",
+        "Modern UI: Clean, professional interface built with Tailwind CSS"
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "HTML"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://smile-plzz.github.io/Interactive-Logic-Gate-Simulator-web-app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "interactive-logic-gate-simulator.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "Interactive-Logic-Gate-Simulator-web-app",
+        "url": "https://github.com/smile-plzz/Interactive-Logic-Gate-Simulator-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2025-04-07T05:18:32Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    },
+    {
+      "slug": "choose-your-niche",
+      "name": "CSE Specialization Recommendation App",
+      "tagline": "Choose Your Niche 1.1 — a guided self-assessment and niche-discovery tool for entrepreneurs and creators, helping...",
+      "description": "A web application to help Computer Science Engineering (CSE) freshers choose specialized sectors for their careers.",
+      "features": [
+        "Interactive questionnaire about interests, skills, and preferences",
+        "Recommendation algorithm that matches users with suitable CSE specializations",
+        "Detailed information about 10 different CSE specializations",
+        "Responsive design that works on mobile and desktop"
+      ],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "TypeScript"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://smile-plzz.github.io/choose-your-niche-web-app/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "choose-your-niche.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "choose-your-niche-web-app",
+        "url": "https://github.com/smile-plzz/choose-your-niche-web-app",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2025-04-07T04:34:41Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "tagline": "github-api",
+        "description": "readme",
+        "features": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
+      }
+    }
+  ]
+}

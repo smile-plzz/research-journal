@@ -10,12 +10,12 @@ export function Footer() {
           {/* Identity & Scope */}
           <div>
             <h3 className="font-serif font-semibold text-stone-900 dark:text-stone-100 mb-2">
-              Scholarly Publication Archive
+              Research Journal: Research and Projects
             </h3>
             <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed mb-3">
-              Automated academic research journal curated directly from GitHub repositories.
-              Conducted across Software Trust, Critical Game Studies, Spatial Public Health,
-              Digital Forensics, and Computational Musicology.
+              A two-wing publication archive and software showcase by Md. Ismail Hossain:
+              academic research monographs alongside everyday web apps, desktop tools, and
+              Android software.
             </p>
             <div className="flex items-center gap-1.5 text-xs text-stone-500 dark:text-stone-400">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
@@ -26,7 +26,7 @@ export function Footer() {
           {/* Quick Links */}
           <div>
             <h4 className="font-medium text-stone-900 dark:text-stone-100 text-xs uppercase tracking-wider mb-3">
-              Archive Index
+              Explore Both Wings
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
@@ -34,7 +34,15 @@ export function Footer() {
                   href="/"
                   className="hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
                 >
-                  All Publications
+                  Wing A: Research Archive
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/showcase"
+                  className="hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
+                >
+                  Wing B: Project Showcase
                 </Link>
               </li>
               <li>
@@ -58,7 +66,7 @@ export function Footer() {
                   href="/about"
                   className="hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
                 >
-                  Author Profile & Credentials
+                  About Md. Ismail Hossain
                 </Link>
               </li>
               <li>
@@ -89,11 +97,12 @@ export function Footer() {
               >
                 @{siteConfig.author.githubUsername}
               </a>
-              ). Synchronized via scheduled GitHub Actions workflow with auditable CFF and Zenodo metadata.
+              ). Synchronized via scheduled GitHub Actions workflow with static-first delivery and
+              direct software releases.
             </p>
             <div className="flex items-center gap-2 text-xs font-mono text-stone-500 dark:text-stone-400">
               <GitBranch className="w-3.5 h-3.5" />
-              <span>Catalog v1.0.0 · Static-First</span>
+              <span>Catalogs v1.0.0 · Static-First</span>
             </div>
           </div>
         </div>
@@ -101,7 +110,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-stone-200/60 dark:border-stone-800/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500 dark:text-stone-400">
           <div>
-            © {new Date().getFullYear()} Md. Ismail Hossain. Open research artifacts under open academic licenses.
+            © {new Date().getFullYear()} Md. Ismail Hossain. Open research and open software.
           </div>
           <div className="flex items-center gap-4">
             <a
@@ -136,4 +145,3 @@ export function Footer() {
     </footer>
   );
 }
-

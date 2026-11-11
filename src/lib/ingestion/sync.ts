@@ -22,6 +22,7 @@ import { parseReadmeMarkdown } from "../parsers/readme-parser";
 import { detectArchetype } from "../classification/detect-archetype";
 import { findLocalPaperRepos, LocalRepoData } from "./local-source";
 import { GitHubClient } from "../github/client";
+import { wingOverrides } from "../../config/showcase";
 
 export interface SyncOptions {
   outputCatalogPath?: string;
@@ -86,7 +87,11 @@ export async function runIngestion(options: SyncOptions = {}): Promise<Catalog> 
     for (const r of remoteRepos) {
       if (repositoryExclusionList.includes(r.name)) continue;
 
-      const isExplicitlyIncluded = repositoryInclusionList.includes(r.name);
+      const wingOverride = wingOverrides[r.name];
+      if (wingOverride?.research === false) continue;
+
+      const isExplicitlyIncluded =
+        wingOverride?.research === true || repositoryInclusionList.includes(r.name);
       const hasPaperInName = r.name.toLowerCase().includes("paper");
 
       if (!isExplicitlyIncluded && !hasPaperInName) continue;

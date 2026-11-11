@@ -5,10 +5,11 @@
   "description": "GitHub-Powered Personal Academic Research Journal and Publication Archive",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "tsx scripts/validate-showcase.ts --strict && next build",
     "start": "next start",
     "lint": "next lint",
     "sync:github": "tsx scripts/sync-github.ts",
+    "validate:showcase": "tsx scripts/validate-showcase.ts",
     "test": "vitest run"
   },
   "dependencies": {

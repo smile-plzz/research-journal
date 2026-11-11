@@ -71,4 +71,18 @@
      - Project alias: `https://research-journal-smile-plzzs-projects.vercel.app`
   5. Updated `.gitignore` to exclude `.vercel` local deployment state and updated documentation.
 
+## 2026-11-12
+### Session 07: Showcase Architecture, Ingestion Pipeline & Two-Wing UI (Phases 1-4)
+- **Timestamp:** 2026-11-12T02:02:00+06:00
+- **Action:** Audited existing repository, designed Showcase schema and editorial config, implemented Showcase GitHub discovery and release parsing, and built the two-wing UI.
+- **Milestones Completed:**
+  1. Audited `README.md`, `context.md`, `dev-log.md`, `src/lib/*`, `src/config/*`, and baseline test/build pipeline (17/17 tests and 27/27 static routes verified).
+  2. Audited all 119 public GitHub repositories under `smile-plzz` (115 non-fork repos, including 8 repos with GitHub Release assets and 74 live web apps).
+  3. Added Showcase Zod schema (`src/lib/showcase/schema.ts`), editorial config (`src/config/showcase.ts`), wing routing (`src/lib/showcase/routing.ts`), release asset parser (`src/lib/showcase/releases.ts`), normalizer (`src/lib/showcase/normalize.ts`), editorial merge (`src/lib/showcase/merge.ts`), discovery engine (`src/lib/showcase/discover.ts`), validator (`src/lib/showcase/validate.ts`), and query helpers (`src/lib/showcase/queries.ts`).
+  4. Extended `src/lib/github/client.ts` with paginated owner repo discovery, release fetching, and rate-limit awareness; updated `scripts/sync-github.ts` with `--target research|showcase|all`; added build-time validator `scripts/validate-showcase.ts`; updated `.github/workflows/sync-github.yml`.
+  5. Built Showcase UI components (`ProjectCard`, `ShowcaseBrowser`, `DownloadPanel`, `DownloadSafetyNote`, `CategoryVisuals`), routes (`/showcase`, `/showcase/[slug]`, `/showcase/categories/[category]`), top-level `Research | Showcase | About` navigation switch, two-wing homepage, `sitemap.ts` coverage, and bidirectional cross-links on `/works/[slug]`.
+  6. Generated `src/data/generated/showcase.json` (97 projects, 12 starter curated drafts marked `needsReview: true`, 6 featured) and cached READMEs under `src/content/generated/showcase/`.
+  7. Added Vitest coverage in `tests/showcase/showcase.test.ts` (28/28 total tests passing) while keeping `catalog.json` and the Research wing untouched.
+
+
 

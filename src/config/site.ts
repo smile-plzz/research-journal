@@ -1,10 +1,11 @@
 export const siteConfig = {
-  name: "Md. Ismail Hossain — Research Journal & Archive",
-  shortName: "Ismail Hossain Research",
-  title: "Md. Ismail Hossain | Research Journal & Academic Publication Archive",
+  name: "Md. Ismail Hossain | Research Journal",
+  subtitle: "Research and Projects",
+  shortName: "Research Journal",
+  title: "Md. Ismail Hossain | Research Journal: Research and Projects",
   description:
-    "Personal academic publication archive, research monographs, master's thesis frameworks, empirical data science pipelines, and computational studies curated from GitHub.",
-  url: "https://research.ismailhossain.dev",
+    "Academic research archive and software project showcase by Md. Ismail Hossain: scholarly monographs, empirical data science studies, web apps, and desktop tools.",
+  url: "https://research-journal-kappa.vercel.app",
   ogImage: "https://avatars.githubusercontent.com/u/smile-plzz",
   author: {
     name: "Md. Ismail Hossain",
@@ -19,9 +20,8 @@ export const siteConfig = {
     email: "contact@ismailhossain.dev",
   },
   nav: [
-    { label: "Publications", href: "/" },
-    { label: "Research Areas", href: "/research-areas" },
-    { label: "Methodology", href: "/methodology" },
+    { label: "Research", href: "/" },
+    { label: "Showcase", href: "/showcase" },
     { label: "About", href: "/about" },
   ],
   links: {
@@ -30,4 +30,3 @@ export const siteConfig = {
     linkedin: "https://www.linkedin.com/in/md-ismail-hossain-2938541b1/",
   },
 };
-

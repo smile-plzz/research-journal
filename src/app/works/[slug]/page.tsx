@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { getAllWorks, getWorkBySlug, getManuscriptContent } from "@/lib/catalog/queries";
+import { getRelatedProjectsForWork } from "@/lib/showcase/queries";
 import { getDomainById } from "@/config/domains";
 import { getArchetypeDescription } from "@/lib/classification/detect-archetype";
 import { MetadataProvenancePill } from "@/components/publication/MetadataProvenancePill";
@@ -15,9 +16,11 @@ import {
   Clock,
   Layers,
   ArrowLeft,
+  ArrowRight,
   BookOpen,
   Cpu,
   ShieldCheck,
+  Compass,
 } from "lucide-react";
 import type { Metadata } from "next";
 
@@ -84,6 +87,7 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
   const domain = getDomainById(work.domainId);
   const manuscriptContent = getManuscriptContent(work.slug);
   const archetypeDesc = getArchetypeDescription(work.archetype);
+  const relatedProjects = getRelatedProjectsForWork(work.slug);
 
   const displayDate = work.publishedAt
     ? new Date(work.publishedAt).toLocaleDateString("en-US", {
@@ -301,6 +305,37 @@ export default async function WorkDetailPage({ params }: WorkPageProps) {
 
         {/* Citation Box (BibTeX, APA, IEEE, Chicago & Download) */}
         <CitationBox work={work} />
+
+        {/* Cross-link to Companion Software in Showcase Wing */}
+        {relatedProjects.length > 0 && (
+          <section className="pt-6 border-t border-stone-200 dark:border-stone-800 space-y-3">
+            <h2 className="font-serif text-lg font-semibold text-stone-900 dark:text-stone-100 flex items-center gap-2">
+              <Compass className="w-4 h-4 text-academic" />
+              <span>Companion Software in Project Showcase</span>
+            </h2>
+            <div className="grid grid-cols-1 gap-3">
+              {relatedProjects.map((proj) => (
+                <Link
+                  key={proj.slug}
+                  href={`/showcase/${proj.slug}`}
+                  className="p-4 rounded-lg border border-stone-200 dark:border-stone-800 bg-white/70 dark:bg-stone-900/40 hover:border-academic transition-colors flex items-center justify-between gap-4"
+                >
+                  <div className="space-y-1">
+                    <div className="font-serif font-semibold text-base text-stone-900 dark:text-stone-100">
+                      {proj.name}
+                    </div>
+                    {proj.tagline && (
+                      <p className="text-xs text-stone-600 dark:text-stone-400">
+                        {proj.tagline}
+                      </p>
+                    )}
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-stone-400 flex-shrink-0" />
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
       </article>
     </>
   );
