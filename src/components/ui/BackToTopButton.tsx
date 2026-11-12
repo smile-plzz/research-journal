@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Tooltip } from "./Tooltip";
 import { ArrowUp } from "lucide-react";
 
 export function BackToTopButton() {
@@ -9,7 +8,7 @@ export function BackToTopButton() {
 
   useEffect(() => {
     const onScroll = () => {
-      setVisible(window.scrollY > 420);
+      setVisible(window.scrollY > 560);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -18,18 +17,18 @@ export function BackToTopButton() {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-5 right-5 z-40">
-      <Tooltip content="Scroll back to top of page">
-        <button
-          type="button"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          aria-label="Back to top"
-          className="p-2.5 rounded-full border border-stone-300 dark:border-stone-700 bg-white/95 dark:bg-stone-900/95 text-stone-700 dark:text-stone-200 shadow-md hover:border-academic hover:text-academic dark:hover:text-academic-dark transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-academic"
-        >
-          <ArrowUp className="w-4 h-4" />
-        </button>
-      </Tooltip>
+    <div
+      data-no-print="true"
+      className="fixed bottom-5 right-4 sm:right-6 z-30 pb-[env(safe-area-inset-bottom)]"
+    >
+      <button
+        type="button"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        aria-label="Back to top"
+        className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-full border border-hairline-strong bg-surface/95 text-ink shadow-sheet hover:bg-surface-muted transition-colors duration-150"
+      >
+        <ArrowUp className="w-4 h-4" strokeWidth={1.5} />
+      </button>
     </div>
   );
 }
-

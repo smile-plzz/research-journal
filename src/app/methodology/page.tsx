@@ -1,184 +1,88 @@
-import { ShieldCheck, GitBranch, Database, FileText, Lock, RefreshCw, CheckCircle2 } from "lucide-react";
-import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
-import { InfoHint } from "@/components/ui/Tooltip";
 import type { Metadata } from "next";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "Publishing Methodology & Open Science",
+  title: "Methodology",
   description:
-    "How GitHub serves as an auditable, reproducible single source of truth for academic publication records and empirical research.",
+    "How GitHub serves as an auditable, static-first single source of truth for academic publications and software showcase pages.",
 };
 
 export default function MethodologyPage() {
   return (
-    <div className="max-w-3xl mx-auto space-y-12">
-      <div className="pb-3 border-b border-stone-200/80 dark:border-stone-800/80">
-        <Breadcrumbs items={[{ label: "Publishing Methodology" }]} />
-      </div>
+    <div className="max-w-2xl space-y-10">
+      <Breadcrumbs items={[{ label: "Methodology" }]} />
 
-      {/* Header */}
-      <header className="pb-8 border-b border-stone-200/80 dark:border-stone-800/80">
-        <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded text-xs font-mono bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/50 mb-3">
-          <ShieldCheck className="w-3.5 h-3.5" />
-          <span>Open Science & Academic Reproducibility</span>
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-serif font-bold text-stone-900 dark:text-stone-100 mb-2 flex items-center gap-2">
-          <span>Publishing Methodology & Open Science Architecture</span>
-          <InfoHint text="How source code, metadata provenance, and daily automated synchronization remain auditable." />
+      <header className="space-y-2 pb-6 border-b border-hairline">
+        <h1 className="font-serif text-3xl sm:text-4xl font-semibold text-ink tracking-tight">
+          How this site works
         </h1>
-        <p className="font-serif italic text-base text-stone-600 dark:text-stone-400">
-          How GitHub repositories serve as the immutable single source of truth for scholarly publications.
+        <p className="text-base text-ink-secondary leading-relaxed">
+          GitHub repositories serve as the single, auditable source of truth with zero runtime
+          database.
         </p>
       </header>
 
-      {/* Philosophy */}
       <section className="prose-academic space-y-4">
         <p>
-          Conventional academic publication systems frequently divorce the final PDF manuscript
-          from the underlying computational code, analytical matrices, and versioned git commit histories
-          that produced it. This platform inverts that paradigm by treating the <strong>GitHub repository as the
-          primary, auditable source of truth</strong> for scholarly research.
+          Every research publication and software project on this site is generated statically from
+          public or explicitly configured repositories. A daily automated sync inspects repository
+          metadata, normalizes manuscripts and release assets, validates schemas, and commits
+          updates for static deployment.
         </p>
         <p>
-          Rather than relying on manual data entry or proprietary CMS databases, this application runs an
-          automated ingestion pipeline that continuously discovers eligible research repositories, extracts verified
-          bibliographic metadata, normalizes multi-stage thesis revisions, and publishes a structured scholarly reading
-          interface.
+          To maintain academic integrity, the pipeline never fabricates DOIs, affiliations,
+          publication dates, or peer-review claims. Missing fields remain empty and carry provenance
+          records pointing to their exact source.
         </p>
       </section>
 
-      {/* The 4-Document Project Workflow */}
-      <section className="space-y-4 pt-4 border-t border-stone-200 dark:border-stone-800">
-        <h2 className="font-serif text-2xl font-bold text-stone-900 dark:text-stone-100 flex items-center gap-2">
-          <FileText className="w-5 h-5 text-academic" />
-          <span>The Four-Document Project Governance Framework</span>
+      <section className="space-y-4 pt-4 border-t border-hairline">
+        <h2 className="font-serif text-xl font-semibold text-ink">
+          Metadata extraction priority
         </h2>
-        <p className="text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
-          Every research repository in this ecosystem implements a rigorous four-document governance protocol
-          governing research scope, execution traceability, versioning, and methodology:
-        </p>
-
-        <div className="space-y-3 pt-2">
-          <div className="p-4 rounded-lg bg-white dark:bg-stone-900/40 border border-stone-200 dark:border-stone-800">
-            <div className="flex items-center justify-between font-mono text-xs mb-1">
-              <strong className="text-stone-900 dark:text-stone-100 text-sm">README.md</strong>
-              <span className="text-stone-500">Public Entrypoint</span>
-            </div>
-            <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed">
-              Provides the formal project overview, research brief, primary methodology, key results, and
-              the reference bibliography. Serves as the primary public entrypoint for literature review and repository navigation.
-            </p>
-          </div>
-
-          <div className="p-4 rounded-lg bg-white dark:bg-stone-900/40 border border-stone-200 dark:border-stone-800">
-            <div className="flex items-center justify-between font-mono text-xs mb-1">
-              <strong className="text-stone-900 dark:text-stone-100 text-sm">context.md</strong>
-              <span className="text-stone-500">Theoretical Scope</span>
-            </div>
-            <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed">
-              Specifies the epistemological foundations, research questions, theoretical constraints, and academic hypotheses
-              governing the investigation before experimentation begins.
-            </p>
-          </div>
-
-          <div className="p-4 rounded-lg bg-white dark:bg-stone-900/40 border border-stone-200 dark:border-stone-800">
-            <div className="flex items-center justify-between font-mono text-xs mb-1">
-              <strong className="text-stone-900 dark:text-stone-100 text-sm">CHANGELOG.md</strong>
-              <span className="text-stone-500">Versioned Milestones</span>
-            </div>
-            <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed">
-              Documents semantic versions, manuscript revisions, benchmark calibrations, and peer review adjustments
-              following standard Keep-a-Changelog protocols.
-            </p>
-          </div>
-
-          <div className="p-4 rounded-lg bg-white dark:bg-stone-900/40 border border-stone-200 dark:border-stone-800">
-            <div className="flex items-center justify-between font-mono text-xs mb-1">
-              <strong className="text-stone-900 dark:text-stone-100 text-sm">dev-log.md</strong>
-              <span className="text-amber-600 dark:text-amber-400">Provenance Ledger (Internal)</span>
-            </div>
-            <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed">
-              Maintains an immutable execution record with timestamps and test verification receipts.
-              <strong> Privacy safeguard:</strong> Recognized by the ingestion system to verify reproducibility, but strictly
-              shielded from automatic public web rendering.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Metadata Extraction Priority & Verification */}
-      <section className="space-y-4 pt-4 border-t border-stone-200 dark:border-stone-800">
-        <h2 className="font-serif text-2xl font-bold text-stone-900 dark:text-stone-100 flex items-center gap-2">
-          <Database className="w-5 h-5 text-academic" />
-          <span>Metadata Extraction Priority & Zero Fabrication</span>
-        </h2>
-        <p className="text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
-          To maintain strict academic integrity, this platform <strong>never fabricates</strong> DOIs, academic affiliations,
-          publication dates, peer-review outcomes, or co-authors. Every extracted item is mapped to an auditable source:
-        </p>
-
-        <ol className="list-decimal pl-5 space-y-2 text-xs text-stone-600 dark:text-stone-400 font-sans">
+        <ol className="list-decimal pl-5 space-y-2 text-sm text-ink-secondary leading-relaxed">
           <li>
-            <strong className="text-stone-900 dark:text-stone-100">.publication.json:</strong> Highest priority manifest providing explicit publication metadata and document paths.
+            <strong className="text-ink">.publication.json</strong>: Explicit publication manifest
+            and document paths.
           </li>
           <li>
-            <strong className="text-stone-900 dark:text-stone-100">CITATION.cff:</strong> Official machine-readable citation format recognized by Zenodo and GitHub.
+            <strong className="text-ink">CITATION.cff</strong>: Machine-readable citation file.
           </li>
           <li>
-            <strong className="text-stone-900 dark:text-stone-100">.zenodo.json:</strong> Archival DOI deposit manifests containing verified creators and license schemas.
+            <strong className="text-ink">.zenodo.json</strong>: Archival deposit metadata.
           </li>
           <li>
-            <strong className="text-stone-900 dark:text-stone-100">Structured README Metadata:</strong> Formal section extraction for abstracts, hypotheses, and BibTeX blocks.
+            <strong className="text-ink">README.md</strong>: Structured abstracts, links, and
+            project documentation.
           </li>
           <li>
-            <strong className="text-stone-900 dark:text-stone-100">Heuristic Extraction:</strong> Heuristic analysis of file trees to detect the 5 repository archetypes.
+            <strong className="text-ink">Repository heuristics</strong>: File-tree inspection for
+            datasets, PDFs, and release binaries.
           </li>
         </ol>
       </section>
 
-      {/* Content vs. Metadata Layer */}
-      <section className="space-y-4 pt-4 border-t border-stone-200 dark:border-stone-800">
-        <h2 className="font-serif text-2xl font-bold text-stone-900 dark:text-stone-100 flex items-center gap-2">
-          <Lock className="w-5 h-5 text-academic" />
-          <span>Decoupled Storage & Performance</span>
+      <section className="space-y-4 pt-4 border-t border-hairline">
+        <h2 className="font-serif text-xl font-semibold text-ink">
+          Separated content layers
         </h2>
-        <p className="text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
-          In typical repositories, game studies monographs or thesis drafts may exceed 90,000 words.
-          Loading complete manuscript bodies into the global catalog would severely degrade page load speed.
-          The platform resolves this through a dual-tier content architecture:
-        </p>
-
-        <ul className="space-y-3 text-xs pt-1">
-          <li className="p-3 rounded border border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/30">
-            <strong className="block text-stone-900 dark:text-stone-100 mb-1">Tier 1: catalog.json (Fast Metadata Layer)</strong>
-            <span>
-              Contains lightweight metadata, abstracts, keywords, edition listings, and artifact URLs (~30 KB total).
-              Enables instantaneous search and filtering with zero database latency.
-            </span>
-          </li>
-          <li className="p-3 rounded border border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-900/30">
-            <strong className="block text-stone-900 dark:text-stone-100 mb-1">Tier 2: Cached Manuscripts (works/[slug].md)</strong>
-            <span>
-              Long-form manuscripts are cached in isolated markdown files and read on demand only when a reader navigates to that specific publication page.
-            </span>
-          </li>
-        </ul>
-      </section>
-
-      {/* Daily Automated Sync */}
-      <section className="space-y-4 pt-4 border-t border-stone-200 dark:border-stone-800">
-        <h2 className="font-serif text-2xl font-bold text-stone-900 dark:text-stone-100 flex items-center gap-2">
-          <RefreshCw className="w-5 h-5 text-academic" />
-          <span>Automated Daily Synchronization</span>
-        </h2>
-        <p className="text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
-          The publication archive runs a scheduled GitHub Actions workflow every 24 hours.
-          The workflow inspects the repository file trees, normalizes new editions, validates schemas with Zod,
-          and pushes updates to Vercel only when actual catalog content changes. If any source repository is temporarily
-          unavailable, the pipeline safely preserves the last good catalog without data loss.
-        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+          <div className="p-4 rounded-card border border-hairline bg-surface space-y-1">
+            <div className="font-medium text-ink">Metadata index</div>
+            <p className="text-xs text-ink-secondary leading-relaxed">
+              Lightweight catalog JSON powers fast client filtering and lazy-loaded search without
+              shipping manuscript bodies.
+            </p>
+          </div>
+          <div className="p-4 rounded-card border border-hairline bg-surface space-y-1">
+            <div className="font-medium text-ink">Pre-rendered manuscripts</div>
+            <p className="text-xs text-ink-secondary leading-relaxed">
+              Full texts and READMEs are compiled on the server at build time per route, keeping
+              browser JavaScript minimal.
+            </p>
+          </div>
+        </div>
       </section>
     </div>
   );
 }
-

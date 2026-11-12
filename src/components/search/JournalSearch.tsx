@@ -1,21 +1,19 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { Work } from "@/lib/catalog/schema";
+import { useMemo, useState } from "react";
+import { Search, X } from "lucide-react";
 import { researchDomains } from "@/config/domains";
-import { PublicationCard } from "../publication/PublicationCard";
-import { Tooltip } from "@/components/ui/Tooltip";
-import { Search, X, SlidersHorizontal, ArrowUpDown, Sparkles } from "lucide-react";
+import { PublicationCard, WorkCardData } from "../publication/PublicationCard";
+import { buttonClasses } from "@/components/ui/Button";
 
 interface JournalSearchProps {
-  initialWorks: Work[];
+  initialWorks: WorkCardData[];
 }
 
 export function JournalSearch({ initialWorks }: JournalSearchProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedDomain, setSelectedDomain] = useState<string>("all");
   const [selectedStatus, setSelectedStatus] = useState<string>("all");
-  const [selectedType, setSelectedType] = useState<string>("all");
   const [sortBy, setSortBy] = useState<"featured" | "date" | "title">("featured");
 
   const filteredWorks = useMemo(() => {
@@ -23,232 +21,194 @@ export function JournalSearch({ initialWorks }: JournalSearchProps) {
 
     return initialWorks
       .filter((w) => {
-        // Domain match
         if (selectedDomain !== "all" && w.domainId !== selectedDomain) {
           return false;
         }
-
-        // Status match
         if (selectedStatus !== "all" && w.status !== selectedStatus) {
           return false;
         }
-
-        // Type match
-        if (selectedType !== "all" && w.type !== selectedType) {
-          return false;
-        }
-
-        // Query match
         if (q) {
-          const matchTitle = w.title.toLowerCase().includes(q);
-          const matchAbstract = w.abstract.toLowerCase().includes(q);
-          const matchKeywords = w.keywords.some((k) => k.toLowerCase().includes(q));
-          const matchAuthors = w.authors.some((a) => a.name.toLowerCase().includes(q));
-          const matchRepos = w.editions.some((e) => e.repoName.toLowerCase().includes(q));
-
-          return matchTitle || matchAbstract || matchKeywords || matchAuthors || matchRepos;
+          return (
+            w.title.toLowerCase().includes(q) ||
+            w.abstract.toLowerCase().includes(q) ||
+            w.keywords.some((k) => k.toLowerCase().includes(q)) ||
+            w.authors.some((a) => a.name.toLowerCase().includes(q)) ||
+            w.editions.some((e) => e.repoName.toLowerCase().includes(q))
+          );
         }
-
         return true;
       })
       .sort((a, b) => {
         if (sortBy === "featured") {
-          if (a.featured && !b.featured) return -1;
-          if (!a.featured && b.featured) return 1;
-          return new Date(b.lastPushedAt).getTime() - new Date(a.lastPushedAt).getTime();
+          if (a.featured !== b.featured) return a.featured ? -1 : 1;
+          return (
+            new Date(b.lastPushedAt).getTime() - new Date(a.lastPushedAt).getTime()
+          );
         }
         if (sortBy === "date") {
-          return new Date(b.lastPushedAt).getTime() - new Date(a.lastPushedAt).getTime();
+          return (
+            new Date(b.lastPushedAt).getTime() - new Date(a.lastPushedAt).getTime()
+          );
         }
-        if (sortBy === "title") {
-          return a.title.localeCompare(b.title);
-        }
-        return 0;
+        return a.title.localeCompare(b.title);
       });
-  }, [initialWorks, searchQuery, selectedDomain, selectedStatus, selectedType, sortBy]);
+  }, [initialWorks, searchQuery, selectedDomain, selectedStatus, sortBy]);
 
   const hasActiveFilters =
     searchQuery !== "" ||
     selectedDomain !== "all" ||
-    selectedStatus !== "all" ||
-    selectedType !== "all";
+    selectedStatus !== "all";
 
   const clearFilters = () => {
     setSearchQuery("");
     setSelectedDomain("all");
     setSelectedStatus("all");
-    setSelectedType("all");
     setSortBy("featured");
   };
 
   return (
-    <div className="space-y-6">
-      {/* Search Input Bar */}
+    <div className="space-y-5">
+      {/* Search Field */}
       <div className="relative">
-        <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-stone-400">
-          <Search className="w-4 h-4" />
-        </div>
         <label htmlFor="research-search-input" className="sr-only">
           Search publications
         </label>
+        <Search
+          className="w-4 h-4 text-ink-secondary absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
+          strokeWidth={1.5}
+        />
         <input
           id="research-search-input"
-          type="text"
+          type="search"
+          inputMode="search"
+          enterKeyHint="search"
+          autoComplete="off"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search research titles, abstracts, authors, keywords (#tcra, #gradcam, #ludology)..."
-          className="w-full pl-10 pr-10 py-3 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900/60 text-stone-900 dark:text-stone-100 placeholder-stone-400 dark:placeholder-stone-500 text-sm focus:outline-none focus:ring-2 focus:ring-academic/50 focus:border-academic transition-colors"
+          placeholder="Search publications by title, topic, or keyword..."
+          className="w-full min-h-[48px] pl-10 pr-11 py-3 rounded-control border border-hairline-strong bg-surface text-base sm:text-sm text-ink placeholder:text-ink-secondary focus:outline-none"
         />
         {searchQuery && (
-          <Tooltip content="Clear search text">
-            <button
-              type="button"
-              onClick={() => setSearchQuery("")}
-              className="absolute inset-y-0 right-0 pr-3 flex items-center text-stone-400 hover:text-stone-600 dark:hover:text-stone-200"
-              aria-label="Clear search"
-            >
-              <X className="w-4 h-4" />
-            </button>
-          </Tooltip>
+          <button
+            type="button"
+            onClick={() => setSearchQuery("")}
+            aria-label="Clear search"
+            className="absolute right-1 top-1/2 -translate-y-1/2 min-w-[44px] min-h-[44px] inline-flex items-center justify-center text-ink-secondary hover:text-ink"
+          >
+            <X className="w-4 h-4" strokeWidth={1.5} />
+          </button>
         )}
       </div>
 
-      {/* Quick Status Preset Chips */}
-      <div className="flex flex-wrap items-center gap-2 text-xs">
-        <span className="inline-flex items-center gap-1 text-stone-500 dark:text-stone-400 font-medium mr-1">
-          <Sparkles className="w-3.5 h-3.5 text-academic" />
-          <span>Quick filters:</span>
-        </span>
-        {[
-          { label: "All Works", status: "all", hint: "Show every research work" },
-          { label: "Theses", status: "Thesis", hint: "Full academic thesis monographs" },
-          { label: "Monographs", status: "Research Monograph", hint: "Extended research monographs" },
-          { label: "Preprints", status: "Preprint", hint: "Preprint manuscripts" },
-          { label: "Working Papers", status: "Working Paper", hint: "Ongoing working papers" },
-        ].map((chip) => {
-          const active = selectedStatus === chip.status && selectedDomain === "all";
+      {/* Scrollable Domain Pills on Mobile */}
+      <div
+        role="tablist"
+        aria-label="Filter by research area"
+        className="flex items-center gap-2 overflow-x-auto no-scrollbar sm:flex-wrap pb-1"
+      >
+        <button
+          type="button"
+          role="tab"
+          aria-selected={selectedDomain === "all"}
+          onClick={() => setSelectedDomain("all")}
+          className={`min-h-[40px] px-3.5 rounded-full text-xs font-medium whitespace-nowrap flex-shrink-0 transition-colors duration-150 ${
+            selectedDomain === "all"
+              ? "bg-accent text-accent-ink"
+              : "bg-surface border border-hairline text-ink-secondary hover:text-ink"
+          }`}
+        >
+          All areas ({initialWorks.length})
+        </button>
+
+        {researchDomains.map((d) => {
+          const active = selectedDomain === d.id;
           return (
-            <Tooltip key={chip.status} content={chip.hint}>
-              <button
-                type="button"
-                onClick={() => {
-                  setSelectedDomain("all");
-                  setSelectedStatus(chip.status);
-                }}
-                className={`px-2.5 py-1 rounded-full border transition-colors ${
-                  active
-                    ? "bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 border-transparent font-medium"
-                    : "border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-300 hover:border-academic"
-                }`}
-              >
-                {chip.label}
-              </button>
-            </Tooltip>
+            <button
+              key={d.id}
+              type="button"
+              role="tab"
+              aria-selected={active}
+              onClick={() => setSelectedDomain(d.id)}
+              className={`min-h-[40px] px-3.5 rounded-full text-xs font-medium whitespace-nowrap flex-shrink-0 transition-colors duration-150 ${
+                active
+                  ? "bg-accent text-accent-ink"
+                  : "bg-surface border border-hairline text-ink-secondary hover:text-ink"
+              }`}
+            >
+              {d.shortName}
+            </button>
           );
         })}
       </div>
 
-      {/* Filter Chips and Controls */}
-      <div className="flex flex-wrap items-center justify-between gap-3 text-xs pt-1 border-b border-stone-200 dark:border-stone-800 pb-4">
-        {/* Domain Select */}
+      {/* Status + Sort + Count */}
+      <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-hairline">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-stone-500 font-medium flex items-center gap-1">
-            <SlidersHorizontal className="w-3.5 h-3.5" />
-            Domain:
-          </span>
-          <Tooltip content="Filter publications by academic discipline">
-            <select
-              aria-label="Filter by research domain"
-              value={selectedDomain}
-              onChange={(e) => setSelectedDomain(e.target.value)}
-              className="px-2.5 py-1 rounded border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200 text-xs focus:outline-none focus:ring-1 focus:ring-academic"
-            >
-              <option value="all">All Research Domains ({initialWorks.length})</option>
-              {researchDomains.map((d) => (
-                <option key={d.id} value={d.id}>
-                  {d.name}
-                </option>
-              ))}
-            </select>
-          </Tooltip>
+          <select
+            aria-label="Filter by status"
+            value={selectedStatus}
+            onChange={(e) => setSelectedStatus(e.target.value)}
+            className="min-h-[44px] px-3 py-2 rounded-control border border-hairline bg-surface text-sm text-ink focus:outline-none"
+          >
+            <option value="all">All statuses</option>
+            <option value="Thesis">Master&apos;s Thesis</option>
+            <option value="Research Monograph">Research Monograph</option>
+            <option value="Preprint">Preprint</option>
+            <option value="Working Paper">Working Paper</option>
+          </select>
 
-          {/* Status Select */}
-          <Tooltip content="Filter by publication status stage">
-            <select
-              aria-label="Filter by status"
-              value={selectedStatus}
-              onChange={(e) => setSelectedStatus(e.target.value)}
-              className="px-2.5 py-1 rounded border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200 text-xs focus:outline-none focus:ring-1 focus:ring-academic"
-            >
-              <option value="all">All Publication Statuses</option>
-              <option value="Thesis">Master&apos;s Thesis</option>
-              <option value="Research Monograph">Research Monograph</option>
-              <option value="Preprint">Preprint</option>
-              <option value="Working Paper">Working Paper</option>
-            </select>
-          </Tooltip>
-
-          {/* Sort Select */}
-          <Tooltip content="Change display ordering of matching publications">
-            <div className="flex items-center gap-1 ml-1 text-stone-500">
-              <ArrowUpDown className="w-3.5 h-3.5" />
-              <select
-                aria-label="Sort publications"
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value as "featured" | "date" | "title")}
-                className="px-2.5 py-1 rounded border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200 text-xs focus:outline-none focus:ring-1 focus:ring-academic"
-              >
-                <option value="featured">Featured First</option>
-                <option value="date">Newest First</option>
-                <option value="title">Alphabetical (A-Z)</option>
-              </select>
-            </div>
-          </Tooltip>
+          <select
+            aria-label="Sort publications"
+            value={sortBy}
+            onChange={(e) =>
+              setSortBy(e.target.value as "featured" | "date" | "title")
+            }
+            className="min-h-[44px] px-3 py-2 rounded-control border border-hairline bg-surface text-sm text-ink focus:outline-none"
+          >
+            <option value="featured">Featured first</option>
+            <option value="date">Newest first</option>
+            <option value="title">Alphabetical</option>
+          </select>
         </div>
 
-        {/* Results Count & Clear */}
-        <div className="flex items-center gap-3">
-          <span className="font-mono text-stone-500 dark:text-stone-400">
-            Showing <strong className="text-stone-800 dark:text-stone-200">{filteredWorks.length}</strong> of {initialWorks.length} publications
+        <div className="flex items-center gap-3 text-xs text-ink-secondary">
+          <span>
+            {filteredWorks.length}{" "}
+            {filteredWorks.length === 1 ? "work" : "works"}
           </span>
           {hasActiveFilters && (
-            <Tooltip content="Reset all search terms and filters">
-              <button
-                type="button"
-                onClick={clearFilters}
-                className="text-academic dark:text-academic-dark hover:underline font-medium text-xs"
-              >
-                Reset filters
-              </button>
-            </Tooltip>
+            <button
+              type="button"
+              onClick={clearFilters}
+              className="min-h-[44px] inline-flex items-center text-accent hover:underline font-medium"
+            >
+              Reset
+            </button>
           )}
         </div>
       </div>
 
-      {/* Publications Listing */}
+      {/* Cards Grid */}
       {filteredWorks.length > 0 ? (
-        <div className="divide-y divide-stone-200/80 dark:divide-stone-800/80">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {filteredWorks.map((work) => (
             <PublicationCard key={work.id} work={work} />
           ))}
         </div>
       ) : (
-        <div className="py-16 text-center text-stone-500 dark:text-stone-400">
-          <p className="font-serif text-lg text-stone-800 dark:text-stone-200 mb-2">
-            No research works match your query.
-          </p>
-          <p className="text-sm mb-4">
-            Try adjusting your search keywords, clearing status filters, or browsing by research domain.
+        <div className="py-12 text-center space-y-3">
+          <p className="text-sm text-ink-secondary">
+            No publications match your current filters.
           </p>
           <button
+            type="button"
             onClick={clearFilters}
-            className="px-4 py-2 rounded bg-stone-200 dark:bg-stone-800 text-stone-800 dark:text-stone-200 text-xs font-medium hover:bg-stone-300 dark:hover:bg-stone-700 transition-colors"
+            className={buttonClasses({ variant: "quiet" })}
           >
-            Clear all filters
+            Clear filters
           </button>
         </div>
       )}
     </div>
   );
 }
-

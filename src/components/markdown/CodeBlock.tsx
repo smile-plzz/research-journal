@@ -1,9 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { extractTextFromReactNode } from "@/lib/markdown/table-utils";
-import { Tooltip } from "@/components/ui/Tooltip";
 import { Check, Copy, WrapText } from "lucide-react";
+import { extractTextFromReactNode } from "@/lib/markdown/table-utils";
 
 interface CodeBlockProps {
   children?: React.ReactNode;
@@ -26,57 +25,52 @@ export function CodeBlock({ children }: CodeBlockProps) {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(rawText);
       setCopied(true);
-      setTimeout(() => setCopied(false), 1800);
+      window.setTimeout(() => setCopied(false), 1800);
     }
   };
 
   return (
-    <div className="my-5 rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-900/80 overflow-hidden not-prose">
-      <div className="flex items-center justify-between px-3.5 py-1.5 border-b border-stone-200/80 dark:border-stone-800 bg-stone-100/80 dark:bg-stone-900 text-[11px] font-mono text-stone-500 dark:text-stone-400">
-        <span className="uppercase tracking-wider">
-          {language || "code / text"}
+    <div className="my-5 rounded-card border border-hairline bg-surface-muted/60 overflow-hidden not-prose max-w-full">
+      <div className="flex items-center justify-between px-3.5 py-1 border-b border-hairline bg-surface-muted text-xs font-mono text-ink-secondary">
+        <span className="uppercase tracking-wider truncate">
+          {language || "code"}
         </span>
-        <div className="flex items-center gap-1.5">
-          <Tooltip content={wrap ? "Switch to horizontal scroll" : "Wrap long lines"}>
-            <button
-              type="button"
-              onClick={() => setWrap((w) => !w)}
-              className={`inline-flex items-center gap-1 px-2 py-0.5 rounded transition-colors ${
-                wrap
-                  ? "bg-stone-200 dark:bg-stone-800 text-stone-900 dark:text-stone-100"
-                  : "hover:text-stone-900 dark:hover:text-stone-100"
-              }`}
-              aria-label="Toggle code line wrapping"
-            >
-              <WrapText className="w-3 h-3" />
-              <span>Wrap</span>
-            </button>
-          </Tooltip>
-          <Tooltip content="Copy code block to clipboard">
-            <button
-              type="button"
-              onClick={handleCopy}
-              className="inline-flex items-center gap-1 px-2 py-0.5 rounded hover:bg-stone-200/70 dark:hover:bg-stone-800 text-stone-600 dark:text-stone-300 transition-colors"
-              aria-label="Copy code block"
-            >
-              {copied ? (
-                <>
-                  <Check className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
-                  <span className="text-emerald-700 dark:text-emerald-300">Copied</span>
-                </>
-              ) : (
-                <>
-                  <Copy className="w-3 h-3" />
-                  <span>Copy</span>
-                </>
-              )}
-            </button>
-          </Tooltip>
+        <div className="flex items-center gap-1">
+          <button
+            type="button"
+            onClick={() => setWrap((w) => !w)}
+            aria-pressed={wrap}
+            aria-label={wrap ? "Disable line wrapping" : "Wrap long lines"}
+            className={`min-h-[36px] inline-flex items-center gap-1 px-2.5 rounded-control transition-colors ${
+              wrap ? "bg-surface text-ink" : "hover:text-ink"
+            }`}
+          >
+            <WrapText className="w-3.5 h-3.5" strokeWidth={1.5} />
+            <span>Wrap</span>
+          </button>
+          <button
+            type="button"
+            onClick={handleCopy}
+            aria-label="Copy code block"
+            className="min-h-[36px] inline-flex items-center gap-1 px-2.5 rounded-control hover:bg-surface text-ink-secondary hover:text-ink transition-colors"
+          >
+            {copied ? (
+              <>
+                <Check className="w-3.5 h-3.5 text-accent" strokeWidth={1.5} />
+                <span className="text-ink">Copied</span>
+              </>
+            ) : (
+              <>
+                <Copy className="w-3.5 h-3.5" strokeWidth={1.5} />
+                <span>Copy</span>
+              </>
+            )}
+          </button>
         </div>
       </div>
 
       <pre
-        className={`p-4 text-xs sm:text-sm font-mono leading-relaxed text-stone-800 dark:text-stone-200 overflow-x-auto m-0 ${
+        className={`p-4 text-xs sm:text-sm font-mono leading-relaxed text-ink overflow-x-auto m-0 ${
           wrap ? "whitespace-pre-wrap break-words" : "whitespace-pre"
         }`}
       >
@@ -85,4 +79,3 @@ export function CodeBlock({ children }: CodeBlockProps) {
     </div>
   );
 }
-

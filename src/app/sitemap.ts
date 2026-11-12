@@ -30,6 +30,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/collections`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/methodology`,
       lastModified: new Date(),
       changeFrequency: "monthly",
@@ -57,12 +63,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: w.featured ? 0.9 : 0.7,
   }));
 
-  const showcaseCategoryRoutes: MetadataRoute.Sitemap = PROJECT_CATEGORIES.map((c) => ({
-    url: `${baseUrl}/showcase/categories/${c.id}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.7,
-  }));
+  const showcaseCategoryRoutes: MetadataRoute.Sitemap = PROJECT_CATEGORIES.map(
+    (c) => ({
+      url: `${baseUrl}/showcase/categories/${c.id}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.7,
+    })
+  );
 
   const showcaseProjectRoutes: MetadataRoute.Sitemap = projects.map((p) => ({
     url: `${baseUrl}/showcase/${p.slug}`,

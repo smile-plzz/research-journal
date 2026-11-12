@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect } from "react";
+import { Download, ExternalLink, X } from "lucide-react";
 import { Artifact } from "@/lib/catalog/schema";
-import { Tooltip } from "@/components/ui/Tooltip";
-import { X, ExternalLink, Download, ShieldAlert } from "lucide-react";
+import { buttonClasses } from "@/components/ui/Button";
 
 interface ArtifactViewerModalProps {
   artifact: Artifact | null;
@@ -15,16 +15,16 @@ export function ArtifactViewerModal({
   onClose,
 }: ArtifactViewerModalProps) {
   useEffect(() => {
+    if (!artifact) return;
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [onClose]);
+  }, [artifact, onClose]);
 
   if (!artifact) return null;
 
-  // Convert github blob URL to raw URL for direct embedding if needed
   const rawEmbedUrl = artifact.url
     .replace("github.com", "raw.githubusercontent.com")
     .replace("/blob/", "/");
@@ -33,55 +33,52 @@ export function ArtifactViewerModal({
   const isDashboardOrMap = artifact.type === "dashboard";
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/60 backdrop-blur-xs animate-in fade-in duration-150">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/50 backdrop-blur-[2px]"
+      onClick={onClose}
+    >
       <div
-        className="relative w-full max-w-5xl h-[88vh] flex flex-col rounded-xl bg-white dark:bg-stone-900 border border-stone-300 dark:border-stone-800 shadow-2xl overflow-hidden"
+        className="relative w-full max-w-5xl h-[86dvh] flex flex-col rounded-card bg-surface border border-hairline shadow-sheet overflow-hidden"
         role="dialog"
         aria-modal="true"
-        aria-labelledby="modal-title"
+        aria-label={artifact.label}
+        onClick={(e) => e.stopPropagation()}
       >
-        {/* Modal Header */}
-        <div className="flex items-center justify-between px-5 py-3.5 border-b border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/60">
-          <div className="min-w-0 pr-4">
-            <h3
-              id="modal-title"
-              className="font-serif text-base font-semibold text-stone-900 dark:text-stone-100 truncate"
-            >
+        <div className="flex items-center justify-between gap-3 px-4 sm:px-5 py-3 border-b border-hairline bg-surface">
+          <div className="min-w-0">
+            <h2 className="font-serif text-base font-semibold text-ink truncate">
               {artifact.label}
-            </h3>
-            <p className="text-xs text-stone-500 font-mono truncate">
-              {artifact.description || artifact.url}
-            </p>
+            </h2>
+            {artifact.description && (
+              <p className="text-xs text-ink-secondary truncate">
+                {artifact.description}
+              </p>
+            )}
           </div>
 
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <Tooltip position="bottom" content="Open raw file source in a new tab">
-              <a
-                href={artifact.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-1.5 text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100 rounded-md hover:bg-stone-200 dark:hover:bg-stone-800 transition-colors"
-                aria-label="Open raw source in new tab"
-              >
-                <ExternalLink className="w-4 h-4" />
-              </a>
-            </Tooltip>
+          <div className="flex items-center gap-1 flex-shrink-0">
+            <a
+              href={artifact.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-control text-ink-secondary hover:text-ink hover:bg-surface-muted transition-colors"
+              aria-label="Open source file in new tab"
+            >
+              <ExternalLink className="w-4 h-4" strokeWidth={1.5} />
+            </a>
 
-            <Tooltip position="bottom" shortcut="Esc" content="Close artifact preview">
-              <button
-                type="button"
-                onClick={onClose}
-                className="p-1.5 text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100 rounded-md hover:bg-stone-200 dark:hover:bg-stone-800 transition-colors"
-                aria-label="Close modal"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </Tooltip>
+            <button
+              type="button"
+              onClick={onClose}
+              className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-control text-ink-secondary hover:text-ink hover:bg-surface-muted transition-colors"
+              aria-label="Close preview"
+            >
+              <X className="w-5 h-5" strokeWidth={1.5} />
+            </button>
           </div>
         </div>
 
-        {/* Modal Body */}
-        <div className="flex-1 bg-stone-100 dark:bg-stone-950 relative overflow-hidden">
+        <div className="flex-1 bg-surface-muted relative overflow-hidden">
           {isPdf ? (
             <iframe
               src={rawEmbedUrl}
@@ -96,44 +93,24 @@ export function ArtifactViewerModal({
               title={artifact.label}
             />
           ) : (
-            <div className="flex flex-col items-center justify-center h-full p-8 text-center space-y-4">
-              <ShieldAlert className="w-10 h-10 text-stone-400" />
-              <div className="max-w-md">
-                <h4 className="font-serif text-lg font-semibold text-stone-900 dark:text-stone-100 mb-1">
-                  Preview Not Available Inside Frame
-                </h4>
-                <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed mb-4">
-                  This artifact ({artifact.type.toUpperCase()}) is stored directly in the repository and is best inspected in its native format or downloaded directly.
-                </p>
-                <a
-                  href={artifact.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-academic text-white text-xs font-medium hover:bg-academic-hover transition-colors shadow-xs"
-                >
-                  <Download className="w-4 h-4" />
-                  <span>Download / View on GitHub</span>
-                </a>
-              </div>
+            <div className="flex flex-col items-center justify-center h-full p-6 text-center space-y-4">
+              <p className="text-sm text-ink-secondary max-w-md">
+                This file ({artifact.type.toUpperCase()}) is best viewed directly from the
+                repository.
+              </p>
+              <a
+                href={artifact.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={buttonClasses({ variant: "primary" })}
+              >
+                <Download className="w-4 h-4" strokeWidth={1.5} />
+                <span>Open on GitHub</span>
+              </a>
             </div>
           )}
-        </div>
-
-        {/* Modal Footer */}
-        <div className="px-5 py-2.5 border-t border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950/60 flex items-center justify-between text-xs text-stone-500 font-mono">
-          <span>Type: {artifact.type.toUpperCase()}</span>
-          <a
-            href={artifact.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:underline flex items-center gap-1 text-academic"
-          >
-            <span>Direct Repository Link</span>
-            <ExternalLink className="w-3 h-3" />
-          </a>
         </div>
       </div>
     </div>
   );
 }
-

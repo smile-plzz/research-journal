@@ -1,151 +1,39 @@
 import Link from "next/link";
-import { siteConfig } from "@/config/site";
-import { GitBranch, Mail, ShieldCheck } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="border-t border-stone-200 dark:border-stone-800 bg-cream-100/50 dark:bg-stone-900/30 text-stone-600 dark:text-stone-400 text-sm mt-20 transition-colors">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          {/* Identity & Scope */}
-          <div>
-            <h3 className="font-serif font-semibold text-stone-900 dark:text-stone-100 mb-2">
-              {siteConfig.name}
-            </h3>
-            <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed mb-3">
-              A two-wing publication archive and software showcase by Md. Ismail Hossain:
-              academic research monographs alongside everyday web apps, desktop tools, and
-              Android software.
-            </p>
-            <div className="flex items-center gap-1.5 text-xs text-stone-500 dark:text-stone-400">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-              <span>Full metadata provenance transparency</span>
-            </div>
-          </div>
+    <footer className="border-t border-hairline mt-16 py-8 text-sm text-ink-secondary">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <nav aria-label="Footer links" className="flex flex-wrap items-center gap-x-5 gap-y-2">
+          <Link
+            href="/collections"
+            className="inline-flex items-center min-h-[44px] hover:text-ink transition-colors"
+          >
+            Collections
+          </Link>
+          <Link
+            href="/research-areas"
+            className="inline-flex items-center min-h-[44px] hover:text-ink transition-colors"
+          >
+            Research Areas
+          </Link>
+          <Link
+            href="/methodology"
+            className="inline-flex items-center min-h-[44px] hover:text-ink transition-colors"
+          >
+            Methodology
+          </Link>
+          <a
+            href="/feed-all.xml"
+            className="inline-flex items-center min-h-[44px] hover:text-ink transition-colors"
+          >
+            RSS
+          </a>
+        </nav>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-medium text-stone-900 dark:text-stone-100 text-xs uppercase tracking-wider mb-3">
-              Explore Both Wings
-            </h4>
-            <ul className="space-y-2 text-xs">
-              <li>
-                <Link
-                  href="/"
-                  className="hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
-                >
-                  Wing A: Research Archive
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/showcase"
-                  className="hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
-                >
-                  Wing B: Project Showcase
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/research-areas"
-                  className="hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
-                >
-                  Research Domains & Taxonomies
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/methodology"
-                  className="hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
-                >
-                  Publishing Methodology & Open Science
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about"
-                  className="hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
-                >
-                  About Md. Ismail Hossain
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="/feed.xml"
-                  target="_blank"
-                  className="text-academic hover:underline transition-colors flex items-center gap-1"
-                >
-                  <span>Academic RSS Feed</span>
-                  <span className="text-[10px] font-mono">XML</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact & Sync */}
-          <div>
-            <h4 className="font-medium text-stone-900 dark:text-stone-100 text-xs uppercase tracking-wider mb-3">
-              Contact & Sync
-            </h4>
-            <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed mb-3">
-              Want to buy a custom build, collaborate, or contribute? Email{" "}
-              <a
-                href={`mailto:${siteConfig.author.email}`}
-                className="underline hover:text-stone-900 dark:hover:text-stone-100"
-              >
-                {siteConfig.author.email}
-              </a>
-              .
-            </p>
-            <div className="flex items-center gap-2 text-xs font-mono text-stone-500 dark:text-stone-400">
-              <GitBranch className="w-3.5 h-3.5" />
-              <span>Static-First · Daily Synced</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom bar */}
-        <div className="pt-8 border-t border-stone-200/60 dark:border-stone-800/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500 dark:text-stone-400">
-          <div>
-            © {new Date().getFullYear()} Md. Ismail Hossain. Open research and open software.
-          </div>
-          <div className="flex flex-wrap items-center gap-4">
-            <a
-              href={`mailto:${siteConfig.author.email}`}
-              className="inline-flex items-center gap-1 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
-            >
-              <Mail className="w-3 h-3" />
-              <span>Email</span>
-            </a>
-            <span>·</span>
-            <a
-              href={siteConfig.links.portfolio}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
-            >
-              Portfolio
-            </a>
-            <span>·</span>
-            <a
-              href={siteConfig.links.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
-            >
-              LinkedIn
-            </a>
-            <span>·</span>
-            <a
-              href={siteConfig.links.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
-            >
-              GitHub
-            </a>
-          </div>
-        </div>
+        <p className="text-xs text-ink-secondary">
+          © {new Date().getFullYear()} Md. Ismail Hossain
+        </p>
       </div>
     </footer>
   );

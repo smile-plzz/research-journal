@@ -1,7 +1,4 @@
-import {
-  ProjectCategory,
-  getCategoryMeta,
-} from "@/lib/showcase/schema";
+import { ProjectCategory } from "@/lib/showcase/schema";
 import {
   Globe,
   Monitor,
@@ -15,59 +12,27 @@ import {
 
 export function CategoryIcon({
   category,
-  className = "w-5 h-5",
+  className = "w-4 h-4",
 }: {
   category: ProjectCategory;
   className?: string;
 }) {
   switch (category) {
     case "web-app":
-      return <Globe className={className} />;
+      return <Globe className={className} strokeWidth={1.5} />;
     case "desktop-app":
-      return <Monitor className={className} />;
+      return <Monitor className={className} strokeWidth={1.5} />;
     case "mobile-app":
-      return <Smartphone className={className} />;
+      return <Smartphone className={className} strokeWidth={1.5} />;
     case "tool":
-      return <Wrench className={className} />;
+      return <Wrench className={className} strokeWidth={1.5} />;
     case "game":
-      return <Gamepad2 className={className} />;
+      return <Gamepad2 className={className} strokeWidth={1.5} />;
     case "automation":
-      return <Workflow className={className} />;
+      return <Workflow className={className} strokeWidth={1.5} />;
     case "data":
-      return <BarChart3 className={className} />;
+      return <BarChart3 className={className} strokeWidth={1.5} />;
     default:
-      return <Layers className={className} />;
+      return <Layers className={className} strokeWidth={1.5} />;
   }
 }
-
-export function CategoryCoverFallback({
-  category,
-  name,
-  compact = false,
-}: {
-  category: ProjectCategory;
-  name: string;
-  compact?: boolean;
-}) {
-  const meta = getCategoryMeta(category);
-  return (
-    <div
-      className={`w-full ${
-        compact ? "h-36" : "h-44 sm:h-52"
-      } bg-gradient-to-br ${meta.gradient} flex flex-col items-center justify-center gap-2.5 border-b border-stone-200/80 dark:border-stone-800/80 px-4 text-center select-none`}
-    >
-      <div className="w-11 h-11 rounded-xl bg-white/80 dark:bg-stone-900/80 border border-stone-200/80 dark:border-stone-700/70 flex items-center justify-center text-academic dark:text-academic-dark shadow-sm">
-        <CategoryIcon category={category} className="w-5 h-5" />
-      </div>
-      <div className="space-y-0.5 max-w-[90%]">
-        <span className="block text-[11px] font-mono uppercase tracking-wider text-stone-500 dark:text-stone-400">
-          {meta.shortLabel}
-        </span>
-        <span className="block font-serif text-sm font-medium text-stone-700 dark:text-stone-300 truncate">
-          {name}
-        </span>
-      </div>
-    </div>
-  );
-}
-

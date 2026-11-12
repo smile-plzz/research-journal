@@ -1,6 +1,8 @@
 import { getAllWorks } from "@/lib/catalog/queries";
 import { siteConfig } from "@/config/site";
 
+export const dynamic = "force-static";
+
 export async function GET() {
   const works = getAllWorks();
   const siteUrl = siteConfig.url;
@@ -29,7 +31,7 @@ export async function GET() {
   const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>${siteConfig.name}</title>
+    <title>${siteConfig.name} (Research)</title>
     <link>${siteUrl}</link>
     <description>${siteConfig.description}</description>
     <language>en-us</language>
@@ -46,4 +48,3 @@ export async function GET() {
     },
   });
 }
-

@@ -1,118 +1,147 @@
 "use client";
 
 import { useState } from "react";
-import { Artifact } from "@/lib/catalog/schema";
-import { ArtifactViewerModal } from "../artifacts/ArtifactViewerModal";
-import { InfoHint, Tooltip } from "@/components/ui/Tooltip";
+import dynamic from "next/dynamic";
 import {
-  FileText,
-  FileCode,
-  Download,
-  ExternalLink,
-  Presentation,
-  MapPin,
-  Database,
   Archive,
+  Database,
+  ExternalLink,
   Eye,
+  FileCode,
+  FileText,
+  MapPin,
+  Presentation,
 } from "lucide-react";
+import { Artifact } from "@/lib/catalog/schema";
+
+const ArtifactViewerModal = dynamic(
+  () =>
+    import("../artifacts/ArtifactViewerModal").then(
+      (mod) => mod.ArtifactViewerModal
+    ),
+  { ssr: false }
+);
 
 interface ArtifactListProps {
   artifacts: Artifact[];
 }
 
 export function ArtifactList({ artifacts }: ArtifactListProps) {
-  const [selectedArtifact, setSelectedArtifact] = useState<Artifact | null>(null);
+  const [selectedArtifact, setSelectedArtifact] = useState<Artifact | null>(
+    null
+  );
 
   if (!artifacts || artifacts.length === 0) return null;
 
   const getArtifactIcon = (type: string) => {
     switch (type) {
       case "pdf":
-        return <FileText className="w-4 h-4 text-rose-600 dark:text-rose-400" />;
       case "docx":
-        return <FileText className="w-4 h-4 text-blue-600 dark:text-blue-400" />;
+        return <FileText className="w-4 h-4 text-ink-secondary" strokeWidth={1.5} />;
       case "presentation":
-        return <Presentation className="w-4 h-4 text-amber-600 dark:text-amber-400" />;
+        return <Presentation className="w-4 h-4 text-ink-secondary" strokeWidth={1.5} />;
       case "dataset":
-        return <Database className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />;
+        return <Database className="w-4 h-4 text-ink-secondary" strokeWidth={1.5} />;
       case "dashboard":
-        return <MapPin className="w-4 h-4 text-purple-600 dark:text-purple-400" />;
+        return <MapPin className="w-4 h-4 text-ink-secondary" strokeWidth={1.5} />;
       case "bibtex":
-        return <FileCode className="w-4 h-4 text-stone-600 dark:text-stone-400" />;
+        return <FileCode className="w-4 h-4 text-ink-secondary" strokeWidth={1.5} />;
       default:
-        return <Archive className="w-4 h-4 text-stone-500" />;
+        return <Archive className="w-4 h-4 text-ink-secondary" strokeWidth={1.5} />;
     }
   };
 
-  const isPreviewable = (type: string) => type === "pdf" || type === "dashboard";
+  const isPreviewable = (type: string) =>
+    type === "pdf" || type === "dashboard";
 
   return (
     <>
-      <div className="my-8">
-        <h3 className="font-serif text-lg font-semibold text-stone-900 dark:text-stone-100 mb-4 pb-2 border-b border-stone-200 dark:border-stone-800 flex items-center gap-2">
-          <span>Research Artifacts & Supplementary Materials ({artifacts.length})</span>
-          <InfoHint text="PDFs, datasets, interactive dashboards, or slides extracted from the publication repository. Click Preview when available to inspect without leaving this site." />
-        </h3>
+      <section className="space-y-4 pt-6 border-t border-hairline">
+        <h2 className="font-serif text-xl font-semibold text-ink">
+          Files and datasets ({artifacts.length})
+        </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {artifacts.map((art) => (
-            <div
-              key={art.id}
-              className="group p-3.5 rounded-lg border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900/40 hover:border-academic dark:hover:border-academic-dark transition-all flex items-start gap-3"
-            >
-              <div className="p-2 rounded bg-stone-100 dark:bg-stone-800 flex-shrink-0 group-hover:scale-105 transition-transform">
-                {getArtifactIcon(art.type)}
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between gap-1">
-                  <span className="font-sans font-medium text-xs text-stone-900 dark:text-stone-100 truncate">
-                    {art.label}
-                  </span>
+          {artifacts.map((art) => {
+            const rawUrl = art.url
+              .replace("github.com", "raw.githubusercontent.com")
+              .replace("/blob/", "/");
+
+            return (
+              <div
+                key={art.id}
+                className="p-4 rounded-card border border-hairline bg-surface flex flex-col justify-between gap-3"
+              >
+                <div className="flex items-start gap-3">
+                  <div className="p-2 rounded-control bg-surface-muted flex-shrink-0">
+                    {getArtifactIcon(art.type)}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-sm font-medium text-ink truncate">
+                      {art.label}
+                    </div>
+                    {art.description && (
+                      <p className="text-xs text-ink-secondary line-clamp-2 mt-0.5">
+                        {art.description}
+                      </p>
+                    )}
+                  </div>
                 </div>
-                {art.description && (
-                  <p className="text-[11px] text-stone-500 dark:text-stone-400 line-clamp-2 mt-0.5">
-                    {art.description}
-                  </p>
-                )}
-                <div className="flex items-center justify-between mt-2 pt-1 border-t border-stone-100 dark:border-stone-800 text-[11px] font-mono">
-                  <span className="text-stone-400 uppercase text-[10px]">{art.type}</span>
-                  <div className="flex items-center gap-2">
+
+                <div className="flex items-center justify-between gap-2 pt-2 border-t border-hairline text-xs">
+                  <span className="uppercase font-mono text-ink-secondary">
+                    {art.type}
+                  </span>
+
+                  <div className="flex items-center gap-3">
                     {isPreviewable(art.type) && (
-                      <Tooltip content="Open inline viewer modal">
+                      <>
+                        {/* On mobile, prefer direct "Open PDF" / "Open" link instead of cramped iframe */}
+                        <a
+                          href={art.type === "pdf" ? rawUrl : art.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="md:hidden min-h-[44px] inline-flex items-center gap-1 text-accent font-medium"
+                        >
+                          <span>{art.type === "pdf" ? "Open PDF" : "Open"}</span>
+                          <ExternalLink className="w-3.5 h-3.5" strokeWidth={1.5} />
+                        </a>
+
+                        {/* On tablet/desktop, offer lazy-loaded inline modal */}
                         <button
                           type="button"
                           onClick={() => setSelectedArtifact(art)}
-                          className="inline-flex items-center gap-1 text-academic hover:underline text-[11px] font-sans font-medium cursor-pointer"
+                          className="hidden md:inline-flex min-h-[44px] items-center gap-1 text-accent hover:underline font-medium"
                         >
-                          <Eye className="w-3 h-3" />
+                          <Eye className="w-3.5 h-3.5" strokeWidth={1.5} />
                           <span>Preview</span>
                         </button>
-                      </Tooltip>
+                      </>
                     )}
-                    <Tooltip content="Open direct source file in a new tab">
-                      <a
-                        href={art.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 text-[11px] font-sans"
-                      >
-                        <span>Source</span>
-                        <ExternalLink className="w-3 h-3" />
-                      </a>
-                    </Tooltip>
+
+                    <a
+                      href={art.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="min-h-[44px] inline-flex items-center gap-1 text-ink-secondary hover:text-ink"
+                    >
+                      <span>Source</span>
+                      <ExternalLink className="w-3.5 h-3.5" strokeWidth={1.5} />
+                    </a>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
-      </div>
+      </section>
 
-      {/* Artifact Viewer Modal */}
-      <ArtifactViewerModal
-        artifact={selectedArtifact}
-        onClose={() => setSelectedArtifact(null)}
-      />
+      {selectedArtifact && (
+        <ArtifactViewerModal
+          artifact={selectedArtifact}
+          onClose={() => setSelectedArtifact(null)}
+        />
+      )}
     </>
   );
 }

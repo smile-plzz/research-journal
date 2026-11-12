@@ -1,11 +1,15 @@
 import fs from "fs";
 import path from "path";
 import {
+  Archetype,
   Artifact,
   Author,
   Catalog,
   CatalogSchema,
-  ProvenanceFieldSchema,
+  ProvenanceMethod,
+  ProvenanceSource,
+  PublicationStatus,
+  PublicationType,
   RepositoryEdition,
   Work,
 } from "../catalog/schema";
@@ -20,7 +24,7 @@ import { parseCitationCff } from "../parsers/citation-cff";
 import { parseZenodoJson } from "../parsers/zenodo";
 import { parseReadmeMarkdown } from "../parsers/readme-parser";
 import { detectArchetype } from "../classification/detect-archetype";
-import { findLocalPaperRepos, LocalRepoData } from "./local-source";
+import { findLocalPaperRepos } from "./local-source";
 import { GitHubClient } from "../github/client";
 import { wingOverrides } from "../../config/showcase";
 
@@ -123,6 +127,12 @@ export async function runIngestion(options: SyncOptions = {}): Promise<Catalog> 
     }
   }
 
+  interface ProvenanceMeta {
+    source: ProvenanceSource;
+    method: ProvenanceMethod;
+    verified: boolean;
+  }
+
   // Grouping map: workId -> WorkBuilder
   interface WorkBuilder {
     id: string;
@@ -130,18 +140,18 @@ export async function runIngestion(options: SyncOptions = {}): Promise<Catalog> 
     title: string;
     subtitle?: string;
     abstract: string;
-    abstractSource: any;
+    abstractSource: ProvenanceMeta;
     authors: Author[];
-    authorsSource: any;
+    authorsSource: ProvenanceMeta;
     domainId: string;
     keywords: Set<string>;
-    type: any;
-    status: any;
+    type: PublicationType;
+    status: PublicationStatus;
     publishedAt?: string | null;
-    publishedAtSource?: any;
+    publishedAtSource?: ProvenanceMeta;
     lastPushedAt: string;
     featured: boolean;
-    archetype: any;
+    archetype: Archetype;
     methodologySummary?: string;
     manuscriptContent?: string;
     editions: RepositoryEdition[];
@@ -181,7 +191,7 @@ export async function runIngestion(options: SyncOptions = {}): Promise<Catalog> 
 
     // 1. Authors Extraction with Provenance
     let authors: Author[] = [];
-    let authorsSource: any = {
+    let authorsSource: ProvenanceMeta = {
       source: "config/authors.ts",
       method: "configured-default",
       verified: true,
@@ -225,7 +235,7 @@ export async function runIngestion(options: SyncOptions = {}): Promise<Catalog> 
 
     // 3. Abstract Extraction with Provenance
     let abstract = "";
-    let abstractSource: any = {
+    let abstractSource: ProvenanceMeta = {
       source: "README.md",
       method: "extracted",
       verified: false,

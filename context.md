@@ -24,7 +24,7 @@ Transform GitHub repositories into structured, peer-reviewed/working-paper publi
 - **Two-Wing Architecture (Research + Showcase):** Research (`catalog.json`, `/works/*`) remains strictly scholarly with Work vs. Repository decoupling, while Showcase (`showcase.json`, `/showcase/*`) presents software repositories as accessible products with plain-language descriptions, live web links, and direct GitHub Release downloads without forcing software into academic archetypes.
 - **Showcase Editorial Precedence & Zero Fabrication:** `src/config/showcase.ts` provides hand-written product copy that always overrides auto-derived GitHub/README metadata while recording field-level provenance (`manual-override`, `release`, `readme`, `github-api`) and `needsReview` flags.
 - **Zero Runtime Database Dependency:** Pure static-first architecture generated through GitHub Actions (daily cron or workflow dispatch) and served on Vercel with zero live API calls required during browser page views.
-- **Design Language:** Warm scholarly editorial layout (warm off-white / charcoal, Source Serif + Geist Sans typography, generous whitespace, subtle dividing lines, dark/light theme support).
+- **Design Language:** Quiet, warm, editorial layout (`#FAF9F7` / `#1A1918`, single terracotta accent `#9A3F2E` / `#E07D62`, `Source Serif 4` + `Inter` typography via `next/font`, mobile-first bottom sheets, dark/light theme support).
 
 ## 4. Technology Stack
 - **Framework:** Next.js 15+ (App Router) with TypeScript (Strict Mode)
