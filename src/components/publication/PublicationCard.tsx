@@ -1,169 +1,97 @@
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { Work } from "@/lib/catalog/schema";
 import { getDomainById } from "@/config/domains";
-import { Tooltip } from "@/components/ui/Tooltip";
-import { BookOpen, FileCode, Layers, ArrowUpRight } from "lucide-react";
+import { ChipList } from "@/components/ui/Chip";
+
+export type WorkCardData = Pick<
+  Work,
+  | "id"
+  | "slug"
+  | "title"
+  | "subtitle"
+  | "abstract"
+  | "domainId"
+  | "keywords"
+  | "type"
+  | "status"
+  | "publishedAt"
+  | "lastPushedAt"
+  | "featured"
+  | "readingTimeMinutes"
+  | "authors"
+  | "editions"
+>;
 
 interface PublicationCardProps {
-  work: Work;
+  work: WorkCardData;
 }
 
 export function PublicationCard({ work }: PublicationCardProps) {
   const domain = getDomainById(work.domainId);
-
-  // Human friendly status badge color
-  const getStatusBadge = (status: string) => {
-    switch (status) {
-      case "Thesis":
-        return "bg-amber-100 text-amber-900 dark:bg-amber-950/40 dark:text-amber-300 border-amber-200 dark:border-amber-800/50";
-      case "Preprint":
-        return "bg-rose-100 text-rose-900 dark:bg-rose-950/40 dark:text-rose-300 border-rose-200 dark:border-rose-800/50";
-      case "Research Monograph":
-        return "bg-stone-200 text-stone-900 dark:bg-stone-800 dark:text-stone-200 border-stone-300 dark:border-stone-700";
-      case "Published":
-        return "bg-emerald-100 text-emerald-900 dark:bg-emerald-950/40 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/50";
-      default:
-        return "bg-stone-100 text-stone-800 dark:bg-stone-800/60 dark:text-stone-300 border-stone-200 dark:border-stone-700";
-    }
-  };
 
   const formattedDate = work.publishedAt
     ? new Date(work.publishedAt).toLocaleDateString("en-US", {
         year: "numeric",
         month: "short",
       })
-    : "Academic Archive";
+    : new Date(work.lastPushedAt).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+      });
 
   return (
-    <article className="group py-6 border-b border-stone-200/80 dark:border-stone-800/80 last:border-b-0 transition-colors">
-      <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-2">
-        {/* Domain & Status meta */}
-        <div className="flex flex-wrap items-center gap-2 text-xs">
-          {domain && (
-            <Tooltip content={`Explore all research in ${domain.name}`}>
-              <Link
-                href={`/research-areas/${domain.slug}`}
-                className={`px-2 py-0.5 rounded border text-[11px] font-medium transition-colors ${domain.color.bg} ${domain.color.text} ${domain.color.border} hover:opacity-80`}
-              >
-                {domain.shortName}
-              </Link>
-            </Tooltip>
-          )}
-
-          <Tooltip content="Publication editorial status">
-            <span
-              className={`px-2 py-0.5 rounded border text-[11px] font-medium cursor-default ${getStatusBadge(
-                work.status
-              )}`}
-            >
-              {work.status}
-            </span>
-          </Tooltip>
-
-          {work.editions.length > 1 && (
-            <Tooltip content="Number of related repositories grouped under this work">
-              <span className="inline-flex items-center gap-1 text-[11px] font-mono text-stone-500 dark:text-stone-400 cursor-default">
-                <Layers className="w-3 h-3" />
-                {work.editions.length} editions
-              </span>
-            </Tooltip>
-          )}
-
+    <article className="rounded-card border border-hairline bg-surface hover:border-hairline-strong transition-colors duration-150 p-5 flex flex-col justify-between gap-4">
+      <div className="space-y-3">
+        {/* Quiet metadata line */}
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-ink-secondary">
+          {domain && <span>{domain.shortName}</span>}
+          {domain && <span aria-hidden="true">·</span>}
+          <span>{work.status}</span>
           {work.readingTimeMinutes && (
-            <Tooltip content="Estimated manuscript reading duration">
-              <span className="text-stone-400 dark:text-stone-500 text-[11px] cursor-default">
-                · {work.readingTimeMinutes} min read
-              </span>
-            </Tooltip>
+            <>
+              <span aria-hidden="true">·</span>
+              <span>{work.readingTimeMinutes} min read</span>
+            </>
           )}
+          <span aria-hidden="true">·</span>
+          <time dateTime={work.publishedAt || work.lastPushedAt}>
+            {formattedDate}
+          </time>
         </div>
 
-        <time className="text-xs font-mono text-stone-400 dark:text-stone-500">
-          {formattedDate}
-        </time>
-      </div>
-
-      {/* Main Title */}
-      <h2 className="text-xl sm:text-2xl font-serif font-semibold text-stone-900 dark:text-stone-100 group-hover:text-academic transition-colors leading-tight mb-1.5">
-        <Link
-          href={`/works/${work.slug}`}
-          className="inline-flex items-baseline gap-1.5"
-        >
-          <span>{work.title}</span>
-          <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-academic inline self-center" />
-        </Link>
-      </h2>
-
-      {/* Subtitle if available */}
-      {work.subtitle && (
-        <p className="text-sm font-serif italic text-stone-600 dark:text-stone-400 mb-2">
-          {work.subtitle}
-        </p>
-      )}
-
-      {/* Authors list */}
-      <div className="text-xs text-stone-600 dark:text-stone-400 mb-2.5">
-        <span className="font-medium text-stone-700 dark:text-stone-300">
-          {work.authors.map((a) => a.name).join(", ")}
-        </span>
-        {work.authors[0]?.affiliation && (
-          <span className="text-stone-400 dark:text-stone-500 ml-1.5">
-            ({work.authors[0].affiliation})
-          </span>
-        )}
-      </div>
-
-      {/* Abstract preview */}
-      <p className="text-sm text-stone-600 dark:text-stone-400 line-clamp-3 leading-relaxed mb-3 font-sans">
-        {work.abstract}
-      </p>
-
-      {/* Keywords and quick artifact links */}
-      <div className="flex flex-wrap items-center justify-between gap-3 text-xs pt-1">
-        <div className="flex flex-wrap items-center gap-1.5">
-          {work.keywords.slice(0, 4).map((kw) => (
-            <span
-              key={kw}
-              className="px-2 py-0.5 rounded text-[11px] bg-stone-100 dark:bg-stone-800/60 text-stone-600 dark:text-stone-400 font-sans"
-            >
-              #{kw}
-            </span>
-          ))}
-          {work.keywords.length > 4 && (
-            <span className="text-[11px] text-stone-400">
-              +{work.keywords.length - 4} more
-            </span>
-          )}
-        </div>
-
-        <div className="flex items-center gap-3 text-xs font-medium">
-          {work.artifacts.some((a) => a.type === "pdf") && (
-            <Tooltip content="Includes downloadable or previewable PDF manuscript">
-              <span className="text-rose-700 dark:text-rose-400 flex items-center gap-1 text-[11px] cursor-default">
-                <BookOpen className="w-3 h-3" />
-                PDF Available
-              </span>
-            </Tooltip>
-          )}
-          {work.artifacts.some((a) => a.type === "dataset") && (
-            <Tooltip content="Includes open datasets or empirical materials">
-              <span className="text-emerald-700 dark:text-emerald-400 flex items-center gap-1 text-[11px] cursor-default">
-                <FileCode className="w-3 h-3" />
-                Dataset
-              </span>
-            </Tooltip>
-          )}
-          <Tooltip content="Read full manuscript, artifacts, and citations">
+        {/* Title & summary */}
+        <div className="space-y-1.5">
+          <h3 className="font-serif text-lg sm:text-xl font-semibold text-ink leading-snug">
             <Link
               href={`/works/${work.slug}`}
-              className="text-stone-900 dark:text-stone-100 font-serif hover:underline text-xs"
+              className="hover:text-accent transition-colors duration-150"
             >
-              Read Publication →
+              {work.title}
             </Link>
-          </Tooltip>
+          </h3>
+          <p className="text-sm text-ink-secondary leading-relaxed line-clamp-2">
+            {work.abstract}
+          </p>
         </div>
+
+        {/* Max 2 visible tags + "+N" */}
+        <ChipList items={work.keywords} maxVisible={2} />
+      </div>
+
+      <div className="pt-3 border-t border-hairline flex items-center justify-between gap-3 text-sm">
+        <span className="text-xs text-ink-secondary truncate">
+          {work.authors[0]?.name}
+          {work.editions.length > 1 ? ` · ${work.editions.length} editions` : ""}
+        </span>
+        <Link
+          href={`/works/${work.slug}`}
+          className="min-h-[44px] inline-flex items-center gap-1 text-sm font-medium text-accent hover:text-accent-hover transition-colors flex-shrink-0"
+        >
+          <span>Read</span>
+          <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={1.5} />
+        </Link>
       </div>
     </article>
   );
 }
-

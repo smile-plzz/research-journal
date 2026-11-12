@@ -2,7 +2,13 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { formatDistanceToNow, parseISO } from "date-fns";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  ChevronDown,
+  ExternalLink,
+} from "lucide-react";
 import {
   getAllProjects,
   getProjectBySlug,
@@ -15,37 +21,22 @@ import {
   PROJECT_STATUS_META,
   getCategoryMeta,
 } from "@/lib/showcase/schema";
+import { formatRelativeDate } from "@/lib/format-date";
 import { siteConfig } from "@/config/site";
-import { CategoryCoverFallback, CategoryIcon } from "@/components/showcase/CategoryVisuals";
 import { DownloadPanel } from "@/components/showcase/DownloadPanel";
 import { ProjectCard } from "@/components/showcase/ProjectCard";
-import { DocumentReader } from "@/components/markdown/DocumentReader";
+import { ServerMarkdown } from "@/components/markdown/ServerMarkdown";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
-import { InfoHint, Tooltip } from "@/components/ui/Tooltip";
-import {
-  ArrowLeft,
-  ArrowRight,
-  BookOpen,
-  Check,
-  ChevronDown,
-  Code2,
-  Download,
-  ExternalLink,
-  Info,
-  Mail,
-  MessageSquare,
-  Users,
-} from "lucide-react";
+import { buttonClasses } from "@/components/ui/Button";
+import { Chip, ChipList } from "@/components/ui/Chip";
+import { ShareButton } from "@/components/ui/ShareButton";
 
 interface ProjectDetailPageProps {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  const projects = getAllProjects();
-  return projects.map((p) => ({
-    slug: p.slug,
-  }));
+  return getAllProjects().map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
@@ -60,33 +51,23 @@ export async function generateMetadata({
     project.description.slice(0, 155) ||
     `${project.name} by Md. Ismail Hossain.`;
 
-  const ogImageUrl = project.cover
-    ? `${siteConfig.url}${project.cover}`
-    : siteConfig.ogImage;
-
   return {
     title: `${project.name} | Showcase`,
     description,
+    alternates: {
+      canonical: `${siteConfig.url}/showcase/${project.slug}`,
+    },
     openGraph: {
       title: `${project.name} | ${siteConfig.name}`,
       description,
       siteName: siteConfig.name,
       type: "website",
       url: `${siteConfig.url}/showcase/${project.slug}`,
-      images: [
-        {
-          url: ogImageUrl,
-          width: 1200,
-          height: 630,
-          alt: project.name,
-        },
-      ],
     },
     twitter: {
       card: "summary_large_image",
       title: `${project.name} | ${siteConfig.name}`,
       description,
-      images: [ogImageUrl],
     },
   };
 }
@@ -118,23 +99,7 @@ export default async function ProjectDetailPage({
   const relatedProjects = getRelatedProjects(project, 3);
   const relatedWorks = getRelatedWorksForProject(project);
   const primaryDownload = project.downloads[0];
-
-  const statusTooltip: Record<string, string> = {
-    live: "Deployed online and ready to use directly in your browser",
-    downloadable: "Installer or package available for direct download without a GitHub account",
-    "in-development": "Actively being built and improved",
-    prototype: "Working proof-of-concept exploring a specific idea or workflow",
-    archived: "Completed or preserved reference snapshot",
-  };
-
-  let updatedLabel = "";
-  try {
-    updatedLabel = `Updated ${formatDistanceToNow(parseISO(project.updatedAt), {
-      addSuffix: true,
-    })}`;
-  } catch {
-    updatedLabel = "";
-  }
+  const updatedLabel = formatRelativeDate(project.updatedAt);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -163,452 +128,257 @@ export default async function ProjectDetailPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <article className="max-w-4xl mx-auto space-y-10">
-        {/* Guided Top Breadcrumb */}
-        <div className="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-stone-200/80 dark:border-stone-800/80">
-          <Breadcrumbs
-            items={[
-              { label: "Project Showcase", href: "/showcase" },
-              {
-                label: categoryMeta.label,
-                href: `/showcase/categories/${project.category}`,
-              },
-              { label: project.name },
-            ]}
-          />
+      <article className="max-w-3xl mx-auto space-y-10">
+        <Breadcrumbs
+          items={[
+            { label: "Showcase", href: "/showcase" },
+            {
+              label: categoryMeta.label,
+              href: `/showcase/categories/${project.category}`,
+            },
+            { label: project.name },
+          ]}
+        />
 
-          <Tooltip content="Browse all apps and downloads">
-            <Link
-              href="/showcase"
-              className="inline-flex items-center gap-1.5 text-xs text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
-            >
-              <ArrowLeft className="w-3.5 h-3.5" />
-              <span>All Projects</span>
-            </Link>
-          </Tooltip>
-        </div>
-
-        {/* 1. Hero: Name, One-Liner, Cover Image, Primary CTAs */}
-        <header className="space-y-6">
-          <div className="flex flex-wrap items-center gap-2 text-xs">
-            <Tooltip content={statusTooltip[project.status] || statusMeta.label}>
-              <span
-                className={`px-2.5 py-0.5 rounded-full border font-medium cursor-default ${statusMeta.badgeClass}`}
-              >
-                {statusMeta.label}
-              </span>
-            </Tooltip>
-            <Tooltip content={categoryMeta.description}>
-              <Link
-                href={`/showcase/categories/${project.category}`}
-                className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 font-medium hover:text-academic transition-colors"
-              >
-                <CategoryIcon category={project.category} className="w-3 h-3" />
-                <span>{categoryMeta.shortLabel}</span>
-              </Link>
-            </Tooltip>
-            {project.platforms.map((platform) => (
-              <Tooltip
-                key={platform}
-                content={`Runs on ${PROJECT_PLATFORM_LABELS[platform] || platform}`}
-              >
-                <span className="px-2 py-0.5 rounded bg-stone-100/80 dark:bg-stone-800/70 text-stone-600 dark:text-stone-400 text-[11px] cursor-default">
-                  {PROJECT_PLATFORM_LABELS[platform] || platform}
+        {/* Hero: What is this, who is it for, how do I try it */}
+        <header className="space-y-5">
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-ink-secondary">
+            <span>{categoryMeta.shortLabel}</span>
+            <span aria-hidden="true">·</span>
+            <span>{statusMeta.label}</span>
+            {project.platforms.length > 0 && (
+              <>
+                <span aria-hidden="true">·</span>
+                <span>
+                  {project.platforms
+                    .map((pl) => PROJECT_PLATFORM_LABELS[pl] || pl)
+                    .join(", ")}
                 </span>
-              </Tooltip>
-            ))}
+              </>
+            )}
             {updatedLabel && (
-              <Tooltip content="Most recent code or documentation push">
-                <span className="text-stone-400 dark:text-stone-500 ml-auto font-mono text-[11px] cursor-default">
-                  {updatedLabel}
-                </span>
-              </Tooltip>
+              <>
+                <span aria-hidden="true">·</span>
+                <span>Updated {updatedLabel}</span>
+              </>
             )}
           </div>
 
-          <div className="space-y-3">
-            <h1 className="text-3xl sm:text-5xl font-serif font-bold text-stone-900 dark:text-stone-100 leading-tight tracking-tight">
+          <div className="space-y-2.5">
+            <h1 className="font-serif text-3xl sm:text-4xl font-semibold text-ink tracking-tight leading-tight">
               {project.name}
             </h1>
             {project.tagline && (
-              <p className="text-lg sm:text-xl text-stone-600 dark:text-stone-300 leading-relaxed max-w-3xl">
+              <p className="text-base sm:text-lg text-ink-secondary leading-relaxed">
                 {project.tagline}
+              </p>
+            )}
+            {project.audience && (
+              <p className="text-sm text-ink-secondary">
+                <span className="font-medium text-ink">Built for:</span>{" "}
+                {project.audience}
               </p>
             )}
           </div>
 
-          {/* Primary CTAs */}
-          <div className="flex flex-wrap items-center gap-3 pt-1">
+          {/* Primary Actions */}
+          <div className="flex flex-wrap items-center gap-2.5 pt-1">
             {project.liveUrl && (
-              <Tooltip content="Opens the hosted app in a new browser tab, no signup needed">
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-academic hover:bg-academic-hover text-white text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-academic"
-                >
-                  <span>Try it live</span>
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              </Tooltip>
-            )}
-
-            {primaryDownload && (
-              <Tooltip content="Jump to direct installer downloads and safety guidance">
-                <a
-                  href="#how-to-use"
-                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-academic ${
-                    project.liveUrl
-                      ? "border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-100 hover:border-academic"
-                      : "bg-academic hover:bg-academic-hover text-white"
-                  }`}
-                >
-                  <Download className="w-4 h-4" />
-                  <span>
-                    {primaryDownload.label}
-                    {primaryDownload.size ? ` (${primaryDownload.size})` : ""}
-                  </span>
-                </a>
-              </Tooltip>
-            )}
-
-            <Tooltip content="Expand tech stack, license, source code link, and customizable README documentation">
-              <a
-                href="#for-developers"
-                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg border border-stone-200 dark:border-stone-800 text-xs font-medium text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
-              >
-                <Code2 className="w-3.5 h-3.5" />
-                <span>Technical details</span>
-              </a>
-            </Tooltip>
-          </div>
-
-          {/* Guided Quick-Jump Bar */}
-          <nav
-            aria-label="Project sections"
-            className="flex flex-wrap items-center gap-2 p-2.5 rounded-xl border border-stone-200/80 dark:border-stone-800/80 bg-white/75 dark:bg-stone-900/40 text-xs"
-          >
-            <span className="text-[11px] font-mono uppercase tracking-wider text-stone-400 px-1.5">
-              Sections:
-            </span>
-            <a
-              href="#what-is-this"
-              className="px-2.5 py-1 rounded-md bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-academic transition-colors"
-            >
-              Overview
-            </a>
-            {project.screenshots.length > 0 && (
-              <a
-                href="#screenshots"
-                className="px-2.5 py-1 rounded-md bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-academic transition-colors"
-              >
-                Screenshots
-              </a>
-            )}
-            <a
-              href="#how-to-use"
-              className="px-2.5 py-1 rounded-md bg-academic/10 text-academic dark:text-academic-dark font-medium hover:bg-academic/20 transition-colors"
-            >
-              How to use it
-            </a>
-            <a
-              href="#status-progress"
-              className="px-2.5 py-1 rounded-md bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-academic transition-colors"
-            >
-              Status
-            </a>
-            <a
-              href="#for-developers"
-              className="px-2.5 py-1 rounded-md bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-academic transition-colors"
-            >
-              Docs & Specs
-            </a>
-            {(relatedWorks.length > 0 || relatedProjects.length > 0) && (
-              <a
-                href="#related-section"
-                className="px-2.5 py-1 rounded-md bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-academic transition-colors"
-              >
-                Related
-              </a>
-            )}
-          </nav>
-
-          {/* Cover Image */}
-          <div className="rounded-xl overflow-hidden border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900">
-            {project.cover ? (
-              <div className="relative w-full aspect-[16/9] bg-stone-100 dark:bg-stone-800">
-                <Image
-                  src={project.cover}
-                  alt={`${project.name} visual preview`}
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 896px"
-                  className="object-cover"
-                />
-              </div>
-            ) : (
-              <CategoryCoverFallback category={project.category} name={project.name} />
-            )}
-          </div>
-        </header>
-
-        {/* 2. What is this? */}
-        <section id="what-is-this" className="space-y-3 pt-2 scroll-mt-28">
-          <h2 className="font-serif text-2xl font-bold text-stone-900 dark:text-stone-100">
-            What is this?
-          </h2>
-          {project.description ? (
-            <p className="text-base text-stone-700 dark:text-stone-300 leading-relaxed max-w-3xl">
-              {project.description}
-            </p>
-          ) : (
-            <p className="text-sm text-stone-500 dark:text-stone-400 italic">
-              A plain-language overview for this project has not been written yet. Open the technical
-              details section below to view the project documentation.
-            </p>
-          )}
-        </section>
-
-        {/* 3. Who is it for? and What can it do? */}
-        {(project.audience || project.features.length > 0) && (
-          <section className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-stone-200/80 dark:border-stone-800/80">
-            {project.audience && (
-              <div className="md:col-span-1 p-5 rounded-xl border border-stone-200 dark:border-stone-800 bg-white/70 dark:bg-stone-900/40 space-y-2 h-fit">
-                <h2 className="font-serif text-lg font-semibold text-stone-900 dark:text-stone-100 flex items-center gap-2">
-                  <Users className="w-4 h-4 text-academic" />
-                  <span>Who is it for?</span>
-                </h2>
-                <p className="text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
-                  {project.audience}
-                </p>
-              </div>
-            )}
-
-            {project.features.length > 0 && (
-              <div
-                className={`${
-                  project.audience ? "md:col-span-2" : "md:col-span-3"
-                } p-5 rounded-xl border border-stone-200 dark:border-stone-800 bg-white/70 dark:bg-stone-900/40 space-y-3`}
-              >
-                <h2 className="font-serif text-lg font-semibold text-stone-900 dark:text-stone-100">
-                  What can it do?
-                </h2>
-                <ul className="space-y-2.5 text-sm text-stone-700 dark:text-stone-300">
-                  {project.features.map((feat, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5">
-                      <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </section>
-        )}
-
-        {/* 4. Screenshots or Demo Gallery (only when available) */}
-        {project.screenshots.length > 0 && (
-          <section
-            id="screenshots"
-            className="space-y-4 pt-4 border-t border-stone-200/80 dark:border-stone-800/80 scroll-mt-28"
-          >
-            <h2 className="font-serif text-2xl font-bold text-stone-900 dark:text-stone-100">
-              Screenshots
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {project.screenshots.map((src, idx) => {
-                const altText =
-                  project.screenshotAlts?.[idx] ||
-                  `${project.name} screenshot ${idx + 1}`;
-                return (
-                  <figure
-                    key={src}
-                    className="rounded-xl overflow-hidden border border-stone-200 dark:border-stone-800 bg-stone-100 dark:bg-stone-900"
-                  >
-                    <div className="relative aspect-video">
-                      <Image
-                        src={src}
-                        alt={altText}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 440px"
-                        className="object-cover"
-                      />
-                    </div>
-                  </figure>
-                );
-              })}
-            </div>
-          </section>
-        )}
-
-        {/* 5. How to use it (Non-GitHub Access) */}
-        <section
-          id="how-to-use"
-          className="space-y-5 pt-6 border-t border-stone-200/80 dark:border-stone-800/80 scroll-mt-24"
-        >
-          <div>
-            <h2 className="font-serif text-2xl font-bold text-stone-900 dark:text-stone-100">
-              How to use it
-            </h2>
-            <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
-              Get started directly without needing any developer tools or accounts.
-            </p>
-          </div>
-
-          {project.liveUrl && (
-            <div className="rounded-xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/50 dark:bg-emerald-950/20 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div className="space-y-1">
-                <h3 className="font-serif font-semibold text-base text-stone-900 dark:text-stone-100">
-                  Run directly in your browser
-                </h3>
-                <p className="text-xs text-stone-600 dark:text-stone-400">
-                  No download or installation needed. Opens the live web application in a new tab.
-                </p>
-              </div>
               <a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-medium transition-colors flex-shrink-0"
+                className={buttonClasses({ variant: "primary" })}
               >
                 <span>Open live app</span>
-                <ExternalLink className="w-3.5 h-3.5" />
+                <ExternalLink className="w-4 h-4" strokeWidth={1.5} />
               </a>
+            )}
+
+            {primaryDownload && (
+              <a
+                href="#how-to-use"
+                className={buttonClasses({
+                  variant: project.liveUrl ? "quiet" : "primary",
+                })}
+              >
+                <span>
+                  Download{primaryDownload.size ? ` (${primaryDownload.size})` : ""}
+                </span>
+              </a>
+            )}
+
+            <ShareButton
+              title={project.name}
+              text={project.tagline || project.description}
+              url={`${siteConfig.url}/showcase/${project.slug}`}
+            />
+          </div>
+
+          {project.cover && (
+            <div className="rounded-card overflow-hidden border border-hairline bg-surface-muted">
+              <div className="relative w-full aspect-[16/9]">
+                <Image
+                  src={project.cover}
+                  alt={`${project.name} preview`}
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, 768px"
+                  className="object-cover"
+                />
+              </div>
             </div>
           )}
+        </header>
 
-          {project.downloads.length > 0 && (
+        {/* How to use it / Downloads */}
+        <section id="how-to-use" className="space-y-4 pt-6 border-t border-hairline scroll-mt-20">
+          <h2 className="font-serif text-xl sm:text-2xl font-semibold text-ink">
+            Get started
+          </h2>
+
+          {project.downloads.length > 0 ? (
             <DownloadPanel
               downloads={project.downloads}
               releaseInfo={project.releaseInfo}
               safetyNote={project.safetyNote}
               platforms={project.platforms}
+              projectName={project.name}
+              repoUrl={project.repo.url}
             />
-          )}
-
-          {!project.liveUrl && project.downloads.length === 0 && (
-            <div className="rounded-xl border border-stone-200 dark:border-stone-800 bg-stone-50/70 dark:bg-stone-900/30 p-5 text-sm text-stone-600 dark:text-stone-400">
-              <p>
-                This project does not have a live web demo or prebuilt download package published yet.
-                You can inspect the setup notes and source files inside the{" "}
-                <a href="#for-developers" className="text-academic hover:underline font-medium">
-                  For developers
-                </a>{" "}
-                section below.
-              </p>
-            </div>
-          )}
-        </section>
-
-        {/* 6. Status and roadmap snippet */}
-        <section
-          id="status-progress"
-          className="space-y-3 pt-4 border-t border-stone-200/80 dark:border-stone-800/80 scroll-mt-28"
-        >
-          <h2 className="font-serif text-xl font-semibold text-stone-900 dark:text-stone-100 flex items-center gap-2">
-            <Info className="w-4 h-4 text-academic" />
-            <span>Status & Progress</span>
-            <InfoHint text="Shows whether this project is live online, downloadable, actively changing, or archived." />
-          </h2>
-          <div className="p-4 rounded-xl border border-stone-200 dark:border-stone-800 bg-white/70 dark:bg-stone-900/40 text-sm text-stone-700 dark:text-stone-300 space-y-2">
-            <div className="flex flex-wrap items-center gap-2">
-              <span
-                className={`px-2 py-0.5 rounded-full border text-xs font-medium ${statusMeta.badgeClass}`}
+          ) : project.liveUrl ? (
+            <p className="text-sm text-ink-secondary leading-relaxed">
+              This project runs in your browser with no download or account needed. Use{" "}
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent underline underline-offset-2"
               >
-                {statusMeta.label}
-              </span>
-              {updatedLabel && (
-                <span className="text-xs text-stone-500 dark:text-stone-400">
-                  {updatedLabel}
-                </span>
-              )}
-            </div>
-            <p className="text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
-              {project.statusNote ||
-                `Current state: ${statusMeta.label}. Maintained openly with regular updates.`}
+                the live link
+              </a>{" "}
+              above to launch it.
             </p>
-          </div>
+          ) : (
+            <p className="text-sm text-ink-secondary leading-relaxed">
+              No prebuilt download or live demo is published yet. Setup instructions are inside
+              the developer documentation below.
+            </p>
+          )}
         </section>
 
-        {/* 7. Tech details (Collapsed by default "For developers" accordion) */}
-        <section
-          id="for-developers"
-          className="pt-4 border-t border-stone-200/80 dark:border-stone-800/80 scroll-mt-24"
-        >
-          <details className="group rounded-xl border border-stone-200 dark:border-stone-800 bg-white/60 dark:bg-stone-900/30">
-            <summary className="list-none cursor-pointer p-5 flex items-center justify-between gap-4 select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-academic rounded-xl">
-              <div className="flex items-center gap-2.5">
-                <Code2 className="w-4 h-4 text-stone-500" />
-                <div>
-                  <span className="font-serif font-semibold text-base text-stone-900 dark:text-stone-100 block">
-                    For developers
-                  </span>
-                  <span className="text-xs text-stone-500 dark:text-stone-400">
-                    Technology stack, license, source code link, and full documentation
-                  </span>
-                </div>
+        {/* Screenshots (when available) */}
+        {project.screenshots.length > 0 && (
+          <section className="space-y-4 pt-6 border-t border-hairline">
+            <h2 className="font-serif text-xl font-semibold text-ink">
+              Screenshots
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {project.screenshots.map((src, idx) => (
+                <figure
+                  key={src}
+                  className="rounded-card overflow-hidden border border-hairline bg-surface-muted"
+                >
+                  <div className="relative aspect-video">
+                    <Image
+                      src={src}
+                      alt={
+                        project.screenshotAlts?.[idx] ||
+                        `${project.name} screenshot ${idx + 1}`
+                      }
+                      fill
+                      sizes="(max-width: 768px) 100vw, 380px"
+                      className="object-cover"
+                    />
+                  </div>
+                </figure>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Plain-language Description & Features */}
+        {(project.description || project.features.length > 0) && (
+          <section className="space-y-4 pt-6 border-t border-hairline">
+            <h2 className="font-serif text-xl sm:text-2xl font-semibold text-ink">
+              About this project
+            </h2>
+            {project.description && (
+              <p className="text-base text-ink-secondary leading-relaxed">
+                {project.description}
+              </p>
+            )}
+            {project.features.length > 0 && (
+              <ul className="space-y-2.5 text-sm sm:text-base text-ink">
+                {project.features.map((feat, idx) => (
+                  <li key={idx} className="flex items-start gap-2.5">
+                    <Check
+                      className="w-4 h-4 text-accent flex-shrink-0 mt-1"
+                      strokeWidth={1.5}
+                    />
+                    <span>{feat}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+        )}
+
+        {/* Collapsed Dev Docs */}
+        <section id="for-developers" className="pt-6 border-t border-hairline">
+          <details className="group rounded-card border border-hairline bg-surface">
+            <summary className="list-none cursor-pointer px-4 sm:px-5 py-3.5 min-h-[48px] flex items-center justify-between gap-4 select-none">
+              <div>
+                <span className="font-serif font-semibold text-base text-ink block">
+                  Developer documentation
+                </span>
+                <span className="text-xs text-ink-secondary">
+                  Tech stack, license, source repository, and README
+                </span>
               </div>
-              <ChevronDown className="w-4 h-4 text-stone-500 transition-transform group-open:rotate-180" />
+              <ChevronDown
+                className="w-4 h-4 text-ink-secondary transition-transform duration-150 group-open:rotate-180 flex-shrink-0"
+                strokeWidth={1.5}
+              />
             </summary>
 
-            <div className="px-5 pb-6 pt-2 border-t border-stone-200/80 dark:border-stone-800/80 space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-                <div>
-                  <span className="block text-stone-400 font-mono uppercase mb-1.5">
-                    Tech Stack
-                  </span>
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tech.length > 0 ? (
-                      project.tech.map((t) => (
-                        <span
-                          key={t}
-                          className="px-2 py-0.5 rounded bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 font-mono"
-                        >
-                          {t}
-                        </span>
-                      ))
-                    ) : (
-                      <span className="text-stone-500">Not specified</span>
-                    )}
-                  </div>
+            <div className="px-4 sm:px-5 pb-6 pt-4 border-t border-hairline space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+                <div className="space-y-1.5">
+                  <span className="block text-xs text-ink-secondary">Stack</span>
+                  {project.tech.length > 0 ? (
+                    <ChipList items={project.tech} maxVisible={4} />
+                  ) : (
+                    <Chip>Not specified</Chip>
+                  )}
                 </div>
 
-                <div>
-                  <span className="block text-stone-400 font-mono uppercase mb-1.5">
-                    License
-                  </span>
-                  <span className="font-mono text-stone-700 dark:text-stone-300">
+                <div className="space-y-1.5">
+                  <span className="block text-xs text-ink-secondary">License</span>
+                  <span className="text-sm text-ink">
                     {project.repo.license || "See repository"}
                   </span>
                 </div>
 
-                <div>
-                  <span className="block text-stone-400 font-mono uppercase mb-1.5">
-                    Source Code
-                  </span>
+                <div className="space-y-1.5">
+                  <span className="block text-xs text-ink-secondary">Source</span>
                   <a
                     href={project.repo.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-academic hover:underline font-medium"
+                    className="inline-flex items-center gap-1 text-accent hover:underline break-all"
                   >
                     <span>
                       {project.repo.owner}/{project.repo.name}
                     </span>
-                    <ExternalLink className="w-3 h-3" />
+                    <ExternalLink className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={1.5} />
                   </a>
                 </div>
               </div>
 
               {readmeContent && (
-                <div className="pt-4 border-t border-stone-200/60 dark:border-stone-800/60">
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                    <h3 className="text-xs font-mono uppercase tracking-wider text-stone-500 flex items-center gap-1.5">
-                      <span>Repository Documentation</span>
-                      <InfoHint text="Relative GitHub links and images are automatically resolved. Switch to Outline/Raw view, customize text layout, or sort tables." />
-                    </h3>
-                  </div>
-                  <DocumentReader
+                <div className="pt-4 border-t border-hairline prose-academic">
+                  <ServerMarkdown
                     content={readmeContent}
                     repoContext={{
                       owner: project.repo.owner,
@@ -617,9 +387,7 @@ export default async function ProjectDetailPage({
                     }}
                     stripLeadingHeading
                     stripAiStudioBanner
-                    showToc={false}
-                    showReadingProgress={false}
-                    documentLabel="Project Documentation"
+                    baseHeadingLevel={2}
                   />
                 </div>
               )}
@@ -627,37 +395,27 @@ export default async function ProjectDetailPage({
           </details>
         </section>
 
-        {/* 8. Related research & related projects */}
+        {/* Related Research & Projects */}
         {(relatedWorks.length > 0 || relatedProjects.length > 0) && (
-          <section
-            id="related-section"
-            className="space-y-8 pt-6 border-t border-stone-200/80 dark:border-stone-800/80 scroll-mt-28"
-          >
+          <section className="space-y-6 pt-6 border-t border-hairline">
             {relatedWorks.length > 0 && (
               <div className="space-y-3">
-                <h2 className="font-serif text-xl font-semibold text-stone-900 dark:text-stone-100 flex items-center gap-2">
-                  <BookOpen className="w-4 h-4 text-academic" />
-                  <span>Related Research</span>
+                <h2 className="font-serif text-lg font-semibold text-ink">
+                  Related research
                 </h2>
-                <div className="grid grid-cols-1 gap-3">
+                <div className="space-y-3">
                   {relatedWorks.map((work) => (
                     <Link
                       key={work.slug}
                       href={`/works/${work.slug}`}
-                      className="p-4 rounded-xl border border-stone-200 dark:border-stone-800 bg-white/70 dark:bg-stone-900/40 hover:border-academic transition-colors flex items-center justify-between gap-4"
+                      className="block p-4 rounded-card border border-hairline bg-surface hover:border-hairline-strong transition-colors"
                     >
-                      <div className="space-y-1">
-                        <span className="text-[11px] font-mono text-academic">
-                          {work.status}
-                        </span>
-                        <h3 className="font-serif font-semibold text-base text-stone-900 dark:text-stone-100">
-                          {work.title}
-                        </h3>
-                        <p className="text-xs text-stone-500 dark:text-stone-400 line-clamp-2">
-                          {work.abstract}
-                        </p>
+                      <div className="text-xs text-ink-secondary mb-1">
+                        {work.status}
                       </div>
-                      <ArrowRight className="w-4 h-4 text-stone-400 flex-shrink-0" />
+                      <div className="font-serif font-semibold text-base text-ink">
+                        {work.title}
+                      </div>
                     </Link>
                   ))}
                 </div>
@@ -665,13 +423,13 @@ export default async function ProjectDetailPage({
             )}
 
             {relatedProjects.length > 0 && (
-              <div className="space-y-4">
-                <h2 className="font-serif text-xl font-semibold text-stone-900 dark:text-stone-100">
-                  Related Projects
+              <div className="space-y-3">
+                <h2 className="font-serif text-lg font-semibold text-ink">
+                  Related projects
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {relatedProjects.map((rel) => (
-                    <ProjectCard key={rel.slug} project={rel} compact />
+                    <ProjectCard key={rel.slug} project={rel} />
                   ))}
                 </div>
               </div>
@@ -679,58 +437,22 @@ export default async function ProjectDetailPage({
           </section>
         )}
 
-        {/* 9. Footer CTA */}
-        <section className="rounded-xl border border-stone-200 dark:border-stone-800 bg-cream-100/60 dark:bg-stone-900/40 p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="space-y-1">
-            <h2 className="font-serif text-lg font-semibold text-stone-900 dark:text-stone-100 flex items-center gap-2">
-              <MessageSquare className="w-4 h-4 text-academic" />
-              <span>Want to buy a build, collaborate, or contribute?</span>
-            </h2>
-            <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed">
-              Email Md. Ismail Hossain directly if you would like to purchase a packaged or custom
-              build, report feedback, or contribute to this project.
-            </p>
-          </div>
-          <div className="flex flex-wrap items-center gap-2.5 flex-shrink-0">
-            <Tooltip content="Opens your default email client pre-addressed to Ismail">
-              <a
-                href={`mailto:${siteConfig.author.email}?subject=${encodeURIComponent(
-                  `Project inquiry: ${project.name}`
-                )}`}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-academic hover:bg-academic-hover text-white text-xs font-medium transition-colors"
-              >
-                <Mail className="w-3.5 h-3.5" />
-                <span>Email Ismail</span>
-              </a>
-            </Tooltip>
-            <Tooltip content="Learn more about the author and collaboration options">
-              <Link
-                href="/about"
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200 text-xs font-medium hover:border-academic transition-colors"
-              >
-                <span>About & Contact</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </Tooltip>
-          </div>
-        </section>
-
-        {/* Previous / Next Project Navigation */}
+        {/* Quiet Prev / Next */}
         {(prevProject || nextProject) && (
           <nav
-            aria-label="Browse neighboring projects"
-            className="pt-4 border-t border-stone-200/80 dark:border-stone-800/80 grid grid-cols-1 sm:grid-cols-2 gap-3"
+            aria-label="Neighboring projects"
+            className="pt-6 border-t border-hairline grid grid-cols-1 sm:grid-cols-2 gap-3"
           >
             {prevProject ? (
               <Link
                 href={`/showcase/${prevProject.slug}`}
-                className="group p-4 rounded-xl border border-stone-200 dark:border-stone-800 bg-white/70 dark:bg-stone-900/40 hover:border-academic transition-colors text-left"
+                className="min-h-[44px] p-4 rounded-card border border-hairline bg-surface hover:border-hairline-strong transition-colors text-left"
               >
-                <span className="inline-flex items-center gap-1 text-[11px] font-mono text-stone-500">
-                  <ArrowLeft className="w-3 h-3" />
-                  Previous project
+                <span className="inline-flex items-center gap-1 text-xs text-ink-secondary">
+                  <ArrowLeft className="w-3.5 h-3.5" strokeWidth={1.5} />
+                  Previous
                 </span>
-                <p className="mt-1 font-serif text-sm font-semibold text-stone-900 dark:text-stone-100 group-hover:text-academic truncate">
+                <p className="mt-1 font-serif text-sm font-semibold text-ink truncate">
                   {prevProject.name}
                 </p>
               </Link>
@@ -741,13 +463,13 @@ export default async function ProjectDetailPage({
             {nextProject && (
               <Link
                 href={`/showcase/${nextProject.slug}`}
-                className="group p-4 rounded-xl border border-stone-200 dark:border-stone-800 bg-white/70 dark:bg-stone-900/40 hover:border-academic transition-colors text-left sm:text-right"
+                className="min-h-[44px] p-4 rounded-card border border-hairline bg-surface hover:border-hairline-strong transition-colors text-left sm:text-right"
               >
-                <span className="inline-flex items-center gap-1 text-[11px] font-mono text-stone-500">
-                  Next project
-                  <ArrowRight className="w-3 h-3" />
+                <span className="inline-flex items-center gap-1 text-xs text-ink-secondary">
+                  Next
+                  <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.5} />
                 </span>
-                <p className="mt-1 font-serif text-sm font-semibold text-stone-900 dark:text-stone-100 group-hover:text-academic truncate">
+                <p className="mt-1 font-serif text-sm font-semibold text-ink truncate">
                   {nextProject.name}
                 </p>
               </Link>
@@ -758,4 +480,3 @@ export default async function ProjectDetailPage({
     </>
   );
 }
-

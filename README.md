@@ -11,8 +11,9 @@
 
 A two-wing static-first platform by Md. Ismail Hossain combining an academic publication archive (**Wing A: Research**) with a non-technical **Software & Project Showcase** (**Wing B: Showcase**).
 
-- **Research Wing (`/`, `/works/[slug]`, `/research-areas`):** Discovers, ingests, and normalizes academic repositories into structured scholarly publication records with provenance tracking, sticky TOCs, KaTeX math, BibTeX/APA/IEEE/Chicago citations, and RSS syndication.
-- **Showcase Wing (`/showcase`, `/showcase/[slug]`, `/showcase/categories/[category]`):** Presents software projects as accessible products for non-GitHub readers, featuring plain-language summaries, live web app links, direct OS-labeled GitHub Release binary downloads, unsigned-build guidance, and collapsed developer documentation.
+- **Research Wing (`/`, `/works/[slug]`, `/research-areas`, `/collections`):** Discovers, ingests, and normalizes academic repositories into structured scholarly publication records with provenance tracking, mobile Contents bottom sheet and desktop sticky TOC, conditional KaTeX math, BibTeX/APA/IEEE/Chicago citations, static Open Graph images, and RSS syndication (`/feed.xml`, `/feed-all.xml`).
+- **Showcase Wing (`/showcase`, `/showcase/[slug]`, `/showcase/categories/[category]`):** Presents software projects as accessible products for non-GitHub readers, featuring plain-language summaries, live web app links, OS-aware GitHub Release downloads, collapsed `"Is this safe?"` guidance, collapsed developer documentation, and Showcase RSS (`/showcase/feed.xml`).
+- **Unified Lazy Search (`/search-index.json`):** Command-style search overlay (`/` or `Cmd/Ctrl+K`, plus header search icon) with fuzzy matching across both wings.
 
 ### Core Capabilities
 
@@ -63,10 +64,12 @@ npm run dev
 ```
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Production Build & Test
+### Production Build, Lint & Test
 ```bash
+npm run lint
 npm run test
 npm run build
+npm run check:bundle
 npm start
 ```
 
@@ -112,26 +115,33 @@ Deploying or promoting future updates is zero-configuration:
 research-journal/
 ├── .github/
 │   └── workflows/
+│       ├── ci.yml               # PR & push CI (type-check, lint, tests, build, bundle budget)
 │       └── sync-github.yml      # Scheduled daily GitHub Actions sync
-├── public/                      # Static assets & favicon
+├── public/                      # PWA icons & minimal visited-works service worker
 ├── src/
-│   ├── app/                     # Next.js App Router pages
-│   │   ├── layout.tsx           # Root layout with theme provider
-│   │   ├── page.tsx             # Two-wing homepage (Research & Showcase)
-│   │   ├── showcase/            # Software showcase gallery, categories & project pages
-│   │   ├── works/[slug]/        # Publication detail & manuscript reader
+│   ├── app/                     # Next.js App Router pages (static/SSG)
+│   │   ├── layout.tsx           # Root layout with Inter + Source Serif 4 fonts & theme provider
+│   │   ├── page.tsx             # Quiet editorial homepage with Recently Updated feed
+│   │   ├── collections/         # Curated cross-wing collections
+│   │   ├── showcase/            # Software showcase gallery, categories, RSS & project pages
+│   │   ├── works/[slug]/        # Reading-first publication view & static OG images
 │   │   ├── research-areas/      # Academic domain taxonomies
 │   │   ├── about/               # Bio, research/software focus & contact
 │   │   ├── methodology/         # GitHub-as-source-of-truth workflow documentation
+│   │   ├── search-index.json/   # Static lightweight search index
+│   │   ├── feed.xml/            # Research RSS feed
+│   │   ├── feed-all.xml/        # Combined Research & Showcase RSS feed
+│   │   ├── manifest.ts          # Web app manifest
 │   │   ├── sitemap.ts           # Dynamic SEO sitemap
 │   │   └── robots.ts            # Robots configuration
 │   ├── components/              # Modular UI components
-│   │   ├── layout/              # Header, Footer, ThemeToggle
-│   │   ├── publication/         # PublicationEntry, MetadataProvenance, TOC, CitationBox
+│   │   ├── layout/              # Navbar (with mobile bottom-sheet), Footer, ThemeToggle
+│   │   ├── ui/                  # Button, Chip, BottomSheet, Breadcrumbs, ShareButton
+│   │   ├── publication/         # PublicationCard, WorkReaderShell, CitationBox, ArtifactList
 │   │   ├── showcase/            # ProjectCard, ShowcaseBrowser, DownloadPanel, DownloadSafetyNote
-│   │   ├── markdown/            # Scholarly Markdown & LaTeX math renderer
-│   │   ├── search/              # Fast client-side search & filters
-│   │   └── artifacts/           # PDF viewer, dataset links, and asset cards
+│   │   ├── markdown/            # ServerMarkdown, CodeBlock, SortableMarkdownTable, KatexCssLoader
+│   │   ├── search/              # SearchOverlay & JournalSearch
+│   │   └── artifacts/           # Lazy-loaded desktop PDF/dashboard modal viewer
 │   ├── content/
 │   │   └── generated/
 │   │       ├── works/           # Cached full manuscripts (slug.md)
@@ -139,8 +149,9 @@ research-journal/
 │   ├── data/
 │   │   └── generated/           # Normalized catalog.json and showcase.json
 │   ├── lib/
-│   │   ├── catalog/             # Research schema & queries
+│   │   ├── catalog/             # Research schema, citations & queries
 │   │   ├── showcase/            # Showcase schema, discovery, releases, merge, validate, queries
+│   │   ├── search/              # Fuzzy matching & ranking helpers
 │   │   ├── classification/      # Archetype detection heuristics
 │   │   ├── github/              # Shared API client, releases, tree inspection, rate-limit handler
 │   │   ├── ingestion/           # Research normalizer, validator, edition grouping
@@ -148,13 +159,16 @@ research-journal/
 │   └── config/
 │       ├── site.ts              # Site identity, contact & navigation
 │       ├── authors.ts           # Authorship fallback rules
+│       ├── collections.ts       # Hand-curated cross-wing collections
 │       ├── domains.ts           # 5 academic domain taxonomies
 │       ├── repositories.ts      # Research repository lists & overrides
 │       └── showcase.ts          # Showcase exclusions, wing overrides & editorial copy
 ├── scripts/
 │   ├── sync-github.ts           # Unified Ingestion CLI (--target research|showcase|all)
-│   └── validate-showcase.ts     # Build-time showcase catalog validator
-└── tests/                       # Vitest unit tests (classification, parsers, catalog, showcase)
+│   ├── validate-showcase.ts     # Build-time showcase catalog validator
+│   ├── check-bundle-budget.mjs  # Gzipped JS bundle budget checker
+│   └── smoke-mobile.mjs         # Mobile Playwright smoke test
+└── tests/                       # Vitest unit tests (classification, parsers, catalog, showcase, UI utils)
 ```
 
 ---

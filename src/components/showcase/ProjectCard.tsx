@@ -1,202 +1,157 @@
 import Image from "next/image";
 import Link from "next/link";
-import { formatDistanceToNow, parseISO } from "date-fns";
+import { ArrowUpRight, Download, ExternalLink } from "lucide-react";
 import {
   Project,
+  PROJECT_PLATFORM_LABELS,
   PROJECT_STATUS_META,
   getCategoryMeta,
 } from "@/lib/showcase/schema";
-import { CategoryCoverFallback, CategoryIcon } from "./CategoryVisuals";
-import { Tooltip } from "@/components/ui/Tooltip";
-import { ArrowRight, Download, ExternalLink } from "lucide-react";
+import { formatRelativeDate } from "@/lib/format-date";
+import { Chip, ChipList } from "@/components/ui/Chip";
 
-const STATUS_HINTS: Record<string, string> = {
-  live: "Open and use online right now in your browser",
-  downloadable: "Direct installer or package ready to download",
-  "in-development": "Actively updated project in progress",
-  prototype: "Working early proof of concept",
-  archived: "Preserved snapshot of an earlier project",
-};
+export type ProjectCardData = Pick<
+  Project,
+  | "slug"
+  | "name"
+  | "tagline"
+  | "description"
+  | "category"
+  | "status"
+  | "platforms"
+  | "tech"
+  | "cover"
+  | "liveUrl"
+  | "downloads"
+  | "updatedAt"
+  | "curated"
+  | "needsReview"
+  | "featured"
+  | "order"
+>;
 
 interface ProjectCardProps {
-  project: Project;
-  compact?: boolean;
+  project: ProjectCardData;
+  showCover?: boolean;
 }
 
-export function ProjectCard({ project, compact = false }: ProjectCardProps) {
+export function ProjectCard({ project, showCover = false }: ProjectCardProps) {
   const categoryMeta = getCategoryMeta(project.category);
   const statusMeta = PROJECT_STATUS_META[project.status];
   const primaryDownload = project.downloads[0];
   const summaryText =
     project.tagline ||
     project.description ||
-    "Open-source software project. Open details to learn more.";
+    "Open details to see how it works.";
+  const updatedLabel = formatRelativeDate(project.updatedAt);
 
-  let updatedLabel = "";
-  try {
-    updatedLabel = `Updated ${formatDistanceToNow(parseISO(project.updatedAt), {
-      addSuffix: true,
-    })}`;
-  } catch {
-    updatedLabel = "";
-  }
+  const platformBadge = project.liveUrl
+    ? "Web"
+    : project.platforms[0]
+    ? PROJECT_PLATFORM_LABELS[project.platforms[0]] || project.platforms[0]
+    : null;
+
+  const isDev = process.env.NODE_ENV === "development";
 
   return (
-    <article className="group rounded-xl border border-stone-200 dark:border-stone-800 bg-white/80 dark:bg-stone-900/50 overflow-hidden hover:border-academic/60 dark:hover:border-academic-dark/60 hover:-translate-y-0.5 transition-all flex flex-col justify-between">
+    <article className="rounded-card border border-hairline bg-surface hover:border-hairline-strong transition-colors duration-150 flex flex-col justify-between overflow-hidden">
       <div>
-        {/* Cover or Generated Category Fallback */}
-        <Link
-          href={`/showcase/${project.slug}`}
-          className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-academic"
-          aria-label={`Open ${project.name} details`}
-        >
-          {project.cover ? (
-            <div
-              className={`relative w-full ${
-                compact ? "h-36" : "h-44 sm:h-48"
-              } bg-stone-100 dark:bg-stone-800 overflow-hidden border-b border-stone-200/80 dark:border-stone-800/80`}
-            >
-              <Image
-                src={project.cover}
-                alt={`${project.name} cover preview`}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover group-hover:scale-[1.02] transition-transform duration-300"
-              />
-            </div>
-          ) : (
-            <CategoryCoverFallback
-              category={project.category}
-              name={project.name}
-              compact={compact}
+        {showCover && project.cover && (
+          <Link
+            href={`/showcase/${project.slug}`}
+            className="block relative w-full aspect-[16/9] bg-surface-muted border-b border-hairline overflow-hidden"
+            aria-label={`Open ${project.name}`}
+          >
+            <Image
+              src={project.cover}
+              alt={`${project.name} preview`}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover"
             />
-          )}
-        </Link>
+          </Link>
+        )}
 
         <div className="p-5 space-y-3">
-          {/* Status + Category Row */}
-          <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
-            <div className="flex flex-wrap items-center gap-1.5">
-              <Tooltip content={STATUS_HINTS[project.status] || statusMeta.label}>
-                <span
-                  className={`px-2 py-0.5 rounded-full border text-[11px] font-medium cursor-default ${statusMeta.badgeClass}`}
-                >
-                  {statusMeta.label}
-                </span>
-              </Tooltip>
-              <Tooltip content={`View all ${categoryMeta.label}`}>
-                <Link
-                  href={`/showcase/categories/${project.category}`}
-                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:text-academic dark:hover:text-academic-dark text-[11px] transition-colors"
-                >
-                  <CategoryIcon category={project.category} className="w-3 h-3" />
-                  <span>{categoryMeta.shortLabel}</span>
-                </Link>
-              </Tooltip>
-            </div>
-
+          {/* Quiet metadata line */}
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-ink-secondary">
+            <span>{categoryMeta.shortLabel}</span>
+            <span aria-hidden="true">·</span>
+            <span>{statusMeta.label}</span>
+            {platformBadge && (
+              <>
+                <span aria-hidden="true">·</span>
+                <span>{platformBadge}</span>
+              </>
+            )}
             {updatedLabel && (
-              <Tooltip content="Last updated in source repository">
-                <span className="text-[11px] text-stone-400 dark:text-stone-500 cursor-default">
-                  {updatedLabel}
-                </span>
-              </Tooltip>
+              <>
+                <span aria-hidden="true">·</span>
+                <span>Updated {updatedLabel}</span>
+              </>
+            )}
+            {isDev && project.needsReview && (
+              <Chip className="ml-auto">Needs review</Chip>
             )}
           </div>
 
-          {/* Name & Plain-Language Tagline */}
-          <div>
-            <h3 className="font-serif text-xl font-semibold text-stone-900 dark:text-stone-100 leading-snug mb-1.5">
+          {/* Title + one-line summary */}
+          <div className="space-y-1.5">
+            <h3 className="font-serif text-lg sm:text-xl font-semibold text-ink leading-snug">
               <Link
                 href={`/showcase/${project.slug}`}
-                className="hover:text-academic dark:hover:text-academic-dark transition-colors focus:outline-none focus-visible:underline"
+                className="hover:text-accent transition-colors duration-150"
               >
                 {project.name}
               </Link>
             </h3>
-            <p className="text-sm text-stone-600 dark:text-stone-400 leading-relaxed line-clamp-2">
+            <p className="text-sm text-ink-secondary leading-relaxed line-clamp-2">
               {summaryText}
             </p>
           </div>
 
-          {/* Optional Tech Tags (max 3) */}
-          {project.tech.length > 0 && (
-            <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
-              <span className="text-[11px] text-stone-400 dark:text-stone-500">
-                Built with:
-              </span>
-              {project.tech.slice(0, 3).map((tag) => (
-                <span
-                  key={tag}
-                  className="px-2 py-0.5 rounded text-[11px] bg-stone-100/90 dark:bg-stone-800/80 text-stone-600 dark:text-stone-400"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
+          {/* Max 2 visible tags + "+N" */}
+          <ChipList items={project.tech} maxVisible={2} />
         </div>
       </div>
 
-      {/* Primary Action Footer */}
-      <div className="px-5 py-3.5 border-t border-stone-100 dark:border-stone-800/80 bg-cream-100/40 dark:bg-stone-900/30 flex items-center justify-between gap-3 text-xs">
+      {/* Quiet footer action */}
+      <div className="px-5 py-3 border-t border-hairline flex items-center justify-between gap-3 text-sm">
         {project.liveUrl ? (
-          <>
-            <Tooltip content="Launch hosted web app in a new tab">
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-academic hover:bg-academic-hover text-white font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-academic"
-              >
-                <span>Try it live</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            </Tooltip>
-            <Tooltip content="Open overview, features, and documentation">
-              <Link
-                href={`/showcase/${project.slug}`}
-                className="inline-flex items-center gap-1 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 font-medium transition-colors"
-              >
-                <span>Details</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </Tooltip>
-          </>
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="min-h-[44px] inline-flex items-center gap-1.5 font-medium text-accent hover:text-accent-hover transition-colors"
+          >
+            <span>Try live</span>
+            <ExternalLink className="w-3.5 h-3.5" strokeWidth={1.5} />
+          </a>
         ) : primaryDownload ? (
-          <>
-            <Tooltip content={`Download ${primaryDownload.label}${primaryDownload.size ? ` (${primaryDownload.size})` : ""}`}>
-              <a
-                href={primaryDownload.url}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-academic hover:bg-academic-hover text-white font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-academic"
-              >
-                <Download className="w-3.5 h-3.5" />
-                <span>Download</span>
-              </a>
-            </Tooltip>
-            <Tooltip content="See installation steps and all files">
-              <Link
-                href={`/showcase/${project.slug}`}
-                className="inline-flex items-center gap-1 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 font-medium transition-colors"
-              >
-                <span>How to use</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </Tooltip>
-          </>
+          <a
+            href={primaryDownload.url}
+            className="min-h-[44px] inline-flex items-center gap-1.5 font-medium text-accent hover:text-accent-hover transition-colors"
+          >
+            <Download className="w-3.5 h-3.5" strokeWidth={1.5} />
+            <span>Download</span>
+          </a>
         ) : (
-          <Tooltip content="Open full plain-language overview and documentation">
-            <Link
-              href={`/showcase/${project.slug}`}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-stone-300 dark:border-stone-700 hover:border-academic text-stone-800 dark:text-stone-200 font-medium transition-colors"
-            >
-              <span>Learn more</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </Tooltip>
+          <Link
+            href={`/showcase/${project.slug}`}
+            className="min-h-[44px] inline-flex items-center gap-1.5 font-medium text-accent hover:text-accent-hover transition-colors"
+          >
+            <span>Open project</span>
+            <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={1.5} />
+          </Link>
         )}
+
+        <Link
+          href={`/showcase/${project.slug}`}
+          className="min-h-[44px] inline-flex items-center gap-1 text-xs font-medium text-ink-secondary hover:text-ink transition-colors"
+        >
+          <span>Details</span>
+        </Link>
       </div>
     </article>
   );
 }
-

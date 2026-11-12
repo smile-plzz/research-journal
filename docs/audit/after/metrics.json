@@ -1,0 +1,107 @@
+{
+  "phase": "after",
+  "timestamp": "2026-11-12T09:53:52.782Z",
+  "overflowIssues": [],
+  "lighthouse": [
+    {
+      "route": "/",
+      "scores": {
+        "performance": 74,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "lcpMs": 1178,
+        "cls": 0,
+        "tbtMs": 1451,
+        "inpMs": 453,
+        "fcpMs": 1178,
+        "speedIndexMs": 2061,
+        "totalByteWeightKB": 324,
+        "jsBytesKB": 162
+      },
+      "a11yFails": []
+    },
+    {
+      "route": "/works/tcra-intelligence-automation-boundary",
+      "scores": {
+        "performance": 79,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "lcpMs": 1280,
+        "cls": 0,
+        "tbtMs": 929,
+        "inpMs": 473,
+        "fcpMs": 1280,
+        "speedIndexMs": 2222,
+        "totalByteWeightKB": 277,
+        "jsBytesKB": 132
+      },
+      "a11yFails": []
+    },
+    {
+      "route": "/showcase",
+      "scores": {
+        "performance": 86,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "lcpMs": 1207,
+        "cls": 0,
+        "tbtMs": 556,
+        "inpMs": 364,
+        "fcpMs": 1207,
+        "speedIndexMs": 1207,
+        "totalByteWeightKB": 391,
+        "jsBytesKB": 153
+      },
+      "a11yFails": []
+    },
+    {
+      "route": "/showcase/luma",
+      "scores": {
+        "performance": 94,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "lcpMs": 1072,
+        "cls": 0.0717,
+        "tbtMs": 242,
+        "inpMs": 264,
+        "fcpMs": 1072,
+        "speedIndexMs": 1072,
+        "totalByteWeightKB": 331,
+        "jsBytesKB": 153
+      },
+      "a11yFails": []
+    },
+    {
+      "route": "/research-areas",
+      "scores": {
+        "performance": 92,
+        "accessibility": 100,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "lcpMs": 799,
+        "cls": 0.0329,
+        "tbtMs": 358,
+        "inpMs": 277,
+        "fcpMs": 799,
+        "speedIndexMs": 946,
+        "totalByteWeightKB": 299,
+        "jsBytesKB": 132
+      },
+      "a11yFails": []
+    }
+  ]
+}

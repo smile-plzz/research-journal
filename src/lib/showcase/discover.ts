@@ -133,7 +133,7 @@ export async function runShowcaseIngestion(
     }
   }
 
-  let projects: Project[] = ensureUniqueSlugs(rawEntries.map((e) => e.project));
+  const projects: Project[] = ensureUniqueSlugs(rawEntries.map((e) => e.project));
 
   // Sort: featured first, then curated by explicit order, then recently updated
   projects.sort((a, b) => {

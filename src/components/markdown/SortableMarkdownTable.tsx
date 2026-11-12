@@ -2,13 +2,6 @@
 
 import React, { useMemo, useState } from "react";
 import {
-  compareCellValues,
-  extractTextFromReactNode,
-  tableToCsv,
-  tableToMarkdown,
-} from "@/lib/markdown/table-utils";
-import { Tooltip } from "@/components/ui/Tooltip";
-import {
   ArrowDown,
   ArrowUp,
   ArrowUpDown,
@@ -16,10 +9,14 @@ import {
   Copy,
   FileSpreadsheet,
   Search,
-  WrapText,
-  Rows3,
   X,
 } from "lucide-react";
+import {
+  compareCellValues,
+  extractTextFromReactNode,
+  tableToCsv,
+  tableToMarkdown,
+} from "@/lib/markdown/table-utils";
 
 interface SortableMarkdownTableProps {
   children?: React.ReactNode;
@@ -31,8 +28,8 @@ interface ParsedCell {
 }
 
 function toArray(children: React.ReactNode): React.ReactElement[] {
-  return React.Children.toArray(children).filter((child): child is React.ReactElement =>
-    React.isValidElement(child)
+  return React.Children.toArray(children).filter(
+    (child): child is React.ReactElement => React.isValidElement(child)
   );
 }
 
@@ -46,10 +43,14 @@ function parseTableChildren(children: React.ReactNode): {
 
   const headers: ParsedCell[] = [];
   if (thead) {
-    const headerRows = toArray((thead.props as { children?: React.ReactNode }).children);
+    const headerRows = toArray(
+      (thead.props as { children?: React.ReactNode }).children
+    );
     const firstRow = headerRows[0];
     if (firstRow) {
-      const cells = toArray((firstRow.props as { children?: React.ReactNode }).children);
+      const cells = toArray(
+        (firstRow.props as { children?: React.ReactNode }).children
+      );
       for (const cell of cells) {
         const cellNode = (cell.props as { children?: React.ReactNode }).children;
         headers.push({
@@ -62,7 +63,9 @@ function parseTableChildren(children: React.ReactNode): {
 
   const rows: ParsedCell[][] = [];
   if (tbody) {
-    const bodyRows = toArray((tbody.props as { children?: React.ReactNode }).children);
+    const bodyRows = toArray(
+      (tbody.props as { children?: React.ReactNode }).children
+    );
     for (const tr of bodyRows) {
       const cells = toArray((tr.props as { children?: React.ReactNode }).children);
       const parsedRow: ParsedCell[] = cells.map((cell) => {
@@ -82,14 +85,14 @@ function parseTableChildren(children: React.ReactNode): {
 }
 
 export function SortableMarkdownTable({ children }: SortableMarkdownTableProps) {
-  const { headers, rows } = useMemo(() => parseTableChildren(children), [children]);
+  const { headers, rows } = useMemo(
+    () => parseTableChildren(children),
+    [children]
+  );
 
   const [sortCol, setSortCol] = useState<number | null>(null);
   const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
   const [filterText, setFilterText] = useState("");
-  const [showFilter, setShowFilter] = useState(false);
-  const [compact, setCompact] = useState(false);
-  const [wrapCells, setWrapCells] = useState(true);
   const [copiedFormat, setCopiedFormat] = useState<"csv" | "md" | null>(null);
 
   const visibleRows = useMemo(() => {
@@ -98,9 +101,7 @@ export function SortableMarkdownTable({ children }: SortableMarkdownTableProps) 
       ? rows.filter((row) => row.some((c) => c.text.toLowerCase().includes(q)))
       : rows;
 
-    if (sortCol === null) {
-      return filtered;
-    }
+    if (sortCol === null) return filtered;
 
     return [...filtered].sort((a, b) => {
       const valA = a[sortCol]?.text || "";
@@ -109,10 +110,9 @@ export function SortableMarkdownTable({ children }: SortableMarkdownTableProps) 
     });
   }, [rows, filterText, sortCol, sortDir]);
 
-  // Fallback for non-standard tables without thead/rows
   if (headers.length === 0 || rows.length === 0) {
     return (
-      <div className="overflow-x-auto my-6">
+      <div className="relative overflow-x-auto my-6 rounded-card border border-hairline">
         <table className="w-full text-left border-collapse">{children}</table>
       </div>
     );
@@ -141,212 +141,148 @@ export function SortableMarkdownTable({ children }: SortableMarkdownTableProps) 
     if (navigator.clipboard) {
       navigator.clipboard.writeText(output);
       setCopiedFormat(format);
-      setTimeout(() => setCopiedFormat(null), 1800);
+      window.setTimeout(() => setCopiedFormat(null), 1800);
     }
   };
 
-  const isLongTable = rows.length >= 4;
-
   return (
-    <div className="my-6 rounded-xl border border-stone-200 dark:border-stone-800 bg-white/80 dark:bg-stone-900/40 overflow-hidden font-sans not-prose">
-      {/* Interactive Table Control Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-2 px-3 py-2 border-b border-stone-200/80 dark:border-stone-800/80 bg-stone-50/90 dark:bg-stone-900/70 text-[11px]">
-        <div className="flex items-center gap-2 text-stone-500 dark:text-stone-400">
-          <span className="font-mono">
-            {visibleRows.length === rows.length
-              ? `${rows.length} ${rows.length === 1 ? "row" : "rows"}`
-              : `${visibleRows.length} of ${rows.length} rows`}
-          </span>
-          {sortCol !== null && (
-            <Tooltip content="Reset column sorting back to original order">
-              <button
-                type="button"
-                onClick={() => setSortCol(null)}
-                className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-academic/10 text-academic dark:text-academic-dark hover:bg-academic/20 transition-colors"
-              >
-                <span>Sorted by {headers[sortCol]?.text || "column"}</span>
-                <X className="w-3 h-3" />
-              </button>
-            </Tooltip>
-          )}
-        </div>
+    <div className="my-6 rounded-card border border-hairline bg-surface overflow-hidden font-sans not-prose max-w-full">
+      {/* Compact Table Bar */}
+      <div className="flex flex-wrap items-center justify-between gap-2 px-3 py-1.5 border-b border-hairline bg-surface-muted/70 text-xs">
+        <span className="text-ink-secondary">
+          {visibleRows.length === rows.length
+            ? `${rows.length} ${rows.length === 1 ? "row" : "rows"}`
+            : `${visibleRows.length} of ${rows.length}`}
+        </span>
 
         <div className="flex flex-wrap items-center gap-1.5">
-          {(isLongTable || showFilter) && (
+          {rows.length >= 4 && (
             <div className="relative flex items-center">
-              <Search className="w-3 h-3 text-stone-400 absolute left-2 pointer-events-none" />
+              <Search
+                className="w-3.5 h-3.5 text-ink-secondary absolute left-2.5 pointer-events-none"
+                strokeWidth={1.5}
+              />
               <input
-                type="text"
+                type="search"
+                inputMode="search"
                 value={filterText}
                 onChange={(e) => setFilterText(e.target.value)}
                 placeholder="Filter rows..."
                 aria-label="Filter table rows"
-                className="pl-6 pr-6 py-1 rounded border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-950 text-stone-800 dark:text-stone-200 text-[11px] w-36 focus:outline-none focus:ring-1 focus:ring-academic"
+                className="min-h-[36px] pl-7 pr-7 py-1 rounded-control border border-hairline-strong bg-surface text-base sm:text-xs text-ink w-36 sm:w-44 focus:outline-none"
               />
               {filterText && (
                 <button
                   type="button"
                   onClick={() => setFilterText("")}
                   aria-label="Clear table filter"
-                  className="absolute right-1.5 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200"
+                  className="absolute right-1.5 p-1 text-ink-secondary hover:text-ink"
                 >
-                  <X className="w-3 h-3" />
+                  <X className="w-3.5 h-3.5" strokeWidth={1.5} />
                 </button>
               )}
             </div>
           )}
 
-          {!isLongTable && !showFilter && (
-            <Tooltip content="Filter rows in this table">
-              <button
-                type="button"
-                onClick={() => setShowFilter(true)}
-                className="p-1.5 rounded text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100 hover:bg-stone-200/60 dark:hover:bg-stone-800 transition-colors"
-                aria-label="Filter table rows"
-              >
-                <Search className="w-3.5 h-3.5" />
-              </button>
-            </Tooltip>
-          )}
+          <button
+            type="button"
+            onClick={() => handleCopy("csv")}
+            aria-label="Copy table as CSV"
+            className="min-h-[36px] inline-flex items-center gap-1 px-2.5 rounded-control border border-hairline bg-surface text-ink-secondary hover:text-ink transition-colors"
+          >
+            {copiedFormat === "csv" ? (
+              <Check className="w-3.5 h-3.5 text-accent" strokeWidth={1.5} />
+            ) : (
+              <FileSpreadsheet className="w-3.5 h-3.5" strokeWidth={1.5} />
+            )}
+            <span>CSV</span>
+          </button>
 
-          <Tooltip content={compact ? "Switch to comfortable row height" : "Switch to compact row height"}>
-            <button
-              type="button"
-              onClick={() => setCompact((v) => !v)}
-              className={`p-1.5 rounded transition-colors ${
-                compact
-                  ? "bg-stone-200 dark:bg-stone-800 text-stone-900 dark:text-stone-100"
-                  : "text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100 hover:bg-stone-200/60 dark:hover:bg-stone-800"
-              }`}
-              aria-label="Toggle table density"
-            >
-              <Rows3 className="w-3.5 h-3.5" />
-            </button>
-          </Tooltip>
-
-          <Tooltip content={wrapCells ? "Disable text wrap (horizontal scroll)" : "Wrap long cell text"}>
-            <button
-              type="button"
-              onClick={() => setWrapCells((v) => !v)}
-              className={`p-1.5 rounded transition-colors ${
-                wrapCells
-                  ? "bg-stone-200 dark:bg-stone-800 text-stone-900 dark:text-stone-100"
-                  : "text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100 hover:bg-stone-200/60 dark:hover:bg-stone-800"
-              }`}
-              aria-label="Toggle cell text wrapping"
-            >
-              <WrapText className="w-3.5 h-3.5" />
-            </button>
-          </Tooltip>
-
-          <Tooltip content="Copy visible table rows as CSV">
-            <button
-              type="button"
-              onClick={() => handleCopy("csv")}
-              className="inline-flex items-center gap-1 px-2 py-1 rounded border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-300 hover:border-academic transition-colors"
-            >
-              {copiedFormat === "csv" ? (
-                <Check className="w-3 h-3 text-emerald-600" />
-              ) : (
-                <FileSpreadsheet className="w-3 h-3" />
-              )}
-              <span>CSV</span>
-            </button>
-          </Tooltip>
-
-          <Tooltip content="Copy visible table rows as Markdown">
-            <button
-              type="button"
-              onClick={() => handleCopy("md")}
-              className="inline-flex items-center gap-1 px-2 py-1 rounded border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-300 hover:border-academic transition-colors"
-            >
-              {copiedFormat === "md" ? (
-                <Check className="w-3 h-3 text-emerald-600" />
-              ) : (
-                <Copy className="w-3 h-3" />
-              )}
-              <span>MD</span>
-            </button>
-          </Tooltip>
+          <button
+            type="button"
+            onClick={() => handleCopy("md")}
+            title="Copy table as Markdown"
+            aria-label="Copy Markdown"
+            className="min-h-[36px] inline-flex items-center gap-1 px-2.5 rounded-control border border-hairline bg-surface text-ink-secondary hover:text-ink transition-colors"
+          >
+            {copiedFormat === "md" ? (
+              <Check className="w-3.5 h-3.5 text-accent" strokeWidth={1.5} />
+            ) : (
+              <Copy className="w-3.5 h-3.5" strokeWidth={1.5} />
+            )}
+            <span>Markdown</span>
+          </button>
         </div>
       </div>
 
-      {/* Table Body */}
-      <div className="overflow-x-auto">
-        <table className="w-full text-left border-collapse text-xs sm:text-sm">
-          <thead>
-            <tr className="bg-stone-100/80 dark:bg-stone-800/70 border-b border-stone-200 dark:border-stone-800">
-              {headers.map((header, idx) => {
-                const isSorted = sortCol === idx;
-                return (
-                  <th
-                    key={idx}
-                    scope="col"
-                    className={`${
-                      compact ? "px-3 py-1.5" : "px-3.5 py-2.5"
-                    } font-semibold text-stone-800 dark:text-stone-200 select-none ${
-                      wrapCells ? "" : "whitespace-nowrap"
-                    }`}
-                  >
-                    <Tooltip content={`Sort by ${header.text || "column"}`}>
+      {/* Scrollable Table Container with Subtle Right Edge Fade */}
+      <div className="relative">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse text-xs sm:text-sm">
+            <thead>
+              <tr className="bg-surface-muted/50 border-b border-hairline">
+                {headers.map((header, idx) => {
+                  const isSorted = sortCol === idx;
+                  return (
+                    <th
+                      key={idx}
+                      scope="col"
+                      className="px-3.5 py-2.5 font-medium text-ink select-none"
+                    >
                       <button
                         type="button"
                         onClick={() => handleSort(idx)}
-                        className="inline-flex items-center gap-1.5 text-left hover:text-academic dark:hover:text-academic-dark transition-colors focus:outline-none focus-visible:underline"
+                        className="min-h-[36px] inline-flex items-center gap-1.5 text-left hover:text-accent transition-colors"
                       >
                         <span>{header.node}</span>
                         {isSorted ? (
                           sortDir === "asc" ? (
-                            <ArrowUp className="w-3.5 h-3.5 text-academic flex-shrink-0" />
+                            <ArrowUp className="w-3.5 h-3.5 text-accent flex-shrink-0" strokeWidth={1.5} />
                           ) : (
-                            <ArrowDown className="w-3.5 h-3.5 text-academic flex-shrink-0" />
+                            <ArrowDown className="w-3.5 h-3.5 text-accent flex-shrink-0" strokeWidth={1.5} />
                           )
                         ) : (
-                          <ArrowUpDown className="w-3 h-3 text-stone-400 flex-shrink-0" />
+                          <ArrowUpDown className="w-3 h-3 text-ink-secondary flex-shrink-0" strokeWidth={1.5} />
                         )}
                       </button>
-                    </Tooltip>
-                  </th>
-                );
-              })}
-            </tr>
-          </thead>
-
-          <tbody className="divide-y divide-stone-200/70 dark:divide-stone-800/70">
-            {visibleRows.length === 0 ? (
-              <tr>
-                <td
-                  colSpan={headers.length}
-                  className="px-4 py-6 text-center text-xs text-stone-500 dark:text-stone-400"
-                >
-                  No table rows match &ldquo;{filterText}&rdquo;.
-                </td>
+                    </th>
+                  );
+                })}
               </tr>
-            ) : (
-              visibleRows.map((row, rIdx) => (
-                <tr
-                  key={rIdx}
-                  className="hover:bg-stone-50 dark:hover:bg-stone-800/40 even:bg-stone-50/40 dark:even:bg-stone-900/30 transition-colors"
-                >
-                  {headers.map((_, cIdx) => (
-                    <td
-                      key={cIdx}
-                      className={`${
-                        compact ? "px-3 py-1.5" : "px-3.5 py-2.5"
-                      } text-stone-700 dark:text-stone-300 align-top leading-relaxed ${
-                        wrapCells ? "" : "whitespace-nowrap"
-                      }`}
-                    >
-                      {row[cIdx]?.node ?? ""}
-                    </td>
-                  ))}
+            </thead>
+
+            <tbody className="divide-y divide-hairline">
+              {visibleRows.length === 0 ? (
+                <tr>
+                  <td
+                    colSpan={headers.length}
+                    className="px-4 py-6 text-center text-xs text-ink-secondary"
+                  >
+                    No matching rows.
+                  </td>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
+              ) : (
+                visibleRows.map((row, rIdx) => (
+                  <tr key={rIdx} className="hover:bg-surface-muted/40 transition-colors">
+                    {headers.map((_, cIdx) => (
+                      <td
+                        key={cIdx}
+                        className="px-3.5 py-2.5 text-ink align-top leading-relaxed"
+                      >
+                        {row[cIdx]?.node ?? ""}
+                      </td>
+                    ))}
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 right-0 w-4 bg-gradient-to-l from-surface to-transparent sm:hidden"
+        />
       </div>
     </div>
   );
 }
-

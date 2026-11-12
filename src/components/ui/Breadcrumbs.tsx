@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronRight, Home } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 export interface BreadcrumbItem {
   label: string;
@@ -8,28 +8,33 @@ export interface BreadcrumbItem {
 
 export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
   return (
-    <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-xs text-stone-500 dark:text-stone-400">
+    <nav
+      aria-label="Breadcrumb"
+      className="flex flex-wrap items-center gap-1.5 text-xs text-ink-secondary"
+    >
       <Link
         href="/"
-        className="inline-flex items-center gap-1 hover:text-stone-900 dark:hover:text-stone-100 transition-colors rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-academic"
+        className="inline-flex items-center min-h-[36px] hover:text-ink transition-colors rounded"
       >
-        <Home className="w-3.5 h-3.5" />
-        <span>Home</span>
+        Home
       </Link>
 
       {items.map((item, idx) => (
-        <span key={`${item.label}-${idx}`} className="inline-flex items-center gap-1.5 min-w-0">
-          <ChevronRight className="w-3.5 h-3.5 text-stone-400 flex-shrink-0" />
+        <span
+          key={`${item.label}-${idx}`}
+          className="inline-flex items-center gap-1.5 min-w-0"
+        >
+          <ChevronRight className="w-3.5 h-3.5 opacity-60 flex-shrink-0" aria-hidden="true" />
           {item.href ? (
             <Link
               href={item.href}
-              className="hover:text-stone-900 dark:hover:text-stone-100 transition-colors truncate max-w-[180px] sm:max-w-[260px]"
+              className="inline-flex items-center min-h-[36px] hover:text-ink transition-colors truncate max-w-[160px] sm:max-w-[260px]"
             >
               {item.label}
             </Link>
           ) : (
             <span
-              className="font-medium text-stone-800 dark:text-stone-200 truncate max-w-[200px] sm:max-w-[320px]"
+              className="font-medium text-ink truncate max-w-[190px] sm:max-w-[320px]"
               aria-current="page"
             >
               {item.label}
@@ -40,4 +45,3 @@ export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
     </nav>
   );
 }
-
