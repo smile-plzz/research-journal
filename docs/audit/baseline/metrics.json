@@ -1,0 +1,419 @@
+{
+  "phase": "baseline",
+  "timestamp": "2026-11-12T09:19:16.572Z",
+  "overflowIssues": [
+    {
+      "route": "/",
+      "width": 360,
+      "theme": "light",
+      "innerWidth": 360,
+      "scrollWidth": 553,
+      "overflowPx": 193
+    },
+    {
+      "route": "/works/tcra-intelligence-automation-boundary",
+      "width": 360,
+      "theme": "light",
+      "innerWidth": 360,
+      "scrollWidth": 553,
+      "overflowPx": 193
+    },
+    {
+      "route": "/showcase",
+      "width": 360,
+      "theme": "light",
+      "innerWidth": 360,
+      "scrollWidth": 553,
+      "overflowPx": 193
+    },
+    {
+      "route": "/showcase/luma",
+      "width": 360,
+      "theme": "light",
+      "innerWidth": 360,
+      "scrollWidth": 553,
+      "overflowPx": 193
+    },
+    {
+      "route": "/showcase/categories/desktop-app",
+      "width": 360,
+      "theme": "light",
+      "innerWidth": 360,
+      "scrollWidth": 553,
+      "overflowPx": 193
+    },
+    {
+      "route": "/research-areas",
+      "width": 360,
+      "theme": "light",
+      "innerWidth": 360,
+      "scrollWidth": 553,
+      "overflowPx": 193
+    },
+    {
+      "route": "/about",
+      "width": 360,
+      "theme": "light",
+      "innerWidth": 360,
+      "scrollWidth": 553,
+      "overflowPx": 193
+    },
+    {
+      "route": "/methodology",
+      "width": 360,
+      "theme": "light",
+      "innerWidth": 360,
+      "scrollWidth": 553,
+      "overflowPx": 193
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "theme": "light",
+      "innerWidth": 390,
+      "scrollWidth": 553,
+      "overflowPx": 163
+    },
+    {
+      "route": "/works/tcra-intelligence-automation-boundary",
+      "width": 390,
+      "theme": "light",
+      "innerWidth": 390,
+      "scrollWidth": 553,
+      "overflowPx": 163
+    },
+    {
+      "route": "/showcase",
+      "width": 390,
+      "theme": "light",
+      "innerWidth": 390,
+      "scrollWidth": 553,
+      "overflowPx": 163
+    },
+    {
+      "route": "/showcase/luma",
+      "width": 390,
+      "theme": "light",
+      "innerWidth": 390,
+      "scrollWidth": 553,
+      "overflowPx": 163
+    },
+    {
+      "route": "/showcase/categories/desktop-app",
+      "width": 390,
+      "theme": "light",
+      "innerWidth": 390,
+      "scrollWidth": 553,
+      "overflowPx": 163
+    },
+    {
+      "route": "/research-areas",
+      "width": 390,
+      "theme": "light",
+      "innerWidth": 390,
+      "scrollWidth": 553,
+      "overflowPx": 163
+    },
+    {
+      "route": "/about",
+      "width": 390,
+      "theme": "light",
+      "innerWidth": 390,
+      "scrollWidth": 553,
+      "overflowPx": 163
+    },
+    {
+      "route": "/methodology",
+      "width": 390,
+      "theme": "light",
+      "innerWidth": 390,
+      "scrollWidth": 553,
+      "overflowPx": 163
+    },
+    {
+      "route": "/",
+      "width": 360,
+      "theme": "dark",
+      "innerWidth": 360,
+      "scrollWidth": 553,
+      "overflowPx": 193
+    },
+    {
+      "route": "/works/tcra-intelligence-automation-boundary",
+      "width": 360,
+      "theme": "dark",
+      "innerWidth": 360,
+      "scrollWidth": 553,
+      "overflowPx": 193
+    },
+    {
+      "route": "/showcase",
+      "width": 360,
+      "theme": "dark",
+      "innerWidth": 360,
+      "scrollWidth": 553,
+      "overflowPx": 193
+    },
+    {
+      "route": "/showcase/luma",
+      "width": 360,
+      "theme": "dark",
+      "innerWidth": 360,
+      "scrollWidth": 553,
+      "overflowPx": 193
+    },
+    {
+      "route": "/showcase/categories/desktop-app",
+      "width": 360,
+      "theme": "dark",
+      "innerWidth": 360,
+      "scrollWidth": 553,
+      "overflowPx": 193
+    },
+    {
+      "route": "/research-areas",
+      "width": 360,
+      "theme": "dark",
+      "innerWidth": 360,
+      "scrollWidth": 553,
+      "overflowPx": 193
+    },
+    {
+      "route": "/about",
+      "width": 360,
+      "theme": "dark",
+      "innerWidth": 360,
+      "scrollWidth": 553,
+      "overflowPx": 193
+    },
+    {
+      "route": "/methodology",
+      "width": 360,
+      "theme": "dark",
+      "innerWidth": 360,
+      "scrollWidth": 553,
+      "overflowPx": 193
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "theme": "dark",
+      "innerWidth": 390,
+      "scrollWidth": 553,
+      "overflowPx": 163
+    },
+    {
+      "route": "/works/tcra-intelligence-automation-boundary",
+      "width": 390,
+      "theme": "dark",
+      "innerWidth": 390,
+      "scrollWidth": 553,
+      "overflowPx": 163
+    },
+    {
+      "route": "/showcase",
+      "width": 390,
+      "theme": "dark",
+      "innerWidth": 390,
+      "scrollWidth": 553,
+      "overflowPx": 163
+    },
+    {
+      "route": "/showcase/luma",
+      "width": 390,
+      "theme": "dark",
+      "innerWidth": 390,
+      "scrollWidth": 553,
+      "overflowPx": 163
+    },
+    {
+      "route": "/showcase/categories/desktop-app",
+      "width": 390,
+      "theme": "dark",
+      "innerWidth": 390,
+      "scrollWidth": 553,
+      "overflowPx": 163
+    },
+    {
+      "route": "/research-areas",
+      "width": 390,
+      "theme": "dark",
+      "innerWidth": 390,
+      "scrollWidth": 553,
+      "overflowPx": 163
+    },
+    {
+      "route": "/about",
+      "width": 390,
+      "theme": "dark",
+      "innerWidth": 390,
+      "scrollWidth": 553,
+      "overflowPx": 163
+    },
+    {
+      "route": "/methodology",
+      "width": 390,
+      "theme": "dark",
+      "innerWidth": 390,
+      "scrollWidth": 553,
+      "overflowPx": 163
+    }
+  ],
+  "lighthouse": [
+    {
+      "route": "/",
+      "scores": {
+        "performance": 88,
+        "accessibility": 96,
+        "bestPractices": 96,
+        "seo": 100
+      },
+      "metrics": {
+        "lcpMs": 1094,
+        "cls": 0,
+        "tbtMs": 468,
+        "inpMs": 289,
+        "fcpMs": 1094,
+        "speedIndexMs": 1196,
+        "totalByteWeightKB": 489,
+        "jsBytesKB": 306
+      },
+      "a11yFails": [
+        {
+          "id": "color-contrast",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "score": 0
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "title": "Elements with visible text labels do not have matching accessible names.",
+          "score": 0
+        }
+      ]
+    },
+    {
+      "route": "/works/tcra-intelligence-automation-boundary",
+      "scores": {
+        "performance": 96,
+        "accessibility": 90,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "lcpMs": 1085,
+        "cls": 0,
+        "tbtMs": 229,
+        "inpMs": 284,
+        "fcpMs": 1085,
+        "speedIndexMs": 1085,
+        "totalByteWeightKB": 512,
+        "jsBytesKB": 306
+      },
+      "a11yFails": [
+        {
+          "id": "button-name",
+          "title": "Buttons do not have an accessible name",
+          "score": 0
+        },
+        {
+          "id": "color-contrast",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "score": 0
+        },
+        {
+          "id": "heading-order",
+          "title": "Heading elements are not in a sequentially-descending order",
+          "score": 0
+        }
+      ]
+    },
+    {
+      "route": "/showcase",
+      "scores": {
+        "performance": 98,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 91
+      },
+      "metrics": {
+        "lcpMs": 1219,
+        "cls": 0,
+        "tbtMs": 178,
+        "inpMs": 217,
+        "fcpMs": 1219,
+        "speedIndexMs": 1219,
+        "totalByteWeightKB": 713,
+        "jsBytesKB": 300
+      },
+      "a11yFails": [
+        {
+          "id": "color-contrast",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "score": 0
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "title": "Elements with visible text labels do not have matching accessible names.",
+          "score": 0
+        }
+      ]
+    },
+    {
+      "route": "/showcase/luma",
+      "scores": {
+        "performance": 95,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "lcpMs": 1061,
+        "cls": 0,
+        "tbtMs": 249,
+        "inpMs": 153,
+        "fcpMs": 1061,
+        "speedIndexMs": 1061,
+        "totalByteWeightKB": 459,
+        "jsBytesKB": 300
+      },
+      "a11yFails": [
+        {
+          "id": "color-contrast",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "score": 0
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "title": "Elements with visible text labels do not have matching accessible names.",
+          "score": 0
+        }
+      ]
+    },
+    {
+      "route": "/research-areas",
+      "scores": {
+        "performance": 98,
+        "accessibility": 96,
+        "bestPractices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "lcpMs": 1071,
+        "cls": 0,
+        "tbtMs": 178,
+        "inpMs": 174,
+        "fcpMs": 1071,
+        "speedIndexMs": 1071,
+        "totalByteWeightKB": 538,
+        "jsBytesKB": 306
+      },
+      "a11yFails": [
+        {
+          "id": "color-contrast",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "score": 0
+        }
+      ]
+    }
+  ]
+}
