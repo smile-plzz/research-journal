@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-11-12T05:38:57.206Z",
-  "totalProjects": 81,
+  "generatedAt": "2026-11-13T04:55:40.415Z",
+  "totalProjects": 82,
   "curatedCount": 30,
   "featuredCount": 6,
   "projects": [
@@ -62,7 +62,7 @@
       "needsReview": true,
       "featured": true,
       "order": 1,
-      "updatedAt": "2026-11-11T21:34:50Z",
+      "updatedAt": "2026-11-12T08:19:16Z",
       "relatedWorks": [],
       "relatedProjects": [],
       "provenance": {
@@ -1339,7 +1339,7 @@
       "needsReview": true,
       "featured": false,
       "order": 20,
-      "updatedAt": "2026-05-11T11:27:43Z",
+      "updatedAt": "2026-11-12T19:24:05Z",
       "relatedWorks": [],
       "relatedProjects": [],
       "provenance": {
@@ -1912,6 +1912,47 @@
         "audience": "manual-override",
         "features": "manual-override",
         "statusNote": "manual-override"
+      }
+    },
+    {
+      "slug": "dibbonasser",
+      "name": "DibboNasser",
+      "tagline": "",
+      "description": "",
+      "features": [],
+      "category": "web-app",
+      "status": "live",
+      "platforms": [
+        "web"
+      ],
+      "tech": [
+        "HTML"
+      ],
+      "screenshots": [],
+      "liveUrl": "https://smile-plzz.github.io/DibboNasser/",
+      "downloads": [],
+      "safetyNote": false,
+      "readmeFile": "dibbonasser.md",
+      "repo": {
+        "owner": "smile-plzz",
+        "name": "DibboNasser",
+        "url": "https://github.com/smile-plzz/DibboNasser",
+        "defaultBranch": "main",
+        "isArchived": false
+      },
+      "curated": false,
+      "needsReview": true,
+      "featured": false,
+      "updatedAt": "2026-11-12T20:32:32Z",
+      "relatedWorks": [],
+      "relatedProjects": [],
+      "provenance": {
+        "name": "readme",
+        "category": "github-api",
+        "platforms": "github-api",
+        "status": "github-api",
+        "liveUrl": "github-api",
+        "tech": "github-api"
       }
     },
     {
